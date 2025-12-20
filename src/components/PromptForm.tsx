@@ -24,7 +24,13 @@ import {
     Settings,
     MonitorPlay,
     CheckCircle2,
-    Circle
+    Circle,
+    Smile,
+    Globe,
+    Camera as CameraIcon,
+    Hourglass,
+    Maximize,
+    Ban
 } from 'lucide-react';
 
 const IconCopy = () => (
@@ -34,16 +40,23 @@ const IconCopy = () => (
 export function PromptForm() {
     const { t } = useLanguage();
 
-    // All fields default to empty string or empty array
+    const defaultAddonKeys = ['highlyDetailed', 'resolution8k', 'masterpiece', 'professional', 'photorealistic', 'sharpFocus'];
+    const getTranslatedAddons = () => defaultAddonKeys.map(key => t.addons[key as keyof typeof t.addons]);
+
     const initialData: PromptData = {
         gender: '',
         ageGroup: '',
+        ethnicity: '',
+        eyeColor: '',
         hairColor: '',
         hairStyle: '',
+        makeup: '',
         clothing: '',
         accessories: '',
         action: '',
+        pose: '',
         background: '',
+        era: '',
         weather: '',
         timeOfDay: '',
         camera: '',
@@ -53,24 +66,12 @@ export function PromptForm() {
         style: '',
         photographerStyle: '',
         lighting: '',
+        lightColor: '',
         colorGrading: '',
-        addons: ['highlyDetailed', 'resolution8k', 'masterpiece', 'professional', 'photorealistic', 'sharpFocus'].map(k => t.addons[k as keyof typeof t.addons] || k), // Default addons translated
+        aspectRatio: '',
+        negativePrompt: '',
+        addons: [],
     };
-
-    // Override initial addons to keys if we want to store keys in state, but generatePrompt expects values.
-    // Actually, let's store the translated values in the state directly for simplicity with the current prompt builder logic,
-    // OR refactor prompt builder to take keys.
-    // Given prompt builder just joins the strings, sticking to values is easiest for now.
-    // BUT, check boxes need to know which VALID keys are checked.
-    // Let's store KEYS in state for addons, and translate them before sending to generatePrompt?
-    // No, generatePrompt takes `addons: string[]`.
-    // Let's store the actual string values (translated) in the state, but we need to track checking state.
-    // Better approach: Store keys in a local Set or just values?
-    // Let's act as if `data.addons` stores the VALUES that go into the prompt.
-
-    // Revised Initial Data with default checked values (translated)
-    const defaultAddonKeys = ['highlyDetailed', 'resolution8k', 'masterpiece', 'professional', 'photorealistic', 'sharpFocus'];
-    const getTranslatedAddons = () => defaultAddonKeys.map(key => t.addons[key as keyof typeof t.addons]);
 
     const [data, setData] = useState<PromptData>({
         ...initialData,
@@ -80,16 +81,8 @@ export function PromptForm() {
     const [generated, setGenerated] = useState('');
     const [copied, setCopied] = useState(false);
 
-    // Update defaults when language changes
-    React.useEffect(() => {
-        // If the user hasn't manually modified addons too much, we could try to translate them?
-        // For now, let's just keep the current values or reset? 
-        // A simple reset might be annoying.
-        // Let's just update the initial state logic for NEXT resets.
-        // Implementing proper addon key tracking would be better but requires larger refactor.
-        // We will stick to simple string storage.
-    }, [t]);
-
+    // Toggle negative prompt visibility
+    const [showNegative, setShowNegative] = useState(false);
 
     const handleGenerate = () => {
         const result = generatePrompt(data);
@@ -145,17 +138,11 @@ export function PromptForm() {
             >
                 <option value="">{t.form.selectOption}</option>
                 {Object.entries(options).map(([key, value]) => (
-                    <option key={key} value={value}>{value}</option> // Store value (display text) directly for prompt builder
+                    <option key={key} value={value}>{value}</option>
                 ))}
             </select>
         </div>
     );
-
-    // NOTE: Previous implementation might have been storing KEYS (e.g., 'casual') but renderSelect above stores VALUES (e.g. 'Casual T-Shirt').
-    // Let's verify `prompt-builder.ts`. It takes `data.clothing`. If it's the key, the prompt will be "wearing casual".
-    // If it's the value, it's "wearing Casual T-Shirt". Value is better.
-    // I changed `value={key}` to `value={value}` above to ensure we pass the full descriptive text to the prompt builder!
-    // This is a subtle but important fix/improvement for the prompt quality.
 
     return (
         <div className="w-full max-w-6xl mx-auto space-y-8">
@@ -173,8 +160,15 @@ export function PromptForm() {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                             {renderSelect(t.form.gender, 'gender', t.options.gender)}
                             {renderSelect(t.form.ageGroup, 'ageGroup', t.options.ageGroup)}
-                            {renderSelect(t.form.hairColor, 'hairColor', t.options.hairColor, <Scissors size={14} />)}
-                            {renderSelect(t.form.hairStyle, 'hairStyle', t.options.hairStyle)}
+                            {renderSelect(t.form.ethnicity, 'ethnicity', t.options.ethnicity, <Globe size={14} />)}
+                            {renderSelect(t.form.eyeColor, 'eyeColor', t.options.eyeColor, <Eye size={14} />)}
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            {renderSelect(t.form.hairStyle, 'hairStyle', t.options.hairStyle, <Scissors size={14} />)}
+                            {renderSelect(t.form.hairColor, 'hairColor', t.options.hairColor)}
+                            {renderSelect(t.form.makeup, 'makeup', t.options.makeup, <Smile size={14} />)}
+                            {renderSelect(t.form.pose, 'pose', t.options.pose, <User size={14} />)}
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -191,9 +185,13 @@ export function PromptForm() {
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                             {renderSelect(t.form.background, 'background', t.options.background, <ImageIcon size={14} />)}
+                            {renderSelect(t.form.era, 'era', t.options.era, <Hourglass size={14} />)}
                             {renderSelect(t.form.weather, 'weather', t.options.weather, <CloudSun size={14} />)}
                             {renderSelect(t.form.timeOfDay, 'timeOfDay', t.options.timeOfDay, <Clock size={14} />)}
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                             {renderSelect(t.form.lighting, 'lighting', t.lighting, <Lightbulb size={14} />)}
+                            {renderSelect(t.form.lightColor, 'lightColor', t.options.lightColor, <Palette size={14} />)}
                         </div>
                     </div>
 
@@ -203,7 +201,7 @@ export function PromptForm() {
                             <Camera size={14} /> Camera & Technical
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {renderSelect(t.form.cameraType, 'cameraType', t.options.cameraType, <Camera size={14} />)}
+                            {renderSelect(t.form.cameraType, 'cameraType', t.options.cameraType, <CameraIcon size={14} />)}
                             {renderSelect(t.form.camera, 'camera', t.options.camera, <Aperture size={14} />)}
                             {renderSelect(t.form.lens, 'lens', t.options.lens, <Eye size={14} />)}
                             {renderSelect(t.form.filmStock, 'filmStock', t.options.filmStock, <Film size={14} />)}
@@ -213,12 +211,13 @@ export function PromptForm() {
                     {/* Style & Grading Group */}
                     <div className="space-y-4">
                         <h3 className="text-xs font-bold text-purple-400/80 uppercase tracking-widest flex items-center gap-2 border-b border-zinc-800/50 pb-2 pt-2">
-                            <Palette size={14} /> Style & Artistry
+                            <Palette size={14} /> Style & Production
                         </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                             {renderSelect(t.form.style, 'style', t.styles, <Palette size={14} />)}
                             {renderSelect(t.form.photographerStyle, 'photographerStyle', t.options.photographerStyle, <User size={14} />)}
                             {renderSelect(t.form.colorGrading, 'colorGrading', t.options.colorGrading, <MonitorPlay size={14} />)}
+                            {renderSelect(t.form.aspectRatio, 'aspectRatio', t.options.aspectRatio, <Maximize size={14} />)}
                         </div>
                     </div>
 
@@ -250,6 +249,29 @@ export function PromptForm() {
                                 );
                             })}
                         </div>
+                    </div>
+
+                    {/* Negative Prompt */}
+                    <div className="pt-2">
+                        <button
+                            onClick={() => setShowNegative(!showNegative)}
+                            className="text-xs font-bold text-red-500/80 uppercase tracking-widest flex items-center gap-2 hover:text-red-400 transition-colors"
+                        >
+                            <Ban size={14} /> {t.form.negativePrompt}
+                            <span className="text-[10px] bg-zinc-800 px-1.5 py-0.5 rounded ml-auto transition-transform duration-200" style={{ transform: showNegative ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</span>
+                        </button>
+
+                        {showNegative && (
+                            <div className="mt-3 animate-in fade-in slide-in-from-top-2 duration-300">
+                                <textarea
+                                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-red-500/30 appearance-none text-sm placeholder:text-zinc-700 resize-none"
+                                    rows={2}
+                                    placeholder={t.form.negativePlaceholder}
+                                    value={data.negativePrompt}
+                                    onChange={(e) => handleChange('negativePrompt', e.target.value)}
+                                />
+                            </div>
+                        )}
                     </div>
 
 
