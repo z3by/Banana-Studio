@@ -4,7 +4,7 @@ import React from 'react';
 import { useLanguage } from './LanguageContext';
 
 export function Header() {
-    const { language, setLanguage, t } = useLanguage();
+    const { language, setLanguage } = useLanguage();
 
     const toggleLanguage = () => {
         setLanguage(language === 'en' ? 'ar' : 'en');
@@ -14,7 +14,7 @@ export function Header() {
         <header className="flex items-center justify-between py-6 px-4 md:px-8 max-w-5xl mx-auto w-full">
             <div className="flex items-center gap-2">
                 <h1 className="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">
-                    Nano Banana Pro
+                    Banana Studio
                 </h1>
             </div>
 

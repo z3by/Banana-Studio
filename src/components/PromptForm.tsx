@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useLanguage } from './LanguageContext';
 import { generatePrompt, PromptData } from '@/lib/prompt-builder';
 import {
-    Clipboard,
     RefreshCw,
     Wand2,
     User,
@@ -32,7 +32,6 @@ import {
     Maximize,
     Ban,
     Sparkles,
-    Cpu,
     Layout,
     Gauge,
     Sliders,
@@ -69,11 +68,29 @@ const useOutsideClick = (callback: () => void) => {
 
 // --- Standalone Components ---
 
-const MultiSelectField = ({ label, value, onChange, options, icon, placeholder = "Select..." }: { label: string, value: string[], onChange: (val: string[]) => void, options: Record<string, string>, icon: any, placeholder?: string }) => {
+const MultiSelectField = ({ label, value, onChange, options, icon, placeholder = "Select..." }: { label: string, value: string[], onChange: (val: string[]) => void, options: Record<string, string>, icon: React.ReactNode, placeholder?: string }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState("");
-    const ref = useOutsideClick(() => setIsOpen(false));
+    const containerRef = useRef<HTMLDivElement>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+    const triggerRef = useRef<HTMLDivElement>(null);
+    const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
+
+    // Custom outside click handler that includes the portal dropdown
+    useEffect(() => {
+        const handleClick = (e: MouseEvent) => {
+            if (!isOpen) return;
+            const target = e.target as Node;
+            const clickedInsideContainer = containerRef.current?.contains(target);
+            const clickedInsideDropdown = dropdownRef.current?.contains(target);
+            if (!clickedInsideContainer && !clickedInsideDropdown) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClick);
+        return () => document.removeEventListener('mousedown', handleClick);
+    }, [isOpen]);
 
     const toggleValue = (val: string) => {
         const updated = value.includes(val) ? value.filter(i => i !== val) : [...value, val];
@@ -92,6 +109,35 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
         }
     };
 
+    // Update dropdown position when opened
+    useEffect(() => {
+        if (isOpen && triggerRef.current) {
+            const rect = triggerRef.current.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            const spaceBelow = viewportHeight - rect.bottom;
+            const dropdownHeight = 240; // max-h-60 = 15rem = 240px
+
+            // Position above if not enough space below
+            if (spaceBelow < dropdownHeight && rect.top > dropdownHeight) {
+                setDropdownStyle({
+                    position: 'fixed',
+                    bottom: viewportHeight - rect.top + 8,
+                    left: rect.left,
+                    width: rect.width,
+                    maxHeight: Math.min(dropdownHeight, rect.top - 16),
+                });
+            } else {
+                setDropdownStyle({
+                    position: 'fixed',
+                    top: rect.bottom + 8,
+                    left: rect.left,
+                    width: rect.width,
+                    maxHeight: Math.min(dropdownHeight, spaceBelow - 16),
+                });
+            }
+        }
+    }, [isOpen]);
+
     // Find label for a given english value
     const getLabel = (val: string) => {
         // If val is in options values (it's English), return the label. 
@@ -100,13 +146,39 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
         return options[val] || val;
     };
 
+    const dropdownContent = isOpen && typeof document !== 'undefined' ? createPortal(
+        <div
+            ref={dropdownRef}
+            className="z-[9999] bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar"
+            style={dropdownStyle}
+        >
+            {Object.entries(options).map(([k, v]) => {
+                if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
+                const isSelected = value.includes(k);
+                return (
+                    <div key={k} onClick={() => { toggleValue(k); setInputValue(""); }} className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-yellow-500/10 text-yellow-500' : 'text-zinc-300 hover:bg-zinc-800'}`}>
+                        <span>{v}</span>
+                        {isSelected && <Check size={14} />}
+                    </div>
+                );
+            })}
+            {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
+                <div onClick={() => { onChange([...value, inputValue]); setInputValue(""); }} className="px-4 py-2.5 text-sm cursor-pointer text-blue-400 hover:bg-zinc-800 flex items-center gap-2 italic border-t border-zinc-800/50">
+                    <PenLine size={12} /> Add &quot;{inputValue}&quot;
+                </div>
+            )}
+        </div>,
+        document.body
+    ) : null;
+
     return (
-        <div className="space-y-2" ref={ref}>
+        <div className="space-y-2" ref={containerRef}>
             <label className="text-sm font-medium text-zinc-400 flex items-center gap-1.5 whitespace-nowrap">
                 {icon} {label}
             </label>
             <div className="relative">
                 <div
+                    ref={triggerRef}
                     onClick={() => { setIsOpen(true); inputRef.current?.focus(); }}
                     className={`w-full bg-zinc-950 border rounded-xl p-2 min-h-[46px] flex flex-wrap gap-1.5 cursor-text text-sm transition-all ${isOpen ? 'border-yellow-500/50 ring-2 ring-yellow-500/20' : 'border-zinc-800 hover:border-zinc-700'}`}
                 >
@@ -131,44 +203,65 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
                         <ChevronsUpDown size={14} className="opacity-50" />
                     </div>
                 </div>
-                {isOpen && (
-                    <div className="absolute z-50 w-full mt-2 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl max-h-60 overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar">
-                        {Object.entries(options).map(([k, v]: any) => {
-                            if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
-                            const isSelected = value.includes(k);
-                            return (
-                                <div key={k} onClick={() => { toggleValue(k); setInputValue(""); }} className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-yellow-500/10 text-yellow-500' : 'text-zinc-300 hover:bg-zinc-800'}`}>
-                                    <span>{v}</span>
-                                    {isSelected && <Check size={14} />}
-                                </div>
-                            );
-                        })}
-                        {inputValue && !Object.values(options).some((v: any) => v.toLowerCase() === inputValue.toLowerCase()) && (
-                            <div onClick={() => { onChange([...value, inputValue]); setInputValue(""); }} className="px-4 py-2.5 text-sm cursor-pointer text-blue-400 hover:bg-zinc-800 flex items-center gap-2 italic border-t border-zinc-800/50">
-                                <PenLine size={12} /> Add "{inputValue}"
-                            </div>
-                        )}
-                    </div>
-                )}
+                {dropdownContent}
             </div>
         </div>
     );
 };
 
-const SelectField = ({ label, value, onChange, options, icon, placeholder = "Select..." }: { label: string, value: string, onChange: (val: string) => void, options: Record<string, string>, icon: any, placeholder?: string }) => {
+const SelectField = ({ label, value, onChange, options, icon, placeholder = "Select..." }: { label: string, value: string, onChange: (val: string) => void, options: Record<string, string>, icon: React.ReactNode, placeholder?: string }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState("");
     const [isManual, setIsManual] = useState(false); // Toggle between list and raw input
-    const ref = useOutsideClick(() => setIsOpen(false));
+    const containerRef = useRef<HTMLDivElement>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+    const triggerRef = useRef<HTMLDivElement>(null);
+    const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
 
-    // Initial value for search input when opening list
+    // Custom outside click handler that includes the portal dropdown
     useEffect(() => {
-        if (isOpen && !isManual) {
-            setInputValue("");
-            inputRef.current?.focus();
+        const handleClick = (e: MouseEvent) => {
+            if (!isOpen) return;
+            const target = e.target as Node;
+            const clickedInsideContainer = containerRef.current?.contains(target);
+            const clickedInsideDropdown = dropdownRef.current?.contains(target);
+            if (!clickedInsideContainer && !clickedInsideDropdown) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClick);
+        return () => document.removeEventListener('mousedown', handleClick);
+    }, [isOpen]);
+
+    // Update dropdown position when opened
+    useEffect(() => {
+        if (isOpen && triggerRef.current) {
+            const rect = triggerRef.current.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            const spaceBelow = viewportHeight - rect.bottom;
+            const dropdownHeight = 240; // max-h-60 = 15rem = 240px
+
+            // Position above if not enough space below
+            if (spaceBelow < dropdownHeight && rect.top > dropdownHeight) {
+                setDropdownStyle({
+                    position: 'fixed',
+                    bottom: viewportHeight - rect.top + 8,
+                    left: rect.left,
+                    width: rect.width,
+                    maxHeight: Math.min(dropdownHeight, rect.top - 16),
+                });
+            } else {
+                setDropdownStyle({
+                    position: 'fixed',
+                    top: rect.bottom + 8,
+                    left: rect.left,
+                    width: rect.width,
+                    maxHeight: Math.min(dropdownHeight, spaceBelow - 16),
+                });
+            }
         }
-    }, [isOpen, isManual]);
+    }, [isOpen]);
 
     const handleSelect = (key: string) => {
         onChange(key);
@@ -180,8 +273,44 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
         return options[val] || val;
     };
 
+    const dropdownContent = isOpen && typeof document !== 'undefined' ? createPortal(
+        <div
+            ref={dropdownRef}
+            className="z-[9999] bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar"
+            style={dropdownStyle}
+        >
+            <div className="p-2 sticky top-0 bg-zinc-900/95 backdrop-blur-sm border-b border-zinc-800/50 z-10">
+                <input
+                    ref={inputRef}
+                    type="text"
+                    className="w-full bg-zinc-950/50 border border-zinc-700 rounded-lg px-2 py-1.5 text-xs text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-yellow-500/50"
+                    placeholder="Search..."
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onClick={(e) => e.stopPropagation()}
+                />
+            </div>
+            {Object.entries(options).map(([k, v]) => {
+                if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
+                const isSelected = value === k;
+                return (
+                    <div key={k} onClick={() => handleSelect(k)} className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-yellow-500/10 text-yellow-500' : 'text-zinc-300 hover:bg-zinc-800'}`}>
+                        <span>{v}</span>
+                        {isSelected && <Check size={14} />}
+                    </div>
+                );
+            })}
+            {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
+                <div onClick={() => handleSelect(inputValue)} className="px-4 py-2.5 text-sm cursor-pointer text-blue-400 hover:bg-zinc-800 flex items-center gap-2 italic border-t border-zinc-800/50">
+                    <PenLine size={12} /> Use &quot;{inputValue}&quot;
+                </div>
+            )}
+        </div>,
+        document.body
+    ) : null;
+
     return (
-        <div className="space-y-2 group" ref={ref}>
+        <div className="space-y-2 group" ref={containerRef}>
             <div className="flex justify-between items-center">
                 <label className="text-sm font-medium text-zinc-400 flex items-center gap-1.5 whitespace-nowrap">
                     {icon} {label}
@@ -213,7 +342,14 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
             ) : (
                 <div className="relative">
                     <div
-                        onClick={() => setIsOpen(!isOpen)}
+                        ref={triggerRef}
+                        onClick={() => {
+                            setIsOpen(!isOpen);
+                            if (!isOpen && !isManual) {
+                                setInputValue("");
+                                setTimeout(() => inputRef.current?.focus(), 0);
+                            }
+                        }}
                         className={`w-full bg-zinc-950 border rounded-xl p-3 flex justify-between items-center cursor-pointer text-sm transition-all ${isOpen ? 'border-yellow-500/50 ring-2 ring-yellow-500/20' : 'border-zinc-800 hover:border-zinc-700'}`}
                     >
                         <span className={`truncate ${!value ? 'text-zinc-600' : 'text-zinc-200'}`}>
@@ -221,44 +357,14 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
                         </span>
                         <ChevronsUpDown size={14} className="text-zinc-500 opacity-50" />
                     </div>
-
-                    {isOpen && (
-                        <div className="absolute z-50 w-full mt-2 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl max-h-60 overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar" style={{ position: 'absolute' }}>
-                            <div className="p-2 sticky top-0 bg-zinc-900/95 backdrop-blur-sm border-b border-zinc-800/50 z-10">
-                                <input
-                                    ref={inputRef}
-                                    type="text"
-                                    className="w-full bg-zinc-950/50 border border-zinc-700 rounded-lg px-2 py-1.5 text-xs text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-yellow-500/50"
-                                    placeholder="Search..."
-                                    value={inputValue}
-                                    onChange={(e) => setInputValue(e.target.value)}
-                                    onClick={(e) => e.stopPropagation()}
-                                />
-                            </div>
-                            {Object.entries(options).map(([k, v]: any) => {
-                                if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
-                                const isSelected = value === k;
-                                return (
-                                    <div key={k} onClick={() => handleSelect(k)} className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-yellow-500/10 text-yellow-500' : 'text-zinc-300 hover:bg-zinc-800'}`}>
-                                        <span>{v}</span>
-                                        {isSelected && <Check size={14} />}
-                                    </div>
-                                );
-                            })}
-                            {inputValue && !Object.values(options).some((v: any) => v.toLowerCase() === inputValue.toLowerCase()) && (
-                                <div onClick={() => handleSelect(inputValue)} className="px-4 py-2.5 text-sm cursor-pointer text-blue-400 hover:bg-zinc-800 flex items-center gap-2 italic border-t border-zinc-800/50">
-                                    <PenLine size={12} /> Use "{inputValue}"
-                                </div>
-                            )}
-                        </div>
-                    )}
+                    {dropdownContent}
                 </div>
             )}
         </div>
     );
 };
 
-const SliderField = ({ label, value, onChange, min, max, icon, tooltip }: any) => (
+const SliderField = ({ label, value, onChange, min, max, icon, tooltip }: { label: string, value: number, onChange: (val: number) => void, min: number, max: number, icon: React.ReactNode, tooltip?: string }) => (
     <div className="space-y-3 group">
         <label className="text-sm font-medium text-zinc-400 flex items-center justify-between">
             <span className="flex items-center gap-1.5">
@@ -301,8 +407,10 @@ export function PromptForm() {
     // Helper to generate options: Key = English Value, Value = Localized Label
     const getOptions = (section: string, field: string) => {
         // Access English options
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const enOptions = (translations.en as any)[section]?.[field] || {};
         // Access Localized options
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const localOptions = (translations[language] as any)[section]?.[field] || {};
 
         // Build object: { "English Value": "Localized Label" }
@@ -317,7 +425,9 @@ export function PromptForm() {
 
     // Helper for 'styles' and 'lighting' which are top-level or different structure
     const getFlatOptions = (field: string) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const enOptions = (translations.en as any)[field] || {};
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const localOptions = (translations[language] as any)[field] || {};
         return Object.keys(enOptions).reduce((acc, key) => {
             const enVal = enOptions[key];
@@ -341,7 +451,7 @@ export function PromptForm() {
         lens: [], filmStock: [], // Multi-Select
         composition: [], // Multi-Select
         style: [], photographerStyle: [], lighting: [], lightColor: '', colorGrading: '', specialEffects: [], texture: [],
-        aiModel: '', aspectRatio: '', negativePrompt: '',
+        aspectRatio: '', negativePrompt: '',
         stylize: 0, chaos: 0, weirdness: 0,
         addons: [],
     };
@@ -350,31 +460,88 @@ export function PromptForm() {
     const [generated, setGenerated] = useState('');
     const [copied, setCopied] = useState(false);
     const [currentStep, setCurrentStep] = useState(1);
-    const [history, setHistory] = useState<string[]>([]);
-    const [showHistory, setShowHistory] = useState(false);
-
-    // Load History on Mount
-    useEffect(() => {
-        const saved = localStorage.getItem('prompt_history');
-        if (saved) {
-            try {
-                setHistory(JSON.parse(saved));
-            } catch (e) {
-                console.error('Failed to parse history', e);
+    const [showToast, setShowToast] = useState<string | null>(null);
+    const resultRef = useRef<HTMLDivElement>(null);
+    const [history, setHistory] = useState<{ prompt: string, timestamp: number }[]>(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('prompt_history_v2');
+            if (saved) {
+                try {
+                    return JSON.parse(saved);
+                } catch (e) {
+                    console.error('Failed to parse history', e);
+                }
             }
         }
-    }, []);
+        return [];
+    });
+    const [showHistory, setShowHistory] = useState(false);
+    const historyRef = useOutsideClick(() => setShowHistory(false));
+
+    // Keyboard navigation
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            // Only handle if not typing in an input
+            if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+
+            if (e.key === 'ArrowRight' && !isRTL || e.key === 'ArrowLeft' && isRTL) {
+                setCurrentStep(prev => Math.min(5, prev + 1));
+            } else if (e.key === 'ArrowLeft' && !isRTL || e.key === 'ArrowRight' && isRTL) {
+                setCurrentStep(prev => Math.max(1, prev - 1));
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isRTL]);
+
+    // Calculate filled fields per step
+    const getStepFieldCount = (stepId: number): number => {
+        switch (stepId) {
+            case 1:
+                return [data.gender, data.ageGroup, data.ethnicity, data.eyeColor, data.hairColor]
+                    .filter(v => v).length +
+                    [data.hairStyle, data.makeup, data.pose, data.clothing, data.accessories, data.action]
+                        .filter(arr => arr.length > 0).length;
+            case 2:
+                return [data.background, data.era, data.timeOfDay, data.lightColor]
+                    .filter(v => v).length +
+                    [data.weather, data.lighting, data.mood]
+                        .filter(arr => arr.length > 0).length;
+            case 3:
+                return [data.cameraType, data.camera, data.aspectRatio]
+                    .filter(v => v).length +
+                    [data.lens, data.filmStock, data.composition]
+                        .filter(arr => arr.length > 0).length;
+            case 4:
+                return [data.colorGrading]
+                    .filter(v => v).length +
+                    [data.style, data.photographerStyle, data.specialEffects, data.texture]
+                        .filter(arr => arr.length > 0).length;
+            case 5:
+                return (data.stylize > 0 ? 1 : 0) + (data.chaos > 0 ? 1 : 0) + (data.weirdness > 0 ? 1 : 0) +
+                    (data.addons.length > 0 ? 1 : 0) + (data.negativePrompt ? 1 : 0);
+            default:
+                return 0;
+        }
+    };
 
     // Save History
     const addToHistory = (prompt: string) => {
-        const newHistory = [prompt, ...history].slice(0, 5); // Keep last 5
+        const newEntry = { prompt, timestamp: Date.now() };
+        const newHistory = [newEntry, ...history].slice(0, 10); // Keep last 10
         setHistory(newHistory);
-        localStorage.setItem('prompt_history', JSON.stringify(newHistory));
+        localStorage.setItem('prompt_history_v2', JSON.stringify(newHistory));
     };
 
     const clearHistory = () => {
         setHistory([]);
-        localStorage.removeItem('prompt_history');
+        localStorage.removeItem('prompt_history_v2');
+    };
+
+    // Toast helper
+    const showToastMessage = (message: string) => {
+        setShowToast(message);
+        setTimeout(() => setShowToast(null), 2500);
     };
 
 
@@ -385,12 +552,18 @@ export function PromptForm() {
         setGenerated(result);
         setCopied(false);
         addToHistory(result);
+        showToastMessage('✨ Prompt generated!');
+        // Auto-scroll to result after a brief delay
+        setTimeout(() => {
+            resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
     };
 
     const handleCopy = () => {
         if (!generated) return;
         navigator.clipboard.writeText(generated);
         setCopied(true);
+        showToastMessage('📋 Copied to clipboard!');
         setTimeout(() => setCopied(false), 2000);
     };
 
@@ -459,7 +632,7 @@ export function PromptForm() {
         newData.colorGrading = Math.random() > 0.6 ? pick(enT.options.colorGrading) : '';
         newData.specialEffects = Math.random() > 0.8 ? pickMulti(enT.options.specialEffects) : [];
         newData.texture = Math.random() > 0.8 ? pickMulti(enT.options.texture) : [];
-        newData.aiModel = Math.random() > 0.5 ? pick(enT.options.aiModel) : '';
+
 
         // Advanced
         newData.stylize = Math.random() > 0.5 ? Math.floor(Math.random() * 500) : 0;
@@ -475,7 +648,7 @@ export function PromptForm() {
         setData(newData);
     };
 
-    const handleChange = (field: keyof PromptData, value: any) => {
+    const handleChange = (field: keyof PromptData, value: string | string[] | number) => {
         setData(prev => ({ ...prev, [field]: value }));
     };
 
@@ -566,7 +739,6 @@ export function PromptForm() {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <MultiSelectField label={t.form.texture} value={data.texture} onChange={(v) => handleChange('texture', v)} options={getOptions('options', 'texture')} icon={<Gauge size={14} />} placeholder={t.form.selectOption} />
-                        <SelectField label={t.form.aiModel} value={data.aiModel} onChange={(v) => handleChange('aiModel', v)} options={getOptions('options', 'aiModel')} icon={<Cpu size={14} />} placeholder={t.form.selectOption} />
                     </div>
                 </div>
             );
@@ -590,7 +762,7 @@ export function PromptForm() {
                             <Settings size={14} /> {t.form.addons}
                         </h3>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                            {Object.entries(t.addons).map(([k, v]: any) => {
+                            {Object.entries(t.addons).map(([k, v]) => {
                                 const isChecked = data.addons.includes(v);
                                 return (
                                     <div key={k} onClick={() => toggleAddon(v)} className={`cursor-pointer rounded-xl p-3 border transition-all flex items-center gap-3 select-none ${isChecked ? 'bg-zinc-800 border-yellow-500/50 text-yellow-100 shadow-[0_0_15px_-3px_rgba(234,179,8,0.2)]' : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:bg-zinc-900'}`}>
@@ -624,15 +796,25 @@ export function PromptForm() {
     return (
         <div className="w-full max-w-6xl mx-auto space-y-8">
 
+            {/* Toast Notification */}
+            {showToast && (
+                <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[9999] animate-in fade-in slide-in-from-top-4 duration-300">
+                    <div className="bg-zinc-900 border border-yellow-500/30 px-6 py-3 rounded-2xl shadow-2xl shadow-yellow-500/10 flex items-center gap-3">
+                        <span className="text-sm font-medium text-zinc-100">{showToast}</span>
+                    </div>
+                </div>
+            )}
+
             {/* Top Toolbar */}
             <div className="flex justify-end gap-3 px-2">
                 {/* History Toggle */}
-                <div className="relative">
+                <div className="relative" ref={historyRef}>
                     <button onClick={() => setShowHistory(!showHistory)} className="flex items-center gap-2 text-zinc-400 hover:text-white px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 transition-all text-sm">
                         <History size={16} /> {t.form.actions.history}
+                        {history.length > 0 && <span className="bg-yellow-500/20 text-yellow-500 text-[10px] px-1.5 py-0.5 rounded-full font-bold">{history.length}</span>}
                     </button>
                     {showHistory && (
-                        <div className="absolute right-0 top-full mt-2 w-72 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-2">
+                        <div className="absolute right-0 top-full mt-2 w-80 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-2">
                             <div className="flex justify-between items-center mb-3">
                                 <h4 className="text-sm font-bold text-zinc-300">{t.form.history.title}</h4>
                                 {history.length > 0 && <button onClick={clearHistory} className="text-xs text-red-500 hover:text-red-400 flex items-center gap-1"><Trash2 size={12} /> {t.form.history.clear}</button>}
@@ -640,11 +822,12 @@ export function PromptForm() {
                             {history.length === 0 ? (
                                 <p className="text-xs text-zinc-600 italic">{t.form.history.empty}</p>
                             ) : (
-                                <div className="space-y-2">
+                                <div className="space-y-2 max-h-64 overflow-y-auto dark-scrollbar">
                                     {history.map((h, i) => (
-                                        <div key={i} className="text-xs bg-zinc-950 border border-zinc-800 p-2 rounded hover:bg-zinc-800 cursor-pointer text-zinc-400 line-clamp-2"
-                                            onClick={() => { setGenerated(h); setShowHistory(false); }}>
-                                            {h}
+                                        <div key={i} className="text-xs bg-zinc-950 border border-zinc-800 p-3 rounded-lg hover:bg-zinc-800 hover:border-zinc-700 cursor-pointer text-zinc-400 transition-all group"
+                                            onClick={() => { setGenerated(h.prompt); setShowHistory(false); showToastMessage('📜 Prompt loaded from history'); }}>
+                                            <p className="line-clamp-2 group-hover:text-zinc-200 transition-colors">{h.prompt}</p>
+                                            <p className="text-[10px] text-zinc-600 mt-1.5 flex items-center gap-1"><Clock size={10} /> {new Date(h.timestamp).toLocaleString()}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -680,12 +863,47 @@ export function PromptForm() {
                         </div>
                         <div className="text-4xl font-black text-zinc-800 select-none opacity-50">{currentStep}/5</div>
                     </div>
-                    {/* Progress Bar */}
-                    <div className="w-full bg-zinc-900 h-1.5 rounded-full overflow-hidden flex">
-                        {steps.map((s) => (
-                            <div key={s.id} className={`h-full transition-all duration-500 ${s.id <= currentStep ? 'bg-yellow-500' : 'bg-transparent'} flex-1 border-r border-zinc-950/50 last:border-0`} />
-                        ))}
+                    {/* Clickable Step Indicators */}
+                    <div className="flex items-center justify-between gap-2">
+                        {steps.map((s, index) => {
+                            const fieldCount = getStepFieldCount(s.id);
+                            const isActive = s.id === currentStep;
+                            const isCompleted = s.id < currentStep;
+                            return (
+                                <button
+                                    key={s.id}
+                                    onClick={() => setCurrentStep(s.id)}
+                                    className={`relative flex-1 group transition-all duration-300 ${isActive ? 'scale-105' : 'hover:scale-102'}`}
+                                >
+                                    <div className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border transition-all duration-300 ${isActive
+                                        ? 'bg-yellow-500/10 border-yellow-500/50 text-yellow-500 shadow-lg shadow-yellow-500/10'
+                                        : isCompleted
+                                            ? 'bg-green-500/5 border-green-500/30 text-green-400'
+                                            : 'bg-zinc-900/50 border-zinc-800 text-zinc-500 hover:border-zinc-700 hover:text-zinc-400'
+                                        }`}>
+                                        <span className={`text-xs font-bold ${isActive ? 'text-yellow-500' : isCompleted ? 'text-green-400' : 'text-zinc-600'
+                                            }`}>
+                                            {isCompleted ? <Check size={14} /> : s.id}
+                                        </span>
+                                        <span className="text-xs font-medium hidden md:inline truncate">{s.title}</span>
+                                        {fieldCount > 0 && (
+                                            <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${isActive ? 'bg-yellow-500/20 text-yellow-400' : 'bg-zinc-800 text-zinc-500'
+                                                }`}>
+                                                {fieldCount}
+                                            </span>
+                                        )}
+                                    </div>
+                                    {/* Progress line connector */}
+                                    {index < steps.length - 1 && (
+                                        <div className={`absolute top-1/2 -right-1 w-2 h-0.5 transition-colors duration-300 ${isCompleted ? 'bg-green-500/50' : 'bg-zinc-800'
+                                            }`} />
+                                    )}
+                                </button>
+                            );
+                        })}
                     </div>
+                    {/* Keyboard hint */}
+                    <p className="text-[10px] text-zinc-700 text-center mt-3 hidden md:block">Use ← → arrow keys to navigate</p>
                 </div>
 
                 {/* Wizard Body */}
@@ -727,7 +945,7 @@ export function PromptForm() {
 
             {/* Result Section */}
             {generated && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
+                <div ref={resultRef} className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 scroll-mt-8">
                     <label className="text-sm font-medium text-zinc-400 block mb-2 px-1">
                         {t.form.resultLabel}
                     </label>

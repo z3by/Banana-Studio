@@ -35,7 +35,6 @@ export interface PromptData {
     colorGrading: string;
     specialEffects: string[];
     texture: string[];
-    aiModel: string;
     negativePrompt: string;
 
     // Advanced Parameters
