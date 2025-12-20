@@ -20,12 +20,14 @@ export const translations = {
       era: 'Era / Period',
       weather: 'Weather',
       timeOfDay: 'Time of Day',
+      mood: 'Mood / Atmosphere',
 
       // Camera Section
       camera: 'Shot Type',
       cameraType: 'Camera Body / Type',
       lens: 'Lens',
       filmStock: 'Film Stock',
+      composition: 'Composition',
 
       // Style Section
       style: 'Art Style',
@@ -33,9 +35,20 @@ export const translations = {
       lighting: 'Lighting',
       lightColor: 'Light Color',
       colorGrading: 'Color Grading',
+      specialEffects: 'Special Effects',
+      texture: 'Texture / Material',
+
+      // Production
+      aiModel: 'Target AI Model',
       aspectRatio: 'Aspect Ratio',
       negativePrompt: 'Negative Prompt (What to avoid)',
       negativePlaceholder: 'e.g. ugly, deformed, blurry, text, watermark...',
+
+      // Advanced
+      advancedParams: 'Advanced Parameters',
+      stylize: 'Stylize (--s)',
+      chaos: 'Chaos (--c)',
+      weirdness: 'Weirdness (--w)',
 
       addons: 'Enhancements & Addons',
 
@@ -266,6 +279,18 @@ export const translations = {
         dusk: 'Dusk',
         night: 'Midnight',
       },
+      mood: {
+        ethereal: 'Ethereal / Dreamy',
+        melancholic: 'Melancholic',
+        whimsical: 'Whimsical',
+        ominous: 'Ominous / Dark',
+        serene: 'Serene / Peaceful',
+        chaotic: 'Chaotic / Energetic',
+        romantic: 'Romantic',
+        mysterious: 'Mysterious',
+        futuristic: 'Futuristic / Tech',
+        nostalgic: 'Nostalgic',
+      },
       camera: {
         closeup: 'Extreme Close-up',
         medium: 'Medium Shot',
@@ -376,6 +401,49 @@ export const translations = {
         '21:9': '21:9 Ultra Wide',
         '2:3': '2:3 Classic Photo',
       },
+      composition: {
+        thirds: 'Rule of Thirds',
+        center: 'Centered Composition',
+        symmetrical: 'Symmetrical',
+        golden: 'Golden Ratio',
+        diagonal: 'Diagonal Composition',
+        framing: 'Framing (Frame within a frame)',
+        minimal: 'Minimalist / Negative Space',
+        knolling: 'Knolling (Flat Lay)',
+        isometric: 'Isometric View',
+      },
+      specialEffects: {
+        doubleExposure: 'Double Exposure',
+        glitch: 'Glitch Effect',
+        chromatic: 'Chromatic Aberration',
+        infrared: 'Infrared Photography',
+        biolum: 'Bioluminescence',
+        longExposure: 'Long Exposure (Light Trails)',
+        tiltShift: 'Tilt-Shift Effect',
+        vignette: 'Heavy Vignette',
+        grain: 'Film Grain',
+        halftone: 'Halftone Pattern',
+      },
+      texture: {
+        porcelain: 'Porcelain Skin',
+        glass: 'Glass / Crystal',
+        liquid: 'Liquid Metal',
+        fabric: 'Soft Fabric / Silk',
+        gritty: 'Gritty / Rough',
+        plastic: 'Glossy Plastic',
+        paper: 'Paper Texture',
+        stone: 'Stone / Marble',
+        oil: 'Oil Painting',
+      },
+      aiModel: {
+        '--v 6.1': 'Midjourney v6.1',
+        '--v 6.0': 'Midjourney v6.0',
+        '--v 5.2': 'Midjourney v5.2',
+        '--niji 6': 'Niji Journey v6 (Anime)',
+        '--niji 5': 'Niji Journey v5',
+        'dalle3': 'DALL-E 3',
+        'sdx': 'Stable Diffusion XL',
+      },
     },
     styles: {
       cinematic: 'Cinematic Movie Scene',
@@ -452,12 +520,14 @@ export const translations = {
       era: 'الحقبة / الزمن',
       weather: 'الطقس',
       timeOfDay: 'الوقت',
+      mood: 'المزاج / الجو',
 
       // Camera
       camera: 'نوع اللقطة',
       cameraType: 'جسم الكاميرا / النوع',
       lens: 'العدسة',
       filmStock: 'نوع الفيلم',
+      composition: 'التكوين / الترتيب',
 
       // Style
       style: 'النمط الفني',
@@ -465,9 +535,19 @@ export const translations = {
       lighting: 'الإضاءة',
       lightColor: 'لون الإضاءة',
       colorGrading: 'تدريج الألوان',
+      specialEffects: 'مؤثرات خاصة',
+      texture: 'الملمس / الخامة',
+
       aspectRatio: 'أبعاد الصورة',
       negativePrompt: 'أمر سلبي (ما يجب تجنبه)',
       negativePlaceholder: 'مثال: قبيح، مشوه، ضبابي، نص، علامة مائية...',
+      aiModel: 'نموذج الذكاء الاصطناعي',
+
+      // Advanced
+      advancedParams: 'إعدادات متقدمة',
+      stylize: 'الأسلوب (--s)',
+      chaos: 'الفوضى (--c)',
+      weirdness: 'الغرابة (--w)',
 
       addons: 'تحسينات وإضافات',
 
@@ -698,6 +778,18 @@ export const translations = {
         dusk: 'غسق',
         night: 'منتصف الليل',
       },
+      mood: {
+        ethereal: 'خيالي / حالم',
+        melancholic: 'حزين (ميلانكولي)',
+        whimsical: 'عجيب / غريب الأطوار',
+        ominous: 'مشؤوم / مظلم',
+        serene: 'هادئ / مسالم',
+        chaotic: 'فوضوي / حيوي',
+        romantic: 'رومانسي',
+        mysterious: 'غامض',
+        futuristic: 'مستقبلي / تقني',
+        nostalgic: 'حنين / نوستالجيا',
+      },
       camera: {
         closeup: 'لقطة قريبة جداً',
         medium: 'لقطة متوسطة',
@@ -807,6 +899,49 @@ export const translations = {
         '3:4': '3:4 بورتريه',
         '21:9': '21:9 فائق العرض (Ultra Wide)',
         '2:3': '2:3 صورة كلاسيكية',
+      },
+      composition: {
+        thirds: 'قاعدة الأثلاث',
+        center: 'تكوين مركزي',
+        symmetrical: 'متماثل',
+        golden: 'النسبة الذهبية',
+        diagonal: 'تكوين قطري',
+        framing: 'إطار داخل إطار',
+        minimal: 'تبسيطي / مساحة سلبية',
+        knolling: 'Knolling (ترتيب مسطح)',
+        isometric: 'عرض آيزومتري',
+      },
+      specialEffects: {
+        doubleExposure: 'تعرض مزدوج (Double Exposure)',
+        glitch: 'تأثير خلل (Glitch)',
+        chromatic: 'انحراف لوني',
+        infrared: 'تصوير بالأشعة تحت الحمراء',
+        biolum: 'توهج بيولوجي',
+        longExposure: 'تعرض طويل (أضواء)',
+        tiltShift: 'تأثير تيلت شيفت',
+        vignette: 'إطار مظلم (Vignette)',
+        grain: 'حبوب الفيلم (Grain)',
+        halftone: 'نمط Halftone',
+      },
+      texture: {
+        porcelain: 'بشرة بورسلين',
+        glass: 'زجاج / كريستال',
+        liquid: 'معدن سائل',
+        fabric: 'قماش ناعم / حرير',
+        gritty: 'خشن / حبوب',
+        plastic: 'بلاستيك لامع',
+        paper: 'ملمس ورق',
+        stone: 'حجر / رخام',
+        oil: 'رسم زيتي',
+      },
+      aiModel: {
+        '--v 6.1': 'Midjourney v6.1',
+        '--v 6.0': 'Midjourney v6.0',
+        '--v 5.2': 'Midjourney v5.2',
+        '--niji 6': 'Niji Journey v6 (أنيمي)',
+        '--niji 5': 'Niji Journey v5',
+        'dalle3': 'DALL-E 3',
+        'sdx': 'Stable Diffusion XL',
       },
     },
     styles: {

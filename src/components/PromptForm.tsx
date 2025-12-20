@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage } from './LanguageContext';
 import { generatePrompt, PromptData } from '@/lib/prompt-builder';
 import {
@@ -30,7 +30,15 @@ import {
     Camera as CameraIcon,
     Hourglass,
     Maximize,
-    Ban
+    Ban,
+    Sparkles,
+    Cpu,
+    Layout,
+    Gauge,
+    Sliders,
+    Focus,
+    ChevronsUpDown,
+    Check
 } from 'lucide-react';
 
 const IconCopy = () => (
@@ -43,6 +51,7 @@ export function PromptForm() {
     const defaultAddonKeys = ['highlyDetailed', 'resolution8k', 'masterpiece', 'professional', 'photorealistic', 'sharpFocus'];
     const getTranslatedAddons = () => defaultAddonKeys.map(key => t.addons[key as keyof typeof t.addons]);
 
+    // Initial State
     const initialData: PromptData = {
         gender: '',
         ageGroup: '',
@@ -51,25 +60,37 @@ export function PromptForm() {
         hairColor: '',
         hairStyle: '',
         makeup: '',
-        clothing: '',
-        accessories: '',
-        action: '',
+        clothing: [],     // Multi
+        accessories: [],  // Multi
         pose: '',
+        action: '',
         background: '',
         era: '',
         weather: '',
         timeOfDay: '',
+
+        mood: [],         // Multi
+
         camera: '',
         cameraType: '',
         lens: '',
         filmStock: '',
-        style: '',
-        photographerStyle: '',
-        lighting: '',
+        composition: '',
+
+        style: [],             // Multi
+        photographerStyle: [], // Multi
+        lighting: [],          // Multi
         lightColor: '',
         colorGrading: '',
+        specialEffects: [],    // Multi
+        texture: [],           // Multi
+
+        aiModel: '',
         aspectRatio: '',
         negativePrompt: '',
+        stylize: 0,
+        chaos: 0,
+        weirdness: 0,
         addons: [],
     };
 
@@ -80,9 +101,23 @@ export function PromptForm() {
 
     const [generated, setGenerated] = useState('');
     const [copied, setCopied] = useState(false);
-
-    // Toggle negative prompt visibility
     const [showNegative, setShowNegative] = useState(false);
+    const [showAdvanced, setShowAdvanced] = useState(false);
+
+    // Helper for closing dropdowns when clicking outside
+    const useOutsideClick = (callback: () => void) => {
+        const ref = useRef<HTMLDivElement>(null);
+        useEffect(() => {
+            const handleClick = (event: MouseEvent) => {
+                if (ref.current && !ref.current.contains(event.target as Node)) {
+                    callback();
+                }
+            };
+            document.addEventListener('mousedown', handleClick);
+            return () => document.removeEventListener('mousedown', handleClick);
+        }, [callback]);
+        return ref;
+    };
 
     const handleGenerate = () => {
         const result = generatePrompt(data);
@@ -106,20 +141,28 @@ export function PromptForm() {
         setCopied(false);
     };
 
-    const handleChange = (field: keyof PromptData, value: string) => {
+    const handleChange = (field: keyof PromptData, value: string | number) => {
         setData(prev => ({ ...prev, [field]: value }));
     };
 
-    const toggleAddon = (addonValue: string) => {
+    // Generic Multi-Select Toggle
+    const toggleSelection = (field: keyof PromptData, value: string) => {
         setData(prev => {
-            const newAddons = prev.addons.includes(addonValue)
-                ? prev.addons.filter(a => a !== addonValue)
-                : [...prev.addons, addonValue];
-            return { ...prev, addons: newAddons };
+            const current = prev[field] as string[];
+            const updated = current.includes(value)
+                ? current.filter(item => item !== value)
+                : [...current, value];
+            return { ...prev, [field]: updated };
         });
     };
 
-    // Helper to render select fields
+    // Addon Specific Toggle (wraps Generic)
+    const toggleAddon = (value: string) => toggleSelection('addons', value);
+
+
+    // --- Render Components ---
+
+    // 1. Single Select Dropdown
     const renderSelect = (
         label: string,
         field: keyof PromptData,
@@ -131,16 +174,135 @@ export function PromptForm() {
                 {icon}
                 {label}
             </label>
-            <select
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-yellow-500/50 appearance-none text-sm transition-shadow placeholder:text-zinc-600 truncate"
-                value={(data[field] as string) || ''}
-                onChange={(e) => handleChange(field, e.target.value)}
-            >
-                <option value="">{t.form.selectOption}</option>
-                {Object.entries(options).map(([key, value]) => (
-                    <option key={key} value={value}>{value}</option>
-                ))}
-            </select>
+            <div className="relative">
+                <select
+                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-yellow-500/50 appearance-none text-sm transition-shadow placeholder:text-zinc-600 truncate pr-8"
+                    value={(data[field] as string) || ''}
+                    onChange={(e) => handleChange(field, e.target.value)}
+                >
+                    <option value="">{t.form.selectOption}</option>
+                    {Object.entries(options).map(([key, value]) => (
+                        <option key={key} value={value}>{value}</option>
+                    ))}
+                </select>
+                <div className="absolute inset-y-0 end-3 flex items-center pointer-events-none text-zinc-500">
+                    <ChevronsUpDown size={14} />
+                </div>
+            </div>
+        </div>
+    );
+
+    // 2. Multi-Select Dropdown with Tags
+    const MultiSelectField = ({
+        label,
+        field,
+        options,
+        icon
+    }: {
+        label: string,
+        field: keyof PromptData,
+        options: Record<string, string>,
+        icon?: React.ReactNode
+    }) => {
+        const [isOpen, setIsOpen] = useState(false);
+        const ref = useOutsideClick(() => setIsOpen(false));
+        const selectedValues = data[field] as string[];
+
+        return (
+            <div className="space-y-2" ref={ref}>
+                <label className="text-sm font-medium text-zinc-400 flex items-center gap-1.5 whitespace-nowrap">
+                    {icon}
+                    {label}
+                </label>
+
+                <div className="relative">
+                    {/* Trigger Area */}
+                    <div
+                        onClick={() => setIsOpen(!isOpen)}
+                        className={`w-full bg-zinc-950 border rounded-xl p-2.5 min-h-[46px] flex flex-wrap gap-1.5 cursor-pointer text-sm transition-all
+              ${isOpen ? 'border-yellow-500/50 ring-2 ring-yellow-500/20' : 'border-zinc-800 hover:border-zinc-700'}
+            `}
+                    >
+                        {selectedValues.length === 0 && (
+                            <span className="text-zinc-600 self-center px-1">{t.form.selectOption}</span>
+                        )}
+
+                        {selectedValues.map((val) => (
+                            <span key={val} className="bg-zinc-800/80 text-zinc-200 px-2 py-0.5 rounded-lg text-xs flex items-center gap-1 border border-zinc-700/50">
+                                {val}
+                                <button
+                                    className="hover:text-red-400 ml-1 focus:outline-none"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        toggleSelection(field, val);
+                                    }}
+                                >
+                                    ×
+                                </button>
+                            </span>
+                        ))}
+
+                        <div className="ml-auto self-center text-zinc-500 pr-1">
+                            <ChevronsUpDown size={14} />
+                        </div>
+                    </div>
+
+                    {/* Dropdown Menu */}
+                    {isOpen && (
+                        <div className="absolute z-50 w-full mt-2 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl max-h-60 overflow-auto animate-in fade-in zoom-in-95 duration-100">
+                            {Object.entries(options).map(([key, value]) => {
+                                const isSelected = selectedValues.includes(value);
+                                return (
+                                    <div
+                                        key={key}
+                                        onClick={() => {
+                                            toggleSelection(field, value);
+                                            // Optional: Keep open for multiple selection
+                                        }}
+                                        className={`
+                                px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors
+                                ${isSelected ? 'bg-yellow-500/10 text-yellow-500' : 'text-zinc-300 hover:bg-zinc-800'}
+                            `}
+                                    >
+                                        <span>{value}</span>
+                                        {isSelected && <Check size={14} />}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    };
+
+    // 3. Slider Component
+    const renderSlider = (
+        label: string,
+        field: 'stylize' | 'chaos' | 'weirdness',
+        min: number,
+        max: number,
+        icon?: React.ReactNode
+    ) => (
+        <div className="space-y-3">
+            <label className="text-sm font-medium text-zinc-400 flex items-center justify-between">
+                <span className="flex items-center gap-1.5">{icon} {label}</span>
+                <span className="text-yellow-500 font-bold bg-yellow-500/10 px-2 py-0.5 rounded text-xs">
+                    {data[field]}
+                </span>
+            </label>
+            <input
+                type="range"
+                min={min}
+                max={max}
+                value={data[field]}
+                onChange={(e) => handleChange(field, parseInt(e.target.value))}
+                className="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-yellow-500"
+            />
+            <div className="flex justify-between text-[10px] text-zinc-600">
+                <span>{min}</span>
+                <span>{max}</span>
+            </div>
         </div>
     );
 
@@ -172,8 +334,8 @@ export function PromptForm() {
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {renderSelect(t.form.clothing, 'clothing', t.options.clothing, <Shirt size={14} />)}
-                            {renderSelect(t.form.accessories, 'accessories', t.options.accessories, <Glasses size={14} />)}
+                            <MultiSelectField label={t.form.clothing} field="clothing" options={t.options.clothing} icon={<Shirt size={14} />} />
+                            <MultiSelectField label={t.form.accessories} field="accessories" options={t.options.accessories} icon={<Glasses size={14} />} />
                             {renderSelect(t.form.action, 'action', t.options.action, <Meh size={14} />)}
                         </div>
                     </div>
@@ -190,8 +352,9 @@ export function PromptForm() {
                             {renderSelect(t.form.timeOfDay, 'timeOfDay', t.options.timeOfDay, <Clock size={14} />)}
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {renderSelect(t.form.lighting, 'lighting', t.lighting, <Lightbulb size={14} />)}
+                            <MultiSelectField label={t.form.lighting} field="lighting" options={t.lighting} icon={<Lightbulb size={14} />} />
                             {renderSelect(t.form.lightColor, 'lightColor', t.options.lightColor, <Palette size={14} />)}
+                            <MultiSelectField label={t.form.mood} field="mood" options={t.options.mood} icon={<Focus size={14} />} />
                         </div>
                     </div>
 
@@ -206,6 +369,9 @@ export function PromptForm() {
                             {renderSelect(t.form.lens, 'lens', t.options.lens, <Eye size={14} />)}
                             {renderSelect(t.form.filmStock, 'filmStock', t.options.filmStock, <Film size={14} />)}
                         </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            {renderSelect(t.form.composition, 'composition', t.options.composition, <Layout size={14} />)}
+                        </div>
                     </div>
 
                     {/* Style & Grading Group */}
@@ -214,9 +380,14 @@ export function PromptForm() {
                             <Palette size={14} /> Style & Production
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {renderSelect(t.form.style, 'style', t.styles, <Palette size={14} />)}
-                            {renderSelect(t.form.photographerStyle, 'photographerStyle', t.options.photographerStyle, <User size={14} />)}
+                            <MultiSelectField label={t.form.style} field="style" options={t.styles} icon={<Palette size={14} />} />
+                            <MultiSelectField label={t.form.photographerStyle} field="photographerStyle" options={t.options.photographerStyle} icon={<User size={14} />} />
                             {renderSelect(t.form.colorGrading, 'colorGrading', t.options.colorGrading, <MonitorPlay size={14} />)}
+                            <MultiSelectField label={t.form.specialEffects} field="specialEffects" options={t.options.specialEffects} icon={<Sparkles size={14} />} />
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <MultiSelectField label={t.form.texture} field="texture" options={t.options.texture} icon={<Gauge size={14} />} />
+                            {renderSelect(t.form.aiModel, 'aiModel', t.options.aiModel, <Cpu size={14} />)}
                             {renderSelect(t.form.aspectRatio, 'aspectRatio', t.options.aspectRatio, <Maximize size={14} />)}
                         </div>
                     </div>
@@ -251,27 +422,51 @@ export function PromptForm() {
                         </div>
                     </div>
 
-                    {/* Negative Prompt */}
-                    <div className="pt-2">
-                        <button
-                            onClick={() => setShowNegative(!showNegative)}
-                            className="text-xs font-bold text-red-500/80 uppercase tracking-widest flex items-center gap-2 hover:text-red-400 transition-colors"
-                        >
-                            <Ban size={14} /> {t.form.negativePrompt}
-                            <span className="text-[10px] bg-zinc-800 px-1.5 py-0.5 rounded ml-auto transition-transform duration-200" style={{ transform: showNegative ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</span>
-                        </button>
+                    {/* Collapsible Sections (Negative & Advanced) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
 
-                        {showNegative && (
-                            <div className="mt-3 animate-in fade-in slide-in-from-top-2 duration-300">
-                                <textarea
-                                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-red-500/30 appearance-none text-sm placeholder:text-zinc-700 resize-none"
-                                    rows={2}
-                                    placeholder={t.form.negativePlaceholder}
-                                    value={data.negativePrompt}
-                                    onChange={(e) => handleChange('negativePrompt', e.target.value)}
-                                />
-                            </div>
-                        )}
+                        {/* Negative Prompt */}
+                        <div>
+                            <button
+                                onClick={() => setShowNegative(!showNegative)}
+                                className="text-xs font-bold text-red-500/80 uppercase tracking-widest flex items-center gap-2 hover:text-red-400 transition-colors mb-4"
+                            >
+                                <Ban size={14} /> {t.form.negativePrompt}
+                                <span className="text-[10px] bg-zinc-800 px-1.5 py-0.5 rounded ml-auto transition-transform duration-200" style={{ transform: showNegative ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</span>
+                            </button>
+
+                            {showNegative && (
+                                <div className="animate-in fade-in slide-in-from-top-2 duration-300">
+                                    <textarea
+                                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-red-500/30 appearance-none text-sm placeholder:text-zinc-700 resize-none"
+                                        rows={3}
+                                        placeholder={t.form.negativePlaceholder}
+                                        value={data.negativePrompt}
+                                        onChange={(e) => handleChange('negativePrompt', e.target.value)}
+                                    />
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Advanced Params */}
+                        <div>
+                            <button
+                                onClick={() => setShowAdvanced(!showAdvanced)}
+                                className="text-xs font-bold text-cyan-500/80 uppercase tracking-widest flex items-center gap-2 hover:text-cyan-400 transition-colors mb-4"
+                            >
+                                <Sliders size={14} /> {t.form.advancedParams}
+                                <span className="text-[10px] bg-zinc-800 px-1.5 py-0.5 rounded ml-auto transition-transform duration-200" style={{ transform: showAdvanced ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</span>
+                            </button>
+
+                            {showAdvanced && (
+                                <div className="animate-in fade-in slide-in-from-top-2 duration-300 bg-zinc-950/50 p-4 rounded-xl border border-zinc-800/50 space-y-5">
+                                    {renderSlider(t.form.stylize, 'stylize', 0, 1000, <Palette size={14} />)}
+                                    {renderSlider(t.form.chaos, 'chaos', 0, 100, <Sparkles size={14} />)}
+                                    {renderSlider(t.form.weirdness, 'weirdness', 0, 3000, <Gauge size={14} />)}
+                                </div>
+                            )}
+                        </div>
+
                     </div>
 
 

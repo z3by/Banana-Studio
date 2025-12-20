@@ -5,31 +5,52 @@ export type PromptData = {
     eyeColor: string;
     hairColor: string;
     hairStyle: string;
-    clothing: string;
-    accessories: string;
     makeup: string;
+    clothing: string[];     // Multi-select
+    accessories: string[];  // Multi-select
     pose: string;
     action: string;
     background: string;
+    era: string;
     weather: string;
     timeOfDay: string;
-    era: string;
+    mood: string[];         // Multi-select
+
     camera: string;
     cameraType: string;
     lens: string;
     filmStock: string;
-    style: string;
-    photographerStyle: string;
-    lighting: string;
+    composition: string;
+
+    style: string[];              // Multi-select
+    photographerStyle: string[];  // Multi-select
+    lighting: string[];           // Multi-select
     lightColor: string;
     colorGrading: string;
+    specialEffects: string[];     // Multi-select
+    texture: string[];            // Multi-select
+
+    aiModel: string;
     aspectRatio: string;
     negativePrompt: string;
+
+    stylize: number;
+    chaos: number;
+    weirdness: number;
+
     addons: string[];
 };
 
 export function generatePrompt(data: PromptData): string {
     const parts = [];
+
+    // Helper to join array or return string
+    const join = (val: string | string[], sep: string = ', ') => {
+        if (Array.isArray(val)) {
+            return val.filter(Boolean).join(sep);
+        }
+        return val || '';
+    };
 
     // 1. Subject Description
     let subjectPart = '';
@@ -57,12 +78,14 @@ export function generatePrompt(data: PromptData): string {
         subjectPart += ' with ' + attributes.join(', ');
     }
 
-    if (data.clothing) {
-        subjectPart += ', wearing ' + data.clothing;
+    const clothingStr = join(data.clothing, ' and '); // e.g. "wearing Suit and Tie"
+    if (clothingStr) {
+        subjectPart += ', wearing ' + clothingStr;
     }
 
-    if (data.accessories) {
-        subjectPart += ', wearing ' + data.accessories;
+    const accessoriesStr = join(data.accessories, ', ');
+    if (accessoriesStr) {
+        subjectPart += ', wearing ' + accessoriesStr;
     }
 
     if (data.pose) {
@@ -77,7 +100,7 @@ export function generatePrompt(data: PromptData): string {
         parts.push(subjectPart.trim());
     }
 
-    // 2. Environment & Era
+    // 2. Environment & Era (Atmosphere)
     let envPart = '';
     if (data.background) {
         envPart += data.background;
@@ -95,6 +118,11 @@ export function generatePrompt(data: PromptData): string {
         envPart += envPart ? `, at ${data.timeOfDay}` : `at ${data.timeOfDay}`;
     }
 
+    const moodStr = join(data.mood, ', ');
+    if (moodStr) {
+        envPart += envPart ? `, ${moodStr} atmosphere` : `${moodStr} atmosphere`;
+    }
+
     if (envPart) {
         parts.push(envPart);
     }
@@ -105,6 +133,7 @@ export function generatePrompt(data: PromptData): string {
     if (data.camera) cameraParts.push(data.camera + ' shot');
     if (data.lens) cameraParts.push(data.lens + ' lens');
     if (data.filmStock) cameraParts.push('shot on ' + data.filmStock);
+    if (data.composition) cameraParts.push(data.composition);
 
     if (cameraParts.length > 0) {
         parts.push(cameraParts.join(', '));
@@ -112,9 +141,19 @@ export function generatePrompt(data: PromptData): string {
 
     // 4. Style & Artistic
     const styleParts = [];
-    if (data.style) styleParts.push(data.style + ' style');
-    if (data.photographerStyle) styleParts.push('in the style of ' + data.photographerStyle);
+    const styleStr = join(data.style, ', ');
+    if (styleStr) styleParts.push(styleStr + ' style');
+
+    const photoStyleStr = join(data.photographerStyle, ', ');
+    if (photoStyleStr) styleParts.push('in the style of ' + photoStyleStr);
+
     if (data.colorGrading) styleParts.push(data.colorGrading + ' color grading');
+
+    const fxStr = join(data.specialEffects, ', ');
+    if (fxStr) styleParts.push(fxStr);
+
+    const textureStr = join(data.texture, ', ');
+    if (textureStr) styleParts.push(textureStr + ' texture');
 
     if (styleParts.length > 0) {
         parts.push(styleParts.join(', '));
@@ -122,8 +161,9 @@ export function generatePrompt(data: PromptData): string {
 
     // 5. Lighting
     let lightPart = '';
-    if (data.lighting) {
-        lightPart += data.lighting + ' lighting';
+    const lightingStr = join(data.lighting, ' + '); // e.g. "Neon + Studio lighting"
+    if (lightingStr) {
+        lightPart += lightingStr + ' lighting';
     }
     if (data.lightColor) {
         lightPart += lightPart ? ` with ${data.lightColor} tones` : `${data.lightColor} lighting tones`;
@@ -132,20 +172,26 @@ export function generatePrompt(data: PromptData): string {
         parts.push(lightPart);
     }
 
-    // 6. Aspect Ratio (often appended as parameter but we'll add as text for now or param)
-    // Usually AR is a parameter --ar 16:9. Let's append it to the end if present.
-
-    // 7. Addons
+    // 6. Addons
     if (data.addons && data.addons.length > 0) {
         parts.push(...data.addons);
     }
 
-    // Combine positive prompt
     let fullPrompt = parts.join(', ');
 
-    // Aspect Ratio (Midjourney/Niji style)
+    // Aspect Ratio & Model Params
     if (data.aspectRatio) {
         fullPrompt += ` --ar ${data.aspectRatio}`;
+    }
+
+    if (data.stylize > 0) fullPrompt += ` --s ${data.stylize}`;
+    if (data.chaos > 0) fullPrompt += ` --c ${data.chaos}`;
+    if (data.weirdness > 0) fullPrompt += ` --w ${data.weirdness}`;
+
+    if (data.aiModel) {
+        if (data.aiModel.startsWith('--')) {
+            fullPrompt += ` ${data.aiModel}`;
+        }
     }
 
     // Negative Prompt
