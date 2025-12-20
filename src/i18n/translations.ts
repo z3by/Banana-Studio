@@ -5,6 +5,41 @@ export const translations = {
     title: 'Nano Banana Pro Prompt Generator',
     subtitle: 'Generate high-quality prompts for your AI portrait edits.',
     form: {
+      steps: {
+        subject: '1. Subject Details',
+        scene: '2. Scene & Atmosphere',
+        camera: '3. Technical Camera',
+        style: '4. Artistic Style',
+        finalize: '5. Orchestration',
+      },
+      stepDesc: {
+        subject: 'Define who is in the portrait.',
+        scene: 'Set the location, time, and mood.',
+        camera: 'Choose your lens and equipment.',
+        style: 'Apply artistic filters and influences.',
+        finalize: 'Review and generate your prompt.',
+      },
+      navigation: {
+        next: 'Next Step',
+        back: 'Back',
+        finish: 'Generate Prompt',
+      },
+      actions: {
+        randomize: 'Surprise Me 🎲',
+        clear: 'Clear All',
+        history: 'History',
+      },
+      history: {
+        title: 'Recent Prompts',
+        empty: 'No history yet.',
+        clear: 'Clear History',
+      },
+      guidance: {
+        stylize: 'Controls how much artistic freedom the AI has. Higher = more artistic.',
+        weirdness: 'Adds experimental and quirky elements to the image.',
+        chaos: 'Increases variation between the initial image grid results.',
+      },
+
       gender: 'Gender',
       ageGroup: 'Age Group',
       ethnicity: 'Ethnicity',
@@ -505,6 +540,41 @@ export const translations = {
     title: 'مولد أوامر نانو بنانا برو',
     subtitle: 'قم بإنشاء أوامر عالية الجودة لتعديلات صور الذكاء الاصطناعي الخاصة بك.',
     form: {
+      steps: {
+        subject: '1. تفاصيل الشخصية',
+        scene: '2. المشهد والأجواء',
+        camera: '3. الكاميرا والتقنيات',
+        style: '4. الأسلوب الفني',
+        finalize: '5. التنفيذ',
+      },
+      stepDesc: {
+        subject: 'حدد من يظهر في الصورة.',
+        scene: 'اختر المكان والزمان والمزاج العام.',
+        camera: 'اختر العدسة والمعدات.',
+        style: 'أضف لمسات فنية وتأثيرات.',
+        finalize: 'راجع وانشئ الأمر النهائي.',
+      },
+      navigation: {
+        next: 'التالي',
+        back: 'السابق',
+        finish: 'توليد الأمر',
+      },
+      actions: {
+        randomize: 'فاجئني 🎲',
+        clear: 'مسح الكل',
+        history: 'السجل',
+      },
+      history: {
+        title: 'أوامر سابقة',
+        empty: 'لا يوجد سجل بعد.',
+        clear: 'مسح السجل',
+      },
+      guidance: {
+        stylize: 'يحدد مدى الحرية الفنية للذكاء الاصطناعي. أعلى = أكثر ابتكاراً.',
+        weirdness: 'يضيف عناصر غريبة وغير متوقعة للصورة.',
+        chaos: 'يزيد التنوع والاختلاف بين نتائج الصور الأربعة.',
+      },
+
       gender: 'الجنس',
       ageGroup: 'الفئة العمرية',
       ethnicity: 'العرق',
