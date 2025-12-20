@@ -44,7 +44,10 @@ import {
     Dices,
     History,
     Trash2,
-    Info
+    Info,
+    PenLine,
+    Keyboard,
+    List
 } from 'lucide-react';
 
 // --- Icons ---
@@ -52,26 +55,298 @@ const IconCopy = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
 );
 
+const useOutsideClick = (callback: () => void) => {
+    const ref = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const handleClick = (e: MouseEvent) => {
+            if (ref.current && !ref.current.contains(e.target as Node)) callback();
+        };
+        document.addEventListener('mousedown', handleClick);
+        return () => document.removeEventListener('mousedown', handleClick);
+    }, [callback]);
+    return ref;
+};
+
+// --- Standalone Components ---
+
+const MultiSelectField = ({ label, value, onChange, options, icon, placeholder = "Select..." }: { label: string, value: string[], onChange: (val: string[]) => void, options: Record<string, string>, icon: any, placeholder?: string }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [inputValue, setInputValue] = useState("");
+    const ref = useOutsideClick(() => setIsOpen(false));
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const toggleValue = (val: string) => {
+        const updated = value.includes(val) ? value.filter(i => i !== val) : [...value, val];
+        onChange(updated);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' && inputValue.trim()) {
+            e.preventDefault();
+            if (!value.includes(inputValue.trim())) {
+                onChange([...value, inputValue.trim()]);
+            }
+            setInputValue("");
+        } else if (e.key === 'Backspace' && !inputValue && value.length > 0) {
+            onChange(value.slice(0, -1));
+        }
+    };
+
+    // Find label for a given english value
+    const getLabel = (val: string) => {
+        // If val is in options values (it's English), return the label. 
+        // But wait, the options passed here are { key: "Localized Value" }. 
+        // Actually, I am changing how options are passed. I will pass { [EnglishValue]: "Localized Label" }.
+        return options[val] || val;
+    };
+
+    return (
+        <div className="space-y-2" ref={ref}>
+            <label className="text-sm font-medium text-zinc-400 flex items-center gap-1.5 whitespace-nowrap">
+                {icon} {label}
+            </label>
+            <div className="relative">
+                <div
+                    onClick={() => { setIsOpen(true); inputRef.current?.focus(); }}
+                    className={`w-full bg-zinc-950 border rounded-xl p-2 min-h-[46px] flex flex-wrap gap-1.5 cursor-text text-sm transition-all ${isOpen ? 'border-yellow-500/50 ring-2 ring-yellow-500/20' : 'border-zinc-800 hover:border-zinc-700'}`}
+                >
+                    {value.map((val) => (
+                        <span key={val} className="bg-zinc-800/80 text-zinc-200 px-2 py-0.5 rounded-lg text-xs flex items-center gap-1 border border-zinc-700/50 animate-in fade-in zoom-in-95 duration-200">
+                            {getLabel(val)}
+                            <button className="hover:text-red-400 ml-1 rounded-full p-0.5 hover:bg-zinc-700" onClick={(e) => { e.stopPropagation(); toggleValue(val); }}>×</button>
+                        </span>
+                    ))}
+                    <input
+                        ref={inputRef}
+                        type="text"
+                        className="bg-transparent outline-none flex-1 min-w-[60px] text-zinc-200 placeholder:text-zinc-600 h-6"
+                        placeholder={value.length === 0 ? placeholder : ""}
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        onFocus={() => setIsOpen(true)}
+                    />
+                    <div className="ml-auto self-center text-zinc-500 text-xs flex items-center gap-1">
+                        {isOpen && inputValue.length > 0 && <span className="text-[10px] bg-zinc-800 px-1 rounded hidden md:inline">Press Enter</span>}
+                        <ChevronsUpDown size={14} className="opacity-50" />
+                    </div>
+                </div>
+                {isOpen && (
+                    <div className="absolute z-50 w-full mt-2 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl max-h-60 overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar">
+                        {Object.entries(options).map(([k, v]: any) => {
+                            if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
+                            const isSelected = value.includes(k);
+                            return (
+                                <div key={k} onClick={() => { toggleValue(k); setInputValue(""); }} className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-yellow-500/10 text-yellow-500' : 'text-zinc-300 hover:bg-zinc-800'}`}>
+                                    <span>{v}</span>
+                                    {isSelected && <Check size={14} />}
+                                </div>
+                            );
+                        })}
+                        {inputValue && !Object.values(options).some((v: any) => v.toLowerCase() === inputValue.toLowerCase()) && (
+                            <div onClick={() => { onChange([...value, inputValue]); setInputValue(""); }} className="px-4 py-2.5 text-sm cursor-pointer text-blue-400 hover:bg-zinc-800 flex items-center gap-2 italic border-t border-zinc-800/50">
+                                <PenLine size={12} /> Add "{inputValue}"
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
+
+const SelectField = ({ label, value, onChange, options, icon, placeholder = "Select..." }: { label: string, value: string, onChange: (val: string) => void, options: Record<string, string>, icon: any, placeholder?: string }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [inputValue, setInputValue] = useState("");
+    const [isManual, setIsManual] = useState(false); // Toggle between list and raw input
+    const ref = useOutsideClick(() => setIsOpen(false));
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    // Initial value for search input when opening list
+    useEffect(() => {
+        if (isOpen && !isManual) {
+            setInputValue("");
+            inputRef.current?.focus();
+        }
+    }, [isOpen, isManual]);
+
+    const handleSelect = (key: string) => {
+        onChange(key);
+        setIsOpen(false);
+        setInputValue("");
+    };
+
+    const getLabel = (val: string) => {
+        return options[val] || val;
+    };
+
+    return (
+        <div className="space-y-2 group" ref={ref}>
+            <div className="flex justify-between items-center">
+                <label className="text-sm font-medium text-zinc-400 flex items-center gap-1.5 whitespace-nowrap">
+                    {icon} {label}
+                </label>
+                <button
+                    onClick={() => {
+                        setIsManual(!isManual);
+                        setIsOpen(false);
+                    }}
+                    className="text-[10px] text-zinc-600 hover:text-yellow-500 transition-colors flex items-center gap-1 opacity-0 group-hover:opacity-100 focus:opacity-100"
+                    title={isManual ? "Switch to List" : "Switch to Manual Input"}
+                >
+                    {isManual ? <List size={12} /> : <Keyboard size={12} />}
+                    {isManual ? "List" : "Type"}
+                </button>
+            </div>
+
+            {isManual ? (
+                <div className="relative">
+                    <input
+                        type="text"
+                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-yellow-500/50 appearance-none text-sm transition-shadow placeholder:text-zinc-600"
+                        value={value}
+                        onChange={(e) => onChange(e.target.value)}
+                        placeholder="Type anything..."
+                    />
+                    <div className="absolute inset-y-0 end-3 flex items-center pointer-events-none text-zinc-500"><PenLine size={14} /></div>
+                </div>
+            ) : (
+                <div className="relative">
+                    <div
+                        onClick={() => setIsOpen(!isOpen)}
+                        className={`w-full bg-zinc-950 border rounded-xl p-3 flex justify-between items-center cursor-pointer text-sm transition-all ${isOpen ? 'border-yellow-500/50 ring-2 ring-yellow-500/20' : 'border-zinc-800 hover:border-zinc-700'}`}
+                    >
+                        <span className={`truncate ${!value ? 'text-zinc-600' : 'text-zinc-200'}`}>
+                            {value ? getLabel(value) : placeholder}
+                        </span>
+                        <ChevronsUpDown size={14} className="text-zinc-500 opacity-50" />
+                    </div>
+
+                    {isOpen && (
+                        <div className="absolute z-50 w-full mt-2 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl max-h-60 overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar" style={{ position: 'absolute' }}>
+                            <div className="p-2 sticky top-0 bg-zinc-900/95 backdrop-blur-sm border-b border-zinc-800/50 z-10">
+                                <input
+                                    ref={inputRef}
+                                    type="text"
+                                    className="w-full bg-zinc-950/50 border border-zinc-700 rounded-lg px-2 py-1.5 text-xs text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-yellow-500/50"
+                                    placeholder="Search..."
+                                    value={inputValue}
+                                    onChange={(e) => setInputValue(e.target.value)}
+                                    onClick={(e) => e.stopPropagation()}
+                                />
+                            </div>
+                            {Object.entries(options).map(([k, v]: any) => {
+                                if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
+                                const isSelected = value === k;
+                                return (
+                                    <div key={k} onClick={() => handleSelect(k)} className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-yellow-500/10 text-yellow-500' : 'text-zinc-300 hover:bg-zinc-800'}`}>
+                                        <span>{v}</span>
+                                        {isSelected && <Check size={14} />}
+                                    </div>
+                                );
+                            })}
+                            {inputValue && !Object.values(options).some((v: any) => v.toLowerCase() === inputValue.toLowerCase()) && (
+                                <div onClick={() => handleSelect(inputValue)} className="px-4 py-2.5 text-sm cursor-pointer text-blue-400 hover:bg-zinc-800 flex items-center gap-2 italic border-t border-zinc-800/50">
+                                    <PenLine size={12} /> Use "{inputValue}"
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+};
+
+const SliderField = ({ label, value, onChange, min, max, icon, tooltip }: any) => (
+    <div className="space-y-3 group">
+        <label className="text-sm font-medium text-zinc-400 flex items-center justify-between">
+            <span className="flex items-center gap-1.5">
+                {icon} {label}
+                {tooltip && (
+                    <div className="relative group/tooltip">
+                        <Info size={12} className="text-zinc-600 cursor-help" />
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-zinc-800 text-zinc-200 text-xs rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap border border-zinc-700 shadow-lg z-10">
+                            {tooltip}
+                        </div>
+                    </div>
+                )}
+            </span>
+            <span className="text-yellow-500 font-bold bg-yellow-500/10 px-2 py-0.5 rounded text-xs">{value}</span>
+        </label>
+        <input
+            type="range" min={min} max={max} value={value}
+            onChange={(e) => onChange(parseInt(e.target.value))}
+            className="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-yellow-500"
+        />
+        <div className="flex justify-between text-[10px] text-zinc-600"><span>{min}</span><span>{max}</span></div>
+    </div>
+);
+
+
+import { translations } from '@/i18n/translations';
+
 export function PromptForm() {
     const { t, language } = useLanguage();
     const isRTL = language === 'ar';
 
     const defaultAddonKeys = ['highlyDetailed', 'resolution8k', 'masterpiece', 'professional', 'photorealistic', 'sharpFocus'];
-    const getTranslatedAddons = () => defaultAddonKeys.map(key => t.addons[key as keyof typeof t.addons]);
+    const getTranslatedAddons = () => defaultAddonKeys.map(key => {
+        // For addons, we still iterate keys, but we need to verify how they are stored in PromptData.
+        // Currently PromptData stores the *translated* string for addons.
+        // We should probably switch addons to use English values too, but let's focus on the main fields first.
+        return t.addons[key as keyof typeof t.addons];
+    });
+
+    // Helper to generate options: Key = English Value, Value = Localized Label
+    const getOptions = (section: string, field: string) => {
+        // Access English options
+        const enOptions = (translations.en as any)[section]?.[field] || {};
+        // Access Localized options
+        const localOptions = (translations[language] as any)[section]?.[field] || {};
+
+        // Build object: { "English Value": "Localized Label" }
+        // We iterate over the KEYS of the options object (e.g. 'woman', 'man')
+        return Object.keys(enOptions).reduce((acc, key) => {
+            const enVal = enOptions[key];
+            const localVal = localOptions[key];
+            acc[enVal] = localVal;
+            return acc;
+        }, {} as Record<string, string>);
+    };
+
+    // Helper for 'styles' and 'lighting' which are top-level or different structure
+    const getFlatOptions = (field: string) => {
+        const enOptions = (translations.en as any)[field] || {};
+        const localOptions = (translations[language] as any)[field] || {};
+        return Object.keys(enOptions).reduce((acc, key) => {
+            const enVal = enOptions[key];
+            const localVal = localOptions[key];
+            acc[enVal] = localVal;
+            return acc;
+        }, {} as Record<string, string>);
+    };
 
     // Initial Data
     const initialData: PromptData = {
-        gender: '', ageGroup: '', ethnicity: '', eyeColor: '', hairColor: '', hairStyle: '', makeup: '',
-        clothing: [], accessories: [], pose: '', action: '',
-        background: '', era: '', weather: '', timeOfDay: '', mood: [],
-        camera: '', cameraType: '', lens: '', filmStock: '', composition: '',
+        gender: '', ageGroup: '', ethnicity: '', eyeColor: '', hairColor: '',
+        hairStyle: [], // Multi-Select
+        makeup: [], // Multi-Select
+        clothing: [], accessories: [],
+        pose: [], action: [], // Multi-Select
+        background: '', era: '',
+        weather: [], // Multi-Select
+        timeOfDay: '', mood: [],
+        camera: '', cameraType: '',
+        lens: [], filmStock: [], // Multi-Select
+        composition: [], // Multi-Select
         style: [], photographerStyle: [], lighting: [], lightColor: '', colorGrading: '', specialEffects: [], texture: [],
         aiModel: '', aspectRatio: '', negativePrompt: '',
         stylize: 0, chaos: 0, weirdness: 0,
         addons: [],
     };
 
-    const [data, setData] = useState<PromptData>({ ...initialData, addons: getTranslatedAddons() });
+    const [data, setData] = useState<PromptData>({ ...initialData, addons: [] });
     const [generated, setGenerated] = useState('');
     const [copied, setCopied] = useState(false);
     const [currentStep, setCurrentStep] = useState(1);
@@ -128,6 +403,9 @@ export function PromptForm() {
     };
 
     const handleRandomize = () => {
+        // Use English translations for randomization source
+        const enT = translations.en;
+
         // Helper to pick random from object values
         const pick = (obj: Record<string, string>) => {
             const values = Object.values(obj);
@@ -145,42 +423,43 @@ export function PromptForm() {
         const newData: PromptData = { ...data };
 
         // Subject
-        newData.gender = pick(t.options.gender);
-        newData.ageGroup = pick(t.options.ageGroup);
-        newData.ethnicity = pick(t.options.ethnicity);
-        newData.eyeColor = Math.random() > 0.5 ? pick(t.options.eyeColor) : '';
-        newData.hairColor = Math.random() > 0.5 ? pick(t.options.hairColor) : '';
-        newData.hairStyle = Math.random() > 0.5 ? pick(t.options.hairStyle) : '';
-        newData.makeup = Math.random() > 0.7 ? pick(t.options.makeup) : ''; // Less chance
-        newData.pose = Math.random() > 0.3 ? pick(t.options.pose) : '';
-        newData.action = Math.random() > 0.5 ? pick(t.options.action) : '';
-        newData.clothing = Math.random() > 0.2 ? pickMulti(t.options.clothing) : [];
-        newData.accessories = Math.random() > 0.5 ? pickMulti(t.options.accessories) : [];
+        // Subject
+        newData.gender = pick(enT.options.gender);
+        newData.ageGroup = pick(enT.options.ageGroup);
+        newData.ethnicity = pick(enT.options.ethnicity);
+        newData.eyeColor = Math.random() > 0.5 ? pick(enT.options.eyeColor) : '';
+        newData.hairColor = Math.random() > 0.5 ? pick(enT.options.hairColor) : '';
+        newData.hairStyle = Math.random() > 0.5 ? pickMulti(enT.options.hairStyle) : []; // Multi
+        newData.makeup = Math.random() > 0.7 ? pickMulti(enT.options.makeup) : []; // Multi
+        newData.pose = Math.random() > 0.3 ? pickMulti(enT.options.pose) : []; // Multi
+        newData.action = Math.random() > 0.5 ? pickMulti(enT.options.action) : []; // Multi
+        newData.clothing = Math.random() > 0.2 ? pickMulti(enT.options.clothing) : [];
+        newData.accessories = Math.random() > 0.5 ? pickMulti(enT.options.accessories) : [];
 
         // Scene
-        newData.background = pick(t.options.background);
-        newData.era = Math.random() > 0.5 ? pick(t.options.era) : '';
-        newData.weather = Math.random() > 0.5 ? pick(t.options.weather) : '';
-        newData.timeOfDay = Math.random() > 0.3 ? pick(t.options.timeOfDay) : '';
-        newData.mood = Math.random() > 0.3 ? pickMulti(t.options.mood) : [];
+        newData.background = pick(enT.options.background);
+        newData.era = Math.random() > 0.5 ? pick(enT.options.era) : '';
+        newData.weather = Math.random() > 0.5 ? pickMulti(enT.options.weather) : []; // Multi
+        newData.timeOfDay = Math.random() > 0.3 ? pick(enT.options.timeOfDay) : '';
+        newData.mood = Math.random() > 0.3 ? pickMulti(enT.options.mood) : [];
 
         // Camera
-        newData.cameraType = Math.random() > 0.5 ? pick(t.options.cameraType) : '';
-        newData.camera = Math.random() > 0.5 ? pick(t.options.camera) : '';
-        newData.lens = Math.random() > 0.5 ? pick(t.options.lens) : '';
-        newData.filmStock = Math.random() > 0.6 ? pick(t.options.filmStock) : '';
-        newData.composition = Math.random() > 0.6 ? pick(t.options.composition) : '';
-        newData.aspectRatio = Math.random() > 0.3 ? pick(t.options.aspectRatio) : '';
+        newData.cameraType = Math.random() > 0.5 ? pick(enT.options.cameraType) : '';
+        newData.camera = Math.random() > 0.5 ? pick(enT.options.camera) : '';
+        newData.lens = Math.random() > 0.5 ? pickMulti(enT.options.lens) : []; // Multi
+        newData.filmStock = Math.random() > 0.6 ? pickMulti(enT.options.filmStock) : []; // Multi
+        newData.composition = Math.random() > 0.6 ? pickMulti(enT.options.composition) : []; // Multi
+        newData.aspectRatio = Math.random() > 0.3 ? pick(enT.options.aspectRatio) : '';
 
         // Style
-        newData.style = Math.random() > 0.2 ? [pick(t.styles)] : [];
-        newData.photographerStyle = Math.random() > 0.7 ? [pick(t.options.photographerStyle)] : [];
-        newData.lighting = Math.random() > 0.4 ? pickMulti(t.lighting) : [];
-        newData.lightColor = Math.random() > 0.6 ? pick(t.options.lightColor) : '';
-        newData.colorGrading = Math.random() > 0.6 ? pick(t.options.colorGrading) : '';
-        newData.specialEffects = Math.random() > 0.8 ? pickMulti(t.options.specialEffects) : [];
-        newData.texture = Math.random() > 0.8 ? pickMulti(t.options.texture) : [];
-        newData.aiModel = Math.random() > 0.5 ? pick(t.options.aiModel) : '';
+        newData.style = Math.random() > 0.2 ? [pick(enT.styles)] : [];
+        newData.photographerStyle = Math.random() > 0.7 ? [pick(enT.options.photographerStyle)] : [];
+        newData.lighting = Math.random() > 0.4 ? pickMulti(enT.lighting) : [];
+        newData.lightColor = Math.random() > 0.6 ? pick(enT.options.lightColor) : '';
+        newData.colorGrading = Math.random() > 0.6 ? pick(enT.options.colorGrading) : '';
+        newData.specialEffects = Math.random() > 0.8 ? pickMulti(enT.options.specialEffects) : [];
+        newData.texture = Math.random() > 0.8 ? pickMulti(enT.options.texture) : [];
+        newData.aiModel = Math.random() > 0.5 ? pick(enT.options.aiModel) : '';
 
         // Advanced
         newData.stylize = Math.random() > 0.5 ? Math.floor(Math.random() * 500) : 0;
@@ -190,118 +469,17 @@ export function PromptForm() {
         setData(newData);
     };
 
-    const handleChange = (field: keyof PromptData, value: string | number) => {
+    const handleChange = (field: keyof PromptData, value: any) => {
         setData(prev => ({ ...prev, [field]: value }));
     };
 
-    const toggleSelection = (field: keyof PromptData, value: string) => {
+    const toggleAddon = (value: string) => {
         setData(prev => {
-            const current = prev[field] as string[];
+            const current = prev.addons;
             const updated = current.includes(value) ? current.filter(i => i !== value) : [...current, value];
-            return { ...prev, [field]: updated };
+            return { ...prev, addons: updated };
         });
     };
-
-    const toggleAddon = (value: string) => toggleSelection('addons', value);
-    const useOutsideClick = (callback: () => void) => {
-        const ref = useRef<HTMLDivElement>(null);
-        useEffect(() => {
-            const handleClick = (e: MouseEvent) => {
-                if (ref.current && !ref.current.contains(e.target as Node)) callback();
-            };
-            document.addEventListener('mousedown', handleClick);
-            return () => document.removeEventListener('mousedown', handleClick);
-        }, [callback]);
-        return ref;
-    };
-
-    // --- Components ---
-
-    const MultiSelectField = ({ label, field, options, icon }: any) => {
-        const [isOpen, setIsOpen] = useState(false);
-        const ref = useOutsideClick(() => setIsOpen(false));
-        const selectedValues = data[field as keyof PromptData] as string[];
-
-        return (
-            <div className="space-y-2" ref={ref}>
-                <label className="text-sm font-medium text-zinc-400 flex items-center gap-1.5 whitespace-nowrap">
-                    {icon} {label}
-                </label>
-                <div className="relative">
-                    <div
-                        onClick={() => setIsOpen(!isOpen)}
-                        className={`w-full bg-zinc-950 border rounded-xl p-2.5 min-h-[46px] flex flex-wrap gap-1.5 cursor-pointer text-sm transition-all ${isOpen ? 'border-yellow-500/50 ring-2 ring-yellow-500/20' : 'border-zinc-800 hover:border-zinc-700'}`}
-                    >
-                        {selectedValues.length === 0 && <span className="text-zinc-600 self-center px-1">{t.form.selectOption}</span>}
-                        {selectedValues.map((val) => (
-                            <span key={val} className="bg-zinc-800/80 text-zinc-200 px-2 py-0.5 rounded-lg text-xs flex items-center gap-1 border border-zinc-700/50">
-                                {val}
-                                <button className="hover:text-red-400 ml-1" onClick={(e) => { e.stopPropagation(); toggleSelection(field, val); }}>×</button>
-                            </span>
-                        ))}
-                        <div className="ml-auto self-center text-zinc-500 pr-1"><ChevronsUpDown size={14} /></div>
-                    </div>
-                    {isOpen && (
-                        <div className="absolute z-50 w-full mt-2 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl max-h-60 overflow-auto animate-in fade-in zoom-in-95 duration-100">
-                            {Object.entries(options).map(([k, v]: any) => {
-                                const isSelected = selectedValues.includes(v);
-                                return (
-                                    <div key={k} onClick={() => toggleSelection(field, v)} className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-yellow-500/10 text-yellow-500' : 'text-zinc-300 hover:bg-zinc-800'}`}>
-                                        <span>{v}</span>
-                                        {isSelected && <Check size={14} />}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    )}
-                </div>
-            </div>
-        );
-    };
-
-    const SelectField = ({ label, field, options, icon }: any) => (
-        <div className="space-y-2">
-            <label className="text-sm font-medium text-zinc-400 flex items-center gap-1.5 whitespace-nowrap">
-                {icon} {label}
-            </label>
-            <div className="relative">
-                <select
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-yellow-500/50 appearance-none text-sm transition-shadow placeholder:text-zinc-600 truncate pr-8"
-                    value={(data[field as keyof PromptData] as string) || ''}
-                    onChange={(e) => handleChange(field as keyof PromptData, e.target.value)}
-                >
-                    <option value="">{t.form.selectOption}</option>
-                    {Object.entries(options).map(([k, v]: any) => <option key={k} value={v}>{v}</option>)}
-                </select>
-                <div className="absolute inset-y-0 end-3 flex items-center pointer-events-none text-zinc-500"><ChevronsUpDown size={14} /></div>
-            </div>
-        </div>
-    );
-
-    const SliderField = ({ label, field, min, max, icon, tooltip }: any) => (
-        <div className="space-y-3 group">
-            <label className="text-sm font-medium text-zinc-400 flex items-center justify-between">
-                <span className="flex items-center gap-1.5">
-                    {icon} {label}
-                    {tooltip && (
-                        <div className="relative group/tooltip">
-                            <Info size={12} className="text-zinc-600 cursor-help" />
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-zinc-800 text-zinc-200 text-xs rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap border border-zinc-700 shadow-lg z-10">
-                                {tooltip}
-                            </div>
-                        </div>
-                    )}
-                </span>
-                <span className="text-yellow-500 font-bold bg-yellow-500/10 px-2 py-0.5 rounded text-xs">{data[field as keyof PromptData]}</span>
-            </label>
-            <input
-                type="range" min={min} max={max} value={data[field as keyof PromptData] as number}
-                onChange={(e) => handleChange(field as keyof PromptData, parseInt(e.target.value))}
-                className="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-yellow-500"
-            />
-            <div className="flex justify-between text-[10px] text-zinc-600"><span>{min}</span><span>{max}</span></div>
-        </div>
-    );
 
     // --- Wizard Steps Content ---
 
@@ -318,64 +496,71 @@ export function PromptForm() {
             case 1: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <SelectField label={t.form.gender} field="gender" options={t.options.gender} />
-                        <SelectField label={t.form.ageGroup} field="ageGroup" options={t.options.ageGroup} />
-                        <SelectField label={t.form.ethnicity} field="ethnicity" options={t.options.ethnicity} icon={<Globe size={14} />} />
-                        <SelectField label={t.form.eyeColor} field="eyeColor" options={t.options.eyeColor} icon={<Eye size={14} />} />
+                        <SelectField
+                            label={t.form.gender}
+                            value={data.gender}
+                            onChange={(v) => handleChange('gender', v)}
+                            options={getOptions('options', 'gender')}
+                            icon={<User size={14} />}
+                            placeholder={t.form.selectOption}
+                        />
+                        <SelectField label={t.form.ageGroup} value={data.ageGroup} onChange={(v) => handleChange('ageGroup', v)} options={getOptions('options', 'ageGroup')} icon={<User size={14} />} placeholder={t.form.selectOption} />
+                        <SelectField label={t.form.ethnicity} value={data.ethnicity} onChange={(v) => handleChange('ethnicity', v)} options={getOptions('options', 'ethnicity')} icon={<Globe size={14} />} placeholder={t.form.selectOption} />
+                        <SelectField label={t.form.eyeColor} value={data.eyeColor} onChange={(v) => handleChange('eyeColor', v)} options={getOptions('options', 'eyeColor')} icon={<Eye size={14} />} placeholder={t.form.selectOption} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <SelectField label={t.form.hairStyle} field="hairStyle" options={t.options.hairStyle} icon={<Scissors size={14} />} />
-                        <SelectField label={t.form.hairColor} field="hairColor" options={t.options.hairColor} />
-                        <SelectField label={t.form.makeup} field="makeup" options={t.options.makeup} icon={<Smile size={14} />} />
-                        <SelectField label={t.form.pose} field="pose" options={t.options.pose} icon={<User size={14} />} />
+                        <MultiSelectField label={t.form.hairStyle} value={data.hairStyle} onChange={(v) => handleChange('hairStyle', v)} options={getOptions('options', 'hairStyle')} icon={<Scissors size={14} />} placeholder={t.form.selectOption} />
+                        <SelectField label={t.form.hairColor} value={data.hairColor} onChange={(v) => handleChange('hairColor', v)} options={getOptions('options', 'hairColor')} icon={<Palette size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.makeup} value={data.makeup} onChange={(v) => handleChange('makeup', v)} options={getOptions('options', 'makeup')} icon={<Smile size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.pose} value={data.pose} onChange={(v) => handleChange('pose', v)} options={getOptions('options', 'pose')} icon={<User size={14} />} placeholder={t.form.selectOption} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <MultiSelectField label={t.form.clothing} field="clothing" options={t.options.clothing} icon={<Shirt size={14} />} />
-                        <MultiSelectField label={t.form.accessories} field="accessories" options={t.options.accessories} icon={<Glasses size={14} />} />
-                        <SelectField label={t.form.action} field="action" options={t.options.action} icon={<Meh size={14} />} />
+                        <MultiSelectField label={t.form.clothing} value={data.clothing} onChange={(v) => handleChange('clothing', v)} options={getOptions('options', 'clothing')} icon={<Shirt size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.accessories} value={data.accessories} onChange={(v) => handleChange('accessories', v)} options={getOptions('options', 'accessories')} icon={<Glasses size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.action} value={data.action} onChange={(v) => handleChange('action', v)} options={getOptions('options', 'action')} icon={<Meh size={14} />} placeholder={t.form.selectOption} />
                     </div>
                 </div>
             );
             case 2: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <SelectField label={t.form.background} field="background" options={t.options.background} icon={<ImageIcon size={14} />} />
-                        <SelectField label={t.form.era} field="era" options={t.options.era} icon={<Hourglass size={14} />} />
-                        <SelectField label={t.form.weather} field="weather" options={t.options.weather} icon={<CloudSun size={14} />} />
-                        <SelectField label={t.form.timeOfDay} field="timeOfDay" options={t.options.timeOfDay} icon={<Clock size={14} />} />
+                        <SelectField label={t.form.background} value={data.background} onChange={(v) => handleChange('background', v)} options={getOptions('options', 'background')} icon={<ImageIcon size={14} />} placeholder={t.form.selectOption} />
+                        <SelectField label={t.form.era} value={data.era} onChange={(v) => handleChange('era', v)} options={getOptions('options', 'era')} icon={<Hourglass size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.weather} value={data.weather} onChange={(v) => handleChange('weather', v)} options={getOptions('options', 'weather')} icon={<CloudSun size={14} />} placeholder={t.form.selectOption} />
+                        <SelectField label={t.form.timeOfDay} value={data.timeOfDay} onChange={(v) => handleChange('timeOfDay', v)} options={getOptions('options', 'timeOfDay')} icon={<Clock size={14} />} placeholder={t.form.selectOption} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.lighting} field="lighting" options={t.lighting} icon={<Lightbulb size={14} />} />
-                        <SelectField label={t.form.lightColor} field="lightColor" options={t.options.lightColor} icon={<Palette size={14} />} />
-                        <MultiSelectField label={t.form.mood} field="mood" options={t.options.mood} icon={<Focus size={14} />} />
+                        <MultiSelectField label={t.form.lighting} value={data.lighting} onChange={(v) => handleChange('lighting', v)} options={getFlatOptions('lighting')} icon={<Lightbulb size={14} />} placeholder={t.form.selectOption} />
+                        <SelectField label={t.form.lightColor} value={data.lightColor} onChange={(v) => handleChange('lightColor', v)} options={getOptions('options', 'lightColor')} icon={<Palette size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.mood} value={data.mood} onChange={(v) => handleChange('mood', v)} options={getOptions('options', 'mood')} icon={<Focus size={14} />} placeholder={t.form.selectOption} />
                     </div>
                 </div>
             );
             case 3: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <SelectField label={t.form.cameraType} field="cameraType" options={t.options.cameraType} icon={<CameraIcon size={14} />} />
-                        <SelectField label={t.form.camera} field="camera" options={t.options.camera} icon={<Aperture size={14} />} />
-                        <SelectField label={t.form.lens} field="lens" options={t.options.lens} icon={<Eye size={14} />} />
-                        <SelectField label={t.form.filmStock} field="filmStock" options={t.options.filmStock} icon={<Film size={14} />} />
+                        <SelectField label={t.form.cameraType} value={data.cameraType} onChange={(v) => handleChange('cameraType', v)} options={getOptions('options', 'cameraType')} icon={<CameraIcon size={14} />} placeholder={t.form.selectOption} />
+                        <SelectField label={t.form.camera} value={data.camera} onChange={(v) => handleChange('camera', v)} options={getOptions('options', 'camera')} icon={<Aperture size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.lens} value={data.lens} onChange={(v) => handleChange('lens', v)} options={getOptions('options', 'lens')} icon={<Eye size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.filmStock} value={data.filmStock} onChange={(v) => handleChange('filmStock', v)} options={getOptions('options', 'filmStock')} icon={<Film size={14} />} placeholder={t.form.selectOption} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <SelectField label={t.form.composition} field="composition" options={t.options.composition} icon={<Layout size={14} />} />
-                        <SelectField label={t.form.aspectRatio} field="aspectRatio" options={t.options.aspectRatio} icon={<Maximize size={14} />} />
+                        <MultiSelectField label={t.form.composition} value={data.composition} onChange={(v) => handleChange('composition', v)} options={getOptions('options', 'composition')} icon={<Layout size={14} />} placeholder={t.form.selectOption} />
+                        <SelectField label={t.form.aspectRatio} value={data.aspectRatio} onChange={(v) => handleChange('aspectRatio', v)} options={getOptions('options', 'aspectRatio')} icon={<Maximize size={14} />} placeholder={t.form.selectOption} />
                     </div>
                 </div>
             );
             case 4: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.style} field="style" options={t.styles} icon={<Palette size={14} />} />
-                        <MultiSelectField label={t.form.photographerStyle} field="photographerStyle" options={t.options.photographerStyle} icon={<User size={14} />} />
-                        <SelectField label={t.form.colorGrading} field="colorGrading" options={t.options.colorGrading} icon={<MonitorPlay size={14} />} />
-                        <MultiSelectField label={t.form.specialEffects} field="specialEffects" options={t.options.specialEffects} icon={<Sparkles size={14} />} />
+                        <MultiSelectField label={t.form.style} value={data.style} onChange={(v) => handleChange('style', v)} options={getFlatOptions('styles')} icon={<Palette size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.photographerStyle} value={data.photographerStyle} onChange={(v) => handleChange('photographerStyle', v)} options={getOptions('options', 'photographerStyle')} icon={<User size={14} />} placeholder={t.form.selectOption} />
+                        <SelectField label={t.form.colorGrading} value={data.colorGrading} onChange={(v) => handleChange('colorGrading', v)} options={getOptions('options', 'colorGrading')} icon={<MonitorPlay size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.specialEffects} value={data.specialEffects} onChange={(v) => handleChange('specialEffects', v)} options={getOptions('options', 'specialEffects')} icon={<Sparkles size={14} />} placeholder={t.form.selectOption} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.texture} field="texture" options={t.options.texture} icon={<Gauge size={14} />} />
-                        <SelectField label={t.form.aiModel} field="aiModel" options={t.options.aiModel} icon={<Cpu size={14} />} />
+                        <MultiSelectField label={t.form.texture} value={data.texture} onChange={(v) => handleChange('texture', v)} options={getOptions('options', 'texture')} icon={<Gauge size={14} />} placeholder={t.form.selectOption} />
+                        <SelectField label={t.form.aiModel} value={data.aiModel} onChange={(v) => handleChange('aiModel', v)} options={getOptions('options', 'aiModel')} icon={<Cpu size={14} />} placeholder={t.form.selectOption} />
                     </div>
                 </div>
             );
@@ -387,9 +572,9 @@ export function PromptForm() {
                             <Sliders size={14} /> {t.form.advancedParams}
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <SliderField label={t.form.stylize} field="stylize" min={0} max={1000} icon={<Palette size={14} />} tooltip={t.form.guidance.stylize} />
-                            <SliderField label={t.form.chaos} field="chaos" min={0} max={100} icon={<Sparkles size={14} />} tooltip={t.form.guidance.chaos} />
-                            <SliderField label={t.form.weirdness} field="weirdness" min={0} max={3000} icon={<Gauge size={14} />} tooltip={t.form.guidance.weirdness} />
+                            <SliderField label={t.form.stylize} value={data.stylize} onChange={(v: number) => handleChange('stylize', v)} min={0} max={1000} icon={<Palette size={14} />} tooltip={t.form.guidance.stylize} />
+                            <SliderField label={t.form.chaos} value={data.chaos} onChange={(v: number) => handleChange('chaos', v)} min={0} max={100} icon={<Sparkles size={14} />} tooltip={t.form.guidance.chaos} />
+                            <SliderField label={t.form.weirdness} value={data.weirdness} onChange={(v: number) => handleChange('weirdness', v)} min={0} max={3000} icon={<Gauge size={14} />} tooltip={t.form.guidance.weirdness} />
                         </div>
                     </div>
 

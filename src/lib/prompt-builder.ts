@@ -1,203 +1,148 @@
-export type PromptData = {
+export interface PromptData {
+    // Subject
     gender: string;
     ageGroup: string;
     ethnicity: string;
     eyeColor: string;
     hairColor: string;
-    hairStyle: string;
-    makeup: string;
-    clothing: string[];     // Multi-select
-    accessories: string[];  // Multi-select
-    pose: string;
-    action: string;
+    hairStyle: string[]; // Multi-Select
+    makeup: string[]; // Multi-Select
+    clothing: string[];
+    accessories: string[];
+    pose: string[]; // Multi-Select
+    action: string[]; // Multi-Select
+
+    // Scene
     background: string;
     era: string;
-    weather: string;
+    weather: string[]; // Multi-Select
     timeOfDay: string;
-    mood: string[];         // Multi-select
+    mood: string[];
 
+    // Camera & Technical
     camera: string;
     cameraType: string;
-    lens: string;
-    filmStock: string;
-    composition: string;
+    lens: string[]; // Multi-Select
+    filmStock: string[]; // Multi-Select
+    composition: string[]; // Multi-Select
+    aspectRatio: string;
 
-    style: string[];              // Multi-select
-    photographerStyle: string[];  // Multi-select
-    lighting: string[];           // Multi-select
+    // Style & Production
+    style: string[];
+    photographerStyle: string[];
+    lighting: string[];
     lightColor: string;
     colorGrading: string;
-    specialEffects: string[];     // Multi-select
-    texture: string[];            // Multi-select
-
+    specialEffects: string[];
+    texture: string[];
     aiModel: string;
-    aspectRatio: string;
     negativePrompt: string;
 
+    // Advanced Parameters
     stylize: number;
     chaos: number;
     weirdness: number;
 
+    // Addons
     addons: string[];
-};
+}
 
+// --- Prompt Generation Logic ---
 export function generatePrompt(data: PromptData): string {
-    const parts = [];
+    // Sections array to hold non-empty parts
+    const sections: string[] = [];
 
-    // Helper to join array or return string
-    const join = (val: string | string[], sep: string = ', ') => {
-        if (Array.isArray(val)) {
-            return val.filter(Boolean).join(sep);
-        }
-        return val || '';
+    // Helper to format a line if value exists
+    const line = (key: string, value: string | string[]) => {
+        if (!value || (Array.isArray(value) && value.length === 0)) return null;
+        const valStr = Array.isArray(value) ? value.filter(Boolean).join(', ') : value;
+        if (!valStr) return null;
+        return `- ${key}: ${valStr}`;
     };
 
-    // 1. Subject Description
-    let subjectPart = '';
+    // 1. Role / Instruction (System Prompt Injection)
+    // This guides the LLM to behave like a specific expert.
+    sections.push(`**ROLE & OBJECTIVE:**
+You are an expert photographer and visual artist using Gemini 3+ (Nano Banana Pro).
+Create a photorealistic image based on the following structured specifications:`);
 
-    if (data.ageGroup) subjectPart += data.ageGroup + ' ';
-    if (data.ethnicity) subjectPart += data.ethnicity + ' ';
-    if (data.gender) subjectPart += data.gender;
+    // 2. Subject Details
+    const subjectLines = [
+        line('Gender', data.gender),
+        line('Age Group', data.ageGroup),
+        line('Ethnicity', data.ethnicity),
+        line('Hair Style', data.hairStyle),
+        line('Hair Color', data.hairColor),
+        line('Eye Color', data.eyeColor),
+        line('Makeup', data.makeup),
+        line('Clothing', data.clothing),
+        line('Accessories', data.accessories),
+        line('Pose', data.pose),
+        line('Action', data.action)
+    ].filter(Boolean);
 
-    const attributes = [];
-    if (data.eyeColor) attributes.push(data.eyeColor + ' eyes');
-
-    if (data.hairColor || data.hairStyle) {
-        let hair = '';
-        if (data.hairStyle) hair += data.hairStyle + ' ';
-        if (data.hairColor) hair += data.hairColor + ' ';
-        hair += 'hair';
-        attributes.push(hair.trim());
+    if (subjectLines.length > 0) {
+        sections.push(`**SUBJECT:**\n${subjectLines.join('\n')}`);
     }
 
-    if (data.makeup) {
-        attributes.push('wearing ' + data.makeup + ' makeup');
+    // 3. Environment & Atmosphere
+    const envLines = [
+        line('Background', data.background),
+        line('Era', data.era),
+        line('Weather', data.weather),
+        line('Time of Day', data.timeOfDay),
+        line('Mood', data.mood)
+    ].filter(Boolean);
+
+    if (envLines.length > 0) {
+        sections.push(`**ENVIRONMENT:**\n${envLines.join('\n')}`);
     }
 
-    if (attributes.length > 0) {
-        subjectPart += ' with ' + attributes.join(', ');
+    // 4. Technical Specifications
+    const techLines = [
+        line('Camera Type', data.cameraType),
+        line('Camera Model', data.camera),
+        line('Lens', data.lens),
+        line('Film Stock', data.filmStock),
+        line('Composition', data.composition),
+        line('Aspect Ratio', data.aspectRatio),
+        line('Lighting', data.lighting),
+        line('Light Color', data.lightColor)
+    ].filter(Boolean);
+
+    if (techLines.length > 0) {
+        sections.push(`**TECHNICAL:**\n${techLines.join('\n')}`);
     }
 
-    const clothingStr = join(data.clothing, ' and '); // e.g. "wearing Suit and Tie"
-    if (clothingStr) {
-        subjectPart += ', wearing ' + clothingStr;
+    // 5. Style & Artistry
+    const styleLines = [
+        line('Art Style', data.style),
+        line('Photographer Inspiration', data.photographerStyle),
+        line('Color Grading', data.colorGrading),
+        line('Texture', data.texture),
+        line('Special Effects', data.specialEffects),
+        line('Addons', data.addons)
+    ].filter(Boolean);
+
+    if (styleLines.length > 0) {
+        sections.push(`**STYLE:**\n${styleLines.join('\n')}`);
     }
 
-    const accessoriesStr = join(data.accessories, ', ');
-    if (accessoriesStr) {
-        subjectPart += ', wearing ' + accessoriesStr;
+    // 6. Parameters (Appended as notes)
+    const params: string[] = [];
+    if (data.stylize > 0) params.push(`--stylize ${data.stylize}`);
+    if (data.weirdness > 0) params.push(`--weirdness ${data.weirdness}`);
+    if (data.chaos > 0) params.push(`--chaos ${data.chaos}`);
+
+    if (params.length > 0) {
+        sections.push(`**PARAMETERS:**\n${params.join(' ')}`);
     }
 
-    if (data.pose) {
-        subjectPart += ', ' + data.pose;
-    }
-
-    if (data.action) {
-        subjectPart += ', ' + data.action;
-    }
-
-    if (subjectPart.trim()) {
-        parts.push(subjectPart.trim());
-    }
-
-    // 2. Environment & Era (Atmosphere)
-    let envPart = '';
-    if (data.background) {
-        envPart += data.background;
-    }
-
-    if (data.era) {
-        envPart += envPart ? `, set in ${data.era}` : `set in ${data.era}`;
-    }
-
-    if (data.weather) {
-        envPart += envPart ? `, ${data.weather}` : data.weather;
-    }
-
-    if (data.timeOfDay) {
-        envPart += envPart ? `, at ${data.timeOfDay}` : `at ${data.timeOfDay}`;
-    }
-
-    const moodStr = join(data.mood, ', ');
-    if (moodStr) {
-        envPart += envPart ? `, ${moodStr} atmosphere` : `${moodStr} atmosphere`;
-    }
-
-    if (envPart) {
-        parts.push(envPart);
-    }
-
-    // 3. Technical & Camera
-    const cameraParts = [];
-    if (data.cameraType) cameraParts.push(data.cameraType);
-    if (data.camera) cameraParts.push(data.camera + ' shot');
-    if (data.lens) cameraParts.push(data.lens + ' lens');
-    if (data.filmStock) cameraParts.push('shot on ' + data.filmStock);
-    if (data.composition) cameraParts.push(data.composition);
-
-    if (cameraParts.length > 0) {
-        parts.push(cameraParts.join(', '));
-    }
-
-    // 4. Style & Artistic
-    const styleParts = [];
-    const styleStr = join(data.style, ', ');
-    if (styleStr) styleParts.push(styleStr + ' style');
-
-    const photoStyleStr = join(data.photographerStyle, ', ');
-    if (photoStyleStr) styleParts.push('in the style of ' + photoStyleStr);
-
-    if (data.colorGrading) styleParts.push(data.colorGrading + ' color grading');
-
-    const fxStr = join(data.specialEffects, ', ');
-    if (fxStr) styleParts.push(fxStr);
-
-    const textureStr = join(data.texture, ', ');
-    if (textureStr) styleParts.push(textureStr + ' texture');
-
-    if (styleParts.length > 0) {
-        parts.push(styleParts.join(', '));
-    }
-
-    // 5. Lighting
-    let lightPart = '';
-    const lightingStr = join(data.lighting, ' + '); // e.g. "Neon + Studio lighting"
-    if (lightingStr) {
-        lightPart += lightingStr + ' lighting';
-    }
-    if (data.lightColor) {
-        lightPart += lightPart ? ` with ${data.lightColor} tones` : `${data.lightColor} lighting tones`;
-    }
-    if (lightPart) {
-        parts.push(lightPart);
-    }
-
-    // 6. Addons
-    if (data.addons && data.addons.length > 0) {
-        parts.push(...data.addons);
-    }
-
-    let fullPrompt = parts.join(', ');
-
-    // Aspect Ratio & Model Params
-    if (data.aspectRatio) {
-        fullPrompt += ` --ar ${data.aspectRatio}`;
-    }
-
-    if (data.stylize > 0) fullPrompt += ` --s ${data.stylize}`;
-    if (data.chaos > 0) fullPrompt += ` --c ${data.chaos}`;
-    if (data.weirdness > 0) fullPrompt += ` --w ${data.weirdness}`;
-
-    if (data.aiModel) {
-        if (data.aiModel.startsWith('--')) {
-            fullPrompt += ` ${data.aiModel}`;
-        }
-    }
-
-    // Negative Prompt
+    // 7. Negative Prompt within the structure
     if (data.negativePrompt) {
-        fullPrompt += ` --no ${data.negativePrompt}`;
+        sections.push(`**NEGATIVE PROMPT (AVOID):**\n${data.negativePrompt}`);
     }
 
-    return fullPrompt;
+    // Join all sections with double newlines for clarity
+    return sections.join('\n\n');
 }
