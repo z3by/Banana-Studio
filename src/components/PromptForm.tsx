@@ -466,6 +466,12 @@ export function PromptForm() {
         newData.chaos = Math.random() > 0.8 ? Math.floor(Math.random() * 50) : 0;
         newData.weirdness = Math.random() > 0.9 ? Math.floor(Math.random() * 1000) : 0;
 
+        // Addons - Randomize
+        const allAddons = Object.values(enT.addons); // Use english values
+        // Randomly pick 0 to 4 addons
+        const addonCount = Math.floor(Math.random() * 5);
+        newData.addons = allAddons.sort(() => 0.5 - Math.random()).slice(0, addonCount);
+
         setData(newData);
     };
 
@@ -688,7 +694,7 @@ export function PromptForm() {
                 </div>
 
                 {/* Wizard Footer (Navigation) */}
-                <div className="p-6 md:p-8 border-t border-zinc-800 bg-zinc-950/30 flex justify-between items-center">
+                <div className="p-6 md:p-8 border-t border-zinc-800 bg-zinc-950/30 flex flex-wrap gap-4 justify-between items-center">
                     <button
                         onClick={() => setCurrentStep(prev => Math.max(1, prev - 1))}
                         disabled={currentStep === 1}
@@ -697,21 +703,24 @@ export function PromptForm() {
                         {isRTL ? <ChevronRight size={18} /> : <ChevronLeft size={18} />} {t.form.navigation.back}
                     </button>
 
-                    {currentStep < 5 ? (
-                        <button
-                            onClick={() => setCurrentStep(prev => Math.min(5, prev + 1))}
-                            className="px-8 py-3 rounded-xl bg-zinc-100 text-black hover:bg-white font-bold transition-all flex items-center gap-2 shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)]"
-                        >
-                            {t.form.navigation.next} {isRTL ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
-                        </button>
-                    ) : (
+                    <div className="flex gap-3">
+                        {/* Always show Generate Button */}
                         <button
                             onClick={handleGenerate}
-                            className="px-8 py-3 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-400 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 shadow-[0_0_20px_-5px_rgba(234,179,8,0.4)]"
+                            className="px-6 py-3 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-400 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 shadow-[0_0_20px_-5px_rgba(234,179,8,0.4)] order-last md:order-none"
                         >
                             <Wand2 size={18} /> {t.form.navigation.finish}
                         </button>
-                    )}
+
+                        {currentStep < 5 && (
+                            <button
+                                onClick={() => setCurrentStep(prev => Math.min(5, prev + 1))}
+                                className="px-6 py-3 rounded-xl bg-zinc-100 text-black hover:bg-white font-bold transition-all flex items-center gap-2 shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)]"
+                            >
+                                {t.form.navigation.next} {isRTL ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
+                            </button>
+                        )}
+                    </div>
                 </div>
 
             </div>
@@ -723,7 +732,7 @@ export function PromptForm() {
                         {t.form.resultLabel}
                     </label>
                     <div className="bg-gradient-to-br from-zinc-900 to-black border border-zinc-800/80 rounded-3xl p-8 relative group shadow-2xl">
-                        <p className="text-xl md:text-2xl text-transparent bg-clip-text bg-gradient-to-br from-white to-zinc-400 leading-relaxed font-light break-words pe-14">
+                        <p className="text-sm md:text-base text-zinc-300 font-mono whitespace-pre-wrap leading-relaxed break-words pe-14">
                             {generated}
                         </p>
                         <button

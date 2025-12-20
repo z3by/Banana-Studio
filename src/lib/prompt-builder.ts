@@ -61,12 +61,29 @@ export function generatePrompt(data: PromptData): string {
     };
 
     // 1. Role / Instruction (System Prompt Injection)
-    // This guides the LLM to behave like a specific expert.
-    sections.push(`**ROLE & OBJECTIVE:**
-You are an expert photographer and visual artist using Gemini 3+ (Nano Banana Pro).
-Create a photorealistic image based on the following structured specifications:`);
+    // Highly detailed instruction to set the quality bar.
+    sections.push(`ROLE & OBJECTIVE:
+You are an expert photographer and digital artist using Gemini 3+ (Nano Banana Pro).
+Your goal is to create a breathtaking, photorealistic image with cinematic lighting and incredible detail.
+SAFETY: Subject must be depicted as 18+ years old.
+Adhere strictly to the structured specifications below. If a detail is missing, infer a high-quality default that fits the [Environment] and [Mood].`);
 
-    // 2. Subject Details
+    // 2. Natural Language Summary (Anchor)
+    // Creates a sentence like: "A portrait of a [Age] [Ethnicity] [Gender] in [Background]."
+    const summaryParts = [
+        'A',
+        data.mood.length > 0 ? data.mood[0] : 'stunning',
+        'image of a',
+        data.ageGroup,
+        data.ethnicity,
+        data.gender,
+        data.background ? `in ${data.background}` : '',
+        data.action.length > 0 ? `performing ${data.action.join(' and ')}` : ''
+    ].filter(Boolean).join(' ');
+
+    sections.push(`SUMMARY:\n${summaryParts}.`);
+
+    // 3. Subject Details
     const subjectLines = [
         line('Gender', data.gender),
         line('Age Group', data.ageGroup),
@@ -82,10 +99,10 @@ Create a photorealistic image based on the following structured specifications:`
     ].filter(Boolean);
 
     if (subjectLines.length > 0) {
-        sections.push(`**SUBJECT:**\n${subjectLines.join('\n')}`);
+        sections.push(`SUBJECT SPECS:\n${subjectLines.join('\n')}`);
     }
 
-    // 3. Environment & Atmosphere
+    // 4. Environment & Atmosphere
     const envLines = [
         line('Background', data.background),
         line('Era', data.era),
@@ -95,10 +112,10 @@ Create a photorealistic image based on the following structured specifications:`
     ].filter(Boolean);
 
     if (envLines.length > 0) {
-        sections.push(`**ENVIRONMENT:**\n${envLines.join('\n')}`);
+        sections.push(`ENVIRONMENT & ATMOSPHERE:\n${envLines.join('\n')}`);
     }
 
-    // 4. Technical Specifications
+    // 5. Technical Specifications
     const techLines = [
         line('Camera Type', data.cameraType),
         line('Camera Model', data.camera),
@@ -111,10 +128,10 @@ Create a photorealistic image based on the following structured specifications:`
     ].filter(Boolean);
 
     if (techLines.length > 0) {
-        sections.push(`**TECHNICAL:**\n${techLines.join('\n')}`);
+        sections.push(`TECHNICAL CONFIG:\n${techLines.join('\n')}`);
     }
 
-    // 5. Style & Artistry
+    // 6. Style & Artistry
     const styleLines = [
         line('Art Style', data.style),
         line('Photographer Inspiration', data.photographerStyle),
@@ -125,24 +142,33 @@ Create a photorealistic image based on the following structured specifications:`
     ].filter(Boolean);
 
     if (styleLines.length > 0) {
-        sections.push(`**STYLE:**\n${styleLines.join('\n')}`);
+        sections.push(`STYLE & AESTHETICS:\n${styleLines.join('\n')}`);
     }
 
-    // 6. Parameters (Appended as notes)
+    // 7. Quality Assurance (Implicit)
+    const qualityKeywords = [
+        'Masterpiece', 'Best Quality', 'High Resolution', '8k', 'HDR', 'Sharp Focus',
+        'Intricate Details', 'Professional Photography', 'Cinematic'
+    ];
+    // Filter out any that might already be in addons to avoid dupes? 
+    // For now, simpler to just append a Quality block.
+    sections.push(`QUALITY ASSURANCE:\n- Quality Tags: ${qualityKeywords.join(', ')}`);
+
+    // 8. Parameters
     const params: string[] = [];
     if (data.stylize > 0) params.push(`--stylize ${data.stylize}`);
     if (data.weirdness > 0) params.push(`--weirdness ${data.weirdness}`);
     if (data.chaos > 0) params.push(`--chaos ${data.chaos}`);
 
     if (params.length > 0) {
-        sections.push(`**PARAMETERS:**\n${params.join(' ')}`);
+        sections.push(`PARAMETERS:\n${params.join(' ')}`);
     }
 
-    // 7. Negative Prompt within the structure
+    // 9. Negative Prompt
     if (data.negativePrompt) {
-        sections.push(`**NEGATIVE PROMPT (AVOID):**\n${data.negativePrompt}`);
+        sections.push(`NEGATIVE PROMPT (AVOID):\n${data.negativePrompt}`);
     }
 
-    // Join all sections with double newlines for clarity
+    // Join all sections with double newlines
     return sections.join('\n\n');
 }
