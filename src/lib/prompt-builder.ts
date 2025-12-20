@@ -62,8 +62,13 @@ export function generatePrompt(data: PromptData): string {
     // 1. Role / Instruction (System Prompt Injection)
     // Highly detailed instruction to set the quality bar.
     sections.push(`ROLE & OBJECTIVE:
-You are an expert photographer and digital artist using Gemini 3+ (Nano Banana Pro).
+You are an expert photographer and digital artist.
 Your goal is to create a breathtaking, photorealistic image with cinematic lighting and incredible detail.
+
+REFERENCE IMAGE:
+If a reference image is provided, you MUST use it as the primary visual reference for the subject's likeness, features, and characteristics. Preserve the identity and key attributes from the reference while applying the specified style and settings.
+If no reference image is provided, please ask the user whether to proceed with an AI-generated subject or if they would like to provide a reference image first.
+
 SAFETY: Subject must be depicted as 18+ years old.
 Adhere strictly to the structured specifications below. If a detail is missing, infer a high-quality default that fits the [Environment] and [Mood].`);
 

@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useLanguage } from './LanguageContext';
 import { generatePrompt, PromptData } from '@/lib/prompt-builder';
+import { presets, Preset } from '@/lib/presets';
 import {
     RefreshCw,
     Wand2,
@@ -46,12 +47,17 @@ import {
     Info,
     PenLine,
     Keyboard,
-    List
+    List,
+    Download,
+    Share2,
+    RotateCcw,
+    Link,
+    Layers
 } from 'lucide-react';
 
 // --- Icons ---
-const IconCopy = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+const IconCopy = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
 );
 
 const useOutsideClick = (callback: () => void) => {
@@ -149,21 +155,21 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
     const dropdownContent = isOpen && typeof document !== 'undefined' ? createPortal(
         <div
             ref={dropdownRef}
-            className="z-[9999] bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar"
+            className="z-[9999] glass-panel rounded-2xl shadow-2xl overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar"
             style={dropdownStyle}
         >
             {Object.entries(options).map(([k, v]) => {
                 if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
                 const isSelected = value.includes(k);
                 return (
-                    <div key={k} onClick={() => { toggleValue(k); setInputValue(""); }} className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-yellow-500/10 text-yellow-500' : 'text-zinc-300 hover:bg-zinc-800'}`}>
+                    <div key={k} onClick={() => { toggleValue(k); setInputValue(""); }} className={`px-4 py-3 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-amber-500/20 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
                         <span>{v}</span>
                         {isSelected && <Check size={14} />}
                     </div>
                 );
             })}
             {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
-                <div onClick={() => { onChange([...value, inputValue]); setInputValue(""); }} className="px-4 py-2.5 text-sm cursor-pointer text-blue-400 hover:bg-zinc-800 flex items-center gap-2 italic border-t border-zinc-800/50">
+                <div onClick={() => { onChange([...value, inputValue]); setInputValue(""); }} className="px-4 py-3 text-sm cursor-pointer text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5">
                     <PenLine size={12} /> Add &quot;{inputValue}&quot;
                 </div>
             )}
@@ -173,33 +179,33 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
 
     return (
         <div className="space-y-2" ref={containerRef}>
-            <label className="text-sm font-medium text-zinc-400 flex items-center gap-1.5 whitespace-nowrap">
+            <label className="text-sm font-medium text-zinc-400 flex items-center gap-1.5 whitespace-nowrap px-1">
                 {icon} {label}
             </label>
             <div className="relative">
                 <div
                     ref={triggerRef}
                     onClick={() => { setIsOpen(true); inputRef.current?.focus(); }}
-                    className={`w-full bg-zinc-950 border rounded-xl p-2 min-h-[46px] flex flex-wrap gap-1.5 cursor-text text-sm transition-all ${isOpen ? 'border-yellow-500/50 ring-2 ring-yellow-500/20' : 'border-zinc-800 hover:border-zinc-700'}`}
+                    className={`w-full bg-black/40 backdrop-blur-sm border rounded-2xl p-2 min-h-[52px] flex flex-wrap gap-2 cursor-text text-sm transition-all ${isOpen ? 'border-amber-500/50 shadow-[0_0_15px_rgba(245,158,11,0.15)] ring-1 ring-amber-500/30' : 'border-white/10 hover:border-white/20 hover:bg-black/50'}`}
                 >
                     {value.map((val) => (
-                        <span key={val} className="bg-zinc-800/80 text-zinc-200 px-2 py-0.5 rounded-lg text-xs flex items-center gap-1 border border-zinc-700/50 animate-in fade-in zoom-in-95 duration-200">
+                        <span key={val} className="bg-amber-500/10 text-amber-200 px-3 py-1 rounded-xl text-xs flex items-center gap-1 border border-amber-500/20 animate-in fade-in zoom-in-95 duration-200">
                             {getLabel(val)}
-                            <button className="hover:text-red-400 ml-1 rounded-full p-0.5 hover:bg-zinc-700" onClick={(e) => { e.stopPropagation(); toggleValue(val); }}>×</button>
+                            <button className="hover:text-amber-400 ml-1 rounded-full p-0.5 hover:bg-amber-500/20" onClick={(e) => { e.stopPropagation(); toggleValue(val); }}>×</button>
                         </span>
                     ))}
                     <input
                         ref={inputRef}
                         type="text"
-                        className="bg-transparent outline-none flex-1 min-w-[60px] text-zinc-200 placeholder:text-zinc-600 h-6"
+                        className="bg-transparent outline-none flex-1 min-w-[60px] text-zinc-200 placeholder:text-zinc-600 h-8"
                         placeholder={value.length === 0 ? placeholder : ""}
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         onKeyDown={handleKeyDown}
                         onFocus={() => setIsOpen(true)}
                     />
-                    <div className="ml-auto self-center text-zinc-500 text-xs flex items-center gap-1">
-                        {isOpen && inputValue.length > 0 && <span className="text-[10px] bg-zinc-800 px-1 rounded hidden md:inline">Press Enter</span>}
+                    <div className="ml-auto self-center text-zinc-500 text-xs flex items-center gap-1 pr-2">
+                        {isOpen && inputValue.length > 0 && <span className="text-[10px] bg-white/10 px-1.5 py-0.5 rounded hidden md:inline">Press Enter</span>}
                         <ChevronsUpDown size={14} className="opacity-50" />
                     </div>
                 </div>
@@ -276,14 +282,14 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
     const dropdownContent = isOpen && typeof document !== 'undefined' ? createPortal(
         <div
             ref={dropdownRef}
-            className="z-[9999] bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar"
+            className="z-[9999] glass-panel rounded-2xl shadow-2xl overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar"
             style={dropdownStyle}
         >
-            <div className="p-2 sticky top-0 bg-zinc-900/95 backdrop-blur-sm border-b border-zinc-800/50 z-10">
+            <div className="p-2 sticky top-0 bg-black/50 backdrop-blur-md border-b border-white/5 z-10">
                 <input
                     ref={inputRef}
                     type="text"
-                    className="w-full bg-zinc-950/50 border border-zinc-700 rounded-lg px-2 py-1.5 text-xs text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-yellow-500/50"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/50 focus:bg-black/40"
                     placeholder="Search..."
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
@@ -294,14 +300,14 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
                 if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
                 const isSelected = value === k;
                 return (
-                    <div key={k} onClick={() => handleSelect(k)} className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-yellow-500/10 text-yellow-500' : 'text-zinc-300 hover:bg-zinc-800'}`}>
+                    <div key={k} onClick={() => handleSelect(k)} className={`px-4 py-3 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-amber-500/20 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
                         <span>{v}</span>
                         {isSelected && <Check size={14} />}
                     </div>
                 );
             })}
             {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
-                <div onClick={() => handleSelect(inputValue)} className="px-4 py-2.5 text-sm cursor-pointer text-blue-400 hover:bg-zinc-800 flex items-center gap-2 italic border-t border-zinc-800/50">
+                <div onClick={() => handleSelect(inputValue)} className="px-4 py-3 text-sm cursor-pointer text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5">
                     <PenLine size={12} /> Use &quot;{inputValue}&quot;
                 </div>
             )}
@@ -312,7 +318,7 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
     return (
         <div className="space-y-2 group" ref={containerRef}>
             <div className="flex justify-between items-center">
-                <label className="text-sm font-medium text-zinc-400 flex items-center gap-1.5 whitespace-nowrap">
+                <label className="text-sm font-medium text-zinc-400 flex items-center gap-1.5 whitespace-nowrap px-1">
                     {icon} {label}
                 </label>
                 <button
@@ -320,7 +326,7 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
                         setIsManual(!isManual);
                         setIsOpen(false);
                     }}
-                    className="text-[10px] text-zinc-600 hover:text-yellow-500 transition-colors flex items-center gap-1 opacity-0 group-hover:opacity-100 focus:opacity-100"
+                    className="text-[10px] text-zinc-600 hover:text-amber-500 transition-colors flex items-center gap-1 opacity-0 group-hover:opacity-100 focus:opacity-100 px-2"
                     title={isManual ? "Switch to List" : "Switch to Manual Input"}
                 >
                     {isManual ? <List size={12} /> : <Keyboard size={12} />}
@@ -332,12 +338,12 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
                 <div className="relative">
                     <input
                         type="text"
-                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-yellow-500/50 appearance-none text-sm transition-shadow placeholder:text-zinc-600"
+                        className="w-full bg-black/40 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-zinc-100 focus:outline-none focus:border-amber-500/50 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] appearance-none text-sm transition-all placeholder:text-zinc-600"
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
                         placeholder="Type anything..."
                     />
-                    <div className="absolute inset-y-0 end-3 flex items-center pointer-events-none text-zinc-500"><PenLine size={14} /></div>
+                    <div className="absolute inset-y-0 end-4 flex items-center pointer-events-none text-zinc-500"><PenLine size={14} /></div>
                 </div>
             ) : (
                 <div className="relative">
@@ -350,7 +356,7 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
                                 setTimeout(() => inputRef.current?.focus(), 0);
                             }
                         }}
-                        className={`w-full bg-zinc-950 border rounded-xl p-3 flex justify-between items-center cursor-pointer text-sm transition-all ${isOpen ? 'border-yellow-500/50 ring-2 ring-yellow-500/20' : 'border-zinc-800 hover:border-zinc-700'}`}
+                        className={`w-full bg-black/40 backdrop-blur-sm border rounded-2xl p-4 flex justify-between items-center cursor-pointer text-sm transition-all ${isOpen ? 'border-amber-500/50 shadow-[0_0_15px_rgba(245,158,11,0.15)] ring-1 ring-amber-500/30' : 'border-white/10 hover:border-white/20 hover:bg-black/50'}`}
                     >
                         <span className={`truncate ${!value ? 'text-zinc-600' : 'text-zinc-200'}`}>
                             {value ? getLabel(value) : placeholder}
@@ -365,27 +371,29 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
 };
 
 const SliderField = ({ label, value, onChange, min, max, icon, tooltip }: { label: string, value: number, onChange: (val: number) => void, min: number, max: number, icon: React.ReactNode, tooltip?: string }) => (
-    <div className="space-y-3 group">
-        <label className="text-sm font-medium text-zinc-400 flex items-center justify-between">
-            <span className="flex items-center gap-1.5">
+    <div className="space-y-4 group p-4 rounded-2xl border border-white/5 bg-black/20 hover:bg-black/40 transition-colors">
+        <label className="text-sm font-medium text-zinc-300 flex items-center justify-between">
+            <span className="flex items-center gap-2">
                 {icon} {label}
                 {tooltip && (
                     <div className="relative group/tooltip">
-                        <Info size={12} className="text-zinc-600 cursor-help" />
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-zinc-800 text-zinc-200 text-xs rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap border border-zinc-700 shadow-lg z-10">
+                        <Info size={14} className="text-zinc-500 hover:text-zinc-300 cursor-help transition-colors" />
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-zinc-900 border border-white/10 text-zinc-200 text-xs rounded-xl shadow-xl opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10 backdrop-blur-md">
                             {tooltip}
                         </div>
                     </div>
                 )}
             </span>
-            <span className="text-yellow-500 font-bold bg-yellow-500/10 px-2 py-0.5 rounded text-xs">{value}</span>
+            <span className="text-amber-400 font-bold bg-amber-500/10 px-3 py-1 rounded-lg text-xs border border-amber-500/20">{value}</span>
         </label>
-        <input
-            type="range" min={min} max={max} value={value}
-            onChange={(e) => onChange(parseInt(e.target.value))}
-            className="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-yellow-500"
-        />
-        <div className="flex justify-between text-[10px] text-zinc-600"><span>{min}</span><span>{max}</span></div>
+        <div className="relative py-2">
+            <input
+                type="range" min={min} max={max} value={value}
+                onChange={(e) => onChange(parseInt(e.target.value))}
+                className="w-full h-1.5 bg-zinc-800 rounded-full appearance-none cursor-pointer accent-amber-500 hover:accent-amber-400 transition-all"
+            />
+            <div className="absolute -bottom-4 left-0 right-0 flex justify-between text-[10px] text-zinc-600 font-mono"><span>{min}</span><span>{max}</span></div>
+        </div>
     </div>
 );
 
@@ -476,12 +484,29 @@ export function PromptForm() {
         return [];
     });
     const [showHistory, setShowHistory] = useState(false);
+    const [showPreview, setShowPreview] = useState(false);
+    const [presetCategory, setPresetCategory] = useState<'common' | 'creative' | 'utility'>('common');
+    const [presetSearch, setPresetSearch] = useState('');
     const historyRef = useOutsideClick(() => setShowHistory(false));
 
-    // Keyboard navigation
+    // Keyboard navigation and shortcuts
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            // Only handle if not typing in an input
+            // Ctrl+G to generate
+            if ((e.ctrlKey || e.metaKey) && e.key === 'g') {
+                e.preventDefault();
+                handleGenerate();
+                return;
+            }
+
+            // Ctrl+C to copy (only when not selecting text)
+            if ((e.ctrlKey || e.metaKey) && e.key === 'c' && generated && !window.getSelection()?.toString()) {
+                e.preventDefault();
+                handleCopy();
+                return;
+            }
+
+            // Arrow key navigation (only when not in input)
             if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
 
             if (e.key === 'ArrowRight' && !isRTL || e.key === 'ArrowLeft' && isRTL) {
@@ -492,7 +517,8 @@ export function PromptForm() {
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [isRTL]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isRTL, generated]);
 
     // Calculate filled fields per step
     const getStepFieldCount = (stepId: number): number => {
@@ -523,6 +549,65 @@ export function PromptForm() {
             default:
                 return 0;
         }
+    };
+
+    // Generate live preview summary - includes ALL fields
+    const getPreviewSummary = (): string => {
+        const parts: string[] = [];
+
+        // Step 1: Subject
+        const subject = [data.ageGroup, data.ethnicity, data.gender].filter(Boolean).join(' ');
+        if (subject) parts.push(subject);
+
+        // Physical features
+        if (data.eyeColor) parts.push(`${data.eyeColor} eyes`);
+        if (data.hairColor || data.hairStyle.length > 0) {
+            const hair = [data.hairColor, ...data.hairStyle.slice(0, 1)].filter(Boolean).join(' ');
+            if (hair) parts.push(`${hair} hair`);
+        }
+        if (data.makeup.length > 0) parts.push(`${data.makeup[0]} makeup`);
+
+        // Clothing & Accessories
+        if (data.clothing.length > 0) parts.push(`wearing ${data.clothing.slice(0, 2).join(', ')}`);
+        if (data.accessories.length > 0) parts.push(`with ${data.accessories.slice(0, 2).join(', ')}`);
+
+        // Action/Pose
+        if (data.action.length > 0) parts.push(data.action[0]);
+        if (data.pose.length > 0) parts.push(data.pose[0]);
+
+        // Step 2: Scene
+        if (data.background) parts.push(`in ${data.background}`);
+        if (data.era) parts.push(`(${data.era})`);
+        if (data.timeOfDay) parts.push(`at ${data.timeOfDay}`);
+        if (data.weather.length > 0) parts.push(data.weather[0]);
+        if (data.mood.length > 0) parts.push(`${data.mood[0]} mood`);
+        if (data.lighting.length > 0) parts.push(`${data.lighting[0]} lighting`);
+        if (data.lightColor) parts.push(`${data.lightColor} light`);
+
+        // Step 3: Camera
+        if (data.camera) parts.push(data.camera);
+        if (data.cameraType) parts.push(`shot on ${data.cameraType}`);
+        if (data.lens.length > 0) parts.push(data.lens[0]);
+        if (data.filmStock.length > 0) parts.push(data.filmStock[0]);
+        if (data.composition.length > 0) parts.push(data.composition[0]);
+        if (data.aspectRatio) parts.push(data.aspectRatio);
+
+        // Step 4: Style
+        if (data.style.length > 0) parts.push(`${data.style[0]} style`);
+        if (data.photographerStyle.length > 0) parts.push(`inspired by ${data.photographerStyle[0]}`);
+        if (data.colorGrading) parts.push(`${data.colorGrading} grading`);
+        if (data.specialEffects.length > 0) parts.push(data.specialEffects[0]);
+        if (data.texture.length > 0) parts.push(data.texture[0]);
+
+        // Step 5: Advanced
+        if (data.addons.length > 0) parts.push(`+${data.addons.length} addons`);
+        if (data.stylize > 0) parts.push(`stylize:${data.stylize}`);
+        if (data.chaos > 0) parts.push(`chaos:${data.chaos}`);
+        if (data.weirdness > 0) parts.push(`weird:${data.weirdness}`);
+        if (data.negativePrompt) parts.push(`⛔ ${data.negativePrompt.slice(0, 30)}...`);
+
+        if (parts.length === 0) return '🎨 Start filling fields to see preview...';
+        return parts.join(' • ');
     };
 
     // Save History
@@ -574,6 +659,121 @@ export function PromptForm() {
             setCurrentStep(1);
         }
     };
+
+    // Download prompt as .txt file
+    const handleDownload = () => {
+        if (!generated) return;
+        const blob = new Blob([generated], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `banana-studio-prompt-${Date.now()}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToastMessage(t.form.downloaded);
+    };
+
+    // Share prompt via URL
+    const handleShare = async () => {
+        if (!generated) return;
+        const shareUrl = `${window.location.origin}${window.location.pathname}?prompt=${encodeURIComponent(generated)}`;
+
+        // Try Web Share API first (mobile)
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: t.form.shareTitle,
+                    text: generated,
+                    url: shareUrl
+                });
+                return;
+            } catch (err) {
+                // User cancelled or share failed, fall back to clipboard
+                console.log('Share cancelled or failed', err);
+            }
+        }
+
+        // Fall back to copying link
+        await navigator.clipboard.writeText(shareUrl);
+        showToastMessage(t.form.shareCopied);
+    };
+
+    // Reset only current step fields
+    const handleResetStep = () => {
+        setData(prev => {
+            const updated = { ...prev };
+            switch (currentStep) {
+                case 1:
+                    updated.gender = '';
+                    updated.ageGroup = '';
+                    updated.ethnicity = '';
+                    updated.eyeColor = '';
+                    updated.hairColor = '';
+                    updated.hairStyle = [];
+                    updated.makeup = [];
+                    updated.pose = [];
+                    updated.clothing = [];
+                    updated.accessories = [];
+                    updated.action = [];
+                    break;
+                case 2:
+                    updated.background = '';
+                    updated.era = '';
+                    updated.weather = [];
+                    updated.timeOfDay = '';
+                    updated.lighting = [];
+                    updated.lightColor = '';
+                    updated.mood = [];
+                    break;
+                case 3:
+                    updated.cameraType = '';
+                    updated.camera = '';
+                    updated.lens = [];
+                    updated.filmStock = [];
+                    updated.composition = [];
+                    updated.aspectRatio = '';
+                    break;
+                case 4:
+                    updated.style = [];
+                    updated.photographerStyle = [];
+                    updated.colorGrading = '';
+                    updated.specialEffects = [];
+                    updated.texture = [];
+                    break;
+                case 5:
+                    updated.stylize = 0;
+                    updated.chaos = 0;
+                    updated.weirdness = 0;
+                    updated.addons = [];
+                    updated.negativePrompt = '';
+                    break;
+            }
+            return updated;
+        });
+        showToastMessage('🔄 Step reset!');
+    };
+
+    // Apply a preset to the current form data (resets everything first)
+    const applyPreset = (preset: Preset) => {
+        setData(() => {
+            // Start from a clean slate
+            const updated = { ...initialData };
+            // Apply preset data on top of initial data
+            Object.entries(preset.data).forEach(([key, value]) => {
+                if (value !== undefined && value !== '' && (Array.isArray(value) ? value.length > 0 : true)) {
+                    (updated as Record<string, unknown>)[key] = value;
+                }
+            });
+            return updated as PromptData;
+        });
+        // Get preset translation
+        const presetTranslation = t.form.presets[preset.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
+        const presetName = presetTranslation?.name || preset.id;
+        showToastMessage(`${preset.icon} ${presetName} ${t.form.presets.applied}`);
+    };
+
 
     const handleRandomize = () => {
         // Use English translations for randomization source
@@ -776,9 +976,12 @@ export function PromptForm() {
 
                     {/* Negative Prompt */}
                     <div className="bg-zinc-950/50 p-6 rounded-2xl border border-zinc-800/50 space-y-4 border-red-900/10">
-                        <h3 className="text-xs font-bold text-red-500/80 uppercase tracking-widest flex items-center gap-2">
-                            <Ban size={14} /> {t.form.negativePrompt}
-                        </h3>
+                        <div className="flex justify-between items-center">
+                            <h3 className="text-xs font-bold text-red-500/80 uppercase tracking-widest flex items-center gap-2">
+                                <Ban size={14} /> {t.form.negativePrompt}
+                            </h3>
+                            <span className="text-[10px] text-zinc-600">{data.negativePrompt.length} {t.form.charCount}</span>
+                        </div>
                         <textarea
                             className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-red-500/30 appearance-none text-sm placeholder:text-zinc-700 resize-none"
                             rows={2}
@@ -805,63 +1008,242 @@ export function PromptForm() {
                 </div>
             )}
 
-            {/* Top Toolbar */}
-            <div className="flex justify-end gap-3 px-2">
-                {/* History Toggle */}
-                <div className="relative" ref={historyRef}>
-                    <button onClick={() => setShowHistory(!showHistory)} className="flex items-center gap-2 text-zinc-400 hover:text-white px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 transition-all text-sm">
-                        <History size={16} /> {t.form.actions.history}
-                        {history.length > 0 && <span className="bg-yellow-500/20 text-yellow-500 text-[10px] px-1.5 py-0.5 rounded-full font-bold">{history.length}</span>}
-                    </button>
-                    {showHistory && (
-                        <div className="absolute right-0 top-full mt-2 w-80 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-2">
-                            <div className="flex justify-between items-center mb-3">
-                                <h4 className="text-sm font-bold text-zinc-300">{t.form.history.title}</h4>
-                                {history.length > 0 && <button onClick={clearHistory} className="text-xs text-red-500 hover:text-red-400 flex items-center gap-1"><Trash2 size={12} /> {t.form.history.clear}</button>}
-                            </div>
-                            {history.length === 0 ? (
-                                <p className="text-xs text-zinc-600 italic">{t.form.history.empty}</p>
-                            ) : (
-                                <div className="space-y-2 max-h-64 overflow-y-auto dark-scrollbar">
-                                    {history.map((h, i) => (
-                                        <div key={i} className="text-xs bg-zinc-950 border border-zinc-800 p-3 rounded-lg hover:bg-zinc-800 hover:border-zinc-700 cursor-pointer text-zinc-400 transition-all group"
-                                            onClick={() => { setGenerated(h.prompt); setShowHistory(false); showToastMessage('📜 Prompt loaded from history'); }}>
-                                            <p className="line-clamp-2 group-hover:text-zinc-200 transition-colors">{h.prompt}</p>
-                                            <p className="text-[10px] text-zinc-600 mt-1.5 flex items-center gap-1"><Clock size={10} /> {new Date(h.timestamp).toLocaleString()}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
+            {/* ✨ Quick Start Presets - Prominent Section */}
+            <div className="glass-panel border-amber-500/10 rounded-3xl p-6 shadow-2xl relative overflow-hidden group">
+                {/* Decorative background elements */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-transparent pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-amber-500/5 blur-[80px] rounded-full pointer-events-none"></div>
+
+                {/* Header */}
+                <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                    <div className="flex items-center gap-3">
+                        <div className="bg-gradient-to-br from-amber-400 to-orange-600 p-2.5 rounded-2xl shadow-lg shadow-amber-500/20 ring-1 ring-white/20">
+                            <Layers size={20} className="text-black" />
                         </div>
-                    )}
+                        <div>
+                            <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                                {t.form.presets.title || 'Quick Start Presets'}
+                                <span className="text-[10px] font-bold bg-white/10 text-zinc-300 px-2 py-0.5 rounded-full border border-white/5">
+                                    {presets.length}
+                                </span>
+                            </h2>
+                            <p className="text-xs text-zinc-400">{t.form.presets.description || 'Choose a preset to instantly configure your prompt'}</p>
+                        </div>
+                    </div>
+
+                    {/* Search Input */}
+                    <div className="relative w-full md:w-auto">
+                        <input
+                            type="text"
+                            placeholder="Search presets..."
+                            value={presetSearch}
+                            onChange={(e) => setPresetSearch(e.target.value)}
+                            className="w-full md:w-64 bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/50 focus:bg-black/60 pr-9 transition-all"
+                        />
+                        {presetSearch ? (
+                            <button
+                                onClick={() => setPresetSearch('')}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
+                            >
+                                ×
+                            </button>
+                        ) : (
+                            <Sparkles size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600" />
+                        )}
+                    </div>
                 </div>
 
-                <button onClick={handleRandomize} className="flex items-center gap-2 text-purple-400 hover:text-purple-300 px-3 py-2 rounded-lg bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20 transition-all text-sm font-medium">
-                    <Dices size={16} /> {t.form.actions.randomize}
-                </button>
+                {/* Category Tabs */}
+                <div className="relative flex items-center gap-1 mb-6 bg-black/40 border border-white/5 p-1 rounded-xl w-fit backdrop-blur-md">
+                    <button
+                        onClick={() => setPresetCategory('common')}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${presetCategory === 'common'
+                            ? 'bg-emerald-500/20 text-emerald-400 shadow-lg shadow-emerald-500/10 ring-1 ring-emerald-500/20'
+                            : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
+                            }`}
+                    >
+                        <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'common' ? 'bg-emerald-400 shadow-[0_0_10px_currentColor]' : 'bg-emerald-900'}`} />
+                        {t.form.presets.common}
+                    </button>
+                    <button
+                        onClick={() => setPresetCategory('creative')}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${presetCategory === 'creative'
+                            ? 'bg-purple-500/20 text-purple-400 shadow-lg shadow-purple-500/10 ring-1 ring-purple-500/20'
+                            : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
+                            }`}
+                    >
+                        <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'creative' ? 'bg-purple-400 shadow-[0_0_10px_currentColor]' : 'bg-purple-900'}`} />
+                        {t.form.presets.creative}
+                    </button>
+                    <button
+                        onClick={() => setPresetCategory('utility')}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${presetCategory === 'utility'
+                            ? 'bg-cyan-500/20 text-cyan-400 shadow-lg shadow-cyan-500/10 ring-1 ring-cyan-500/20'
+                            : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
+                            }`}
+                    >
+                        <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'utility' ? 'bg-cyan-400 shadow-[0_0_10px_currentColor]' : 'bg-cyan-900'}`} />
+                        {t.form.presets.utility}
+                    </button>
+                </div>
 
-                <button
-                    onClick={handleReset}
-                    className="text-zinc-500 hover:text-red-400 p-2 rounded-lg transition-all"
-                    title={t.form.actions.clear}
-                >
-                    <RefreshCw size={16} />
-                </button>
+                {/* Preset Grid - Now larger and more visual */}
+                <div className="relative">
+                    <div className="flex gap-3 overflow-x-auto pb-4 pt-1 px-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+                        {presets
+                            .filter(p => p.category === presetCategory)
+                            .filter(p => {
+                                if (!presetSearch) return true;
+                                const translation = t.form.presets[p.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
+                                const name = translation?.name || p.id;
+                                const desc = translation?.desc || '';
+                                return name.toLowerCase().includes(presetSearch.toLowerCase()) ||
+                                    desc.toLowerCase().includes(presetSearch.toLowerCase());
+                            })
+                            .map((preset) => {
+                                const presetTranslation = t.form.presets[preset.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
+                                const gradientClass = preset.category === 'common'
+                                    ? 'from-emerald-900/40 to-emerald-900/10 border-emerald-500/20 hover:border-emerald-500/50 hover:from-emerald-900/60 hover:to-emerald-900/30'
+                                    : preset.category === 'creative'
+                                        ? 'from-purple-900/40 to-purple-900/10 border-purple-500/20 hover:border-purple-500/50 hover:from-purple-900/60 hover:to-purple-900/30'
+                                        : 'from-cyan-900/40 to-cyan-900/10 border-cyan-500/20 hover:border-cyan-500/50 hover:from-cyan-900/60 hover:to-cyan-900/30';
+
+                                const categoryColorText = preset.category === 'common' ? 'text-emerald-400' : preset.category === 'creative' ? 'text-purple-400' : 'text-cyan-400';
+
+                                return (
+                                    <button
+                                        key={preset.id}
+                                        onClick={() => applyPreset(preset)}
+                                        className={`flex-shrink-0 group flex flex-col items-center gap-3 px-5 py-5 rounded-2xl border bg-gradient-to-br ${gradientClass} transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-2xl min-w-[150px] relative overflow-hidden`}
+                                        title={presetTranslation?.desc || preset.id}
+                                    >
+                                        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        <span className={`text-3xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg ${categoryColorText}`}>{preset.icon}</span>
+                                        <div className="text-center relative z-10">
+                                            <div className={`text-sm font-bold text-zinc-100 group-hover:text-white transition-colors`}>
+                                                {presetTranslation?.name || preset.id}
+                                            </div>
+                                            <div className="text-[10px] text-zinc-500 group-hover:text-zinc-400 transition-colors mt-1 line-clamp-2 max-w-[130px] leading-relaxed">
+                                                {presetTranslation?.desc || ''}
+                                            </div>
+                                        </div>
+                                    </button>
+                                );
+                            })}
+                        {presets.filter(p => p.category === presetCategory).filter(p => {
+                            if (!presetSearch) return true;
+                            const translation = t.form.presets[p.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
+                            const name = translation?.name || p.id;
+                            return name.toLowerCase().includes(presetSearch.toLowerCase());
+                        }).length === 0 && (
+                                <div className="text-sm text-zinc-500 italic py-8 px-4 w-full text-center flex flex-col items-center gap-3">
+                                    <div className="bg-zinc-900/50 p-3 rounded-full"><Sparkles size={20} className="text-zinc-700" /></div>
+                                    No presets found matching &quot;{presetSearch}&quot;
+                                </div>
+                            )}
+                    </div>
+                    {/* Fade gradient on right edge */}
+                    <div className="absolute right-0 top-0 bottom-4 w-24 bg-gradient-to-l from-black/80 to-transparent pointer-events-none"></div>
+                </div>
             </div>
 
+            {/* Toolbar Actions Row */}
+            <div className="flex flex-wrap justify-between items-center gap-3 px-2">
+                {/* Left side actions */}
+                <div className="flex items-center gap-2">
+                    {/* Live Preview Toggle */}
+                    <button
+                        onClick={() => setShowPreview(!showPreview)}
+                        className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all text-sm font-medium ${showPreview
+                            ? 'bg-green-500/10 border-green-500/30 text-green-400 shadow-lg shadow-green-500/10'
+                            : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-white hover:border-zinc-700'
+                            }`}
+                    >
+                        <Eye size={16} />
+                        <span className="hidden sm:inline">Preview</span>
+                    </button>
+                </div>
+
+                {/* Right side actions */}
+                <div className="flex items-center gap-2">
+                    {/* History Toggle */}
+                    <div className="relative" ref={historyRef}>
+                        <button onClick={() => setShowHistory(!showHistory)} className="flex items-center gap-2 text-zinc-400 hover:text-white px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all text-sm font-medium">
+                            <History size={16} />
+                            <span className="hidden sm:inline">{t.form.actions.history}</span>
+                            {history.length > 0 && <span className="bg-yellow-500/20 text-yellow-500 text-[10px] px-1.5 py-0.5 rounded-full font-bold">{history.length}</span>}
+                        </button>
+                        {showHistory && (
+                            <div className="absolute right-0 top-full mt-2 w-80 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-2">
+                                <div className="flex justify-between items-center mb-3">
+                                    <h4 className="text-sm font-bold text-zinc-300">{t.form.history.title}</h4>
+                                    {history.length > 0 && <button onClick={clearHistory} className="text-xs text-red-500 hover:text-red-400 flex items-center gap-1"><Trash2 size={12} /> {t.form.history.clear}</button>}
+                                </div>
+                                {history.length === 0 ? (
+                                    <p className="text-xs text-zinc-600 italic">{t.form.history.empty}</p>
+                                ) : (
+                                    <div className="space-y-2 max-h-64 overflow-y-auto dark-scrollbar">
+                                        {history.map((h, i) => (
+                                            <div key={i} className="text-xs bg-zinc-950 border border-zinc-800 p-3 rounded-lg hover:bg-zinc-800 hover:border-zinc-700 cursor-pointer text-zinc-400 transition-all group"
+                                                onClick={() => { setGenerated(h.prompt); setShowHistory(false); showToastMessage('📜 Prompt loaded from history'); }}>
+                                                <p className="line-clamp-2 group-hover:text-zinc-200 transition-colors">{h.prompt}</p>
+                                                <p className="text-[10px] text-zinc-600 mt-1.5 flex items-center gap-1"><Clock size={10} /> {new Date(h.timestamp).toLocaleString()}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+
+                    <button onClick={handleRandomize} className="flex items-center gap-2 text-purple-400 hover:text-purple-300 px-4 py-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20 hover:border-purple-500/30 transition-all text-sm font-medium">
+                        <Dices size={16} /> <span className="hidden sm:inline">{t.form.actions.randomize}</span>
+                    </button>
+
+                    <button
+                        onClick={handleResetStep}
+                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 px-4 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 hover:border-blue-500/30 transition-all text-sm font-medium"
+                        title={t.form.actions.resetStep}
+                    >
+                        <RotateCcw size={16} /> <span className="hidden md:inline">{t.form.actions.resetStep}</span>
+                    </button>
+
+                    <button
+                        onClick={handleReset}
+                        className="text-zinc-500 hover:text-red-400 p-2.5 rounded-xl hover:bg-red-500/10 transition-all"
+                        title={t.form.actions.clear}
+                    >
+                        <RefreshCw size={16} />
+                    </button>
+                </div>
+            </div>
+
+            {/* Live Preview Panel */}
+            {showPreview && (
+                <div className="animate-in fade-in slide-in-from-top-2 duration-300 bg-gradient-to-r from-zinc-900/90 to-zinc-950/90 border border-zinc-800 rounded-2xl p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-2 mb-2">
+                        <Eye size={14} className="text-green-400" />
+                        <span className="text-xs font-bold text-green-400 uppercase tracking-wide">Live Preview</span>
+                    </div>
+                    <p className="text-sm text-zinc-300 italic leading-relaxed">{getPreviewSummary()}</p>
+                </div>
+            )}
+
             {/* Main Card */}
-            <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl backdrop-blur-sm shadow-xl overflow-hidden flex flex-col min-h-[600px]">
+            <div className="glass-panel rounded-3xl overflow-hidden flex flex-col min-h-[600px] shadow-2xl border border-white/5 relative">
+                <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-amber-500/0 via-amber-500/50 to-amber-500/0 opacity-50"></div>
 
                 {/* Wizard Header (Steps) */}
-                <div className="bg-zinc-950/80 border-b border-zinc-800 p-6 md:p-8">
+                <div className="bg-black/40 border-b border-white/5 p-6 md:p-8 backdrop-blur-md">
                     <div className="flex justify-between items-center mb-8">
                         <div className="space-y-1">
-                            <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
-                                {steps[currentStep - 1].icon} <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400">{steps[currentStep - 1].title}</span>
+                            <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                                <span className="p-2 rounded-xl bg-white/5 border border-white/5 text-amber-400 shadow-inner">{steps[currentStep - 1].icon}</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400">{steps[currentStep - 1].title}</span>
                             </h2>
-                            <p className="text-sm text-zinc-500">{steps[currentStep - 1].desc}</p>
+                            <p className="text-sm text-zinc-400 ml-1">{steps[currentStep - 1].desc}</p>
                         </div>
-                        <div className="text-4xl font-black text-zinc-800 select-none opacity-50">{currentStep}/5</div>
+                        <div className="text-5xl font-black text-white/5 select-none">{currentStep}/5</div>
                     </div>
                     {/* Clickable Step Indicators */}
                     <div className="flex items-center justify-between gap-2">
@@ -873,21 +1255,21 @@ export function PromptForm() {
                                 <button
                                     key={s.id}
                                     onClick={() => setCurrentStep(s.id)}
-                                    className={`relative flex-1 group transition-all duration-300 ${isActive ? 'scale-105' : 'hover:scale-102'}`}
+                                    className={`relative flex-1 group transition-all duration-300 ${isActive ? 'scale-105' : 'hover:scale-[1.02]'}`}
                                 >
-                                    <div className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border transition-all duration-300 ${isActive
-                                        ? 'bg-yellow-500/10 border-yellow-500/50 text-yellow-500 shadow-lg shadow-yellow-500/10'
+                                    <div className={`flex items-center justify-center gap-2 py-3 px-3 rounded-xl border transition-all duration-300 ${isActive
+                                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.15)] ring-1 ring-amber-500/20'
                                         : isCompleted
-                                            ? 'bg-green-500/5 border-green-500/30 text-green-400'
-                                            : 'bg-zinc-900/50 border-zinc-800 text-zinc-500 hover:border-zinc-700 hover:text-zinc-400'
+                                            ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400'
+                                            : 'bg-black/20 border-white/5 text-zinc-600 hover:border-white/10 hover:text-zinc-400'
                                         }`}>
-                                        <span className={`text-xs font-bold ${isActive ? 'text-yellow-500' : isCompleted ? 'text-green-400' : 'text-zinc-600'
+                                        <span className={`text-xs font-bold ${isActive ? 'text-amber-400' : isCompleted ? 'text-emerald-400' : 'text-zinc-600'
                                             }`}>
-                                            {isCompleted ? <Check size={14} /> : s.id}
+                                            {isCompleted ? <Check size={14} strokeWidth={3} /> : s.id}
                                         </span>
-                                        <span className="text-xs font-medium hidden md:inline truncate">{s.title}</span>
+                                        <span className="text-xs font-medium hidden md:inline truncate tracking-wide">{s.title}</span>
                                         {fieldCount > 0 && (
-                                            <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${isActive ? 'bg-yellow-500/20 text-yellow-400' : 'bg-zinc-800 text-zinc-500'
+                                            <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold ${isActive ? 'bg-amber-500/20 text-amber-300 border border-amber-500/20' : 'bg-white/5 text-zinc-500 border border-white/5'
                                                 }`}>
                                                 {fieldCount}
                                             </span>
@@ -895,7 +1277,7 @@ export function PromptForm() {
                                     </div>
                                     {/* Progress line connector */}
                                     {index < steps.length - 1 && (
-                                        <div className={`absolute top-1/2 -right-1 w-2 h-0.5 transition-colors duration-300 ${isCompleted ? 'bg-green-500/50' : 'bg-zinc-800'
+                                        <div className={`absolute top-1/2 -right-1 w-2 h-0.5 transition-all duration-500 ${isCompleted ? 'bg-emerald-500/30' : 'bg-white/5'
                                             }`} />
                                     )}
                                 </button>
@@ -903,20 +1285,20 @@ export function PromptForm() {
                         })}
                     </div>
                     {/* Keyboard hint */}
-                    <p className="text-[10px] text-zinc-700 text-center mt-3 hidden md:block">Use ← → arrow keys to navigate</p>
+                    <p className="text-[10px] text-zinc-600 text-center mt-4 hidden md:block opacity-60 hover:opacity-100 transition-opacity">{t.form.keyboardHint}</p>
                 </div>
 
                 {/* Wizard Body */}
-                <div className="p-6 md:p-8 flex-1 overflow-y-auto">
+                <div className="p-6 md:p-8 flex-1 overflow-y-auto bg-black/20">
                     {renderStepContent()}
                 </div>
 
                 {/* Wizard Footer (Navigation) */}
-                <div className="p-6 md:p-8 border-t border-zinc-800 bg-zinc-950/30 flex flex-wrap gap-4 justify-between items-center">
+                <div className="p-6 md:p-8 border-t border-white/5 bg-black/40 backdrop-blur-md flex flex-wrap gap-4 justify-between items-center">
                     <button
                         onClick={() => setCurrentStep(prev => Math.max(1, prev - 1))}
                         disabled={currentStep === 1}
-                        className="px-6 py-3 rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-zinc-400 transition-all font-medium flex items-center gap-2"
+                        className="px-6 py-3 rounded-xl text-zinc-400 hover:text-white hover:bg-white/5 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-zinc-400 transition-all font-medium flex items-center gap-2"
                     >
                         {isRTL ? <ChevronRight size={18} /> : <ChevronLeft size={18} />} {t.form.navigation.back}
                     </button>
@@ -925,7 +1307,7 @@ export function PromptForm() {
                         {/* Always show Generate Button */}
                         <button
                             onClick={handleGenerate}
-                            className="px-6 py-3 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-400 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 shadow-[0_0_20px_-5px_rgba(234,179,8,0.4)] order-last md:order-none"
+                            className="px-8 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-600 hover:from-amber-300 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 shadow-[0_0_20px_-5px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_-5px_rgba(245,158,11,0.6)] hover:scale-[1.02] active:scale-[0.98] order-last md:order-none"
                         >
                             <Wand2 size={18} /> {t.form.navigation.finish}
                         </button>
@@ -933,7 +1315,7 @@ export function PromptForm() {
                         {currentStep < 5 && (
                             <button
                                 onClick={() => setCurrentStep(prev => Math.min(5, prev + 1))}
-                                className="px-6 py-3 rounded-xl bg-zinc-100 text-black hover:bg-white font-bold transition-all flex items-center gap-2 shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)]"
+                                className="px-6 py-3 rounded-xl bg-white text-black hover:bg-zinc-200 font-bold transition-all flex items-center gap-2 shadow-[0_0_20px_-5px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_-5px_rgba(255,255,255,0.4)]"
                             >
                                 {t.form.navigation.next} {isRTL ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
                             </button>
@@ -944,25 +1326,58 @@ export function PromptForm() {
             </div>
 
             {/* Result Section */}
+            {/* Result Section */}
             {generated && (
                 <div ref={resultRef} className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 scroll-mt-8">
-                    <label className="text-sm font-medium text-zinc-400 block mb-2 px-1">
-                        {t.form.resultLabel}
-                    </label>
-                    <div className="bg-gradient-to-br from-zinc-900 to-black border border-zinc-800/80 rounded-3xl p-8 relative group shadow-2xl">
-                        <p className="text-sm md:text-base text-zinc-300 font-mono whitespace-pre-wrap leading-relaxed break-words pe-14">
+                    <div className="flex justify-between items-center mb-3 px-1">
+                        <label className="text-sm font-medium text-zinc-400 flex items-center gap-2">
+                            <Sparkles size={16} className="text-amber-500" />
+                            {t.form.resultLabel}
+                        </label>
+                        <span className="text-xs text-zinc-600 font-mono">
+                            {generated.length} / 1000
+                        </span>
+                    </div>
+                    <div className="bg-black/40 border border-white/10 rounded-3xl p-8 relative group shadow-2xl backdrop-blur-md">
+                        <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-amber-500/0 via-amber-500/50 to-amber-500/0 opacity-30"></div>
+                        <p className="text-sm md:text-base text-zinc-200 font-mono whitespace-pre-wrap leading-relaxed break-words pe-20 selection:bg-amber-500/30 selection:text-amber-100">
                             {generated}
                         </p>
-                        <button
-                            onClick={handleCopy}
-                            className="absolute top-6 end-6 bg-zinc-800/50 hover:bg-zinc-700/80 text-zinc-300 p-3 rounded-xl transition-all flex items-center gap-2 backdrop-blur-md"
-                            title={t.form.copy}
-                        >
-                            {copied ? <span className="text-green-400 text-xs font-bold px-1">{t.form.copied}</span> : <IconCopy />}
-                        </button>
+                        {/* Action buttons */}
+                        <div className="absolute top-6 end-6 flex flex-col gap-2">
+                            <button
+                                onClick={handleCopy}
+                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all flex items-center gap-2 backdrop-blur-md group/btn"
+                                title={t.form.copy}
+                            >
+                                {copied ? <Check size={16} className="text-emerald-400" /> : <IconCopy className="group-hover/btn:scale-110 transition-transform" />}
+                            </button>
+                            <button
+                                onClick={handleDownload}
+                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all backdrop-blur-md group/btn"
+                                title={t.form.actions.download}
+                            >
+                                <Download size={16} className="group-hover/btn:scale-110 transition-transform" />
+                            </button>
+                            <button
+                                onClick={handleShare}
+                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all backdrop-blur-md group/btn"
+                                title={t.form.actions.share}
+                            >
+                                <Share2 size={16} className="group-hover/btn:scale-110 transition-transform" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}
+            {/* Floating Mobile Generate Button */}
+            <button
+                onClick={handleGenerate}
+                className="fixed bottom-6 right-6 md:hidden z-50 bg-gradient-to-r from-amber-500 to-orange-600 text-black p-4 rounded-full shadow-2xl shadow-amber-500/30 animate-in fade-in zoom-in duration-300 ring-4 ring-black/50"
+                title={t.form.navigation.finish}
+            >
+                <Wand2 size={24} strokeWidth={2.5} />
+            </button>
 
         </div>
     );
