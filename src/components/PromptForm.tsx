@@ -184,14 +184,14 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
                 if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
                 const isSelected = value.includes(k);
                 return (
-                    <button key={k} type="button" onClick={() => { toggleValue(k); setInputValue(""); }} className={`px-4 py-2 text-sm cursor-pointer flex items-center justify-between transition-colors w-full text-left ${isSelected ? 'bg-amber-500/20 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
+                    <button key={k} type="button" onClick={() => { toggleValue(k); setInputValue(""); }} className={`px-4 py-2 text-sm flex items-center justify-between transition-colors w-full text-left ${isSelected ? 'bg-amber-500/20 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
                         <span>{v}</span>
                         {isSelected && <Check size={14} />}
                     </button>
                 );
             })}
             {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
-                <button key="custom-add" type="button" onClick={() => { onChange([...value, inputValue]); setInputValue(""); }} className="px-4 py-2 text-sm cursor-pointer text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5 w-full text-left">
+                <button key="custom-add" type="button" onClick={() => { onChange([...value, inputValue]); setInputValue(""); }} className="px-4 py-2 text-sm text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5 w-full text-left">
                     <PenLine size={12} /> Add &quot;{inputValue}&quot;
                 </button>
             )}
@@ -293,14 +293,14 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
                 if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
                 const isSelected = value === k;
                 return (
-                    <button key={k} type="button" onClick={() => handleSelect(k)} className={`px-4 py-2 text-sm cursor-pointer flex items-center justify-between transition-colors w-full text-left ${isSelected ? 'bg-amber-500/20 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
+                    <button key={k} type="button" onClick={() => handleSelect(k)} className={`px-4 py-2 text-sm flex items-center justify-between transition-colors w-full text-left ${isSelected ? 'bg-amber-500/20 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
                         <span>{v}</span>
                         {isSelected && <Check size={14} />}
                     </button>
                 );
             })}
             {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
-                <button key="custom-use" type="button" onClick={() => handleSelect(inputValue)} className="px-4 py-2 text-sm cursor-pointer text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5 w-full text-left">
+                <button key="custom-use" type="button" onClick={() => handleSelect(inputValue)} className="px-4 py-2 text-sm text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5 w-full text-left">
                     <PenLine size={12} /> Use &quot;{inputValue}&quot;
                 </button>
             )}
@@ -976,7 +976,7 @@ export function PromptForm() {
                                 const localVal = t.addons[k as keyof typeof t.addons];
                                 const isChecked = data.addons.includes(enVal);
                                 return (
-                                    <button key={k} type="button" onClick={() => toggleAddon(enVal)} className={`cursor-pointer rounded-xl p-3 border transition-all flex items-center gap-3 select-none w-full text-left ${isChecked ? 'bg-zinc-800 border-yellow-500/50 text-yellow-100 shadow-[0_0_15px_-3px_rgba(234,179,8,0.2)]' : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:bg-zinc-900'}`}>
+                                    <button key={k} type="button" onClick={() => toggleAddon(enVal)} className={`rounded-xl p-3 border transition-all flex items-center gap-3 select-none w-full text-left ${isChecked ? 'bg-zinc-800 border-yellow-500/50 text-yellow-100 shadow-[0_0_15px_-3px_rgba(234,179,8,0.2)]' : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:bg-zinc-900'}`}>
                                         {isChecked ? <CheckCircle2 size={18} className="text-yellow-500" /> : <Circle size={18} className="text-zinc-600" />}
                                         <span className="text-sm font-medium">{localVal}</span>
                                     </button>
@@ -1199,7 +1199,7 @@ export function PromptForm() {
                                     <button
                                         key={i}
                                         type="button"
-                                        className="text-xs bg-zinc-950 border border-zinc-800 p-3 rounded-lg hover:bg-zinc-800 hover:border-zinc-700 cursor-pointer text-zinc-400 transition-all group w-full text-left"
+                                        className="text-xs bg-zinc-950 border border-zinc-800 p-3 rounded-lg hover:bg-zinc-800 hover:border-zinc-700 text-zinc-400 transition-all group w-full text-left"
                                         onClick={() => { setGenerated(h.prompt); setShowHistory(false); showToastMessage('📜 Prompt loaded from history'); }}
                                     >
                                         <p className="line-clamp-2 group-hover:text-zinc-200 transition-colors">{h.prompt}</p>
