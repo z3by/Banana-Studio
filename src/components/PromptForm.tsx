@@ -185,14 +185,14 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
                 if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
                 const isSelected = value.includes(k);
                 return (
-                    <div key={k} onClick={() => { toggleValue(k); setInputValue(""); }} className={`px-4 py-3 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-amber-500/20 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
+                    <div key={k} onClick={() => { toggleValue(k); setInputValue(""); }} className={`px-4 py-2 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-amber-500/20 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
                         <span>{v}</span>
                         {isSelected && <Check size={14} />}
                     </div>
                 );
             })}
             {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
-                <div onClick={() => { onChange([...value, inputValue]); setInputValue(""); }} className="px-4 py-3 text-sm cursor-pointer text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5">
+                <div onClick={() => { onChange([...value, inputValue]); setInputValue(""); }} className="px-4 py-2 text-sm cursor-pointer text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5">
                     <PenLine size={12} /> Add &quot;{inputValue}&quot;
                 </div>
             )}
@@ -294,14 +294,14 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
                 if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
                 const isSelected = value === k;
                 return (
-                    <div key={k} onClick={() => handleSelect(k)} className={`px-4 py-3 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-amber-500/20 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
+                    <div key={k} onClick={() => handleSelect(k)} className={`px-4 py-2 text-sm cursor-pointer flex items-center justify-between transition-colors ${isSelected ? 'bg-amber-500/20 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
                         <span>{v}</span>
                         {isSelected && <Check size={14} />}
                     </div>
                 );
             })}
             {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
-                <div onClick={() => handleSelect(inputValue)} className="px-4 py-3 text-sm cursor-pointer text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5">
+                <div onClick={() => handleSelect(inputValue)} className="px-4 py-2 text-sm cursor-pointer text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5">
                     <PenLine size={12} /> Use &quot;{inputValue}&quot;
                 </div>
             )}
