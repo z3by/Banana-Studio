@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageContext";
 import { Header } from "@/components/Header";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Banana Studio",
-  description: "Generate high-quality prompts for your AI portrait edits.",
+  metadataBase: new URL("https://bananastudio.app"),
+  title: {
+    default: "Banana Studio",
+    template: "%s | Banana Studio",
+  },
+  description: "Generate high-quality prompts for your AI portrait edits. Professional AI prompt engineering made simple.",
+  keywords: ["AI", "Prompt Engineering", "Portraits", "Nano Banana Pro", "Image Generation", "AI Art", "Photography", "Studio"],
+  authors: [{ name: "Ahmad Mostafa", url: "https://z3by.com" }],
+  creator: "Ahmad Mostafa",
+  publisher: "Banana Studio",
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
@@ -28,16 +40,51 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Banana Studio",
-    description: "Generate high-quality prompts for your AI portrait edits.",
-    images: [{ url: "/icon.png", width: 512, height: 512 }],
+    description: "Generate high-quality prompts for your AI portrait edits. Create stunning AI art with professional prompts.",
+    url: "https://bananastudio.app",
+    siteName: "Banana Studio",
+    images: [{ url: "/icon.png", width: 512, height: 512, alt: "Banana Studio Logo" }],
+    locale: "en_US",
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Banana Studio",
     description: "Generate high-quality prompts for your AI portrait edits.",
+    creator: "@z3by", // Assuming handle based on link, or can remove if unknown
     images: ["/icon.png"],
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Banana Studio",
+  "url": "https://bananastudio.app",
+  "description": "Generate high-quality prompts for your AI portrait edits.",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Any",
+  "author": {
+    "@type": "Person",
+    "name": "Ahmad Mostafa",
+    "url": "https://z3by.com"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
 };
 
 export default function RootLayout({
@@ -51,6 +98,10 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col relative`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {/* Ambient Background globs */}
         <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/10 rounded-full blur-[120px]" />
@@ -64,7 +115,7 @@ export default function RootLayout({
             {children}
           </main>
           <footer className="py-8 text-center text-zinc-600 text-sm relative z-10">
-            Made with <span className="text-yellow-500">🍌</span> for <span className="text-zinc-400 font-medium">Banana Studio</span>
+            Made with <span className="text-yellow-500">🍌</span> By <Link href="https://z3by.com" target="_blank" className="text-zinc-400 font-medium">Ahmad Mostafa</Link>
           </footer>
         </LanguageProvider>
       </body>

@@ -402,6 +402,47 @@ export const presets: Preset[] = [
             style: ['Macro Photography'],
         },
     },
+    {
+        id: 'instantPro',
+        category: 'utility',
+        icon: '📸',
+        data: {
+            lens: ['85mm Portrait Lens'],
+            camera: 'Mirrorless',
+            cameraType: 'Professional DSLR',
+            lighting: ['Softbox Lighting', 'Studio Lighting'],
+            addons: ['Professional Photography', 'Highly Detailed', 'Masterpiece', '8K Resolution', 'Sharp Focus'],
+            style: ['Professional Photography'],
+        },
+    },
+    {
+        id: 'hairPerfect',
+        category: 'utility',
+        icon: '💇‍♀️',
+        data: {
+            addons: ['Voluminous Hair', 'Detailed Hair Texture', 'Perfectly Styled Hair', 'Shiny Hair', 'High Quality'],
+            lighting: ['Rim Lighting', 'Backlight'],
+        },
+    },
+    {
+        id: 'lightingFix',
+        category: 'utility',
+        icon: '💡',
+        data: {
+            lighting: ['Soft Natural Light', 'Diffused Lighting', 'Cinematic Lighting'],
+            addons: ['Perfect Exposure', 'Balanced Lighting', 'Professional Lighting'],
+        },
+    },
+    {
+        id: 'outfitDetail',
+        category: 'utility',
+        icon: '👗',
+        data: {
+            addons: ['Detailed Fabric Texture', 'Intricate Patterns', 'High Quality Materials', 'Sharp Focus'],
+            lighting: ['Studio Lighting'],
+            cameraType: 'Professional DSLR',
+        },
+    },
 ];
 
 // Helper to get presets by category

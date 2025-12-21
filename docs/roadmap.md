@@ -1,39 +1,29 @@
-# Roadmap: Nano Banana Pro Prompt Generator
+# 🗺️ Roadmap: Banana Studio
 
-This document outlines the development roadmap and future plans for the Nano Banana Pro Prompt Generator.
+This document outlines the development roadmap and future plans for **Banana Studio**, the premium AI portrait prompt generator.
 
-## Phase 1: MVP (Current)
-- **Objective**: Create a simple, high-quality static UI for generating prompts.
-- **Tech Stack**: Next.js 16, Tailwind CSS, TypeScript.
+## 📍 Phase 1: Foundation (Completed)
+- **Objective**: Create a high-quality, professional UI for generating prompts.
+- **Tech Stack**: Next.js 16, Tailwind CSS 4, TypeScript.
 - **Features**:
-  - [ ] **Prompt Generation Engine**:
-    - Subject description input.
-    - Style selection (Cinematic, Studio, Natural, etc.).
-    - Usage context (Portrait, Headshot, Artistic).
-    - Output format optimized for Nano Banana Pro / Gemini.
-  - [ ] **User Interface**:
-    - Neat, simple, and premium design "wow factor".
-    - Dark/Light mode support (or premium dark default).
-    - Responsive layout (Mobile/Desktop).
-  - [ ] **Internationalization (i18n)**:
-    - Full English and Arabic support.
-    - RTL (Right-to-Left) layout for Arabic.
-  - [ ] **Utilities**:
-    - One-click copy to clipboard.
-    - Clear and reset form.
+  - [x] **Prompt Generation Engine**: Subject, Style, Context, and more.
+  - [x] **Internationalization (i18n)**: Full English and Arabic support.
+  - [x] **UI/UX**: Premium dark-mode prioritized design.
+  - [x] **Presets**: Collection of curated prompt starters.
+  - [x] **History**: Local storage integration to save generated prompts.
 
-## Phase 2: Enhancements
-- [ ] **History**: Save generated prompts to LocalStorage.
-- [ ] **Presets**: Save favorite prompt configurations.
+## 🚀 Phase 2: Enhancements (In Progress)
 - [ ] **Advanced Mode**: Fine-grained control over lighting, camera angles, and lens types.
-- [ ] **Preview**: static examples of what certain styles look like (images).
+- [ ] **Visual Preview**: Static examples or AI-generated previews of styles.
+- [ ] **Export Options**: Export history to JSON or CSV.
+- [ ] **Search & Filter**: Better management for saved prompts and presets.
 
-## Phase 3: Connected Features (Future)
-- [ ] **Direct Integration**: If API available, generate directly within the app.
-- [ ] **Community**: Share prompts with other users (requires Database).
-- [ ] **Auth**: User accounts to sync history across devices.
+## 🔮 Phase 3: Connected Features (Future)
+- [ ] **Direct API Integration**: Generate images directly within the app (e.g., via Fal.ai or Replicate).
+- [ ] **Community Hub**: Share and discover prompts from other users.
+- [ ] **Cloud Sync**: User accounts for cross-device history synchronization.
 
-## Design Philosophy
-- **Simplicity**: Users should not be overwhelmed.
-- **Quality**: The UI itself should reflect the high quality of the generated images.
-- **Accessibility**: Clear labels, high contrast, and easy navigation.
+## 🎨 Design Philosophy
+- **Simplicity**: Powerful tools shouldn't be complicated.
+- **Excellence**: Every interaction should feel premium.
+- **Accessibility**: Inclusivity through clean design and multi-language support.

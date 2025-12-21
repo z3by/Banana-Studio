@@ -69,6 +69,10 @@ export const translations = {
         linkedinPro: { name: 'LinkedIn Pro', desc: 'Professional headshot' },
         softDreamy: { name: 'Soft & Dreamy', desc: 'Ethereal glow effect' },
         sharpDetail: { name: 'Sharp Detail', desc: 'Maximum sharpness' },
+        instantPro: { name: 'Phone to Pro', desc: 'Enhance quality to professional DSLR level' },
+        hairPerfect: { name: 'Perfect Hair', desc: 'Fix and style hair with volume and shine' },
+        lightingFix: { name: 'Perfect Lighting', desc: 'Balance exposure and lighting' },
+        outfitDetail: { name: 'Outfit Detail', desc: 'Enhance fabric textures and details' },
       },
       guidance: {
         stylize: 'Controls how much artistic freedom the AI has. Higher = more artistic.',

@@ -72,6 +72,52 @@ const useOutsideClick = (callback: () => void) => {
     return ref;
 };
 
+const useDropdownPosition = (isOpen: boolean, triggerRef: React.RefObject<HTMLDivElement | null>) => {
+    const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
+
+    useEffect(() => {
+        const updatePosition = () => {
+            if (isOpen && triggerRef.current) {
+                const rect = triggerRef.current.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const spaceBelow = viewportHeight - rect.bottom;
+                const dropdownHeight = 240; // max-h-60 = 15rem = 240px
+
+                if (spaceBelow < dropdownHeight && rect.top > dropdownHeight) {
+                    setDropdownStyle({
+                        position: 'fixed',
+                        bottom: viewportHeight - rect.top + 8,
+                        left: rect.left,
+                        width: rect.width,
+                        maxHeight: Math.min(dropdownHeight, rect.top - 16),
+                    });
+                } else {
+                    setDropdownStyle({
+                        position: 'fixed',
+                        top: rect.bottom + 8,
+                        left: rect.left,
+                        width: rect.width,
+                        maxHeight: Math.min(dropdownHeight, spaceBelow - 16),
+                    });
+                }
+            }
+        };
+
+        if (isOpen) {
+            updatePosition();
+            window.addEventListener('scroll', updatePosition, true);
+            window.addEventListener('resize', updatePosition);
+        }
+
+        return () => {
+            window.removeEventListener('scroll', updatePosition, true);
+            window.removeEventListener('resize', updatePosition);
+        };
+    }, [isOpen, triggerRef]);
+
+    return dropdownStyle;
+};
+
 // --- Standalone Components ---
 
 const MultiSelectField = ({ label, value, onChange, options, icon, placeholder = "Select..." }: { label: string, value: string[], onChange: (val: string[]) => void, options: Record<string, string>, icon: React.ReactNode, placeholder?: string }) => {
@@ -81,7 +127,7 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
     const dropdownRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
-    const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
+    const dropdownStyle = useDropdownPosition(isOpen, triggerRef);
 
     // Custom outside click handler that includes the portal dropdown
     useEffect(() => {
@@ -114,35 +160,6 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
             onChange(value.slice(0, -1));
         }
     };
-
-    // Update dropdown position when opened
-    useEffect(() => {
-        if (isOpen && triggerRef.current) {
-            const rect = triggerRef.current.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            const spaceBelow = viewportHeight - rect.bottom;
-            const dropdownHeight = 240; // max-h-60 = 15rem = 240px
-
-            // Position above if not enough space below
-            if (spaceBelow < dropdownHeight && rect.top > dropdownHeight) {
-                setDropdownStyle({
-                    position: 'fixed',
-                    bottom: viewportHeight - rect.top + 8,
-                    left: rect.left,
-                    width: rect.width,
-                    maxHeight: Math.min(dropdownHeight, rect.top - 16),
-                });
-            } else {
-                setDropdownStyle({
-                    position: 'fixed',
-                    top: rect.bottom + 8,
-                    left: rect.left,
-                    width: rect.width,
-                    maxHeight: Math.min(dropdownHeight, spaceBelow - 16),
-                });
-            }
-        }
-    }, [isOpen]);
 
     // Find label for a given english value
     const getLabel = (val: string) => {
@@ -223,7 +240,7 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
     const dropdownRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
-    const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
+    const dropdownStyle = useDropdownPosition(isOpen, triggerRef);
 
     // Custom outside click handler that includes the portal dropdown
     useEffect(() => {
@@ -238,35 +255,6 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
         };
         document.addEventListener('mousedown', handleClick);
         return () => document.removeEventListener('mousedown', handleClick);
-    }, [isOpen]);
-
-    // Update dropdown position when opened
-    useEffect(() => {
-        if (isOpen && triggerRef.current) {
-            const rect = triggerRef.current.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            const spaceBelow = viewportHeight - rect.bottom;
-            const dropdownHeight = 240; // max-h-60 = 15rem = 240px
-
-            // Position above if not enough space below
-            if (spaceBelow < dropdownHeight && rect.top > dropdownHeight) {
-                setDropdownStyle({
-                    position: 'fixed',
-                    bottom: viewportHeight - rect.top + 8,
-                    left: rect.left,
-                    width: rect.width,
-                    maxHeight: Math.min(dropdownHeight, rect.top - 16),
-                });
-            } else {
-                setDropdownStyle({
-                    position: 'fixed',
-                    top: rect.bottom + 8,
-                    left: rect.left,
-                    width: rect.width,
-                    maxHeight: Math.min(dropdownHeight, spaceBelow - 16),
-                });
-            }
-        }
     }, [isOpen]);
 
     const handleSelect = (key: string) => {
@@ -757,21 +745,41 @@ export function PromptForm() {
 
     // Apply a preset to the current form data (resets everything first)
     const applyPreset = (preset: Preset) => {
-        setData(() => {
-            // Start from a clean slate
-            const updated = { ...initialData };
-            // Apply preset data on top of initial data
-            Object.entries(preset.data).forEach(([key, value]) => {
-                if (value !== undefined && value !== '' && (Array.isArray(value) ? value.length > 0 : true)) {
-                    (updated as Record<string, unknown>)[key] = value;
-                }
-            });
-            return updated as PromptData;
+        // Start from a clean slate
+        const updated = { ...initialData } as Record<string, unknown>;
+        // Apply preset data on top of initial data
+        Object.entries(preset.data).forEach(([key, value]) => {
+            if (value !== undefined && value !== '' && (Array.isArray(value) ? value.length > 0 : true)) {
+                updated[key] = value;
+            }
         });
+
+        const finalData = updated as unknown as PromptData;
+        setData(finalData);
+
+        // Auto-generate prompt
+        const result = generatePrompt(finalData);
+        setGenerated(result);
+        setCopied(true);
+        addToHistory(result);
+
+        // Auto-copy to clipboard
+        navigator.clipboard.writeText(result);
+
         // Get preset translation
         const presetTranslation = t.form.presets[preset.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
         const presetName = presetTranslation?.name || preset.id;
-        showToastMessage(`${preset.icon} ${presetName} ${t.form.presets.applied}`);
+
+        // Show unified toast message
+        showToastMessage(`${preset.icon} ${presetName} ${t.form.presets.applied} 📋 ${t.form.copied}`);
+
+        // Auto-scroll to result after a brief delay
+        setTimeout(() => {
+            resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+
+        // Reset copied state after 2s
+        setTimeout(() => setCopied(false), 2000);
     };
 
 
@@ -1000,12 +1008,13 @@ export function PromptForm() {
         <div className="w-full max-w-6xl mx-auto space-y-8">
 
             {/* Toast Notification */}
-            {showToast && (
-                <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[9999] animate-in fade-in slide-in-from-top-4 duration-300">
+            {showToast && typeof document !== 'undefined' && createPortal(
+                <div className="fixed top-20 left-1/2 -translate-x-1/2 z-[9999] animate-in fade-in slide-in-from-top-4 duration-300">
                     <div className="bg-zinc-900 border border-yellow-500/30 px-6 py-3 rounded-2xl shadow-2xl shadow-yellow-500/10 flex items-center gap-3">
                         <span className="text-sm font-medium text-zinc-100">{showToast}</span>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
 
             {/* ✨ Quick Start Presets - Prominent Section */}

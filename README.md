@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <img src="public/Logo.jpeg" alt="Banana Studio Logo" width="120" height="120" style="border-radius: 20%;" />
+  
+  # Banana Studio
+  ### Create Perfect Portraits with AI
 
-## Getting Started
+  **Banana Studio** is a high-end, professional prompt generation tool designed specifically for **Nano Banana Pro / Gemini**. It empowers creators to craft detailed, high-quality portrait prompts with a seamless, premium interface.
 
-First, run the development server:
+  [English](README.md) • [العربية](README.md) *(i18n ready)*
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  ---
+
+  ![Banana Studio UI Screenshot](public/screenshot.png)
+
+</div>
+
+## ✨ Key Features
+
+- 🎭 **Professional Prompt Engine**: Generate precise prompts by selecting subject, styles, actions, and contexts.
+- 🎨 **Premium UI/UX**: A modern, sleek interface with glassmorphism effects, optimized for both desktop and mobile.
+- 🌍 **Full i18n Support**: Seamless switching between English and Arabic, with full RTL support.
+- 💾 **History & Favorites**: Your generated prompts are saved locally so you never lose a great idea.
+- 🚀 **One-Click Workflow**: Quick copy-to-clipboard and reset functionality for a fast creative process.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Persistence**: LocalStorage for history and settings.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm / yarn / pnpm
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/banana-studio.git
+   cd banana-studio
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Open the app**:
+   Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📁 Project Structure
+
+```text
+src/
+├── app/            # Next.js App Router (Pages, Layouts, Metadata)
+├── components/     # Reusable UI Components (PromptForm, Header, etc.)
+├── i18n/           # Internationalization (Translations)
+├── lib/            # Utility functions and types
+└── public/         # Static assets (Logos, Icons, Screenshots)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🗺️ Roadmap
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Check out our [Roadmap](docs/roadmap.md) to see what's planned for future releases.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🤝 Contributing
 
-## Learn More
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
-To learn more about Next.js, take a look at the following resources:
+## 📄 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. *(Note: Add a LICENSE file if needed)*
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<div align="center">
+  Made with 🍌 by Banana Studio Team
+</div>
