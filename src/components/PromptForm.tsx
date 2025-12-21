@@ -399,11 +399,9 @@ export function PromptForm() {
     const isRTL = language === 'ar';
 
     const defaultAddonKeys = ['highlyDetailed', 'resolution8k', 'masterpiece', 'professional', 'photorealistic', 'sharpFocus'];
-    const getTranslatedAddons = () => defaultAddonKeys.map(key => {
-        // For addons, we still iterate keys, but we need to verify how they are stored in PromptData.
-        // Currently PromptData stores the *translated* string for addons.
-        // We should probably switch addons to use English values too, but let's focus on the main fields first.
-        return t.addons[key as keyof typeof t.addons];
+    const getDefaultAddons = () => defaultAddonKeys.map(key => {
+        // Return English values for addons
+        return translations.en.addons[key as keyof typeof translations.en.addons];
     });
 
     // Helper to generate options: Key = English Value, Value = Localized Label
@@ -648,7 +646,7 @@ export function PromptForm() {
 
     const handleReset = () => {
         if (window.confirm('Are you sure you want to clear all fields?')) {
-            setData({ ...initialData, addons: getTranslatedAddons() });
+            setData({ ...initialData, addons: getDefaultAddons() });
             setGenerated('');
             setCurrentStep(1);
         }
@@ -976,12 +974,13 @@ export function PromptForm() {
                             <Settings size={14} /> {t.form.addons}
                         </h3>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                            {Object.entries(t.addons).map(([k, v]) => {
-                                const isChecked = data.addons.includes(v);
+                            {Object.entries(translations.en.addons).map(([k, enVal]) => {
+                                const localVal = t.addons[k as keyof typeof t.addons];
+                                const isChecked = data.addons.includes(enVal);
                                 return (
-                                    <div key={k} onClick={() => toggleAddon(v)} className={`cursor-pointer rounded-xl p-3 border transition-all flex items-center gap-3 select-none ${isChecked ? 'bg-zinc-800 border-yellow-500/50 text-yellow-100 shadow-[0_0_15px_-3px_rgba(234,179,8,0.2)]' : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:bg-zinc-900'}`}>
+                                    <div key={k} onClick={() => toggleAddon(enVal)} className={`cursor-pointer rounded-xl p-3 border transition-all flex items-center gap-3 select-none ${isChecked ? 'bg-zinc-800 border-yellow-500/50 text-yellow-100 shadow-[0_0_15px_-3px_rgba(234,179,8,0.2)]' : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:bg-zinc-900'}`}>
                                         {isChecked ? <CheckCircle2 size={18} className="text-yellow-500" /> : <Circle size={18} className="text-zinc-600" />}
-                                        <span className="text-sm font-medium">{v}</span>
+                                        <span className="text-sm font-medium">{localVal}</span>
                                     </div>
                                 );
                             })}
