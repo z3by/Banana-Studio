@@ -72,10 +72,11 @@ const useOutsideClick = (callback: () => void) => {
     return ref;
 };
 
-const useDropdownPosition = (isOpen: boolean, triggerRef: React.RefObject<HTMLDivElement | null>) => {
+const useDropdownPosition = (isOpen: boolean, triggerRef: React.RefObject<any>) => {
     const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
 
     useEffect(() => {
+        let frameId: number;
         const updatePosition = () => {
             if (isOpen && triggerRef.current) {
                 const rect = triggerRef.current.getBoundingClientRect();
@@ -83,35 +84,40 @@ const useDropdownPosition = (isOpen: boolean, triggerRef: React.RefObject<HTMLDi
                 const spaceBelow = viewportHeight - rect.bottom;
                 const dropdownHeight = 240; // max-h-60 = 15rem = 240px
 
+                const style: React.CSSProperties = {
+                    position: 'fixed',
+                    left: rect.left,
+                    width: rect.width,
+                };
+
                 if (spaceBelow < dropdownHeight && rect.top > dropdownHeight) {
-                    setDropdownStyle({
-                        position: 'fixed',
-                        bottom: viewportHeight - rect.top + 8,
-                        left: rect.left,
-                        width: rect.width,
-                        maxHeight: Math.min(dropdownHeight, rect.top - 16),
-                    });
+                    style.bottom = viewportHeight - rect.top + 8;
+                    style.top = 'auto';
+                    style.maxHeight = Math.min(dropdownHeight, rect.top - 16);
                 } else {
-                    setDropdownStyle({
-                        position: 'fixed',
-                        top: rect.bottom + 8,
-                        left: rect.left,
-                        width: rect.width,
-                        maxHeight: Math.min(dropdownHeight, spaceBelow - 16),
-                    });
+                    style.top = rect.bottom + 8;
+                    style.bottom = 'auto';
+                    style.maxHeight = Math.min(dropdownHeight, spaceBelow - 16);
                 }
+                setDropdownStyle(style);
             }
+        };
+
+        const handleUpdate = () => {
+            cancelAnimationFrame(frameId);
+            frameId = requestAnimationFrame(updatePosition);
         };
 
         if (isOpen) {
             updatePosition();
-            window.addEventListener('scroll', updatePosition, true);
-            window.addEventListener('resize', updatePosition);
+            window.addEventListener('scroll', handleUpdate, true);
+            window.addEventListener('resize', handleUpdate);
         }
 
         return () => {
-            window.removeEventListener('scroll', updatePosition, true);
-            window.removeEventListener('resize', updatePosition);
+            cancelAnimationFrame(frameId);
+            window.removeEventListener('scroll', handleUpdate, true);
+            window.removeEventListener('resize', handleUpdate);
         };
     }, [isOpen, triggerRef]);
 
