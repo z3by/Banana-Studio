@@ -5,10 +5,7 @@
   --background: #000000;
   --foreground: #ffffff;
 
-  /* Semantic Colors */
-  --surface-glass: rgba(20, 20, 23, 0.7);
-  --surface-highlight: rgba(255, 255, 255, 0.05);
-  --border-light: rgba(255, 255, 255, 0.08);
+
 
   /* Accent Colors - Amber/Gold Gradient Source */
   --accent-primary: #fbbf24;
@@ -55,11 +52,4 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.text-gradient-gold {
-  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
