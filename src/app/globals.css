@@ -65,22 +65,8 @@ body {
   50% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.4); }
 }
 
-@keyframes shimmer {
-  0% { background-position: -1000px 0; }
-  100% { background-position: 1000px 0; }
-}
-
-.float-animation {
-  animation: float 3s ease-in-out infinite;
-}
-
 .glow-pulse {
   animation: glow-pulse 2s ease-in-out infinite;
-}
-
-/* Enhanced Transitions */
-* {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Button Hover Effects */
@@ -97,29 +83,27 @@ body {
   transform: translateY(0);
 }
 
-/* Card Hover Effects */
-.card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
-}
-
-/* Focus Ring Enhancement */
-.focus-ring:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.3);
-  border-color: rgba(251, 191, 36, 0.5);
-}
-
 /* Gradient Text */
 .gradient-text {
   background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Support for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .glow-pulse {
+    animation: none;
+  }
 }
 
 /* Enhanced Scrollbar */
