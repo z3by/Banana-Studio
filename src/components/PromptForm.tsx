@@ -1363,19 +1363,28 @@ export function PromptForm() {
             )}
 
             {/* Main Card */}
-            <div className="glass-panel rounded-xl overflow-hidden flex flex-col min-h-[600px] border border-white/5 relative">
+            <div className="glass-panel rounded-xl overflow-hidden flex flex-col min-h-[600px] border border-white/5 relative shadow-2xl shadow-black/20">
                 {/* Wizard Header (Steps) */}
-                <div className="bg-black/20 border-b border-white/5 p-6 md:p-8 backdrop-blur-md">
+                <div className="bg-black/20 border-b border-white/5 p-6 md:p-8 backdrop-blur-md shadow-inner">
                     <div className="flex justify-between items-center mb-8">
                         <div className="space-y-1">
                             <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-3">
-                                <span className="p-2 rounded-xl bg-white/5 border border-white/5 text-amber-400 shadow-inner">{steps[currentStep - 1].icon}</span>
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400">{steps[currentStep - 1].title}</span>
+                                <span className="p-2 rounded-xl bg-white/5 border border-white/5 text-amber-400 shadow-inner animate-in zoom-in duration-300">{steps[currentStep - 1].icon}</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400 animate-in slide-in-from-left duration-300">{steps[currentStep - 1].title}</span>
                             </h2>
-                            <p className="text-sm text-zinc-400 ml-1">{steps[currentStep - 1].desc}</p>
+                            <p className="text-sm text-zinc-400 ml-1 animate-in fade-in duration-500">{steps[currentStep - 1].desc}</p>
                         </div>
                         <div className="text-5xl font-black text-white/5 select-none">{currentStep}/5</div>
                     </div>
+                    
+                    {/* Progress bar */}
+                    <div className="mb-6 bg-black/40 rounded-full h-1.5 overflow-hidden">
+                        <div 
+                            className="h-full bg-gradient-to-r from-amber-400 to-orange-500 transition-all duration-500 ease-out shadow-lg shadow-amber-500/50"
+                            style={{ width: `${(currentStep / 5) * 100}%` }}
+                        />
+                    </div>
+                    
                     {/* Clickable Step Indicators */}
                     <div className="flex items-center justify-between gap-2">
                         {steps.map((s, index) => {
@@ -1389,18 +1398,18 @@ export function PromptForm() {
                                     className={`relative flex-1 group transition-all duration-300 ${isActive ? 'scale-105' : 'hover:scale-[1.02]'}`}
                                 >
                                     <div className={`flex items-center justify-center gap-2 py-3 px-3 rounded-xl border transition-all duration-300 ${isActive
-                                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-400'
+                                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-400 shadow-lg shadow-amber-500/20'
                                         : isCompleted
-                                            ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400'
-                                            : 'bg-black/20 border-white/5 text-zinc-600 hover:border-white/10 hover:text-zinc-400'
+                                            ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/10'
+                                            : 'bg-black/20 border-white/5 text-zinc-600 hover:border-white/10 hover:text-zinc-400 hover:bg-white/5'
                                         }`}>
-                                        <span className={`text-xs font-bold ${isActive ? 'text-amber-400' : isCompleted ? 'text-emerald-400' : 'text-zinc-600'
+                                        <span className={`text-xs font-bold transition-all duration-200 ${isActive ? 'text-amber-400 scale-110' : isCompleted ? 'text-emerald-400' : 'text-zinc-600'
                                             }`}>
                                             {isCompleted ? <Check size={14} strokeWidth={3} /> : s.id}
                                         </span>
                                         <span className="text-xs font-medium hidden md:inline truncate tracking-wide">{s.title}</span>
                                         {fieldCount > 0 && (
-                                            <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold ${isActive ? 'bg-amber-500/20 text-amber-300' : 'bg-white/5 text-zinc-500'
+                                            <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold transition-all duration-200 ${isActive ? 'bg-amber-500/20 text-amber-300' : 'bg-white/5 text-zinc-500'
                                                 }`}>
                                                 {fieldCount}
                                             </span>
@@ -1461,37 +1470,37 @@ export function PromptForm() {
             {generated && (
                 <div ref={resultRef} className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 scroll-mt-8">
                     <div className="flex justify-between items-center mb-3 px-1">
-                        <label className="text-sm font-medium text-zinc-400 flex items-center gap-2">
-                            <Sparkles size={16} className="text-amber-500" />
+                        <label className="text-sm font-medium text-zinc-400 flex items-center gap-2 animate-in slide-in-from-left duration-300">
+                            <Sparkles size={16} className="text-amber-500 animate-pulse" />
                             {t.form.resultLabel}
                         </label>
-                        <span className="text-xs text-zinc-600 font-mono">
+                        <span className="text-xs text-zinc-600 font-mono animate-in slide-in-from-right duration-300">
                             {generated.length} / 1000
                         </span>
                     </div>
-                    <div className="bg-black/40 border border-white/10 rounded-xl p-8 relative group backdrop-blur-md">
-                        <p className="text-sm md:text-base text-zinc-200 font-mono whitespace-pre-wrap leading-relaxed break-words pe-20 selection:bg-amber-500/30 selection:text-amber-100">
+                    <div className="bg-black/40 border border-white/10 rounded-xl p-8 relative group backdrop-blur-md hover:border-white/20 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                        <p className="text-sm md:text-base text-zinc-200 font-mono whitespace-pre-wrap leading-relaxed break-words pe-20 selection:bg-amber-500/30 selection:text-amber-100 animate-in fade-in duration-700">
                             {generated}
                         </p>
                         {/* Action buttons */}
                         <div className="absolute top-6 end-6 flex flex-col gap-2">
                             <button
                                 onClick={handleCopy}
-                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all flex items-center gap-2 backdrop-blur-md"
+                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all duration-200 flex items-center gap-2 backdrop-blur-md hover:scale-110 active:scale-95 hover:shadow-lg"
                                 title={t.form.copy}
                             >
                                 {copied ? <Check size={16} className="text-emerald-400" /> : <IconCopy />}
                             </button>
                             <button
                                 onClick={handleDownload}
-                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all backdrop-blur-md"
+                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all duration-200 backdrop-blur-md hover:scale-110 active:scale-95 hover:shadow-lg"
                                 title={t.form.actions.download}
                             >
                                 <Download size={16} />
                             </button>
                             <button
                                 onClick={handleShare}
-                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all backdrop-blur-md"
+                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all duration-200 backdrop-blur-md hover:scale-110 active:scale-95 hover:shadow-lg"
                                 title={t.form.actions.share}
                             >
                                 <Share2 size={16} />
