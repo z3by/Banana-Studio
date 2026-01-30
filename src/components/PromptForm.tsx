@@ -51,7 +51,8 @@ import {
     Download,
     Share2,
     RotateCcw,
-    Layers
+    Layers,
+    Star
 } from 'lucide-react';
 
 // --- Icons ---
@@ -476,8 +477,30 @@ export function PromptForm() {
     });
     const [showHistory, setShowHistory] = useState(false);
     const [showPreview, setShowPreview] = useState(false);
-    const [presetCategory, setPresetCategory] = useState<'common' | 'creative' | 'utility'>('common');
+    const [presetCategory, setPresetCategory] = useState<'common' | 'creative' | 'utility' | 'favorites' | 'recent'>('common');
     const [presetSearch, setPresetSearch] = useState('');
+    const [favoritePresets, setFavoritePresets] = useState<string[]>(() => {
+        if (typeof window !== 'undefined') {
+            try {
+                const saved = localStorage.getItem('favoritePresets');
+                return saved ? JSON.parse(saved) : [];
+            } catch {
+                return [];
+            }
+        }
+        return [];
+    });
+    const [recentPresets, setRecentPresets] = useState<string[]>(() => {
+        if (typeof window !== 'undefined') {
+            try {
+                const saved = localStorage.getItem('recentPresets');
+                return saved ? JSON.parse(saved) : [];
+            } catch {
+                return [];
+            }
+        }
+        return [];
+    });
     const historyRef = useOutsideClick(() => setShowHistory(false));
 
     // Keyboard navigation and shortcuts
@@ -768,6 +791,13 @@ export function PromptForm() {
         // Auto-copy to clipboard
         navigator.clipboard.writeText(result);
 
+        // Track recent preset usage
+        const newRecent = [preset.id, ...recentPresets.filter(id => id !== preset.id)].slice(0, 10);
+        setRecentPresets(newRecent);
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('recentPresets', JSON.stringify(newRecent));
+        }
+
         // Get preset translation
         const presetTranslation = t.form.presets[preset.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
         const presetName = presetTranslation?.name || preset.id;
@@ -782,6 +812,18 @@ export function PromptForm() {
 
         // Reset copied state after 2s
         setTimeout(() => setCopied(false), 2000);
+    };
+
+    // Toggle favorite preset
+    const toggleFavorite = (presetId: string, e: React.MouseEvent) => {
+        e.stopPropagation(); // Prevent applying preset when clicking favorite icon
+        const newFavorites = favoritePresets.includes(presetId)
+            ? favoritePresets.filter(id => id !== presetId)
+            : [...favoritePresets, presetId];
+        setFavoritePresets(newFavorites);
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('favoritePresets', JSON.stringify(newFavorites));
+        }
     };
 
 
@@ -1062,10 +1104,36 @@ export function PromptForm() {
                 </div>
 
                 {/* Category Tabs */}
-                <div className="relative flex items-center gap-1 mb-6 bg-black/40 border border-white/5 p-1 rounded-xl w-fit backdrop-blur-md">
+                <div className="relative flex items-center gap-1 mb-6 bg-black/40 border border-white/5 p-1 rounded-xl w-fit backdrop-blur-md overflow-x-auto scrollbar-thin scrollbar-thumb-white/10">
+                    <button
+                        onClick={() => setPresetCategory('favorites')}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'favorites'
+                            ? 'bg-yellow-500/20 text-yellow-400'
+                            : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
+                            }`}
+                    >
+                        <Star size={14} className={presetCategory === 'favorites' ? 'fill-yellow-400' : ''} />
+                        {t.form.presets.favorites || 'Favorites'}
+                        {favoritePresets.length > 0 && (
+                            <span className="text-xs opacity-70">({favoritePresets.length})</span>
+                        )}
+                    </button>
+                    <button
+                        onClick={() => setPresetCategory('recent')}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'recent'
+                            ? 'bg-blue-500/20 text-blue-400'
+                            : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
+                            }`}
+                    >
+                        <History size={14} />
+                        {t.form.presets.recent || 'Recent'}
+                        {recentPresets.length > 0 && (
+                            <span className="text-xs opacity-70">({recentPresets.length})</span>
+                        )}
+                    </button>
                     <button
                         onClick={() => setPresetCategory('common')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${presetCategory === 'common'
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'common'
                             ? 'bg-emerald-500/20 text-emerald-400'
                             : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
                             }`}
@@ -1075,7 +1143,7 @@ export function PromptForm() {
                     </button>
                     <button
                         onClick={() => setPresetCategory('creative')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${presetCategory === 'creative'
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'creative'
                             ? 'bg-purple-500/20 text-purple-400'
                             : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
                             }`}
@@ -1085,7 +1153,7 @@ export function PromptForm() {
                     </button>
                     <button
                         onClick={() => setPresetCategory('utility')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${presetCategory === 'utility'
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'utility'
                             ? 'bg-cyan-500/20 text-cyan-400'
                             : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
                             }`}
@@ -1099,7 +1167,23 @@ export function PromptForm() {
                 <div className="relative">
                     <div className="flex gap-3 overflow-x-auto pb-4 pt-1 px-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
                         {presets
-                            .filter(p => p.category === presetCategory)
+                            .filter(p => {
+                                // Filter by category or favorites/recent
+                                if (presetCategory === 'favorites') {
+                                    return favoritePresets.includes(p.id);
+                                } else if (presetCategory === 'recent') {
+                                    return recentPresets.includes(p.id);
+                                } else {
+                                    return p.category === presetCategory;
+                                }
+                            })
+                            .sort((a, b) => {
+                                // Sort recent presets by most recent first
+                                if (presetCategory === 'recent') {
+                                    return recentPresets.indexOf(a.id) - recentPresets.indexOf(b.id);
+                                }
+                                return 0;
+                            })
                             .filter(p => {
                                 if (!presetSearch) return true;
                                 const translation = t.form.presets[p.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
@@ -1119,13 +1203,21 @@ export function PromptForm() {
                                 const categoryColorText = preset.category === 'common' ? 'text-emerald-400' : preset.category === 'creative' ? 'text-purple-400' : 'text-cyan-400';
 
                                 return (
-                                    <button
+                                    <div
                                         key={preset.id}
-                                        onClick={() => applyPreset(preset)}
-                                        className={`flex-shrink-0 group flex flex-col items-center gap-3 px-5 py-5 rounded-xl border bg-gradient-to-br ${gradientClass} transition-all duration-300 active:scale-[0.98] min-w-[150px] relative overflow-hidden`}
+                                        className={`flex-shrink-0 group flex flex-col items-center gap-3 px-5 py-5 rounded-xl border bg-gradient-to-br ${gradientClass} transition-all duration-300 min-w-[150px] relative overflow-hidden cursor-pointer active:scale-[0.98]`}
                                         title={presetTranslation?.desc || preset.id}
+                                        onClick={() => applyPreset(preset)}
                                     >
                                         <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        {/* Favorite Star Button */}
+                                        <button
+                                            onClick={(e) => toggleFavorite(preset.id, e)}
+                                            className="absolute top-2 right-2 z-20 p-1.5 rounded-lg bg-black/40 hover:bg-black/60 transition-all opacity-0 group-hover:opacity-100"
+                                            title={favoritePresets.includes(preset.id) ? 'Remove from favorites' : 'Add to favorites'}
+                                        >
+                                            <Star size={14} className={`transition-colors ${favoritePresets.includes(preset.id) ? 'fill-yellow-400 text-yellow-400' : 'text-zinc-400 hover:text-yellow-400'}`} />
+                                        </button>
                                         <span className={`text-3xl transition-transform duration-300 ${categoryColorText}`}>{preset.icon}</span>
                                         <div className="text-center relative z-10">
                                             <div className={`text-sm font-bold text-zinc-100 group-hover:text-white transition-colors`}>
@@ -1135,18 +1227,34 @@ export function PromptForm() {
                                                 {presetTranslation?.desc || ''}
                                             </div>
                                         </div>
-                                    </button>
+                                    </div>
                                 );
                             })}
-                        {presets.filter(p => p.category === presetCategory).filter(p => {
+                        {presets.filter(p => {
+                            // Filter by category or favorites/recent
+                            if (presetCategory === 'favorites') {
+                                return favoritePresets.includes(p.id);
+                            } else if (presetCategory === 'recent') {
+                                return recentPresets.includes(p.id);
+                            } else {
+                                return p.category === presetCategory;
+                            }
+                        }).filter(p => {
                             if (!presetSearch) return true;
                             const translation = t.form.presets[p.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
                             const name = translation?.name || p.id;
                             return name.toLowerCase().includes(presetSearch.toLowerCase());
                         }).length === 0 && (
                                 <div className="text-sm text-zinc-500 italic py-8 px-4 w-full text-center flex flex-col items-center gap-3">
-                                    <div className="bg-zinc-900/50 p-3 rounded-full"><Sparkles size={20} className="text-zinc-700" /></div>
-                                    No presets found matching &quot;{presetSearch}&quot;
+                                    <div className="bg-zinc-900/50 p-3 rounded-full">
+                                        {presetCategory === 'favorites' ? <Star size={20} className="text-zinc-700" /> : 
+                                         presetCategory === 'recent' ? <History size={20} className="text-zinc-700" /> : 
+                                         <Sparkles size={20} className="text-zinc-700" />}
+                                    </div>
+                                    {presetSearch ? `No presets found matching "${presetSearch}"` :
+                                     presetCategory === 'favorites' ? 'No favorite presets yet. Click the star on any preset to add it!' :
+                                     presetCategory === 'recent' ? 'No recent presets. Apply a preset to see it here!' :
+                                     'No presets available'}
                                 </div>
                             )}
                     </div>
