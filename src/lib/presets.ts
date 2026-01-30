@@ -492,7 +492,7 @@ export const presets: Preset[] = [
     {
         id: 'libraryScholar',
         category: 'common',
-        icon: '📚',
+        icon: '📖',
         data: {
             background: 'Library',
             lighting: ['Natural Window Light', 'Ambient Light', 'Reading Light'],
@@ -552,7 +552,7 @@ export const presets: Preset[] = [
     {
         id: 'artistStudio',
         category: 'common',
-        icon: '🎨',
+        icon: '🖌️',
         data: {
             background: 'Art Studio',
             lighting: ['Natural Window Light', 'Soft Diffused Light'],
@@ -592,7 +592,7 @@ export const presets: Preset[] = [
         },
     },
     {
-        id: 'rainyday',
+        id: 'rainyDay',
         category: 'common',
         icon: '☔',
         data: {
@@ -1129,7 +1129,7 @@ export const presets: Preset[] = [
     {
         id: 'abstractExpressionism',
         category: 'creative',
-        icon: '🎨',
+        icon: '🌈',
         data: {
             background: 'Abstract Background',
             lighting: ['Dramatic Lighting', 'Colored Lights'],
@@ -1560,7 +1560,7 @@ export const presets: Preset[] = [
     {
         id: 'motionFreeze',
         category: 'utility',
-        icon: '❄️',
+        icon: '⏸️',
         data: {
             camera: 'High Speed Camera',
             cameraType: 'Professional DSLR',
@@ -1571,7 +1571,7 @@ export const presets: Preset[] = [
     {
         id: 'wideAngleDramatic',
         category: 'utility',
-        icon: '📐',
+        icon: '📷',
         data: {
             lens: ['24mm Wide Angle', '14mm Ultra Wide'],
             composition: ['Wide Angle Perspective', 'Dynamic Angles'],
@@ -1682,7 +1682,7 @@ export const presets: Preset[] = [
         },
     },
     {
-        id: 'pastelsoftMood',
+        id: 'pastelSoftMood',
         category: 'utility',
         icon: '🎀',
         data: {
