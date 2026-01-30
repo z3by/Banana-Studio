@@ -669,13 +669,17 @@ export function PromptForm() {
 
     const clearHistory = () => {
         setHistory([]);
-        localStorage.removeItem('prompt_history_v2');
+        try {
+            localStorage.removeItem('prompt_history_v2');
+        } catch {
+            // Failed to clear localStorage
+        }
     };
 
     // Toast helper
     const showToastMessage = (message: string) => {
         setShowToast(message);
-        setTimeout(() => setShowToast(null), 2500);
+        setTimeout(() => setShowToast(null), TOAST_DURATION);
     };
 
 
@@ -855,8 +859,8 @@ export function PromptForm() {
             resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 100);
 
-        // Reset copied state after 2s
-        setTimeout(() => setCopied(false), 2000);
+        // Reset copied state
+        setTimeout(() => setCopied(false), TOAST_DURATION);
     };
 
     // Toggle favorite preset
