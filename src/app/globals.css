@@ -54,17 +54,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Smooth Animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
-}
-
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.2); }
-  50% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.4); }
-}
-
+/* Enhanced Animations */
 @keyframes slide-down {
   from {
     opacity: 0;
@@ -76,18 +66,24 @@ body {
   }
 }
 
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.2); }
+  50% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.4); }
+}
+
+/* Loading Spinner */
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-.glow-pulse {
-  animation: glow-pulse 2s ease-in-out infinite;
-}
-
 .spinner {
   animation: spin 1s linear infinite;
+}
+
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
 }
 
 /* Button Hover Effects */
@@ -143,10 +139,9 @@ body {
   }
 }
 
-/* Enhanced Scrollbar */
+/* Dark Scrollbar for Dropdowns */
 .dark-scrollbar::-webkit-scrollbar {
   width: 6px;
-  height: 6px;
 }
 
 .dark-scrollbar::-webkit-scrollbar-track {
