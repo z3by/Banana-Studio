@@ -650,7 +650,7 @@ export function PromptForm() {
 
     const handleGenerate = () => {
         setIsGenerating(true);
-        // Use setTimeout to allow UI to update with loading state
+        // Brief delay to show loading state for UI feedback
         setTimeout(() => {
             const result = generatePrompt(data);
             setGenerated(result);
@@ -662,7 +662,7 @@ export function PromptForm() {
             setTimeout(() => {
                 resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100);
-        }, 300);
+        }, 100);
     };
 
     const handleCopy = async () => {
@@ -1074,7 +1074,7 @@ export function PromptForm() {
 
             {/* Toast Notification */}
             {showToast && typeof document !== 'undefined' && createPortal(
-                <div className="toast-notification fixed top-20 left-1/2 -translate-x-1/2 z-[9999] animate-in fade-in slide-in-from-top-4 duration-300">
+                <div className="toast-notification fixed top-20 left-1/2 -translate-x-1/2 z-[9999] animate-in fade-in slide-in-from-top-4 duration-300" role="status" aria-live="polite">
                     <div className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-md border border-amber-500/40 px-6 py-3 rounded-2xl shadow-2xl shadow-amber-500/20 flex items-center gap-3">
                         <span className="text-sm font-medium text-white">{showToast}</span>
                     </div>
@@ -1085,8 +1085,8 @@ export function PromptForm() {
             {/* ✨ Quick Start Presets - Prominent Section */}
             <div className="glass-panel border-amber-500/10 rounded-xl relative overflow-hidden">
                 {/* Header */}
-                <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 pb-4 cursor-pointer hover:bg-white/5 transition-colors" onClick={() => setPresetsExpanded(!presetsExpanded)}>
-                    <div className="flex items-center gap-3">
+                <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 pb-4">
+                    <div className="flex items-center gap-3 flex-1">
                         <div className="bg-gradient-to-br from-amber-400 to-orange-600 p-2.5 rounded-xl">
                             <Layers size={20} className="text-black" />
                         </div>
@@ -1103,7 +1103,9 @@ export function PromptForm() {
 
                     {/* Collapse Toggle Button */}
                     <button 
-                        onClick={(e) => { e.stopPropagation(); setPresetsExpanded(!presetsExpanded); }}
+                        onClick={() => setPresetsExpanded(!presetsExpanded)}
+                        aria-expanded={presetsExpanded}
+                        aria-label="Toggle presets section"
                         className="flex items-center gap-2 px-3 py-2 rounded-lg bg-black/40 hover:bg-black/60 border border-white/10 hover:border-white/20 transition-all text-sm text-zinc-400 hover:text-white"
                     >
                         {presetsExpanded ? (
@@ -1470,7 +1472,7 @@ export function PromptForm() {
                         <button
                             onClick={handleGenerate}
                             disabled={isGenerating}
-                            className="btn-primary px-8 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-600 hover:from-amber-300 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
+                            className="btn-primary px-8 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-600 hover:from-amber-300 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:from-amber-400 disabled:hover:to-orange-600 disabled:hover:shadow-lg disabled:hover:shadow-amber-500/20 disabled:transform-none"
                         >
                             {isGenerating ? (
                                 <>
