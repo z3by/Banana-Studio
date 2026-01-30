@@ -83,14 +83,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          // Safe: jsonLd is a static object, not user input
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         suppressHydrationWarning
         className="antialiased min-h-screen flex flex-col relative"
       >
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
         {/* Subtle Background Gradient */}
         <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[40%] bg-amber-500/5 rounded-full blur-[120px]" />
