@@ -177,7 +177,7 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
     const dropdownContent = isOpen && typeof document !== 'undefined' ? createPortal(
         <div
             ref={dropdownRef}
-            className="z-[9999] glass-panel rounded-2xl shadow-2xl overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar"
+            className="z-[9999] glass-panel rounded-xl overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar"
             style={dropdownStyle}
         >
             {Object.entries(options).map(([k, v]) => {
@@ -208,7 +208,7 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
                 <div
                     ref={triggerRef}
                     onClick={() => { setIsOpen(true); inputRef.current?.focus(); }}
-                    className={`w-full bg-black/40 backdrop-blur-sm border rounded-2xl p-2 min-h-[52px] flex flex-wrap gap-2 cursor-text text-sm transition-all ${isOpen ? 'border-amber-500/50 shadow-[0_0_15px_rgba(245,158,11,0.15)] ring-1 ring-amber-500/30' : 'border-white/10 hover:border-white/20 hover:bg-black/50'}`}
+                    className={`w-full bg-black/40 backdrop-blur-sm border rounded-xl p-2 min-h-[52px] flex flex-wrap gap-2 cursor-text text-sm transition-all ${isOpen ? 'border-amber-500/50' : 'border-white/10 hover:border-white/20 hover:bg-white/5'}`}
                 >
                     {value.map((val) => (
                         <span key={val} className="bg-amber-500/10 text-amber-200 px-3 py-1 rounded-xl text-xs flex items-center gap-1 border border-amber-500/20 animate-in fade-in zoom-in-95 duration-200">
@@ -331,7 +331,7 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
                 <div className="relative">
                     <input
                         type="text"
-                        className="w-full bg-black/40 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-zinc-100 focus:outline-none focus:border-amber-500/50 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] appearance-none text-sm transition-all placeholder:text-zinc-600"
+                        className="w-full bg-black/40 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-zinc-100 focus:outline-none focus:border-amber-500/50 appearance-none text-sm transition-all placeholder:text-zinc-600"
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
                         placeholder="Type anything..."
@@ -349,7 +349,7 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
                                 setTimeout(() => inputRef.current?.focus(), 0);
                             }
                         }}
-                        className={`w-full bg-black/40 backdrop-blur-sm border rounded-2xl p-4 flex justify-between items-center cursor-pointer text-sm transition-all ${isOpen ? 'border-amber-500/50 shadow-[0_0_15px_rgba(245,158,11,0.15)] ring-1 ring-amber-500/30' : 'border-white/10 hover:border-white/20 hover:bg-black/50'}`}
+                        className={`w-full bg-black/40 backdrop-blur-sm border rounded-xl p-4 flex justify-between items-center cursor-pointer text-sm transition-all ${isOpen ? 'border-amber-500/50' : 'border-white/10 hover:border-white/20 hover:bg-white/5'}`}
                     >
                         <span className={`truncate ${!value ? 'text-zinc-600' : 'text-zinc-200'}`}>
                             {value ? getLabel(value) : placeholder}
@@ -364,14 +364,14 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
 };
 
 const SliderField = ({ label, value, onChange, min, max, icon, tooltip }: { label: string, value: number, onChange: (val: number) => void, min: number, max: number, icon: React.ReactNode, tooltip?: string }) => (
-    <div className="space-y-4 group p-4 rounded-2xl border border-white/5 bg-black/20 hover:bg-black/40 transition-colors">
+    <div className="space-y-4 group p-4 rounded-xl border border-white/10 bg-black/20 hover:bg-white/5 transition-colors">
         <label className="text-sm font-medium text-zinc-300 flex items-center justify-between">
             <span className="flex items-center gap-2">
                 {icon} {label}
                 {tooltip && (
                     <div className="relative group/tooltip">
                         <Info size={14} className="text-zinc-500 hover:text-zinc-300 cursor-help transition-colors" />
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-zinc-900 border border-white/10 text-zinc-200 text-xs rounded-xl shadow-xl opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10 backdrop-blur-md">
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-zinc-900 border border-white/10 text-zinc-200 text-xs rounded-xl opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10 backdrop-blur-md">
                             {tooltip}
                         </div>
                     </div>
@@ -383,7 +383,7 @@ const SliderField = ({ label, value, onChange, min, max, icon, tooltip }: { labe
             <input
                 type="range" min={min} max={max} value={value}
                 onChange={(e) => onChange(parseInt(e.target.value))}
-                className="w-full h-1.5 bg-zinc-800 rounded-full appearance-none cursor-pointer accent-amber-500 hover:accent-amber-400 transition-all"
+                className="w-full h-1.5 bg-zinc-800 rounded-full appearance-none cursor-pointer accent-amber-500 transition-all"
             />
             <div className="absolute -bottom-4 left-0 right-0 flex justify-between text-[10px] text-zinc-600 font-mono"><span>{min}</span><span>{max}</span></div>
         </div>
@@ -1021,15 +1021,11 @@ export function PromptForm() {
             )}
 
             {/* ✨ Quick Start Presets - Prominent Section */}
-            <div className="glass-panel border-amber-500/10 rounded-3xl p-6 shadow-2xl relative overflow-hidden group">
-                {/* Decorative background elements */}
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-transparent pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute -top-24 -right-24 w-64 h-64 bg-amber-500/5 blur-[80px] rounded-full pointer-events-none"></div>
-
+            <div className="glass-panel border-amber-500/10 rounded-xl p-6 relative overflow-hidden">
                 {/* Header */}
                 <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                     <div className="flex items-center gap-3">
-                        <div className="bg-gradient-to-br from-amber-400 to-orange-600 p-2.5 rounded-2xl shadow-lg shadow-amber-500/20 ring-1 ring-white/20">
+                        <div className="bg-gradient-to-br from-amber-400 to-orange-600 p-2.5 rounded-xl">
                             <Layers size={20} className="text-black" />
                         </div>
                         <div>
@@ -1070,31 +1066,31 @@ export function PromptForm() {
                     <button
                         onClick={() => setPresetCategory('common')}
                         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${presetCategory === 'common'
-                            ? 'bg-emerald-500/20 text-emerald-400 shadow-lg shadow-emerald-500/10 ring-1 ring-emerald-500/20'
+                            ? 'bg-emerald-500/20 text-emerald-400'
                             : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
                             }`}
                     >
-                        <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'common' ? 'bg-emerald-400 shadow-[0_0_10px_currentColor]' : 'bg-emerald-900'}`} />
+                        <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'common' ? 'bg-emerald-400' : 'bg-emerald-900'}`} />
                         {t.form.presets.common}
                     </button>
                     <button
                         onClick={() => setPresetCategory('creative')}
                         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${presetCategory === 'creative'
-                            ? 'bg-purple-500/20 text-purple-400 shadow-lg shadow-purple-500/10 ring-1 ring-purple-500/20'
+                            ? 'bg-purple-500/20 text-purple-400'
                             : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
                             }`}
                     >
-                        <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'creative' ? 'bg-purple-400 shadow-[0_0_10px_currentColor]' : 'bg-purple-900'}`} />
+                        <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'creative' ? 'bg-purple-400' : 'bg-purple-900'}`} />
                         {t.form.presets.creative}
                     </button>
                     <button
                         onClick={() => setPresetCategory('utility')}
                         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${presetCategory === 'utility'
-                            ? 'bg-cyan-500/20 text-cyan-400 shadow-lg shadow-cyan-500/10 ring-1 ring-cyan-500/20'
+                            ? 'bg-cyan-500/20 text-cyan-400'
                             : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
                             }`}
                     >
-                        <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'utility' ? 'bg-cyan-400 shadow-[0_0_10px_currentColor]' : 'bg-cyan-900'}`} />
+                        <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'utility' ? 'bg-cyan-400' : 'bg-cyan-900'}`} />
                         {t.form.presets.utility}
                     </button>
                 </div>
@@ -1126,11 +1122,11 @@ export function PromptForm() {
                                     <button
                                         key={preset.id}
                                         onClick={() => applyPreset(preset)}
-                                        className={`flex-shrink-0 group flex flex-col items-center gap-3 px-5 py-5 rounded-2xl border bg-gradient-to-br ${gradientClass} transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-2xl min-w-[150px] relative overflow-hidden`}
+                                        className={`flex-shrink-0 group flex flex-col items-center gap-3 px-5 py-5 rounded-xl border bg-gradient-to-br ${gradientClass} transition-all duration-300 active:scale-[0.98] min-w-[150px] relative overflow-hidden`}
                                         title={presetTranslation?.desc || preset.id}
                                     >
                                         <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                        <span className={`text-3xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg ${categoryColorText}`}>{preset.icon}</span>
+                                        <span className={`text-3xl transition-transform duration-300 ${categoryColorText}`}>{preset.icon}</span>
                                         <div className="text-center relative z-10">
                                             <div className={`text-sm font-bold text-zinc-100 group-hover:text-white transition-colors`}>
                                                 {presetTranslation?.name || preset.id}
@@ -1167,7 +1163,7 @@ export function PromptForm() {
                     <button
                         onClick={() => setShowPreview(!showPreview)}
                         className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all text-sm font-medium ${showPreview
-                            ? 'bg-green-500/10 border-green-500/30 text-green-400 shadow-lg shadow-green-500/10'
+                            ? 'bg-green-500/10 border-green-500/30 text-green-400'
                             : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-white hover:border-zinc-700'
                             }`}
                     >
@@ -1236,7 +1232,7 @@ export function PromptForm() {
 
             {/* Live Preview Panel */}
             {showPreview && (
-                <div className="animate-in fade-in slide-in-from-top-2 duration-300 bg-gradient-to-r from-zinc-900/90 to-zinc-950/90 border border-zinc-800 rounded-2xl p-4 backdrop-blur-sm">
+                <div className="animate-in fade-in slide-in-from-top-2 duration-300 bg-zinc-900/90 border border-zinc-800 rounded-xl p-4 backdrop-blur-sm">
                     <div className="flex items-center gap-2 mb-2">
                         <Eye size={14} className="text-green-400" />
                         <span className="text-xs font-bold text-green-400 uppercase tracking-wide">Live Preview</span>
@@ -1246,11 +1242,9 @@ export function PromptForm() {
             )}
 
             {/* Main Card */}
-            <div className="glass-panel rounded-3xl overflow-hidden flex flex-col min-h-[600px] shadow-2xl border border-white/5 relative">
-                <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-amber-500/0 via-amber-500/50 to-amber-500/0 opacity-50"></div>
-
+            <div className="glass-panel rounded-xl overflow-hidden flex flex-col min-h-[600px] border border-white/5 relative">
                 {/* Wizard Header (Steps) */}
-                <div className="bg-black/40 border-b border-white/5 p-6 md:p-8 backdrop-blur-md">
+                <div className="bg-black/20 border-b border-white/5 p-6 md:p-8 backdrop-blur-md">
                     <div className="flex justify-between items-center mb-8">
                         <div className="space-y-1">
                             <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-3">
@@ -1274,7 +1268,7 @@ export function PromptForm() {
                                     className={`relative flex-1 group transition-all duration-300 ${isActive ? 'scale-105' : 'hover:scale-[1.02]'}`}
                                 >
                                     <div className={`flex items-center justify-center gap-2 py-3 px-3 rounded-xl border transition-all duration-300 ${isActive
-                                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.15)] ring-1 ring-amber-500/20'
+                                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-400'
                                         : isCompleted
                                             ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400'
                                             : 'bg-black/20 border-white/5 text-zinc-600 hover:border-white/10 hover:text-zinc-400'
@@ -1285,7 +1279,7 @@ export function PromptForm() {
                                         </span>
                                         <span className="text-xs font-medium hidden md:inline truncate tracking-wide">{s.title}</span>
                                         {fieldCount > 0 && (
-                                            <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold ${isActive ? 'bg-amber-500/20 text-amber-300 border border-amber-500/20' : 'bg-white/5 text-zinc-500 border border-white/5'
+                                            <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold ${isActive ? 'bg-amber-500/20 text-amber-300' : 'bg-white/5 text-zinc-500'
                                                 }`}>
                                                 {fieldCount}
                                             </span>
@@ -1301,7 +1295,7 @@ export function PromptForm() {
                         })}
                     </div>
                     {/* Keyboard hint */}
-                    <p className="text-[10px] text-zinc-600 text-center mt-4 hidden md:block opacity-60 hover:opacity-100 transition-opacity">{t.form.keyboardHint}</p>
+                    <p className="text-[10px] text-zinc-600 text-center mt-4 hidden md:block">{t.form.keyboardHint}</p>
                 </div>
 
                 {/* Wizard Body */}
@@ -1323,7 +1317,7 @@ export function PromptForm() {
                         {/* Always show Generate Button */}
                         <button
                             onClick={handleGenerate}
-                            className="px-8 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-600 hover:from-amber-300 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 shadow-[0_0_20px_-5px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_-5px_rgba(245,158,11,0.6)] hover:scale-[1.02] active:scale-[0.98] order-last md:order-none"
+                            className="px-8 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-600 hover:from-amber-300 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] order-last md:order-none"
                         >
                             <Wand2 size={18} /> {t.form.navigation.finish}
                         </button>
@@ -1331,7 +1325,7 @@ export function PromptForm() {
                         {currentStep < 5 && (
                             <button
                                 onClick={() => setCurrentStep(prev => Math.min(5, prev + 1))}
-                                className="px-6 py-3 rounded-xl bg-white text-black hover:bg-zinc-200 font-bold transition-all flex items-center gap-2 shadow-[0_0_20px_-5px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_-5px_rgba(255,255,255,0.4)]"
+                                className="px-6 py-3 rounded-xl bg-white text-black hover:bg-zinc-200 font-bold transition-all flex items-center gap-2"
                             >
                                 {t.form.navigation.next} {isRTL ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
                             </button>
@@ -1354,8 +1348,7 @@ export function PromptForm() {
                             {generated.length} / 1000
                         </span>
                     </div>
-                    <div className="bg-black/40 border border-white/10 rounded-3xl p-8 relative group shadow-2xl backdrop-blur-md">
-                        <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-amber-500/0 via-amber-500/50 to-amber-500/0 opacity-30"></div>
+                    <div className="bg-black/40 border border-white/10 rounded-xl p-8 relative group backdrop-blur-md">
                         <p className="text-sm md:text-base text-zinc-200 font-mono whitespace-pre-wrap leading-relaxed break-words pe-20 selection:bg-amber-500/30 selection:text-amber-100">
                             {generated}
                         </p>
@@ -1363,24 +1356,24 @@ export function PromptForm() {
                         <div className="absolute top-6 end-6 flex flex-col gap-2">
                             <button
                                 onClick={handleCopy}
-                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all flex items-center gap-2 backdrop-blur-md group/btn"
+                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all flex items-center gap-2 backdrop-blur-md"
                                 title={t.form.copy}
                             >
-                                {copied ? <Check size={16} className="text-emerald-400" /> : <IconCopy className="group-hover/btn:scale-110 transition-transform" />}
+                                {copied ? <Check size={16} className="text-emerald-400" /> : <IconCopy />}
                             </button>
                             <button
                                 onClick={handleDownload}
-                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all backdrop-blur-md group/btn"
+                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all backdrop-blur-md"
                                 title={t.form.actions.download}
                             >
-                                <Download size={16} className="group-hover/btn:scale-110 transition-transform" />
+                                <Download size={16} />
                             </button>
                             <button
                                 onClick={handleShare}
-                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all backdrop-blur-md group/btn"
+                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all backdrop-blur-md"
                                 title={t.form.actions.share}
                             >
-                                <Share2 size={16} className="group-hover/btn:scale-110 transition-transform" />
+                                <Share2 size={16} />
                             </button>
                         </div>
                     </div>
