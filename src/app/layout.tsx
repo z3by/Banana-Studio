@@ -91,11 +91,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Ambient Background globs */}
+        {/* Subtle Background Gradient */}
         <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-amber-600/10 rounded-full blur-[120px]" />
-          <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-blue-900/10 rounded-full blur-[100px]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[40%] bg-amber-500/5 rounded-full blur-[120px]" />
         </div>
 
         <LanguageProvider>
@@ -103,8 +101,8 @@ export default function RootLayout({
           <main className="flex-1 w-full max-w-5xl mx-auto px-4 md:px-8 py-8 md:py-12 relative z-10">
             {children}
           </main>
-          <footer className="py-8 text-center text-zinc-600 text-sm relative z-10">
-            Made with <span className="text-yellow-500">🍌</span> By <Link href="https://z3by.com" target="_blank" className="text-zinc-400 font-medium">Ahmad Mostafa</Link>
+          <footer className="py-6 text-center text-zinc-600 text-xs relative z-10">
+            Made with 🍌 by <Link href="https://z3by.com" target="_blank" className="text-zinc-500 hover:text-zinc-400 transition-colors">Ahmad Mostafa</Link>
           </footer>
         </LanguageProvider>
       </body>
