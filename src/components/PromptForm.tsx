@@ -523,9 +523,9 @@ export function PromptForm() {
             // Arrow key navigation (only when not in input)
             if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
 
-            if (e.key === 'ArrowRight' && !isRTL || e.key === 'ArrowLeft' && isRTL) {
+            if ((e.key === 'ArrowRight' && !isRTL) || (e.key === 'ArrowLeft' && isRTL)) {
                 setCurrentStep(prev => Math.min(5, prev + 1));
-            } else if (e.key === 'ArrowLeft' && !isRTL || e.key === 'ArrowRight' && isRTL) {
+            } else if ((e.key === 'ArrowLeft' && !isRTL) || (e.key === 'ArrowRight' && isRTL)) {
                 setCurrentStep(prev => Math.max(1, prev - 1));
             }
         };
@@ -658,12 +658,17 @@ export function PromptForm() {
         }, 100);
     };
 
-    const handleCopy = () => {
+    const handleCopy = async () => {
         if (!generated) return;
-        navigator.clipboard.writeText(generated);
-        setCopied(true);
-        showToastMessage('📋 Copied to clipboard!');
-        setTimeout(() => setCopied(false), 2000);
+        try {
+            await navigator.clipboard.writeText(generated);
+            setCopied(true);
+            showToastMessage('📋 Copied to clipboard!');
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            showToastMessage('❌ Failed to copy to clipboard');
+            console.error('Clipboard error:', err);
+        }
     };
 
     const handleReset = () => {
@@ -709,8 +714,13 @@ export function PromptForm() {
         }
 
         // Fall back to copying link
-        await navigator.clipboard.writeText(shareUrl);
-        showToastMessage(t.form.shareCopied);
+        try {
+            await navigator.clipboard.writeText(shareUrl);
+            showToastMessage(t.form.shareCopied);
+        } catch (err) {
+            showToastMessage('❌ Failed to copy share link');
+            console.error('Clipboard error:', err);
+        }
     };
 
     // Reset only current step fields
@@ -789,7 +799,10 @@ export function PromptForm() {
         addToHistory(result);
 
         // Auto-copy to clipboard
-        navigator.clipboard.writeText(result);
+        navigator.clipboard.writeText(result).catch((err) => {
+            console.error('Clipboard error:', err);
+            // Don't show error message here as preset was already applied successfully
+        });
 
         // Track recent preset usage
         const newRecent = [preset.id, ...recentPresets.filter(id => id !== preset.id)].slice(0, 10);
