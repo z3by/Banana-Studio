@@ -65,8 +65,29 @@ body {
   50% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.4); }
 }
 
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .glow-pulse {
   animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
 }
 
 /* Button Hover Effects */
@@ -89,6 +110,22 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Focus Visible Styles */
+*:focus-visible {
+  outline: 2px solid rgba(251, 191, 36, 0.6);
+  outline-offset: 2px;
+}
+
+/* Improved Card Hover */
+.preset-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.preset-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px -10px rgba(251, 191, 36, 0.2);
 }
 
 /* Support for users who prefer reduced motion */
@@ -114,14 +151,18 @@ body {
 
 .dark-scrollbar::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
 }
 
 .dark-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(251, 191, 36, 0.3);
   border-radius: 3px;
 }
 
 .dark-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(251, 191, 36, 0.5);
+}
+
+/* Toast Notification Styles */
+.toast-notification {
+  animation: slide-down 0.3s ease-out;
 }
