@@ -87,8 +87,10 @@ export default function RootLayout({
         suppressHydrationWarning
         className="antialiased min-h-screen flex flex-col relative"
       >
+        {/* JSON-LD structured data for SEO */}
         <script
           type="application/ld+json"
+          // Safe: jsonLd is a static object defined above, not user input
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {/* Subtle Background Gradient */}

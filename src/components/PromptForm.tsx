@@ -55,6 +55,14 @@ import {
     Star
 } from 'lucide-react';
 
+// --- Constants ---
+const DROPDOWN_MAX_HEIGHT = 240; // max-h-60 = 15rem = 240px
+const DROPDOWN_SPACING = 8; // pixels
+const DROPDOWN_MIN_MARGIN = 16; // pixels
+const TOAST_DURATION = 2000; // milliseconds
+const MAX_HISTORY_ITEMS = 10;
+const MAX_RECENT_PRESETS = 10;
+
 // --- Icons ---
 const IconCopy = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
@@ -82,7 +90,7 @@ const useDropdownPosition = (isOpen: boolean, triggerRef: React.RefObject<HTMLEl
                 const rect = triggerRef.current.getBoundingClientRect();
                 const viewportHeight = window.innerHeight;
                 const spaceBelow = viewportHeight - rect.bottom;
-                const dropdownHeight = 240; // max-h-60 = 15rem = 240px
+                const dropdownHeight = DROPDOWN_MAX_HEIGHT;
 
                 const style: React.CSSProperties = {
                     position: 'fixed',
@@ -91,13 +99,13 @@ const useDropdownPosition = (isOpen: boolean, triggerRef: React.RefObject<HTMLEl
                 };
 
                 if (spaceBelow < dropdownHeight && rect.top > dropdownHeight) {
-                    style.bottom = viewportHeight - rect.top + 8;
+                    style.bottom = viewportHeight - rect.top + DROPDOWN_SPACING;
                     style.top = 'auto';
-                    style.maxHeight = Math.min(dropdownHeight, rect.top - 16);
+                    style.maxHeight = Math.min(dropdownHeight, rect.top - DROPDOWN_MIN_MARGIN);
                 } else {
-                    style.top = rect.bottom + 8;
+                    style.top = rect.bottom + DROPDOWN_SPACING;
                     style.bottom = 'auto';
-                    style.maxHeight = Math.min(dropdownHeight, spaceBelow - 16);
+                    style.maxHeight = Math.min(dropdownHeight, spaceBelow - DROPDOWN_MIN_MARGIN);
                 }
                 setDropdownStyle(style);
             }
@@ -627,22 +635,31 @@ export function PromptForm() {
     };
 
     // Save History
+    // Save History
     const addToHistory = (prompt: string) => {
         const newEntry = { prompt, timestamp: Date.now() };
-        const newHistory = [newEntry, ...history].slice(0, 10); // Keep last 10
+        const newHistory = [newEntry, ...history].slice(0, MAX_HISTORY_ITEMS);
         setHistory(newHistory);
-        localStorage.setItem('prompt_history_v2', JSON.stringify(newHistory));
+        try {
+            localStorage.setItem('prompt_history_v2', JSON.stringify(newHistory));
+        } catch {
+            // Failed to save to localStorage - storage might be full or disabled
+        }
     };
 
     const clearHistory = () => {
         setHistory([]);
-        localStorage.removeItem('prompt_history_v2');
+        try {
+            localStorage.removeItem('prompt_history_v2');
+        } catch {
+            // Failed to clear localStorage
+        }
     };
 
     // Toast helper
     const showToastMessage = (message: string) => {
         setShowToast(message);
-        setTimeout(() => setShowToast(null), 2500);
+        setTimeout(() => setShowToast(null), TOAST_DURATION);
     };
 
 
@@ -671,10 +688,9 @@ export function PromptForm() {
             await navigator.clipboard.writeText(generated);
             setCopied(true);
             showToastMessage('📋 Copied to clipboard!');
-            setTimeout(() => setCopied(false), 2000);
-        } catch (err) {
+            setTimeout(() => setCopied(false), TOAST_DURATION);
+        } catch {
             showToastMessage('❌ Failed to copy to clipboard');
-            console.error('Clipboard error:', err);
         }
     };
 
@@ -724,9 +740,8 @@ export function PromptForm() {
         try {
             await navigator.clipboard.writeText(shareUrl);
             showToastMessage(t.form.shareCopied);
-        } catch (err) {
+        } catch {
             showToastMessage('❌ Failed to copy share link');
-            console.error('Clipboard error:', err);
         }
     };
 
@@ -806,16 +821,19 @@ export function PromptForm() {
         addToHistory(result);
 
         // Auto-copy to clipboard
-        navigator.clipboard.writeText(result).catch((err) => {
-            console.error('Clipboard error:', err);
+        navigator.clipboard.writeText(result).catch(() => {
             // Don't show error message here as preset was already applied successfully
         });
 
         // Track recent preset usage
-        const newRecent = [preset.id, ...recentPresets.filter(id => id !== preset.id)].slice(0, 10);
+        const newRecent = [preset.id, ...recentPresets.filter(id => id !== preset.id)].slice(0, MAX_RECENT_PRESETS);
         setRecentPresets(newRecent);
         if (typeof window !== 'undefined') {
-            localStorage.setItem('recentPresets', JSON.stringify(newRecent));
+            try {
+                localStorage.setItem('recentPresets', JSON.stringify(newRecent));
+            } catch {
+                // Failed to save to localStorage
+            }
         }
 
         // Get preset translation
@@ -830,8 +848,8 @@ export function PromptForm() {
             resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 100);
 
-        // Reset copied state after 2s
-        setTimeout(() => setCopied(false), 2000);
+        // Reset copied state
+        setTimeout(() => setCopied(false), TOAST_DURATION);
     };
 
     // Toggle favorite preset
@@ -842,7 +860,11 @@ export function PromptForm() {
             : [...favoritePresets, presetId];
         setFavoritePresets(newFavorites);
         if (typeof window !== 'undefined') {
-            localStorage.setItem('favoritePresets', JSON.stringify(newFavorites));
+            try {
+                localStorage.setItem('favoritePresets', JSON.stringify(newFavorites));
+            } catch {
+                // Failed to save to localStorage
+            }
         }
     };
 
@@ -1139,6 +1161,7 @@ export function PromptForm() {
                                 <button
                                     onClick={(e) => { e.stopPropagation(); setPresetSearch(''); }}
                                     className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
+                                    aria-label="Clear search"
                                 >
                                     ×
                                 </button>
@@ -1330,7 +1353,12 @@ export function PromptForm() {
                 <div className="flex items-center gap-2">
                     {/* History Toggle */}
                     <div className="relative" ref={historyRef}>
-                        <button onClick={() => setShowHistory(!showHistory)} className="flex items-center gap-2 text-zinc-400 hover:text-white px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all text-sm font-medium">
+                        <button 
+                            onClick={() => setShowHistory(!showHistory)} 
+                            className="flex items-center gap-2 text-zinc-400 hover:text-white px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all text-sm font-medium"
+                            aria-label={t.form.actions.history}
+                            aria-expanded={showHistory}
+                        >
                             <History size={16} />
                             <span className="hidden sm:inline">{t.form.actions.history}</span>
                             {history.length > 0 && <span className="bg-yellow-500/20 text-yellow-500 text-[10px] px-1.5 py-0.5 rounded-full font-bold">{history.length}</span>}
@@ -1339,7 +1367,11 @@ export function PromptForm() {
                             <div className="absolute right-0 top-full mt-2 w-80 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-2">
                                 <div className="flex justify-between items-center mb-3">
                                     <h4 className="text-sm font-bold text-zinc-300">{t.form.history.title}</h4>
-                                    {history.length > 0 && <button onClick={clearHistory} className="text-xs text-red-500 hover:text-red-400 flex items-center gap-1"><Trash2 size={12} /> {t.form.history.clear}</button>}
+                                    {history.length > 0 && <button 
+                                        onClick={clearHistory} 
+                                        className="text-xs text-red-500 hover:text-red-400 flex items-center gap-1"
+                                        aria-label={t.form.history.clear}
+                                    ><Trash2 size={12} /> {t.form.history.clear}</button>}
                                 </div>
                                 {history.length === 0 ? (
                                     <p className="text-xs text-zinc-600 italic">{t.form.history.empty}</p>
@@ -1362,7 +1394,11 @@ export function PromptForm() {
                         )}
                     </div>
 
-                    <button onClick={handleRandomize} className="flex items-center gap-2 text-purple-400 hover:text-purple-300 px-4 py-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20 hover:border-purple-500/30 transition-all text-sm font-medium">
+                    <button 
+                        onClick={handleRandomize} 
+                        className="flex items-center gap-2 text-purple-400 hover:text-purple-300 px-4 py-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20 hover:border-purple-500/30 transition-all text-sm font-medium"
+                        aria-label={t.form.actions.randomize}
+                    >
                         <Dices size={16} /> <span className="hidden sm:inline">{t.form.actions.randomize}</span>
                     </button>
 
@@ -1370,6 +1406,7 @@ export function PromptForm() {
                         onClick={handleResetStep}
                         className="flex items-center gap-2 text-blue-400 hover:text-blue-300 px-4 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 hover:border-blue-500/30 transition-all text-sm font-medium"
                         title={t.form.actions.resetStep}
+                        aria-label={t.form.actions.resetStep}
                     >
                         <RotateCcw size={16} /> <span className="hidden md:inline">{t.form.actions.resetStep}</span>
                     </button>
