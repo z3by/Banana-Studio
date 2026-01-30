@@ -93,7 +93,8 @@ export default function RootLayout({
         />
         {/* Subtle Background Gradient */}
         <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[40%] bg-amber-500/5 rounded-full blur-[120px]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[40%] bg-amber-500/5 rounded-full blur-[120px] animate-pulse [animation-duration:4s]" />
+          <div className="absolute bottom-0 right-0 w-[40%] h-[30%] bg-orange-500/3 rounded-full blur-[100px]" />
         </div>
 
         <LanguageProvider>

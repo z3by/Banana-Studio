@@ -209,7 +209,7 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
                 <div
                     ref={triggerRef}
                     onClick={() => { setIsOpen(true); inputRef.current?.focus(); }}
-                    className={`w-full bg-black/40 backdrop-blur-sm border rounded-xl p-2 min-h-[52px] flex flex-wrap gap-2 cursor-text text-sm transition-all ${isOpen ? 'border-amber-500/50' : 'border-white/10 hover:border-white/20 hover:bg-white/5'}`}
+                    className={`w-full bg-black/40 backdrop-blur-sm border rounded-xl p-2 min-h-[52px] flex flex-wrap gap-2 cursor-text text-sm transition-all duration-200 ${isOpen ? 'border-amber-500/50 ring-2 ring-amber-500/20 shadow-lg shadow-amber-500/10' : 'border-white/10 hover:border-white/20 hover:bg-white/5'}`}
                 >
                     {value.map((val) => (
                         <span key={val} className="bg-amber-500/10 text-amber-200 px-3 py-1 rounded-xl text-xs flex items-center gap-1 border border-amber-500/20 animate-in fade-in zoom-in-95 duration-200">
@@ -332,7 +332,7 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
                 <div className="relative">
                     <input
                         type="text"
-                        className="w-full bg-black/40 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-zinc-100 focus:outline-none focus:border-amber-500/50 appearance-none text-sm transition-all placeholder:text-zinc-600"
+                        className="w-full bg-black/40 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-zinc-100 focus:outline-none focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20 appearance-none text-sm transition-all duration-200 placeholder:text-zinc-600"
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
                         placeholder="Type anything..."
@@ -350,7 +350,7 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
                                 setTimeout(() => inputRef.current?.focus(), 0);
                             }
                         }}
-                        className={`w-full bg-black/40 backdrop-blur-sm border rounded-xl p-4 flex justify-between items-center cursor-pointer text-sm transition-all ${isOpen ? 'border-amber-500/50' : 'border-white/10 hover:border-white/20 hover:bg-white/5'}`}
+                        className={`w-full bg-black/40 backdrop-blur-sm border rounded-xl p-4 flex justify-between items-center cursor-pointer text-sm transition-all duration-200 ${isOpen ? 'border-amber-500/50 ring-2 ring-amber-500/20 shadow-lg shadow-amber-500/10' : 'border-white/10 hover:border-white/20 hover:bg-white/5'}`}
                     >
                         <span className={`truncate ${!value ? 'text-zinc-600' : 'text-zinc-200'}`}>
                             {value ? getLabel(value) : placeholder}
@@ -1101,12 +1101,12 @@ export function PromptForm() {
                             placeholder="Search presets..."
                             value={presetSearch}
                             onChange={(e) => setPresetSearch(e.target.value)}
-                            className="w-full md:w-64 bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/50 focus:bg-black/60 pr-9 transition-all"
+                            className="w-full md:w-64 bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/50 focus:bg-black/60 focus:ring-2 focus:ring-amber-500/20 pr-9 transition-all duration-200"
                         />
                         {presetSearch ? (
                             <button
                                 onClick={() => setPresetSearch('')}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors duration-200 hover:scale-110"
                             >
                                 ×
                             </button>
@@ -1120,8 +1120,8 @@ export function PromptForm() {
                 <div className="relative flex items-center gap-1 mb-6 bg-black/40 border border-white/5 p-1 rounded-xl w-fit backdrop-blur-md overflow-x-auto scrollbar-thin scrollbar-thumb-white/10">
                     <button
                         onClick={() => setPresetCategory('favorites')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'favorites'
-                            ? 'bg-yellow-500/20 text-yellow-400'
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 whitespace-nowrap hover:scale-105 ${presetCategory === 'favorites'
+                            ? 'bg-yellow-500/20 text-yellow-400 shadow-lg shadow-yellow-500/20'
                             : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
                             }`}
                     >
@@ -1133,8 +1133,8 @@ export function PromptForm() {
                     </button>
                     <button
                         onClick={() => setPresetCategory('recent')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'recent'
-                            ? 'bg-blue-500/20 text-blue-400'
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 whitespace-nowrap hover:scale-105 ${presetCategory === 'recent'
+                            ? 'bg-blue-500/20 text-blue-400 shadow-lg shadow-blue-500/20'
                             : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
                             }`}
                     >
@@ -1146,8 +1146,8 @@ export function PromptForm() {
                     </button>
                     <button
                         onClick={() => setPresetCategory('common')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'common'
-                            ? 'bg-emerald-500/20 text-emerald-400'
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 whitespace-nowrap hover:scale-105 ${presetCategory === 'common'
+                            ? 'bg-emerald-500/20 text-emerald-400 shadow-lg shadow-emerald-500/20'
                             : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
                             }`}
                     >
@@ -1156,8 +1156,8 @@ export function PromptForm() {
                     </button>
                     <button
                         onClick={() => setPresetCategory('creative')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'creative'
-                            ? 'bg-purple-500/20 text-purple-400'
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 whitespace-nowrap hover:scale-105 ${presetCategory === 'creative'
+                            ? 'bg-purple-500/20 text-purple-400 shadow-lg shadow-purple-500/20'
                             : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
                             }`}
                     >
@@ -1166,8 +1166,8 @@ export function PromptForm() {
                     </button>
                     <button
                         onClick={() => setPresetCategory('utility')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'utility'
-                            ? 'bg-cyan-500/20 text-cyan-400'
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 whitespace-nowrap hover:scale-105 ${presetCategory === 'utility'
+                            ? 'bg-cyan-500/20 text-cyan-400 shadow-lg shadow-cyan-500/20'
                             : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
                             }`}
                     >
@@ -1218,25 +1218,25 @@ export function PromptForm() {
                                 return (
                                     <div
                                         key={preset.id}
-                                        className={`flex-shrink-0 group flex flex-col items-center gap-3 px-5 py-5 rounded-xl border bg-gradient-to-br ${gradientClass} transition-all duration-300 min-w-[150px] relative overflow-hidden cursor-pointer active:scale-[0.98]`}
+                                        className={`flex-shrink-0 group flex flex-col items-center gap-3 px-5 py-5 rounded-xl border bg-gradient-to-br ${gradientClass} transition-all duration-300 min-w-[150px] relative overflow-hidden cursor-pointer hover:scale-105 hover:shadow-2xl active:scale-[0.98]`}
                                         title={presetTranslation?.desc || preset.id}
                                         onClick={() => applyPreset(preset)}
                                     >
-                                        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                         {/* Favorite Star Button */}
                                         <button
                                             onClick={(e) => toggleFavorite(preset.id, e)}
-                                            className="absolute top-2 right-2 z-20 p-1.5 rounded-lg bg-black/40 hover:bg-black/60 transition-all opacity-0 group-hover:opacity-100"
+                                            className="absolute top-2 right-2 z-20 p-1.5 rounded-lg bg-black/40 hover:bg-black/60 transition-all duration-200 opacity-0 group-hover:opacity-100 hover:scale-110"
                                             title={favoritePresets.includes(preset.id) ? 'Remove from favorites' : 'Add to favorites'}
                                         >
-                                            <Star size={14} className={`transition-colors ${favoritePresets.includes(preset.id) ? 'fill-yellow-400 text-yellow-400' : 'text-zinc-400 hover:text-yellow-400'}`} />
+                                            <Star size={14} className={`transition-all duration-200 ${favoritePresets.includes(preset.id) ? 'fill-yellow-400 text-yellow-400' : 'text-zinc-400 hover:text-yellow-400'}`} />
                                         </button>
-                                        <span className={`text-3xl transition-transform duration-300 ${categoryColorText}`}>{preset.icon}</span>
+                                        <span className={`text-3xl transition-all duration-300 group-hover:scale-110 ${categoryColorText}`}>{preset.icon}</span>
                                         <div className="text-center relative z-10">
-                                            <div className={`text-sm font-bold text-zinc-100 group-hover:text-white transition-colors`}>
+                                            <div className={`text-sm font-bold text-zinc-100 group-hover:text-white transition-colors duration-200`}>
                                                 {presetTranslation?.name || preset.id}
                                             </div>
-                                            <div className="text-[10px] text-zinc-500 group-hover:text-zinc-400 transition-colors mt-1 line-clamp-2 max-w-[130px] leading-relaxed">
+                                            <div className="text-[10px] text-zinc-500 group-hover:text-zinc-400 transition-colors duration-200 mt-1 line-clamp-2 max-w-[130px] leading-relaxed">
                                                 {presetTranslation?.desc || ''}
                                             </div>
                                         </div>
@@ -1283,8 +1283,8 @@ export function PromptForm() {
                     {/* Live Preview Toggle */}
                     <button
                         onClick={() => setShowPreview(!showPreview)}
-                        className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all text-sm font-medium ${showPreview
-                            ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                        className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all duration-200 text-sm font-medium hover:scale-105 active:scale-95 ${showPreview
+                            ? 'bg-green-500/10 border-green-500/30 text-green-400 shadow-lg shadow-green-500/20'
                             : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-white hover:border-zinc-700'
                             }`}
                     >
@@ -1297,7 +1297,7 @@ export function PromptForm() {
                 <div className="flex items-center gap-2">
                     {/* History Toggle */}
                     <div className="relative" ref={historyRef}>
-                        <button onClick={() => setShowHistory(!showHistory)} className="flex items-center gap-2 text-zinc-400 hover:text-white px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all text-sm font-medium">
+                        <button onClick={() => setShowHistory(!showHistory)} className="flex items-center gap-2 text-zinc-400 hover:text-white px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all duration-200 text-sm font-medium hover:scale-105 active:scale-95">
                             <History size={16} />
                             <span className="hidden sm:inline">{t.form.actions.history}</span>
                             {history.length > 0 && <span className="bg-yellow-500/20 text-yellow-500 text-[10px] px-1.5 py-0.5 rounded-full font-bold">{history.length}</span>}
@@ -1329,13 +1329,13 @@ export function PromptForm() {
                         )}
                     </div>
 
-                    <button onClick={handleRandomize} className="flex items-center gap-2 text-purple-400 hover:text-purple-300 px-4 py-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20 hover:border-purple-500/30 transition-all text-sm font-medium">
+                    <button onClick={handleRandomize} className="flex items-center gap-2 text-purple-400 hover:text-purple-300 px-4 py-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20 hover:border-purple-500/30 transition-all duration-200 text-sm font-medium hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-purple-500/20">
                         <Dices size={16} /> <span className="hidden sm:inline">{t.form.actions.randomize}</span>
                     </button>
 
                     <button
                         onClick={handleResetStep}
-                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 px-4 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 hover:border-blue-500/30 transition-all text-sm font-medium"
+                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 px-4 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 hover:border-blue-500/30 transition-all duration-200 text-sm font-medium hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-blue-500/20"
                         title={t.form.actions.resetStep}
                     >
                         <RotateCcw size={16} /> <span className="hidden md:inline">{t.form.actions.resetStep}</span>
@@ -1363,19 +1363,28 @@ export function PromptForm() {
             )}
 
             {/* Main Card */}
-            <div className="glass-panel rounded-xl overflow-hidden flex flex-col min-h-[600px] border border-white/5 relative">
+            <div className="glass-panel rounded-xl overflow-hidden flex flex-col min-h-[600px] border border-white/5 relative shadow-2xl shadow-black/20">
                 {/* Wizard Header (Steps) */}
-                <div className="bg-black/20 border-b border-white/5 p-6 md:p-8 backdrop-blur-md">
+                <div className="bg-black/20 border-b border-white/5 p-6 md:p-8 backdrop-blur-md shadow-inner">
                     <div className="flex justify-between items-center mb-8">
                         <div className="space-y-1">
                             <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-3">
-                                <span className="p-2 rounded-xl bg-white/5 border border-white/5 text-amber-400 shadow-inner">{steps[currentStep - 1].icon}</span>
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400">{steps[currentStep - 1].title}</span>
+                                <span className="p-2 rounded-xl bg-white/5 border border-white/5 text-amber-400 shadow-inner animate-in zoom-in duration-300">{steps[currentStep - 1].icon}</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400 animate-in slide-in-from-left duration-300">{steps[currentStep - 1].title}</span>
                             </h2>
-                            <p className="text-sm text-zinc-400 ml-1">{steps[currentStep - 1].desc}</p>
+                            <p className="text-sm text-zinc-400 ml-1 animate-in fade-in duration-500">{steps[currentStep - 1].desc}</p>
                         </div>
                         <div className="text-5xl font-black text-white/5 select-none">{currentStep}/5</div>
                     </div>
+                    
+                    {/* Progress bar */}
+                    <div className="mb-6 bg-black/40 rounded-full h-1.5 overflow-hidden">
+                        <div 
+                            className="h-full bg-gradient-to-r from-amber-400 to-orange-500 transition-all duration-500 ease-out shadow-lg shadow-amber-500/50"
+                            style={{ width: `${(currentStep / 5) * 100}%` }}
+                        />
+                    </div>
+                    
                     {/* Clickable Step Indicators */}
                     <div className="flex items-center justify-between gap-2">
                         {steps.map((s, index) => {
@@ -1389,18 +1398,18 @@ export function PromptForm() {
                                     className={`relative flex-1 group transition-all duration-300 ${isActive ? 'scale-105' : 'hover:scale-[1.02]'}`}
                                 >
                                     <div className={`flex items-center justify-center gap-2 py-3 px-3 rounded-xl border transition-all duration-300 ${isActive
-                                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-400'
+                                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-400 shadow-lg shadow-amber-500/20'
                                         : isCompleted
-                                            ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400'
-                                            : 'bg-black/20 border-white/5 text-zinc-600 hover:border-white/10 hover:text-zinc-400'
+                                            ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/10'
+                                            : 'bg-black/20 border-white/5 text-zinc-600 hover:border-white/10 hover:text-zinc-400 hover:bg-white/5'
                                         }`}>
-                                        <span className={`text-xs font-bold ${isActive ? 'text-amber-400' : isCompleted ? 'text-emerald-400' : 'text-zinc-600'
+                                        <span className={`text-xs font-bold transition-all duration-200 ${isActive ? 'text-amber-400 scale-110' : isCompleted ? 'text-emerald-400' : 'text-zinc-600'
                                             }`}>
                                             {isCompleted ? <Check size={14} strokeWidth={3} /> : s.id}
                                         </span>
                                         <span className="text-xs font-medium hidden md:inline truncate tracking-wide">{s.title}</span>
                                         {fieldCount > 0 && (
-                                            <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold ${isActive ? 'bg-amber-500/20 text-amber-300' : 'bg-white/5 text-zinc-500'
+                                            <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold transition-all duration-200 ${isActive ? 'bg-amber-500/20 text-amber-300' : 'bg-white/5 text-zinc-500'
                                                 }`}>
                                                 {fieldCount}
                                             </span>
@@ -1438,7 +1447,7 @@ export function PromptForm() {
                         {/* Always show Generate Button */}
                         <button
                             onClick={handleGenerate}
-                            className="px-8 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-600 hover:from-amber-300 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] order-last md:order-none"
+                            className="px-8 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-600 hover:from-amber-300 hover:to-orange-500 text-black font-bold transition-all duration-200 flex items-center gap-2 hover:scale-105 active:scale-95 shadow-xl shadow-amber-500/30 hover:shadow-2xl hover:shadow-amber-500/40 order-last md:order-none"
                         >
                             <Wand2 size={18} /> {t.form.navigation.finish}
                         </button>
@@ -1446,7 +1455,7 @@ export function PromptForm() {
                         {currentStep < 5 && (
                             <button
                                 onClick={() => setCurrentStep(prev => Math.min(5, prev + 1))}
-                                className="px-6 py-3 rounded-xl bg-white text-black hover:bg-zinc-200 font-bold transition-all flex items-center gap-2"
+                                className="px-6 py-3 rounded-xl bg-white text-black hover:bg-zinc-200 font-bold transition-all duration-200 flex items-center gap-2 hover:scale-105 active:scale-95 shadow-lg"
                             >
                                 {t.form.navigation.next} {isRTL ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
                             </button>
@@ -1461,37 +1470,37 @@ export function PromptForm() {
             {generated && (
                 <div ref={resultRef} className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 scroll-mt-8">
                     <div className="flex justify-between items-center mb-3 px-1">
-                        <label className="text-sm font-medium text-zinc-400 flex items-center gap-2">
-                            <Sparkles size={16} className="text-amber-500" />
+                        <label className="text-sm font-medium text-zinc-400 flex items-center gap-2 animate-in slide-in-from-left duration-300">
+                            <Sparkles size={16} className="text-amber-500 animate-pulse" />
                             {t.form.resultLabel}
                         </label>
-                        <span className="text-xs text-zinc-600 font-mono">
+                        <span className="text-xs text-zinc-600 font-mono animate-in slide-in-from-right duration-300">
                             {generated.length} / 1000
                         </span>
                     </div>
-                    <div className="bg-black/40 border border-white/10 rounded-xl p-8 relative group backdrop-blur-md">
-                        <p className="text-sm md:text-base text-zinc-200 font-mono whitespace-pre-wrap leading-relaxed break-words pe-20 selection:bg-amber-500/30 selection:text-amber-100">
+                    <div className="bg-black/40 border border-white/10 rounded-xl p-8 relative group backdrop-blur-md hover:border-white/20 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                        <p className="text-sm md:text-base text-zinc-200 font-mono whitespace-pre-wrap leading-relaxed break-words pe-20 selection:bg-amber-500/30 selection:text-amber-100 animate-in fade-in duration-700">
                             {generated}
                         </p>
                         {/* Action buttons */}
                         <div className="absolute top-6 end-6 flex flex-col gap-2">
                             <button
                                 onClick={handleCopy}
-                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all flex items-center gap-2 backdrop-blur-md"
+                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all duration-200 flex items-center gap-2 backdrop-blur-md hover:scale-110 active:scale-95 hover:shadow-lg"
                                 title={t.form.copy}
                             >
                                 {copied ? <Check size={16} className="text-emerald-400" /> : <IconCopy />}
                             </button>
                             <button
                                 onClick={handleDownload}
-                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all backdrop-blur-md"
+                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all duration-200 backdrop-blur-md hover:scale-110 active:scale-95 hover:shadow-lg"
                                 title={t.form.actions.download}
                             >
                                 <Download size={16} />
                             </button>
                             <button
                                 onClick={handleShare}
-                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all backdrop-blur-md"
+                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all duration-200 backdrop-blur-md hover:scale-110 active:scale-95 hover:shadow-lg"
                                 title={t.form.actions.share}
                             >
                                 <Share2 size={16} />
@@ -1503,7 +1512,7 @@ export function PromptForm() {
             {/* Floating Mobile Generate Button */}
             <button
                 onClick={handleGenerate}
-                className="fixed bottom-6 right-6 md:hidden z-50 bg-gradient-to-r from-amber-500 to-orange-600 text-black p-4 rounded-full shadow-2xl shadow-amber-500/30 animate-in fade-in zoom-in duration-300 ring-4 ring-black/50"
+                className="fixed bottom-6 right-6 md:hidden z-50 bg-gradient-to-r from-amber-500 to-orange-600 text-black p-4 rounded-full shadow-2xl shadow-amber-500/40 animate-in fade-in zoom-in duration-300 ring-4 ring-black/50 hover:scale-110 active:scale-95 transition-transform glow-pulse"
                 title={t.form.navigation.finish}
             >
                 <Wand2 size={24} strokeWidth={2.5} />
