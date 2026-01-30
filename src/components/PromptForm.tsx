@@ -477,6 +477,7 @@ export function PromptForm() {
     });
     const [showHistory, setShowHistory] = useState(false);
     const [showPreview, setShowPreview] = useState(false);
+    const [presetsExpanded, setPresetsExpanded] = useState(true);
     const [presetCategory, setPresetCategory] = useState<'common' | 'creative' | 'utility' | 'favorites' | 'recent'>('common');
     const [presetSearch, setPresetSearch] = useState('');
     const [favoritePresets, setFavoritePresets] = useState<string[]>(() => {
@@ -1076,9 +1077,9 @@ export function PromptForm() {
             )}
 
             {/* ✨ Quick Start Presets - Prominent Section */}
-            <div className="glass-panel border-amber-500/10 rounded-xl p-6 relative overflow-hidden">
+            <div className="glass-panel border-amber-500/10 rounded-xl relative overflow-hidden">
                 {/* Header */}
-                <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 pb-4 cursor-pointer hover:bg-white/5 transition-colors" onClick={() => setPresetsExpanded(!presetsExpanded)}>
                     <div className="flex items-center gap-3">
                         <div className="bg-gradient-to-br from-amber-400 to-orange-600 p-2.5 rounded-xl">
                             <Layers size={20} className="text-black" />
@@ -1094,34 +1095,56 @@ export function PromptForm() {
                         </div>
                     </div>
 
-                    {/* Search Input */}
-                    <div className="relative w-full md:w-auto">
-                        <input
-                            type="text"
-                            placeholder="Search presets..."
-                            value={presetSearch}
-                            onChange={(e) => setPresetSearch(e.target.value)}
-                            className="w-full md:w-64 bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/50 focus:bg-black/60 pr-9 transition-all"
-                        />
-                        {presetSearch ? (
-                            <button
-                                onClick={() => setPresetSearch('')}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
-                            >
-                                ×
-                            </button>
+                    {/* Collapse Toggle Button */}
+                    <button 
+                        onClick={(e) => { e.stopPropagation(); setPresetsExpanded(!presetsExpanded); }}
+                        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-black/40 hover:bg-black/60 border border-white/10 hover:border-white/20 transition-all text-sm text-zinc-400 hover:text-white"
+                    >
+                        {presetsExpanded ? (
+                            <>
+                                <ChevronLeft size={16} className="rotate-90" />
+                                <span className="hidden sm:inline">Collapse</span>
+                            </>
                         ) : (
-                            <Sparkles size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600" />
+                            <>
+                                <ChevronRight size={16} className="rotate-90" />
+                                <span className="hidden sm:inline">Expand</span>
+                            </>
                         )}
-                    </div>
+                    </button>
                 </div>
 
-                {/* Category Tabs */}
-                <div className="relative flex items-center gap-1 mb-6 bg-black/40 border border-white/5 p-1 rounded-xl w-fit backdrop-blur-md overflow-x-auto scrollbar-thin scrollbar-thumb-white/10">
-                    <button
-                        onClick={() => setPresetCategory('favorites')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'favorites'
-                            ? 'bg-yellow-500/20 text-yellow-400'
+                {/* Collapsible Content */}
+                {presetsExpanded && (
+                    <div className="px-6 pb-6 animate-in fade-in slide-in-from-top-2 duration-300">
+                        {/* Search Input */}
+                        <div className="relative w-full mb-6">
+                            <input
+                                type="text"
+                                placeholder="Search presets..."
+                                value={presetSearch}
+                                onChange={(e) => setPresetSearch(e.target.value)}
+                                onClick={(e) => e.stopPropagation()}
+                                className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/50 focus:bg-black/60 pr-9 transition-all"
+                            />
+                            {presetSearch ? (
+                                <button
+                                    onClick={(e) => { e.stopPropagation(); setPresetSearch(''); }}
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
+                                >
+                                    ×
+                                </button>
+                            ) : (
+                                <Sparkles size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600" />
+                            )}
+                        </div>
+
+                        {/* Category Tabs */}
+                        <div className="relative flex items-center gap-1 mb-6 bg-black/40 border border-white/5 p-1 rounded-xl w-fit backdrop-blur-md overflow-x-auto scrollbar-thin scrollbar-thumb-white/10">
+                            <button
+                                onClick={() => setPresetCategory('favorites')}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'favorites'
+                                    ? 'bg-yellow-500/20 text-yellow-400'
                             : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
                             }`}
                     >
@@ -1218,7 +1241,7 @@ export function PromptForm() {
                                 return (
                                     <div
                                         key={preset.id}
-                                        className={`flex-shrink-0 group flex flex-col items-center gap-3 px-5 py-5 rounded-xl border bg-gradient-to-br ${gradientClass} transition-all duration-300 min-w-[150px] relative overflow-hidden cursor-pointer active:scale-[0.98]`}
+                                        className={`preset-card flex-shrink-0 group flex flex-col items-center gap-3 px-5 py-5 rounded-xl border bg-gradient-to-br ${gradientClass} transition-all duration-300 min-w-[150px] relative overflow-hidden cursor-pointer shadow-lg hover:shadow-xl`}
                                         title={presetTranslation?.desc || preset.id}
                                         onClick={() => applyPreset(preset)}
                                     >
@@ -1274,6 +1297,8 @@ export function PromptForm() {
                     {/* Fade gradient on right edge */}
                     <div className="absolute right-0 top-0 bottom-4 w-24 bg-gradient-to-l from-black/80 to-transparent pointer-events-none"></div>
                 </div>
+                    </div>
+                )}
             </div>
 
             {/* Toolbar Actions Row */}
@@ -1438,7 +1463,7 @@ export function PromptForm() {
                         {/* Always show Generate Button */}
                         <button
                             onClick={handleGenerate}
-                            className="px-8 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-600 hover:from-amber-300 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] order-last md:order-none"
+                            className="btn-primary px-8 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-600 hover:from-amber-300 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30"
                         >
                             <Wand2 size={18} /> {t.form.navigation.finish}
                         </button>
@@ -1446,7 +1471,7 @@ export function PromptForm() {
                         {currentStep < 5 && (
                             <button
                                 onClick={() => setCurrentStep(prev => Math.min(5, prev + 1))}
-                                className="px-6 py-3 rounded-xl bg-white text-black hover:bg-zinc-200 font-bold transition-all flex items-center gap-2"
+                                className="px-6 py-3 rounded-xl bg-white text-black hover:bg-zinc-200 font-bold transition-all flex items-center gap-2 hover:shadow-lg"
                             >
                                 {t.form.navigation.next} {isRTL ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
                             </button>
