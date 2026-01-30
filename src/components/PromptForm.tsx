@@ -459,6 +459,7 @@ export function PromptForm() {
     const [data, setData] = useState<PromptData>({ ...initialData, addons: [] });
     const [generated, setGenerated] = useState('');
     const [copied, setCopied] = useState(false);
+    const [isGenerating, setIsGenerating] = useState(false);
     const [currentStep, setCurrentStep] = useState(1);
     const [showToast, setShowToast] = useState<string | null>(null);
     const resultRef = useRef<HTMLDivElement>(null);
@@ -648,15 +649,20 @@ export function PromptForm() {
     // --- Logic ---
 
     const handleGenerate = () => {
-        const result = generatePrompt(data);
-        setGenerated(result);
-        setCopied(false);
-        addToHistory(result);
-        showToastMessage('✨ Prompt generated!');
-        // Auto-scroll to result after a brief delay
+        setIsGenerating(true);
+        // Use setTimeout to allow UI to update with loading state
         setTimeout(() => {
-            resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
+            const result = generatePrompt(data);
+            setGenerated(result);
+            setCopied(false);
+            addToHistory(result);
+            setIsGenerating(false);
+            showToastMessage('✨ Prompt generated!');
+            // Auto-scroll to result after a brief delay
+            setTimeout(() => {
+                resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }, 300);
     };
 
     const handleCopy = async () => {
@@ -1068,9 +1074,9 @@ export function PromptForm() {
 
             {/* Toast Notification */}
             {showToast && typeof document !== 'undefined' && createPortal(
-                <div className="fixed top-20 left-1/2 -translate-x-1/2 z-[9999] animate-in fade-in slide-in-from-top-4 duration-300">
-                    <div className="bg-zinc-900 border border-yellow-500/30 px-6 py-3 rounded-2xl shadow-2xl shadow-yellow-500/10 flex items-center gap-3">
-                        <span className="text-sm font-medium text-zinc-100">{showToast}</span>
+                <div className="toast-notification fixed top-20 left-1/2 -translate-x-1/2 z-[9999] animate-in fade-in slide-in-from-top-4 duration-300">
+                    <div className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-md border border-amber-500/40 px-6 py-3 rounded-2xl shadow-2xl shadow-amber-500/20 flex items-center gap-3">
+                        <span className="text-sm font-medium text-white">{showToast}</span>
                     </div>
                 </div>,
                 document.body
@@ -1463,9 +1469,19 @@ export function PromptForm() {
                         {/* Always show Generate Button */}
                         <button
                             onClick={handleGenerate}
-                            className="btn-primary px-8 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-600 hover:from-amber-300 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30"
+                            disabled={isGenerating}
+                            className="btn-primary px-8 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-600 hover:from-amber-300 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
                         >
-                            <Wand2 size={18} /> {t.form.navigation.finish}
+                            {isGenerating ? (
+                                <>
+                                    <div className="spinner w-4 h-4 border-2 border-black/30 border-t-black rounded-full" />
+                                    Generating...
+                                </>
+                            ) : (
+                                <>
+                                    <Wand2 size={18} /> {t.form.navigation.finish}
+                                </>
+                            )}
                         </button>
 
                         {currentStep < 5 && (
