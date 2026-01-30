@@ -414,7 +414,7 @@ export function PromptForm() {
 
     // Helper to generate options: Key = English Value, Value = Localized Label
     const getOptions = (section: string, field: string) => {
-        // Access English options
+        // Access English options (dynamic property access requires any)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const enOptions = (translations.en as any)[section]?.[field] || {};
         // Access Localized options
@@ -517,14 +517,36 @@ export function PromptForm() {
             // Ctrl+G to generate
             if ((e.ctrlKey || e.metaKey) && e.key === 'g') {
                 e.preventDefault();
-                handleGenerate();
+                const result = generatePrompt(data);
+                setGenerated(result);
+                setCurrentStep(5);
+                
+                // Save to history
+                const newEntry = { prompt: result, timestamp: Date.now() };
+                const newHistory = [newEntry, ...history].slice(0, MAX_HISTORY_ITEMS);
+                setHistory(newHistory);
+                try {
+                    localStorage.setItem('prompt_history_v2', JSON.stringify(newHistory));
+                } catch {
+                    // Failed to save to localStorage
+                }
                 return;
             }
 
             // Ctrl+C to copy (only when not selecting text)
             if ((e.ctrlKey || e.metaKey) && e.key === 'c' && generated && !window.getSelection()?.toString()) {
                 e.preventDefault();
-                handleCopy();
+                navigator.clipboard.writeText(generated).then(() => {
+                    setCopied(true);
+                    setShowToast('📋 Copied to clipboard!');
+                    setTimeout(() => {
+                        setCopied(false);
+                        setShowToast(null);
+                    }, TOAST_DURATION);
+                }).catch(() => {
+                    setShowToast('❌ Failed to copy to clipboard');
+                    setTimeout(() => setShowToast(null), TOAST_DURATION);
+                });
                 return;
             }
 
@@ -539,8 +561,7 @@ export function PromptForm() {
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isRTL, generated]);
+    }, [isRTL, generated, data, history]);
 
     // Calculate filled fields per step
     const getStepFieldCount = (stepId: number): number => {
@@ -634,6 +655,8 @@ export function PromptForm() {
 
     // Save History
     const addToHistory = (prompt: string) => {
+        // Safe: only called from event handlers, not during render
+        // eslint-disable-next-line react-hooks/purity
         const newEntry = { prompt, timestamp: Date.now() };
         const newHistory = [newEntry, ...history].slice(0, MAX_HISTORY_ITEMS);
         setHistory(newHistory);
@@ -790,20 +813,16 @@ export function PromptForm() {
 
     // Apply a preset to the current form data (resets everything first)
     const applyPreset = (preset: Preset) => {
-        // Start from a clean slate
-        const updated = { ...initialData } as Record<string, unknown>;
-        // Apply preset data on top of initial data
-        Object.entries(preset.data).forEach(([key, value]) => {
-            if (value !== undefined && value !== '' && (Array.isArray(value) ? value.length > 0 : true)) {
-                updated[key] = value;
-            }
-        });
-
-        const finalData = updated as unknown as PromptData;
-        setData(finalData);
+        // Start from a clean slate and apply preset data
+        const updated: PromptData = { 
+            ...initialData,
+            ...preset.data 
+        };
+        
+        setData(updated);
 
         // Auto-generate prompt
-        const result = generatePrompt(finalData);
+        const result = generatePrompt(updated);
         setGenerated(result);
         setCopied(true);
         addToHistory(result);
