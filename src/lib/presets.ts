@@ -4,6 +4,10 @@ export interface Preset {
     id: string;
     category: 'common' | 'creative' | 'utility';
     icon: string;
+    images?: {
+        before: string;
+        after: string;
+    };
     data: Partial<PromptData>;
 }
 
@@ -14,6 +18,10 @@ export const presets: Preset[] = [
         id: 'studioPortrait',
         category: 'common',
         icon: '📸',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/studioPortrait.png',
+        },
         data: {
             background: 'Simple Gradient',
             lighting: ['Softbox Lighting', 'Studio Lighting'],
@@ -32,6 +40,10 @@ export const presets: Preset[] = [
         id: 'editorialFashion',
         category: 'common',
         icon: '👗',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/editorialFashion.png',
+        },
         data: {
             background: 'Fashion Studio',
             lighting: ['Dramatic Lighting', 'High Key Lighting'],
@@ -51,6 +63,10 @@ export const presets: Preset[] = [
         id: 'goldenHour',
         category: 'common',
         icon: '🌅',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/goldenHour.png',
+        },
         data: {
             background: 'Beach',
             timeOfDay: 'Golden Hour',
@@ -70,6 +86,10 @@ export const presets: Preset[] = [
         id: 'productShot',
         category: 'common',
         icon: '📦',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/productShot.png',
+        },
         data: {
             background: 'Pure White',
             lighting: ['Softbox Lighting', 'Studio Lighting'],
@@ -87,6 +107,10 @@ export const presets: Preset[] = [
         id: 'streetPhotography',
         category: 'common',
         icon: '🏙️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/streetPhotography.png',
+        },
         data: {
             background: 'Urban City',
             timeOfDay: 'Afternoon',
@@ -106,6 +130,10 @@ export const presets: Preset[] = [
         id: 'blackAndWhite',
         category: 'common',
         icon: '⚫',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/blackAndWhite.png',
+        },
         data: {
             background: 'Simple Gradient',
             lighting: ['Dramatic Lighting', 'Rembrandt Lighting'],
@@ -124,6 +152,10 @@ export const presets: Preset[] = [
         id: 'cinematic',
         category: 'common',
         icon: '🎬',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/cinematic.png',
+        },
         data: {
             background: 'Moody Interior',
             lighting: ['Cinematic Lighting', 'Volumetric Lighting'],
@@ -143,6 +175,10 @@ export const presets: Preset[] = [
         id: 'naturalBeauty',
         category: 'common',
         icon: '🌿',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/naturalBeauty.png',
+        },
         data: {
             background: 'Natural Outdoors',
             lighting: ['Soft Natural Light', 'Diffused Lighting'],
@@ -161,6 +197,10 @@ export const presets: Preset[] = [
         id: 'corporateHeadshot',
         category: 'common',
         icon: '💼',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/corporateHeadshot.png',
+        },
         data: {
             background: 'Neutral Gray',
             lighting: ['Studio Lighting', 'Softbox Lighting'],
@@ -180,6 +220,10 @@ export const presets: Preset[] = [
         id: 'weddingBridal',
         category: 'common',
         icon: '💒',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/weddingBridal.png',
+        },
         data: {
             background: 'Garden',
             lighting: ['Soft Natural Light', 'Backlight'],
@@ -198,6 +242,10 @@ export const presets: Preset[] = [
         id: 'lifestyleCasual',
         category: 'common',
         icon: '☕',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/lifestyleCasual.png',
+        },
         data: {
             background: 'Coffee Shop',
             lighting: ['Natural Window Light', 'Ambient Light'],
@@ -217,6 +265,10 @@ export const presets: Preset[] = [
         id: 'fitnessSports',
         category: 'common',
         icon: '💪',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/fitnessSports.png',
+        },
         data: {
             background: 'Gym',
             lighting: ['Dramatic Lighting', 'Side Lighting'],
@@ -236,6 +288,10 @@ export const presets: Preset[] = [
         id: 'businessCasual',
         category: 'common',
         icon: '👨‍💼',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/businessCasual.png',
+        },
         data: {
             background: 'Modern Office',
             lighting: ['Natural Window Light', 'Studio Lighting'],
@@ -254,6 +310,10 @@ export const presets: Preset[] = [
         id: 'outdoorAdventure',
         category: 'common',
         icon: '⛰️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/outdoorAdventure.png',
+        },
         data: {
             background: 'Mountain Landscape',
             timeOfDay: 'Afternoon',
@@ -275,6 +335,10 @@ export const presets: Preset[] = [
         id: 'petWithPerson',
         category: 'common',
         icon: '🐕',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/petWithPerson.png',
+        },
         data: {
             background: 'Park',
             lighting: ['Soft Natural Light', 'Golden Hour Light'],
@@ -294,6 +358,10 @@ export const presets: Preset[] = [
         id: 'maternityGlow',
         category: 'common',
         icon: '🤰',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/maternityGlow.png',
+        },
         data: {
             background: 'Natural Outdoors',
             lighting: ['Soft Natural Light', 'Golden Hour Light', 'Backlight'],
@@ -313,6 +381,10 @@ export const presets: Preset[] = [
         id: 'graduationDay',
         category: 'common',
         icon: '🎓',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/graduationDay.png',
+        },
         data: {
             background: 'University Campus',
             lighting: ['Natural Sunlight', 'Soft Natural Light'],
@@ -333,6 +405,10 @@ export const presets: Preset[] = [
         id: 'familyPortrait',
         category: 'common',
         icon: '👨‍👩‍👧‍👦',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/familyPortrait.png',
+        },
         data: {
             background: 'Park',
             lighting: ['Soft Natural Light', 'Golden Hour Light'],
@@ -349,29 +425,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Photorealistic', 'Professional Photography'],
         },
     },
-    {
-        id: 'datingProfile',
-        category: 'common',
-        icon: '💝',
-        data: {
-            background: 'Urban City',
-            lighting: ['Natural Window Light', 'Soft Natural Light'],
-            lens: ['50mm Standard Lens', '85mm Portrait Lens'],
-            camera: 'Mirrorless',
-            cameraType: 'Mirrorless Camera',
-            clothing: ['Casual Wear', 'Smart Casual'],
-            pose: ['Candid/Natural', 'Friendly Smile', 'Relaxed Sitting'],
-            action: ['Natural Expression', 'Genuine Smile'],
-            mood: ['Approachable', 'Friendly', 'Confident', 'Authentic'],
-            style: ['Lifestyle Photography', 'Portrait Photography'],
-            colorGrading: 'Natural',
-            addons: ['Highly Detailed', 'Photorealistic', 'Natural Lighting'],
-        },
-    },
+
     {
         id: 'authorSpeaker',
         category: 'common',
         icon: '📚',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/authorSpeaker.png',
+        },
         data: {
             background: 'Library',
             lighting: ['Natural Window Light', 'Soft Natural Light'],
@@ -387,31 +449,15 @@ export const presets: Preset[] = [
             addons: ['Sharp Focus', 'Professional Photography', 'Highly Detailed'],
         },
     },
-    {
-        id: 'summerVibes',
-        category: 'common',
-        icon: '🌞',
-        data: {
-            background: 'Beach',
-            timeOfDay: 'Afternoon',
-            weather: ['Clear'],
-            lighting: ['Natural Sunlight', 'Bright Daylight'],
-            lens: ['35mm Wide Angle', '50mm Standard Lens'],
-            camera: 'Mirrorless',
-            cameraType: 'Mirrorless Camera',
-            clothing: ['Summer Outfit', 'Beachwear', 'Sunglasses'],
-            accessories: ['Sunglasses', 'Hat'],
-            pose: ['Candid/Natural', 'Relaxed'],
-            mood: ['Cheerful', 'Carefree', 'Energetic', 'Happy'],
-            style: ['Lifestyle Photography', 'Beach Photography'],
-            colorGrading: 'Vibrant',
-            addons: ['Highly Detailed', 'Photorealistic', 'Sharp Focus'],
-        },
-    },
+
     {
         id: 'winterPortrait',
         category: 'common',
         icon: '❄️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/winterPortrait.png',
+        },
         data: {
             background: 'Winter Landscape',
             timeOfDay: 'Afternoon',
@@ -430,30 +476,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Photorealistic', 'Professional Photography'],
         },
     },
-    {
-        id: 'musicianPerformer',
-        category: 'common',
-        icon: '🎸',
-        data: {
-            background: 'Concert Stage',
-            lighting: ['Stage Lighting', 'Colored Gels', 'Dramatic Lighting'],
-            lens: ['35mm Wide Angle', '50mm Standard Lens'],
-            camera: 'Full Frame DSLR',
-            cameraType: 'Professional DSLR',
-            clothing: ['Stage Outfit', 'Rock Style'],
-            accessories: ['Instrument', 'Microphone'],
-            pose: ['Performance Pose', 'Action Pose'],
-            action: ['Playing Instrument', 'Singing'],
-            mood: ['Passionate', 'Energetic', 'Dynamic'],
-            style: ['Concert Photography', 'Music Photography'],
-            colorGrading: 'High Contrast',
-            addons: ['Highly Detailed', 'Motion Capture', 'Professional Photography'],
-        },
-    },
+
     {
         id: 'chefCulinary',
         category: 'common',
         icon: '👨‍🍳',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/chefCulinary.png',
+        },
         data: {
             background: 'Restaurant Kitchen',
             lighting: ['Natural Window Light', 'Warm Ambient Light'],
@@ -470,29 +501,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Sharp Focus', 'Professional Photography'],
         },
     },
-    {
-        id: 'yogaWellness',
-        category: 'common',
-        icon: '🧘',
-        data: {
-            background: 'Yoga Studio',
-            lighting: ['Soft Natural Light', 'Diffused Lighting'],
-            lens: ['35mm Wide Angle', '50mm Standard Lens'],
-            camera: 'Mirrorless',
-            cameraType: 'Mirrorless Camera',
-            clothing: ['Yoga Attire', 'Athletic Wear'],
-            pose: ['Yoga Pose', 'Meditation Pose'],
-            action: ['Stretching', 'Meditating'],
-            mood: ['Peaceful', 'Serene', 'Focused'],
-            style: ['Wellness Photography', 'Lifestyle Photography'],
-            colorGrading: 'Soft Pastel',
-            addons: ['Highly Detailed', 'Photorealistic', 'Natural Light'],
-        },
-    },
+
     {
         id: 'libraryScholar',
         category: 'common',
         icon: '📖',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/libraryScholar.png',
+        },
         data: {
             background: 'Library',
             lighting: ['Natural Window Light', 'Ambient Light', 'Reading Light'],
@@ -509,50 +526,16 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Photorealistic', 'Professional Photography'],
         },
     },
-    {
-        id: 'dancer',
-        category: 'common',
-        icon: '💃',
-        data: {
-            background: 'Dance Studio',
-            lighting: ['Dramatic Lighting', 'Stage Lighting', 'Backlight'],
-            lens: ['24mm Wide Angle', '35mm Wide Angle'],
-            camera: 'Full Frame DSLR',
-            cameraType: 'Professional DSLR',
-            clothing: ['Dance Outfit', 'Performance Attire'],
-            pose: ['Dance Pose', 'Dynamic Movement'],
-            action: ['Dancing', 'Performing'],
-            mood: ['Graceful', 'Energetic', 'Passionate'],
-            style: ['Dance Photography', 'Performance Photography'],
-            colorGrading: 'Vibrant',
-            specialEffects: ['Motion Blur'],
-            addons: ['Highly Detailed', 'Motion Capture', 'Professional Photography'],
-        },
-    },
-    {
-        id: 'beachSunset',
-        category: 'common',
-        icon: '🏖️',
-        data: {
-            background: 'Beach',
-            timeOfDay: 'Sunset',
-            weather: ['Clear'],
-            lighting: ['Golden Hour Light', 'Backlight', 'Natural Sunlight'],
-            lens: ['35mm Wide Angle', '50mm Standard Lens'],
-            camera: 'Full Frame DSLR',
-            cameraType: 'Professional DSLR',
-            clothing: ['Beach Wear', 'Summer Dress'],
-            pose: ['Silhouette', 'Walking Pose'],
-            mood: ['Peaceful', 'Romantic', 'Free'],
-            style: ['Beach Photography', 'Lifestyle Photography'],
-            colorGrading: 'Warm Tones',
-            addons: ['Highly Detailed', 'Photorealistic', 'Professional Photography'],
-        },
-    },
+
+
     {
         id: 'artistStudio',
         category: 'common',
         icon: '🖌️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/artistStudio.png',
+        },
         data: {
             background: 'Art Studio',
             lighting: ['Natural Window Light', 'Soft Diffused Light'],
@@ -573,6 +556,10 @@ export const presets: Preset[] = [
         id: 'gardenBotanical',
         category: 'common',
         icon: '🌺',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/gardenBotanical.png',
+        },
         data: {
             background: 'Botanical Garden',
             timeOfDay: 'Morning',
@@ -595,6 +582,10 @@ export const presets: Preset[] = [
         id: 'rainyDay',
         category: 'common',
         icon: '☔',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/rainyDay.png',
+        },
         data: {
             background: 'City Street',
             weather: ['Rain'],
@@ -616,6 +607,10 @@ export const presets: Preset[] = [
         id: 'motorcycleRider',
         category: 'common',
         icon: '🏍️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/motorcycleRider.png',
+        },
         data: {
             background: 'Open Road',
             lighting: ['Natural Sunlight', 'Golden Hour Light'],
@@ -636,6 +631,10 @@ export const presets: Preset[] = [
         id: 'architecturalPortrait',
         category: 'common',
         icon: '🏛️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/architecturalPortrait.png',
+        },
         data: {
             background: 'Modern Architecture',
             lighting: ['Natural Sunlight', 'Architectural Lighting'],
@@ -654,6 +653,10 @@ export const presets: Preset[] = [
         id: 'cafeBarista',
         category: 'common',
         icon: '☕',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/cafeBarista.png',
+        },
         data: {
             background: 'Artisan Cafe',
             lighting: ['Natural Window Light', 'Warm Ambient Light'],
@@ -674,6 +677,10 @@ export const presets: Preset[] = [
         id: 'forestNature',
         category: 'common',
         icon: '🌲',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/forestNature.png',
+        },
         data: {
             background: 'Forest',
             timeOfDay: 'Afternoon',
@@ -697,6 +704,10 @@ export const presets: Preset[] = [
         id: 'cyberpunkNeon',
         category: 'creative',
         icon: '🌃',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/cyberpunkNeon.png',
+        },
         data: {
             background: 'Cyberpunk City',
             era: 'Cyberpunk Future',
@@ -716,32 +727,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', '8K Resolution', 'Masterpiece'],
         },
     },
-    {
-        id: 'fantasyPortrait',
-        category: 'creative',
-        icon: '🧝',
-        data: {
-            background: 'Enchanted Forest',
-            era: 'Fantasy Medieval',
-            lighting: ['Ethereal Glow', 'Magical Lighting'],
-            lightColor: 'Mystical Purple',
-            lens: ['85mm Portrait Lens'],
-            camera: 'Medium Format',
-            cameraType: 'Professional DSLR',
-            clothing: ['Fantasy Robes', 'Elven Attire'],
-            accessories: ['Crown', 'Tiara'],
-            eyeColor: 'Galaxy/Cosmic Eyes',
-            mood: ['Mystical', 'Ethereal'],
-            style: ['Fantasy Art', 'Digital Painting'],
-            colorGrading: 'Fantasy Color Grade',
-            specialEffects: ['Particle Effects', 'Magic Sparkles', 'Lens Flare'],
-            addons: ['Highly Detailed', 'Masterpiece', '8K Resolution'],
-        },
-    },
+
     {
         id: 'vintageFilm',
         category: 'creative',
         icon: '📽️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/vintageFilm.png',
+        },
         data: {
             background: 'Retro Diner',
             era: '1970s',
@@ -763,6 +757,10 @@ export const presets: Preset[] = [
         id: 'vaporwave',
         category: 'creative',
         icon: '🌴',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/vaporwave.png',
+        },
         data: {
             background: 'Neon Grid',
             era: '1980s',
@@ -785,6 +783,10 @@ export const presets: Preset[] = [
         id: 'steampunkVictorian',
         category: 'creative',
         icon: '⚙️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/steampunkVictorian.png',
+        },
         data: {
             background: 'Industrial Victorian',
             era: 'Victorian',
@@ -806,6 +808,10 @@ export const presets: Preset[] = [
         id: 'animeManga',
         category: 'creative',
         icon: '🎌',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/animeManga.png',
+        },
         data: {
             background: 'Anime Background',
             lighting: ['Soft Cel-Shaded Light', 'Anime Lighting'],
@@ -824,6 +830,10 @@ export const presets: Preset[] = [
         id: 'popArt',
         category: 'creative',
         icon: '🎨',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/popArt.png',
+        },
         data: {
             background: 'Bold Color Blocks',
             era: '1960s',
@@ -842,6 +852,10 @@ export const presets: Preset[] = [
         id: 'filmNoir',
         category: 'creative',
         icon: '🎭',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/filmNoir.png',
+        },
         data: {
             background: 'Dark Alley',
             era: '1940s',
@@ -865,6 +879,10 @@ export const presets: Preset[] = [
         id: 'watercolorPainting',
         category: 'creative',
         icon: '🖌️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/watercolorPainting.png',
+        },
         data: {
             background: 'Painted Background',
             lighting: ['Soft Diffused Light', 'Natural Light'],
@@ -880,6 +898,10 @@ export const presets: Preset[] = [
         id: 'neonPortrait',
         category: 'creative',
         icon: '💡',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/neonPortrait.png',
+        },
         data: {
             background: 'Dark Studio',
             timeOfDay: 'Night',
@@ -900,6 +922,10 @@ export const presets: Preset[] = [
         id: 'sciFiFuture',
         category: 'creative',
         icon: '🚀',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/sciFiFuture.png',
+        },
         data: {
             background: 'Futuristic Space Station',
             era: 'Sci-Fi Future',
@@ -921,6 +947,10 @@ export const presets: Preset[] = [
         id: 'artDeco',
         category: 'creative',
         icon: '🏛️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/artDeco.png',
+        },
         data: {
             background: 'Art Deco Interior',
             era: '1920s',
@@ -939,27 +969,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Masterpiece', 'Cinematic'],
         },
     },
-    {
-        id: 'surrealDream',
-        category: 'creative',
-        icon: '🌀',
-        data: {
-            background: 'Surreal Dreamscape',
-            lighting: ['Ethereal Glow', 'Magical Lighting', 'Dramatic Lighting'],
-            lightColor: 'Mystical Purple',
-            lens: ['50mm Standard Lens', '85mm Portrait Lens'],
-            camera: 'Medium Format',
-            mood: ['Surreal', 'Dreamlike', 'Mysterious', 'Otherworldly'],
-            style: ['Surreal Art', 'Digital Art', 'Fantasy Art'],
-            colorGrading: 'Fantasy Color Grade',
-            specialEffects: ['Double Exposure', 'Particle Effects', 'Dream Effects', 'Distortion'],
-            addons: ['Highly Detailed', 'Masterpiece', '8K Resolution', 'Artistic'],
-        },
-    },
+
     {
         id: 'impressionist',
         category: 'creative',
         icon: '🌻',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/impressionist.png',
+        },
         data: {
             background: 'Garden',
             lighting: ['Soft Natural Light', 'Diffused Lighting'],
@@ -977,6 +995,10 @@ export const presets: Preset[] = [
         id: 'comicBook',
         category: 'creative',
         icon: '💥',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/comicBook.png',
+        },
         data: {
             background: 'Bold Color Blocks',
             lighting: ['High Key Lighting', 'Dramatic Lighting'],
@@ -994,6 +1016,10 @@ export const presets: Preset[] = [
         id: 'oilPaintingClassic',
         category: 'creative',
         icon: '🖼️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/oilPaintingClassic.png',
+        },
         data: {
             background: 'Renaissance Background',
             lighting: ['Rembrandt Lighting', 'Dramatic Lighting'],
@@ -1014,6 +1040,10 @@ export const presets: Preset[] = [
         id: 'holographicFuture',
         category: 'creative',
         icon: '✨',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/holographicFuture.png',
+        },
         data: {
             background: 'Holographic Environment',
             lighting: ['Neon Lights', 'Holographic Glow', 'Colored Lights'],
@@ -1031,6 +1061,10 @@ export const presets: Preset[] = [
         id: 'minimalistMonochrome',
         category: 'creative',
         icon: '⬜',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/minimalistMonochrome.png',
+        },
         data: {
             background: 'Minimal White',
             lighting: ['Soft Diffused Light', 'Minimal Shadows'],
@@ -1047,6 +1081,10 @@ export const presets: Preset[] = [
         id: 'doubleExposure',
         category: 'creative',
         icon: '🌃',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/doubleExposure.png',
+        },
         data: {
             background: 'Multiple Exposures',
             lighting: ['Natural Light', 'Cinematic Lighting'],
@@ -1063,6 +1101,10 @@ export const presets: Preset[] = [
         id: 'neonCyberpunk',
         category: 'creative',
         icon: '🌆',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/neonCyberpunk.png',
+        },
         data: {
             background: 'Neon City',
             era: 'Cyberpunk Future',
@@ -1085,6 +1127,10 @@ export const presets: Preset[] = [
         id: 'abstractExpressionism',
         category: 'creative',
         icon: '🌈',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/abstractExpressionism.png',
+        },
         data: {
             background: 'Abstract Background',
             lighting: ['Dramatic Lighting', 'Colored Lights'],
@@ -1100,6 +1146,10 @@ export const presets: Preset[] = [
         id: 'desertSunset',
         category: 'creative',
         icon: '🏜️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/desertSunset.png',
+        },
         data: {
             background: 'Desert',
             timeOfDay: 'Sunset',
@@ -1120,6 +1170,10 @@ export const presets: Preset[] = [
         id: 'retroFuturism',
         category: 'creative',
         icon: '🚀',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/retroFuturism.png',
+        },
         data: {
             background: 'Retro-Futuristic',
             era: '1950s Future Vision',
@@ -1139,6 +1193,10 @@ export const presets: Preset[] = [
         id: 'underwaterDream',
         category: 'creative',
         icon: '🌊',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/underwaterDream.png',
+        },
         data: {
             background: 'Underwater',
             lighting: ['Underwater Light', 'Volumetric Light Rays', 'Blue Light'],
@@ -1157,6 +1215,10 @@ export const presets: Preset[] = [
         id: 'japaneseAnime',
         category: 'creative',
         icon: '🎌',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/japaneseAnime.png',
+        },
         data: {
             background: 'Anime Background',
             lighting: ['Anime Lighting', 'Dramatic Shadows'],
@@ -1174,6 +1236,10 @@ export const presets: Preset[] = [
         id: 'baroqueOpulence',
         category: 'creative',
         icon: '👑',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/baroqueOpulence.png',
+        },
         data: {
             background: 'Baroque Palace',
             era: 'Baroque Period',
@@ -1195,6 +1261,10 @@ export const presets: Preset[] = [
         id: 'noirDetective',
         category: 'creative',
         icon: '🕵️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/noirDetective.png',
+        },
         data: {
             background: 'Detective Office',
             era: '1940s',
@@ -1206,7 +1276,7 @@ export const presets: Preset[] = [
             camera: 'Film Camera',
             filmStock: ['Ilford HP5'],
             clothing: ['Trench Coat', 'Fedora', 'Suit'],
-            accessories: ['Cigarette', 'Magnifying Glass'],
+            accessories: ['Magnifying Glass'],
             mood: ['Mysterious', 'Dark', 'Noir', 'Gritty'],
             style: ['Film Noir', 'Detective Noir', 'Classic Noir'],
             colorGrading: 'Black and White',
@@ -1221,6 +1291,10 @@ export const presets: Preset[] = [
         id: 'qualityEnhance',
         category: 'utility',
         icon: '✨',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/qualityEnhance.png',
+        },
         data: {
             addons: ['Highly Detailed', '8K Resolution', 'Sharp Focus', 'Masterpiece', 'Professional Photography', 'Photorealistic'],
             style: ['Ultra Realistic'],
@@ -1230,6 +1304,10 @@ export const presets: Preset[] = [
         id: 'lightRetouch',
         category: 'utility',
         icon: '🪄',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/lightRetouch.png',
+        },
         data: {
             makeup: ['Natural/No-Makeup Makeup', 'Dewy/Glass Skin'],
             lighting: ['Soft Natural Light', 'Diffused Lighting'],
@@ -1241,6 +1319,10 @@ export const presets: Preset[] = [
         id: 'skinPerfect',
         category: 'utility',
         icon: '💎',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/skinPerfect.png',
+        },
         data: {
             makeup: ['Dewy/Glass Skin', 'Natural/No-Makeup Makeup', 'Heavy Highlighter/Strobing'],
             lighting: ['Beauty Dish', 'Softbox Lighting'],
@@ -1252,6 +1334,10 @@ export const presets: Preset[] = [
         id: 'hdrVivid',
         category: 'utility',
         icon: '🌈',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/hdrVivid.png',
+        },
         data: {
             colorGrading: 'HDR',
             lighting: ['High Dynamic Range'],
@@ -1263,6 +1349,10 @@ export const presets: Preset[] = [
         id: 'instagramReady',
         category: 'utility',
         icon: '📱',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/instagramReady.png',
+        },
         data: {
             aspectRatio: '1:1 Square',
             colorGrading: 'Vibrant',
@@ -1275,6 +1365,10 @@ export const presets: Preset[] = [
         id: 'linkedinPro',
         category: 'utility',
         icon: '👔',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/linkedinPro.png',
+        },
         data: {
             background: 'Neutral Gray',
             pose: ['Headshot', 'Front Facing Portrait'],
@@ -1288,6 +1382,10 @@ export const presets: Preset[] = [
         id: 'softDreamy',
         category: 'utility',
         icon: '☁️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/softDreamy.png',
+        },
         data: {
             lighting: ['Soft Natural Light', 'Backlight'],
             colorGrading: 'Soft Pastel',
@@ -1300,6 +1398,10 @@ export const presets: Preset[] = [
         id: 'sharpDetail',
         category: 'utility',
         icon: '🔍',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/sharpDetail.png',
+        },
         data: {
             lens: ['Macro Lens'],
             composition: ['Close-up', 'Center Composition'],
@@ -1311,6 +1413,10 @@ export const presets: Preset[] = [
         id: 'instantPro',
         category: 'utility',
         icon: '📸',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/instantPro.png',
+        },
         data: {
             lens: ['85mm Portrait Lens'],
             camera: 'Mirrorless',
@@ -1324,6 +1430,10 @@ export const presets: Preset[] = [
         id: 'hairPerfect',
         category: 'utility',
         icon: '💇‍♀️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/hairPerfect.png',
+        },
         data: {
             addons: ['Voluminous Hair', 'Detailed Hair Texture', 'Perfectly Styled Hair', 'Shiny Hair', 'High Quality'],
             lighting: ['Rim Lighting', 'Backlight'],
@@ -1333,6 +1443,10 @@ export const presets: Preset[] = [
         id: 'lightingFix',
         category: 'utility',
         icon: '💡',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/lightingFix.png',
+        },
         data: {
             lighting: ['Soft Natural Light', 'Diffused Lighting', 'Cinematic Lighting'],
             addons: ['Perfect Exposure', 'Balanced Lighting', 'Professional Lighting'],
@@ -1342,6 +1456,10 @@ export const presets: Preset[] = [
         id: 'outfitDetail',
         category: 'utility',
         icon: '👗',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/outfitDetail.png',
+        },
         data: {
             addons: ['Detailed Fabric Texture', 'Intricate Patterns', 'High Quality Materials', 'Sharp Focus'],
             lighting: ['Studio Lighting'],
@@ -1352,6 +1470,10 @@ export const presets: Preset[] = [
         id: 'backgroundBlur',
         category: 'utility',
         icon: '🌫️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/backgroundBlur.png',
+        },
         data: {
             lens: ['85mm Portrait Lens', '50mm Standard Lens'],
             composition: ['Shallow Depth of Field', 'Center Composition'],
@@ -1364,6 +1486,10 @@ export const presets: Preset[] = [
         id: 'colorPop',
         category: 'utility',
         icon: '🔴',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/colorPop.png',
+        },
         data: {
             colorGrading: 'Selective Color',
             specialEffects: ['Selective Color Highlight'],
@@ -1375,6 +1501,10 @@ export const presets: Preset[] = [
         id: 'eyeEnhance',
         category: 'utility',
         icon: '👁️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/eyeEnhance.png',
+        },
         data: {
             eyeColor: 'Vibrant Eye Color',
             lighting: ['Catchlight', 'Beauty Dish'],
@@ -1386,6 +1516,10 @@ export const presets: Preset[] = [
         id: 'symmetryFix',
         category: 'utility',
         icon: '⚖️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/symmetryFix.png',
+        },
         data: {
             composition: ['Center Composition', 'Symmetrical Framing'],
             pose: ['Front Facing Portrait', 'Straight Angle'],
@@ -1397,6 +1531,10 @@ export const presets: Preset[] = [
         id: 'zoomReady',
         category: 'utility',
         icon: '💻',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/zoomReady.png',
+        },
         data: {
             background: 'Neutral Gray',
             lighting: ['Studio Lighting', 'Softbox Lighting', 'Even Lighting'],
@@ -1414,6 +1552,10 @@ export const presets: Preset[] = [
         id: 'twitterProfile',
         category: 'utility',
         icon: '🐦',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/twitterProfile.png',
+        },
         data: {
             aspectRatio: '1:1 Square',
             background: 'Simple Gradient',
@@ -1430,6 +1572,10 @@ export const presets: Preset[] = [
         id: 'contrastBoost',
         category: 'utility',
         icon: '⚡',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/contrastBoost.png',
+        },
         data: {
             lighting: ['Dramatic Lighting', 'Side Lighting'],
             colorGrading: 'High Contrast',
@@ -1442,6 +1588,10 @@ export const presets: Preset[] = [
         id: 'vintageTone',
         category: 'utility',
         icon: '📼',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/vintageTone.png',
+        },
         data: {
             colorGrading: 'Vintage Film',
             filmStock: ['Kodak Portra 400', 'Fujifilm Pro 400H'],
@@ -1455,6 +1605,10 @@ export const presets: Preset[] = [
         id: 'professionalHeadroom',
         category: 'utility',
         icon: '📐',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/professionalHeadroom.png',
+        },
         data: {
             composition: ['Rule of Thirds', 'Headroom', 'Eye Level'],
             pose: ['Front Facing Portrait', 'Professional Stance'],
@@ -1466,6 +1620,10 @@ export const presets: Preset[] = [
         id: 'goldenRatioComposition',
         category: 'utility',
         icon: '🔶',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/goldenRatioComposition.png',
+        },
         data: {
             composition: ['Golden Ratio', 'Fibonacci Spiral', 'Rule of Thirds'],
             addons: ['Perfect Composition', 'Mathematically Balanced', 'Professional Photography'],
@@ -1476,6 +1634,10 @@ export const presets: Preset[] = [
         id: 'dramaticShadows',
         category: 'utility',
         icon: '🌑',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/dramaticShadows.png',
+        },
         data: {
             lighting: ['Low Key Lighting', 'Side Lighting', 'Dramatic Shadows'],
             colorGrading: 'High Contrast',
@@ -1488,6 +1650,10 @@ export const presets: Preset[] = [
         id: 'softGlam',
         category: 'utility',
         icon: '💫',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/softGlam.png',
+        },
         data: {
             makeup: ['Glamorous/Full Glam', 'Heavy Highlighter/Strobing'],
             lighting: ['Beauty Dish', 'Softbox Lighting', 'Rim Lighting'],
@@ -1500,6 +1666,10 @@ export const presets: Preset[] = [
         id: 'motionFreeze',
         category: 'utility',
         icon: '⏸️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/motionFreeze.png',
+        },
         data: {
             camera: 'High Speed Camera',
             cameraType: 'Professional DSLR',
@@ -1511,6 +1681,10 @@ export const presets: Preset[] = [
         id: 'wideAngleDramatic',
         category: 'utility',
         icon: '📷',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/wideAngleDramatic.png',
+        },
         data: {
             lens: ['24mm Wide Angle', '14mm Ultra Wide'],
             composition: ['Wide Angle Perspective', 'Dynamic Angles'],
@@ -1522,6 +1696,10 @@ export const presets: Preset[] = [
         id: 'macroCloseup',
         category: 'utility',
         icon: '🔬',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/macroCloseup.png',
+        },
         data: {
             lens: ['Macro Lens', '100mm Macro'],
             composition: ['Extreme Close-up', 'Center Composition'],
@@ -1534,6 +1712,10 @@ export const presets: Preset[] = [
         id: 'warmGoldenTone',
         category: 'utility',
         icon: '🌟',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/warmGoldenTone.png',
+        },
         data: {
             colorGrading: 'Warm Tones',
             lightColor: 'Warm Golden',
@@ -1546,6 +1728,10 @@ export const presets: Preset[] = [
         id: 'coolCinematic',
         category: 'utility',
         icon: '🎬',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/coolCinematic.png',
+        },
         data: {
             colorGrading: 'Cinematic Color Grade',
             lightColor: 'Cool Blue',
@@ -1558,6 +1744,10 @@ export const presets: Preset[] = [
         id: 'fashionEditorial',
         category: 'utility',
         icon: '📰',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/fashionEditorial.png',
+        },
         data: {
             lighting: ['High Key Lighting', 'Studio Lighting'],
             composition: ['Dynamic Angles', 'Fashion Composition'],
@@ -1570,6 +1760,10 @@ export const presets: Preset[] = [
         id: 'softFocusDreamy',
         category: 'utility',
         icon: '💭',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/softFocusDreamy.png',
+        },
         data: {
             specialEffects: ['Soft Focus', 'Dreamy Filter', 'Diffusion'],
             lighting: ['Soft Diffused Light', 'Backlight'],
@@ -1582,6 +1776,10 @@ export const presets: Preset[] = [
         id: 'urbanGritty',
         category: 'utility',
         icon: '🏙️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/urbanGritty.png',
+        },
         data: {
             background: 'Urban Environment',
             colorGrading: 'Desaturated',
@@ -1595,6 +1793,10 @@ export const presets: Preset[] = [
         id: 'professionalLinkedin',
         category: 'utility',
         icon: '💼',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/professionalLinkedin.png',
+        },
         data: {
             background: 'Professional Background',
             lighting: ['Even Lighting', 'Softbox Lighting', 'Studio Lighting'],
@@ -1611,6 +1813,10 @@ export const presets: Preset[] = [
         id: 'blackBackdrop',
         category: 'utility',
         icon: '⬛',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/blackBackdrop.png',
+        },
         data: {
             background: 'Solid Black',
             lighting: ['Dramatic Lighting', 'Side Lighting', 'Single Light Source'],
@@ -1624,6 +1830,10 @@ export const presets: Preset[] = [
         id: 'pastelSoftMood',
         category: 'utility',
         icon: '🎀',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/pastelSoftMood.png',
+        },
         data: {
             colorGrading: 'Soft Pastel',
             lighting: ['Soft Natural Light', 'Diffused Lighting'],
@@ -1639,6 +1849,10 @@ export const presets: Preset[] = [
         id: 'mountainSummit',
         category: 'common',
         icon: '⛰️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/mountainSummit.png',
+        },
         data: {
             background: 'Mountain Peak',
             timeOfDay: 'Sunrise',
@@ -1660,6 +1874,10 @@ export const presets: Preset[] = [
         id: 'coffeeshopVibes',
         category: 'common',
         icon: '☕',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/coffeeshopVibes.png',
+        },
         data: {
             background: 'Cozy Coffee Shop',
             timeOfDay: 'Morning',
@@ -1680,6 +1898,10 @@ export const presets: Preset[] = [
         id: 'winterWonderland',
         category: 'common',
         icon: '❄️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/winterWonderland.png',
+        },
         data: {
             background: 'Snowy Forest',
             timeOfDay: 'Afternoon',
@@ -1698,30 +1920,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Photorealistic', 'Winter Magic'],
         },
     },
-    {
-        id: 'yogaStudio',
-        category: 'common',
-        icon: '🧘',
-        data: {
-            background: 'Yoga Studio',
-            timeOfDay: 'Morning',
-            lighting: ['Soft Natural Light', 'Warm Ambient Light'],
-            lens: ['35mm Wide Angle', '50mm Standard Lens'],
-            camera: 'Mirrorless',
-            cameraType: 'Mirrorless Camera',
-            clothing: ['Yoga Outfit', 'Athletic Wear'],
-            pose: ['Yoga Pose', 'Meditation Pose'],
-            action: ['Practicing Yoga', 'Meditating'],
-            mood: ['Peaceful', 'Zen', 'Balanced'],
-            style: ['Wellness Photography', 'Lifestyle Photography'],
-            colorGrading: 'Natural',
-            addons: ['Highly Detailed', 'Serene Atmosphere', 'Professional Photography'],
-        },
-    },
+
     {
         id: 'autumnLeaves',
         category: 'common',
         icon: '🍂',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/autumnLeaves.png',
+        },
         data: {
             background: 'Autumn Forest',
             timeOfDay: 'Afternoon',
@@ -1739,31 +1946,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Seasonal Beauty', 'Professional Photography'],
         },
     },
-    {
-        id: 'poolsideSummer',
-        category: 'common',
-        icon: '🏊',
-        data: {
-            background: 'Luxury Pool',
-            timeOfDay: 'Afternoon',
-            weather: ['Clear', 'Sunny'],
-            lighting: ['Bright Sunlight', 'Harsh Light'],
-            lens: ['35mm Wide Angle', '50mm Standard Lens'],
-            camera: 'Mirrorless',
-            cameraType: 'Mirrorless Camera',
-            clothing: ['Swimwear', 'Summer Outfit'],
-            accessories: ['Sunglasses', 'Hat'],
-            pose: ['Relaxed Pose', 'Poolside Pose'],
-            mood: ['Summery', 'Vibrant', 'Luxurious'],
-            style: ['Summer Photography', 'Lifestyle Photography'],
-            colorGrading: 'Vibrant',
-            addons: ['Highly Detailed', 'Luxury Vibes', 'Professional Photography'],
-        },
-    },
+
     {
         id: 'lensFlareDramatic',
         category: 'utility',
         icon: '✴️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/lensFlareDramatic.png',
+        },
         data: {
             specialEffects: ['Lens Flare', 'Sun Flare'],
             lighting: ['Backlight', 'Sun Light'],
@@ -1776,6 +1967,10 @@ export const presets: Preset[] = [
         id: 'grainFilmic',
         category: 'utility',
         icon: '📷',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/grainFilmic.png',
+        },
         data: {
             specialEffects: ['Film Grain', 'Filmic Texture'],
             texture: ['Film Grain', 'Organic Texture'],
@@ -1788,6 +1983,10 @@ export const presets: Preset[] = [
         id: 'glamourClassic',
         category: 'utility',
         icon: '💄',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/glamourClassic.png',
+        },
         data: {
             lighting: ['Glamour Lighting', 'Beauty Dish', 'Rembrandt Lighting'],
             makeup: ['Glamorous/Full Glam', 'Heavy Highlighter/Strobing'],
@@ -1801,6 +2000,10 @@ export const presets: Preset[] = [
         id: 'toneMatching',
         category: 'utility',
         icon: '🎨',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/toneMatching.png',
+        },
         data: {
             colorGrading: 'Matched Tones',
             mood: ['Harmonious', 'Balanced', 'Professional'],
@@ -1812,6 +2015,10 @@ export const presets: Preset[] = [
         id: 'libraryScholarly',
         category: 'common',
         icon: '📚',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/libraryScholarly.png',
+        },
         data: {
             background: 'Old Library',
             lighting: ['Warm Library Lighting', 'Natural Window Light'],
@@ -1832,6 +2039,10 @@ export const presets: Preset[] = [
         id: 'skylineUrbanNight',
         category: 'common',
         icon: '🌃',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/skylineUrbanNight.png',
+        },
         data: {
             background: 'City Skyline',
             timeOfDay: 'Night',
@@ -1853,6 +2064,10 @@ export const presets: Preset[] = [
         id: 'farmRustic',
         category: 'common',
         icon: '🚜',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/farmRustic.png',
+        },
         data: {
             background: 'Rustic Farm',
             timeOfDay: 'Golden Hour',
@@ -1874,6 +2089,10 @@ export const presets: Preset[] = [
         id: 'floristry',
         category: 'common',
         icon: '💐',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/floristry.png',
+        },
         data: {
             background: 'Flower Shop',
             lighting: ['Soft Natural Light', 'Warm Ambient Light'],
@@ -1890,30 +2109,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Floral Beauty', 'Professional Photography'],
         },
     },
-    {
-        id: 'musicianJam',
-        category: 'common',
-        icon: '🎸',
-        data: {
-            background: 'Music Studio',
-            lighting: ['Dramatic Lighting', 'Ambient Studio Light'],
-            lens: ['35mm Wide Angle', '50mm Standard Lens'],
-            camera: 'Mirrorless',
-            cameraType: 'Mirrorless Camera',
-            clothing: ['Casual Wear', 'Band Outfit'],
-            accessories: ['Guitar', 'Microphone'],
-            pose: ['Playing Instrument', 'Performance Pose'],
-            action: ['Playing Music', 'Singing'],
-            mood: ['Passionate', 'Energetic', 'Creative'],
-            style: ['Music Photography', 'Performance Photography'],
-            colorGrading: 'Moody',
-            addons: ['Highly Detailed', 'Musical Atmosphere', 'Professional Photography'],
-        },
-    },
+
     {
         id: 'desertAdventure',
         category: 'common',
         icon: '🏜️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/desertAdventure.png',
+        },
         data: {
             background: 'Desert Landscape',
             timeOfDay: 'Sunset',
@@ -1935,6 +2139,10 @@ export const presets: Preset[] = [
         id: 'marketStreet',
         category: 'common',
         icon: '🛒',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/marketStreet.png',
+        },
         data: {
             background: 'Street Market',
             timeOfDay: 'Afternoon',
@@ -1957,6 +2165,10 @@ export const presets: Preset[] = [
         id: 'parkJogging',
         category: 'common',
         icon: '🏃',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/parkJogging.png',
+        },
         data: {
             background: 'City Park',
             timeOfDay: 'Morning',
@@ -1980,6 +2192,10 @@ export const presets: Preset[] = [
         id: 'rooftopDining',
         category: 'common',
         icon: '🍽️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/rooftopDining.png',
+        },
         data: {
             background: 'Rooftop Restaurant',
             timeOfDay: 'Evening',
@@ -2001,6 +2217,10 @@ export const presets: Preset[] = [
         id: 'boutiqueStyler',
         category: 'common',
         icon: '👠',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/boutiqueStyler.png',
+        },
         data: {
             background: 'Fashion Boutique',
             lighting: ['Bright Store Lighting', 'Natural Window Light'],
@@ -2021,6 +2241,10 @@ export const presets: Preset[] = [
         id: 'vintageRecords',
         category: 'common',
         icon: '📀',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/vintageRecords.png',
+        },
         data: {
             background: 'Record Store',
             lighting: ['Warm Ambient Light', 'Vintage Lighting'],
@@ -2042,6 +2266,10 @@ export const presets: Preset[] = [
         id: 'laboratoryScience',
         category: 'common',
         icon: '🔬',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/laboratoryScience.png',
+        },
         data: {
             background: 'Modern Laboratory',
             lighting: ['Cool White Light', 'Clinical Lighting'],
@@ -2062,6 +2290,10 @@ export const presets: Preset[] = [
         id: 'constructionWorker',
         category: 'common',
         icon: '👷',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/constructionWorker.png',
+        },
         data: {
             background: 'Construction Site',
             timeOfDay: 'Afternoon',
@@ -2084,6 +2316,10 @@ export const presets: Preset[] = [
         id: 'teacherClassroom',
         category: 'common',
         icon: '👨‍🏫',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/teacherClassroom.png',
+        },
         data: {
             background: 'Classroom',
             lighting: ['Classroom Lighting', 'Natural Window Light'],
@@ -2104,6 +2340,10 @@ export const presets: Preset[] = [
         id: 'marinaYacht',
         category: 'common',
         icon: '⛵',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/marinaYacht.png',
+        },
         data: {
             background: 'Marina',
             timeOfDay: 'Afternoon',
@@ -2125,6 +2365,10 @@ export const presets: Preset[] = [
         id: 'garageMotorcycle',
         category: 'common',
         icon: '🏍️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/garageMotorcycle.png',
+        },
         data: {
             background: 'Garage',
             lighting: ['Dramatic Lighting', 'Side Lighting'],
@@ -2144,6 +2388,10 @@ export const presets: Preset[] = [
         id: 'bakeryChef',
         category: 'common',
         icon: '🧁',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/bakeryChef.png',
+        },
         data: {
             background: 'Bakery Kitchen',
             lighting: ['Warm Ambient Light', 'Natural Window Light'],
@@ -2164,6 +2412,10 @@ export const presets: Preset[] = [
         id: 'hospitalMedical',
         category: 'common',
         icon: '⚕️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/hospitalMedical.png',
+        },
         data: {
             background: 'Hospital',
             lighting: ['Clinical Lighting', 'Bright White Light'],
@@ -2180,32 +2432,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Professional Setting', 'Sharp Focus'],
         },
     },
-    {
-        id: 'concertStage',
-        category: 'common',
-        icon: '🎤',
-        data: {
-            background: 'Concert Stage',
-            timeOfDay: 'Night',
-            lighting: ['Stage Lighting', 'Colorful Lights', 'Spotlights'],
-            lens: ['35mm Wide Angle', '50mm Standard Lens'],
-            camera: 'Mirrorless',
-            cameraType: 'Mirrorless Camera',
-            clothing: ['Performance Outfit', 'Stage Attire'],
-            accessories: ['Microphone', 'Instrument'],
-            pose: ['Performance Pose', 'Singer Pose'],
-            action: ['Performing', 'Singing'],
-            mood: ['Energetic', 'Passionate', 'Electric'],
-            style: ['Concert Photography', 'Performance Photography'],
-            colorGrading: 'Vibrant',
-            specialEffects: ['Light Beams', 'Smoke'],
-            addons: ['Highly Detailed', 'Dynamic Energy', 'Professional Photography'],
-        },
-    },
+
     {
         id: 'horseRiding',
         category: 'common',
         icon: '🐴',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/horseRiding.png',
+        },
         data: {
             background: 'Horse Ranch',
             timeOfDay: 'Afternoon',
@@ -2224,32 +2459,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Majestic', 'Professional Photography'],
         },
     },
-    {
-        id: 'vineyardWinery',
-        category: 'common',
-        icon: '🍇',
-        data: {
-            background: 'Vineyard',
-            timeOfDay: 'Golden Hour',
-            weather: ['Clear'],
-            lighting: ['Golden Hour Light', 'Natural Sunlight'],
-            lens: ['50mm Standard Lens', '85mm Portrait Lens'],
-            camera: 'Full Frame DSLR',
-            cameraType: 'Professional DSLR',
-            clothing: ['Elegant Casual', 'Summer Dress'],
-            accessories: ['Wine Glass', 'Hat'],
-            pose: ['Relaxed Pose', 'Vineyard Pose'],
-            action: ['Wine Tasting', 'Walking'],
-            mood: ['Elegant', 'Refined', 'Peaceful'],
-            style: ['Wine Photography', 'Lifestyle Photography'],
-            colorGrading: 'Warm Tones',
-            addons: ['Highly Detailed', 'Elegant Setting', 'Professional Photography'],
-        },
-    },
+
     {
         id: 'arcadeGamer',
         category: 'common',
         icon: '🕹️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/arcadeGamer.png',
+        },
         data: {
             background: 'Arcade',
             lighting: ['Neon Lights', 'Colorful Ambient Light'],
@@ -2270,6 +2488,10 @@ export const presets: Preset[] = [
         id: 'skiResort',
         category: 'common',
         icon: '⛷️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/skiResort.png',
+        },
         data: {
             background: 'Ski Resort',
             timeOfDay: 'Afternoon',
@@ -2293,6 +2515,10 @@ export const presets: Preset[] = [
         id: 'penthouseView',
         category: 'common',
         icon: '🏢',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/penthouseView.png',
+        },
         data: {
             background: 'Penthouse Apartment',
             timeOfDay: 'Evening',
@@ -2308,31 +2534,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Luxury Lifestyle', 'Professional Photography'],
         },
     },
-    {
-        id: 'tropicalResort',
-        category: 'common',
-        icon: '🌴',
-        data: {
-            background: 'Tropical Resort',
-            timeOfDay: 'Afternoon',
-            weather: ['Clear', 'Sunny'],
-            lighting: ['Bright Tropical Light', 'Natural Sunlight'],
-            lens: ['35mm Wide Angle', '50mm Standard Lens'],
-            camera: 'Mirrorless',
-            cameraType: 'Mirrorless Camera',
-            clothing: ['Resort Wear', 'Beach Outfit'],
-            accessories: ['Sunglasses', 'Tropical Drink'],
-            pose: ['Vacation Pose', 'Relaxed Pose'],
-            mood: ['Relaxed', 'Happy', 'Carefree'],
-            style: ['Travel Photography', 'Lifestyle Photography'],
-            colorGrading: 'Tropical Tones',
-            addons: ['Highly Detailed', 'Paradise Vibes', 'Professional Photography'],
-        },
-    },
+
     {
         id: 'barbershopClassic',
         category: 'common',
         icon: '💈',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/barbershopClassic.png',
+        },
         data: {
             background: 'Classic Barbershop',
             lighting: ['Warm Vintage Lighting', 'Interior Light'],
@@ -2376,6 +2586,10 @@ export const presets: Preset[] = [
         id: 'cyberpunkNeonCity',
         category: 'creative',
         icon: '🌃',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/cyberpunkNeonCity.png',
+        },
         data: {
             background: 'Cyberpunk City',
             era: 'Cyberpunk Future',
@@ -2395,31 +2609,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', '8K Resolution', 'Masterpiece', 'Cyberpunk Aesthetic'],
         },
     },
-    {
-        id: 'underwaterMermaid',
-        category: 'creative',
-        icon: '🧜‍♀️',
-        data: {
-            background: 'Underwater Scene',
-            lighting: ['Underwater Light', 'Sun Rays Through Water'],
-            lightColor: 'Blue Green',
-            lens: ['24mm Wide Angle', '35mm Wide Angle'],
-            camera: 'Underwater Camera',
-            clothing: ['Mermaid Outfit', 'Flowing Fabric'],
-            accessories: ['Seashells', 'Coral'],
-            pose: ['Floating Pose', 'Swimming Pose'],
-            action: ['Swimming', 'Floating'],
-            mood: ['Dreamy', 'Ethereal', 'Mystical', 'Serene'],
-            style: ['Underwater Photography', 'Fantasy Art', 'Aquatic Photography'],
-            colorGrading: 'Underwater Tones',
-            specialEffects: ['Bubbles', 'Light Rays', 'Floating Particles'],
-            addons: ['Highly Detailed', '8K Resolution', 'Masterpiece', 'Magical'],
-        },
-    },
+
     {
         id: 'steampunkWorkshop',
         category: 'creative',
         icon: '⚙️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/steampunkWorkshop.png',
+        },
         data: {
             background: 'Steampunk Workshop',
             era: 'Victorian Era',
@@ -2437,53 +2635,16 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Masterpiece', 'Intricate Mechanical Details'],
         },
     },
-    {
-        id: 'angelicHeaven',
-        category: 'creative',
-        icon: '👼',
-        data: {
-            background: 'Heavenly Clouds',
-            lighting: ['Ethereal Glow', 'Divine Light', 'Soft Heavenly Light'],
-            lightColor: 'Golden White',
-            lens: ['85mm Portrait Lens', '50mm Standard Lens'],
-            camera: 'Medium Format',
-            clothing: ['Flowing White Robes', 'Angelic Attire'],
-            accessories: ['Wings', 'Halo'],
-            pose: ['Floating Pose', 'Angelic Pose'],
-            mood: ['Heavenly', 'Divine', 'Peaceful', 'Pure'],
-            style: ['Fantasy Art', 'Divine Photography', 'Ethereal Art'],
-            colorGrading: 'Heavenly White',
-            specialEffects: ['Soft Glow', 'Light Particles', 'Ethereal Mist'],
-            addons: ['Highly Detailed', '8K Resolution', 'Masterpiece', 'Divine Beauty'],
-        },
-    },
-    {
-        id: 'vampireGothic',
-        category: 'creative',
-        icon: '🧛',
-        data: {
-            background: 'Gothic Castle',
-            era: 'Victorian Era',
-            timeOfDay: 'Night',
-            lighting: ['Dramatic Lighting', 'Candlelight', 'Moonlight'],
-            lightColor: 'Cool Blue',
-            lens: ['50mm Standard Lens', '85mm Portrait Lens'],
-            camera: 'Medium Format',
-            clothing: ['Gothic Fashion', 'Victorian Gothic', 'Dark Elegant'],
-            accessories: ['Gothic Jewelry', 'Candelabra'],
-            makeup: ['Dramatic Gothic', 'Pale Foundation'],
-            pose: ['Gothic Pose', 'Dramatic Pose'],
-            mood: ['Dark', 'Gothic', 'Mysterious', 'Elegant'],
-            style: ['Gothic Photography', 'Dark Art', 'Victorian Photography'],
-            colorGrading: 'Desaturated',
-            specialEffects: ['Mist', 'Shadows', 'Candlelight Flicker'],
-            addons: ['Highly Detailed', 'Masterpiece', 'Gothic Atmosphere'],
-        },
-    },
+
+
     {
         id: 'spaceAstronaut',
         category: 'creative',
         icon: '👨‍🚀',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/spaceAstronaut.png',
+        },
         data: {
             background: 'Outer Space',
             lighting: ['Cosmic Light', 'Starlight', 'Nebula Glow'],
@@ -2502,30 +2663,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', '8K Resolution', 'Masterpiece', 'Epic Scale'],
         },
     },
-    {
-        id: 'fairyForest',
-        category: 'creative',
-        icon: '🧚',
-        data: {
-            background: 'Magical Forest',
-            lighting: ['Ethereal Glow', 'Magical Light', 'Firefly Lights'],
-            lightColor: 'Magical Green',
-            lens: ['50mm Standard Lens', '85mm Portrait Lens'],
-            camera: 'Medium Format',
-            clothing: ['Fairy Dress', 'Ethereal Gown'],
-            accessories: ['Wings', 'Flowers', 'Magical Staff'],
-            pose: ['Fairy Pose', 'Magical Pose'],
-            mood: ['Magical', 'Whimsical', 'Enchanted', 'Dreamy'],
-            style: ['Fantasy Photography', 'Fairy Tale Art', 'Magical Photography'],
-            colorGrading: 'Fantasy Color Grade',
-            specialEffects: ['Sparkles', 'Glowing Particles', 'Magic Dust', 'Bokeh'],
-            addons: ['Highly Detailed', 'Masterpiece', 'Enchanted Forest'],
-        },
-    },
+
     {
         id: 'samuraiWarrior',
         category: 'creative',
         icon: '⚔️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/samuraiWarrior.png',
+        },
         data: {
             background: 'Japanese Temple',
             era: 'Feudal Japan',
@@ -2543,31 +2689,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', '8K Resolution', 'Masterpiece', 'Epic'],
         },
     },
-    {
-        id: 'wizardMagic',
-        category: 'creative',
-        icon: '🧙',
-        data: {
-            background: 'Wizard Tower',
-            lighting: ['Magical Glow', 'Candlelight', 'Mystical Light'],
-            lightColor: 'Mystical Purple',
-            lens: ['50mm Standard Lens', '35mm Wide Angle'],
-            camera: 'Medium Format',
-            clothing: ['Wizard Robes', 'Magical Attire'],
-            accessories: ['Magic Staff', 'Spell Book', 'Hat'],
-            pose: ['Casting Spell', 'Wizard Pose'],
-            action: ['Spell Casting', 'Magic'],
-            mood: ['Magical', 'Mysterious', 'Powerful', 'Wise'],
-            style: ['Fantasy Art', 'Magic Photography', 'Mystical Art'],
-            colorGrading: 'Fantasy Color Grade',
-            specialEffects: ['Magic Particles', 'Glowing Runes', 'Energy Effects'],
-            addons: ['Highly Detailed', 'Masterpiece', '8K Resolution', 'Magical Effects'],
-        },
-    },
+
     {
         id: 'roboticFuture',
         category: 'creative',
         icon: '🤖',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/roboticFuture.png',
+        },
         data: {
             background: 'Tech Laboratory',
             era: 'Distant Future',
@@ -2585,32 +2715,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', '8K Resolution', 'Advanced Technology'],
         },
     },
-    {
-        id: 'phoenixRebirth',
-        category: 'creative',
-        icon: '🔥',
-        data: {
-            background: 'Mystical Fire',
-            lighting: ['Dramatic Lighting', 'Fire Glow', 'Mystical Light'],
-            lightColor: 'Orange Red',
-            lens: ['50mm Standard Lens', '85mm Portrait Lens'],
-            camera: 'Cinema Camera',
-            cameraType: 'Cinema Camera',
-            clothing: ['Flowing Robes', 'Phoenix Inspired'],
-            accessories: ['Wings', 'Fire Elements'],
-            pose: ['Rising Pose', 'Phoenix Pose'],
-            action: ['Rising', 'Transforming'],
-            mood: ['Powerful', 'Rebirth', 'Fierce', 'Transformative'],
-            style: ['Fantasy Art', 'Mythological Photography', 'Epic Art'],
-            colorGrading: 'Fire Color Grade',
-            specialEffects: ['Fire Particles', 'Embers', 'Energy Glow', 'Phoenix Feathers'],
-            addons: ['Highly Detailed', '8K Resolution', 'Masterpiece', 'Epic Scale'],
-        },
-    },
+
     {
         id: 'holographicDigital',
         category: 'creative',
         icon: '💎',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/holographicDigital.png',
+        },
         data: {
             background: 'Digital Space',
             lighting: ['Holographic Light', 'Volumetric Lighting', 'Tech Lighting'],
@@ -2626,31 +2739,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', '8K Resolution', 'Holographic', 'Digital Perfection'],
         },
     },
-    {
-        id: 'dragonRider',
-        category: 'creative',
-        icon: '🐉',
-        data: {
-            background: 'Mountain Peaks',
-            lighting: ['Epic Lighting', 'Dramatic Sky Light', 'Fire Glow'],
-            lens: ['24mm Wide Angle', '35mm Wide Angle'],
-            camera: 'Cinema Camera',
-            cameraType: 'Cinema Camera',
-            clothing: ['Fantasy Armor', 'Dragon Rider Outfit'],
-            accessories: ['Sword', 'Dragon Saddle'],
-            pose: ['Epic Pose', 'Riding Pose'],
-            action: ['Riding Dragon', 'Flying'],
-            mood: ['Epic', 'Adventurous', 'Powerful', 'Legendary'],
-            style: ['Fantasy Art', 'Epic Photography', 'Dragon Art'],
-            colorGrading: 'Epic Color Grade',
-            specialEffects: ['Dragon Fire', 'Wind Effects', 'Epic Scale'],
-            addons: ['Highly Detailed', '8K Resolution', 'Masterpiece', 'Epic Fantasy'],
-        },
-    },
+
     {
         id: 'popArtBold',
         category: 'creative',
         icon: '🎨',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/popArtBold.png',
+        },
         data: {
             background: 'Bold Color Blocks',
             lighting: ['High Key Lighting', 'Even Lighting'],
@@ -2668,6 +2765,10 @@ export const presets: Preset[] = [
         id: 'neonDreamscape',
         category: 'creative',
         icon: '🌈',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/neonDreamscape.png',
+        },
         data: {
             background: 'Neon Abstract',
             lighting: ['Neon Lights', 'Colorful Lighting', 'Vibrant Glow'],
@@ -2687,6 +2788,10 @@ export const presets: Preset[] = [
         id: 'timetravelerSteampunk',
         category: 'creative',
         icon: '⏰',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/timetravelerSteampunk.png',
+        },
         data: {
             background: 'Time Machine Room',
             era: 'Victorian Steampunk',
@@ -2704,26 +2809,7 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Masterpiece', 'Intricate Details'],
         },
     },
-    {
-        id: 'crystalMagic',
-        category: 'creative',
-        icon: '💎',
-        data: {
-            background: 'Crystal Cave',
-            lighting: ['Crystal Refraction', 'Magical Glow', 'Prismatic Light'],
-            lightColor: 'Rainbow Prismatic',
-            lens: ['50mm Standard Lens', '85mm Portrait Lens'],
-            camera: 'Medium Format',
-            clothing: ['Crystal Inspired', 'Elegant Gown'],
-            accessories: ['Crystal Jewelry', 'Gemstones'],
-            pose: ['Elegant Pose', 'Mystical Pose'],
-            mood: ['Magical', 'Ethereal', 'Luxurious', 'Mystical'],
-            style: ['Fantasy Art', 'Crystal Photography', 'Luxury Photography'],
-            colorGrading: 'Prismatic',
-            specialEffects: ['Crystal Reflections', 'Light Refraction', 'Sparkles'],
-            addons: ['Highly Detailed', 'Masterpiece', 'Crystal Clear', '8K Resolution'],
-        },
-    },
+
     {
         id: 'apocalypticSurvivor',
         category: 'creative',
@@ -2751,6 +2837,10 @@ export const presets: Preset[] = [
         id: 'elementalFire',
         category: 'creative',
         icon: '🔥',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/elementalFire.png',
+        },
         data: {
             background: 'Fire Realm',
             lighting: ['Fire Glow', 'Dramatic Lighting', 'Intense Light'],
@@ -2768,30 +2858,15 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', '8K Resolution', 'Masterpiece', 'Elemental Power'],
         },
     },
-    {
-        id: 'gelasticFantasy',
-        category: 'creative',
-        icon: '🦄',
-        data: {
-            background: 'Rainbow Dreamland',
-            lighting: ['Soft Dreamy Light', 'Rainbow Glow', 'Magical Light'],
-            lightColor: 'Pastel Rainbow',
-            lens: ['85mm Portrait Lens', '50mm Standard Lens'],
-            camera: 'Medium Format',
-            clothing: ['Unicorn Inspired', 'Pastel Dress'],
-            accessories: ['Unicorn Horn', 'Rainbow Elements'],
-            pose: ['Dreamy Pose', 'Magical Pose'],
-            mood: ['Dreamy', 'Magical', 'Whimsical', 'Fantasy'],
-            style: ['Fantasy Art', 'Unicorn Photography', 'Kawaii Art'],
-            colorGrading: 'Pastel Rainbow',
-            specialEffects: ['Rainbow Effects', 'Sparkles', 'Soft Glow', 'Magic Dust'],
-            addons: ['Highly Detailed', 'Masterpiece', 'Magical Fantasy'],
-        },
-    },
+
     {
         id: 'ninjaStealthy',
         category: 'creative',
         icon: '🥷',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/ninjaStealthy.png',
+        },
         data: {
             background: 'Japanese Night',
             era: 'Feudal Japan',
@@ -2815,6 +2890,10 @@ export const presets: Preset[] = [
         id: 'egyptianPharaoh',
         category: 'creative',
         icon: '𓀀',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/egyptianPharaoh.png',
+        },
         data: {
             background: 'Ancient Egyptian Temple',
             era: 'Ancient Egypt',
@@ -2859,6 +2938,10 @@ export const presets: Preset[] = [
         id: 'medievalKnight',
         category: 'creative',
         icon: '🛡️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/medievalKnight.png',
+        },
         data: {
             background: 'Medieval Castle',
             era: 'Medieval',
@@ -2877,51 +2960,16 @@ export const presets: Preset[] = [
             addons: ['Highly Detailed', 'Masterpiece', 'Epic Scale', 'Historical'],
         },
     },
-    {
-        id: 'bioluminescentForest',
-        category: 'creative',
-        icon: '🌲',
-        data: {
-            background: 'Bioluminescent Forest',
-            timeOfDay: 'Night',
-            lighting: ['Bioluminescent Glow', 'Magical Light', 'Ethereal Glow'],
-            lightColor: 'Blue Green Glow',
-            lens: ['35mm Wide Angle', '50mm Standard Lens'],
-            camera: 'Medium Format',
-            clothing: ['Fantasy Outfit', 'Nature Inspired'],
-            pose: ['Mystical Pose', 'Forest Pose'],
-            mood: ['Magical', 'Ethereal', 'Mysterious', 'Enchanted'],
-            style: ['Fantasy Photography', 'Nature Art', 'Magical Photography'],
-            colorGrading: 'Bioluminescent',
-            specialEffects: ['Glowing Plants', 'Light Particles', 'Ethereal Mist'],
-            addons: ['Highly Detailed', 'Masterpiece', 'Magical Forest', '8K Resolution'],
-        },
-    },
-    {
-        id: 'greekMythology',
-        category: 'creative',
-        icon: '⚡',
-        data: {
-            background: 'Mount Olympus',
-            era: 'Ancient Greece',
-            lighting: ['Divine Light', 'Dramatic Lighting', 'Ethereal Glow'],
-            lightColor: 'Divine Golden',
-            lens: ['50mm Standard Lens', '85mm Portrait Lens'],
-            camera: 'Medium Format',
-            clothing: ['Greek Toga', 'Mythological Attire'],
-            accessories: ['Laurel Wreath', 'Greek Jewelry'],
-            pose: ['Godlike Pose', 'Classical Pose'],
-            mood: ['Divine', 'Epic', 'Mythological', 'Powerful'],
-            style: ['Classical Art', 'Mythological Photography', 'Epic Art'],
-            colorGrading: 'Golden Classical',
-            specialEffects: ['Divine Light Rays', 'Clouds', 'Epic Scale'],
-            addons: ['Highly Detailed', 'Masterpiece', 'Epic Scale', 'Mythological'],
-        },
-    },
+
+
     {
         id: 'pirateAdventure',
         category: 'creative',
         icon: '🏴‍☠️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/pirateAdventure.png',
+        },
         data: {
             background: 'Pirate Ship',
             era: 'Golden Age of Piracy',
@@ -2991,6 +3039,10 @@ export const presets: Preset[] = [
         id: 'jungleExplorer',
         category: 'creative',
         icon: '🌴',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/jungleExplorer.png',
+        },
         data: {
             background: 'Dense Jungle',
             timeOfDay: 'Afternoon',
@@ -3017,6 +3069,10 @@ export const presets: Preset[] = [
         id: 'goldHourGlow',
         category: 'utility',
         icon: '🌇',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/goldHourGlow.png',
+        },
         data: {
             timeOfDay: 'Golden Hour',
             lighting: ['Golden Hour Light', 'Warm Sunlight'],
@@ -3042,6 +3098,10 @@ export const presets: Preset[] = [
         id: 'moodDramatic',
         category: 'utility',
         icon: '🎭',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/moodDramatic.png',
+        },
         data: {
             lighting: ['Dramatic Lighting', 'Side Lighting', 'Rembrandt Lighting'],
             mood: ['Dramatic', 'Intense', 'Powerful'],
@@ -3054,6 +3114,10 @@ export const presets: Preset[] = [
         id: 'softRomantic',
         category: 'utility',
         icon: '💕',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/softRomantic.png',
+        },
         data: {
             lighting: ['Soft Natural Light', 'Backlight', 'Diffused Lighting'],
             mood: ['Romantic', 'Dreamy', 'Gentle'],
@@ -3067,6 +3131,10 @@ export const presets: Preset[] = [
         id: 'urbanMoody',
         category: 'utility',
         icon: '🏙️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/urbanMoody.png',
+        },
         data: {
             background: 'Urban Environment',
             mood: ['Urban', 'Moody', 'Atmospheric'],
@@ -3106,6 +3174,10 @@ export const presets: Preset[] = [
         id: 'studioClean',
         category: 'utility',
         icon: '🎬',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/studioClean.png',
+        },
         data: {
             background: 'White Studio',
             lighting: ['Studio Lighting', 'Even Lighting', 'Clean Light'],
@@ -3130,6 +3202,10 @@ export const presets: Preset[] = [
         id: 'motionAction',
         category: 'utility',
         icon: '⚡',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/motionAction.png',
+        },
         data: {
             specialEffects: ['Motion Blur', 'Action Lines'],
             composition: ['Dynamic Composition', 'Action Shot'],
@@ -3153,6 +3229,10 @@ export const presets: Preset[] = [
         id: 'productFocus',
         category: 'utility',
         icon: '🎯',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/productFocus.png',
+        },
         data: {
             composition: ['Center Composition', 'Product Focus', 'Minimalist'],
             lighting: ['Softbox Lighting', 'Clean Lighting'],
@@ -3164,6 +3244,10 @@ export const presets: Preset[] = [
         id: 'portraitCinematic',
         category: 'utility',
         icon: '🎥',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/portraitCinematic.png',
+        },
         data: {
             lighting: ['Cinematic Lighting', 'Dramatic Lighting'],
             colorGrading: 'Cinematic Color Grade',
@@ -3176,6 +3260,10 @@ export const presets: Preset[] = [
         id: 'architecturalClean',
         category: 'utility',
         icon: '🏛️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/architecturalClean.png',
+        },
         data: {
             composition: ['Symmetrical', 'Leading Lines', 'Architectural'],
             lens: ['Tilt-Shift Lens', '24mm Wide Angle'],
@@ -3188,6 +3276,10 @@ export const presets: Preset[] = [
         id: 'foodStyling',
         category: 'utility',
         icon: '🍱',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/foodStyling.png',
+        },
         data: {
             lighting: ['Natural Window Light', 'Soft Diffused Light'],
             composition: ['Overhead Shot', 'Food Styling'],
@@ -3200,6 +3292,10 @@ export const presets: Preset[] = [
         id: 'magazineEditorial',
         category: 'utility',
         icon: '📰',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/magazineEditorial.png',
+        },
         data: {
             lighting: ['Editorial Lighting', 'Fashion Lighting'],
             composition: ['Editorial Composition', 'Dynamic'],
@@ -3213,6 +3309,10 @@ export const presets: Preset[] = [
         id: 'blackAndWhiteArt',
         category: 'utility',
         icon: '⚫',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/blackAndWhiteArt.png',
+        },
         data: {
             colorGrading: 'Black and White',
             lighting: ['Dramatic Lighting', 'High Contrast Lighting'],
@@ -3225,6 +3325,10 @@ export const presets: Preset[] = [
         id: 'portraitEnvironmental',
         category: 'utility',
         icon: '🌍',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/portraitEnvironmental.png',
+        },
         data: {
             composition: ['Environmental Portrait', 'Context Included'],
             lens: ['35mm Wide Angle', '24mm Wide Angle'],
@@ -3237,6 +3341,10 @@ export const presets: Preset[] = [
         id: 'fashionLookbook',
         category: 'utility',
         icon: '👔',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/fashionLookbook.png',
+        },
         data: {
             composition: ['Full Body', 'Fashion Lookbook'],
             lighting: ['Even Lighting', 'Fashion Lighting'],
@@ -3249,6 +3357,10 @@ export const presets: Preset[] = [
         id: 'lifestyleCandid',
         category: 'utility',
         icon: '📸',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/lifestyleCandid.png',
+        },
         data: {
             pose: ['Candid/Natural', 'Authentic Moment'],
             lighting: ['Natural Light', 'Available Light'],
@@ -3261,6 +3373,10 @@ export const presets: Preset[] = [
         id: 'timeFreeze',
         category: 'utility',
         icon: '⏸️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/timeFreeze.png',
+        },
         data: {
             specialEffects: ['Frozen Motion', 'High Speed'],
             addons: ['Frozen in Time', 'Perfect Timing', 'Sharp Focus', 'Action Capture'],
@@ -3271,6 +3387,10 @@ export const presets: Preset[] = [
         id: 'lowKeyMoody',
         category: 'utility',
         icon: '🌑',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/lowKeyMoody.png',
+        },
         data: {
             lighting: ['Low Key Lighting', 'Single Light Source', 'Dramatic Shadows'],
             colorGrading: 'Low Key',
@@ -3283,6 +3403,10 @@ export const presets: Preset[] = [
         id: 'highKeyBright',
         category: 'utility',
         icon: '⚪',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/highKeyBright.png',
+        },
         data: {
             lighting: ['High Key Lighting', 'Bright Even Light'],
             colorGrading: 'High Key',
@@ -3295,6 +3419,10 @@ export const presets: Preset[] = [
         id: 'streetStyleUrban',
         category: 'utility',
         icon: '🚶',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/streetStyleUrban.png',
+        },
         data: {
             background: 'Urban Street',
             lighting: ['Available Light', 'Street Light'],
@@ -3307,6 +3435,10 @@ export const presets: Preset[] = [
         id: 'etherealSoftFocus',
         category: 'utility',
         icon: '🌫️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/etherealSoftFocus.png',
+        },
         data: {
             specialEffects: ['Soft Focus', 'Dreamy Filter', 'Ethereal Glow'],
             lighting: ['Soft Diffused Light', 'Ethereal Light'],
@@ -3319,6 +3451,10 @@ export const presets: Preset[] = [
         id: 'colorTheory',
         category: 'utility',
         icon: '🎨',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/colorTheory.png',
+        },
         data: {
             colorGrading: 'Complementary Colors',
             mood: ['Harmonious', 'Balanced', 'Artistic'],
@@ -3330,6 +3466,10 @@ export const presets: Preset[] = [
         id: 'textureDetail',
         category: 'utility',
         icon: '🔲',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/textureDetail.png',
+        },
         data: {
             composition: ['Close-up', 'Texture Focus'],
             lighting: ['Side Lighting', 'Texture Lighting'],
@@ -3342,6 +3482,10 @@ export const presets: Preset[] = [
         id: 'minimalistClean',
         category: 'utility',
         icon: '⬜',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/minimalistClean.png',
+        },
         data: {
             background: 'Minimal Background',
             composition: ['Minimalist', 'Negative Space', 'Simple'],
@@ -3354,6 +3498,10 @@ export const presets: Preset[] = [
         id: 'goldRatio',
         category: 'utility',
         icon: '📐',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/goldRatio.png',
+        },
         data: {
             composition: ['Golden Ratio', 'Perfect Composition'],
             addons: ['Perfect Composition', 'Golden Ratio', 'Balanced', 'Professional'],
@@ -3364,6 +3512,10 @@ export const presets: Preset[] = [
         id: 'doubleExposureArt',
         category: 'utility',
         icon: '👥',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/doubleExposureArt.png',
+        },
         data: {
             specialEffects: ['Double Exposure', 'Multiple Exposure'],
             mood: ['Creative', 'Artistic', 'Surreal'],
@@ -3375,6 +3527,10 @@ export const presets: Preset[] = [
         id: 'silhouetteBold',
         category: 'utility',
         icon: '🌆',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/silhouetteBold.png',
+        },
         data: {
             lighting: ['Backlight', 'Silhouette Lighting'],
             composition: ['Silhouette', 'Bold Shape'],
@@ -3387,6 +3543,10 @@ export const presets: Preset[] = [
         id: 'reflectionMirror',
         category: 'utility',
         icon: '🪞',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/reflectionMirror.png',
+        },
         data: {
             composition: ['Reflection', 'Mirror Effect', 'Symmetry'],
             specialEffects: ['Reflection', 'Water Reflection'],
@@ -3398,12 +3558,186 @@ export const presets: Preset[] = [
         id: 'weatherAtmosphere',
         category: 'utility',
         icon: '🌧️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/weatherAtmosphere.png',
+        },
         data: {
             weather: ['Rain', 'Fog', 'Mist'],
             mood: ['Atmospheric', 'Moody', 'Dramatic'],
             specialEffects: ['Weather Effects', 'Atmospheric'],
             addons: ['Atmospheric Mood', 'Weather Drama', 'Moody Atmosphere'],
             style: ['Atmospheric Photography', 'Weather Photography'],
+        },
+    },
+
+    // ============ WEALTH & LUXURY (NEW) ============
+    {
+        id: 'billionaireLuxury',
+        category: 'creative',
+        icon: '🛩️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/billionaireLuxury.png',
+        },
+        data: {
+            background: 'Private Jet Interior',
+            clothing: ['Luxury Suit', 'Designer Dress'],
+            accessories: ['Champagne Glass', 'Luxury Watch'],
+            mood: ['Luxurious', 'Confident'],
+            style: ['High-end Lifestyle', 'Editorial'],
+            lighting: ['Soft Interior', 'Window Light'],
+            addons: ['Opulence', 'Wealth', 'Cinematic'],
+        },
+    },
+    {
+        id: 'supercarOwner',
+        category: 'creative',
+        icon: '🏎️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/supercarOwner.png',
+        },
+        data: {
+            background: 'Urban Night City',
+            action: ['Leaning on Car', 'Driving'],
+            clothing: ['Street Luxury', 'Leather Jacket'],
+            mood: ['Cool', 'Rich'],
+            style: ['Automotive Lifestyle', 'Neon Noir'],
+            lighting: ['Neon City Lights', 'Blue Hour'],
+            addons: ['Supercar', 'Bokeh', 'Night Vibes'],
+        },
+    },
+    {
+        id: 'oldMoney',
+        category: 'creative',
+        icon: '🏰',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/oldMoney.png',
+        },
+        data: {
+            background: 'Country Estate',
+            clothing: ['Linen Shirt', 'Polo', 'Summer Dress'],
+            mood: ['Sophisticated', 'Quiet Luxury'],
+            style: ['Ralph Lauren Style', 'Classic Portrait'],
+            lighting: ['Natural Afternoon Sun'],
+            addons: ['Elegance', 'Heritage', 'Timeless'],
+        },
+    },
+
+
+    // ============ BEAUTY & SOCIAL (NEW) ============
+    {
+        id: 'instagramInfluencer',
+        category: 'common',
+        icon: '🤳',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/instagramInfluencer.png',
+        },
+        data: {
+            background: 'Trendy Cafe',
+            pose: ['Selfie', 'Fashion Pose'],
+            makeup: ['Perfect Glam', 'Contoured'],
+            clothing: ['Trendy Fashion', 'Street Style'],
+            lighting: ['Ring Light', 'Soft Front Light'],
+            mood: ['Trendy', 'Attractive'],
+            style: ['Social Media', 'Influencer'],
+            addons: ['Viral', 'Beauty Filter Look', 'High Quality'],
+        },
+    },
+    {
+        id: 'redCarpet',
+        category: 'creative',
+        icon: '🎬',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/redCarpet.png',
+        },
+        data: {
+            background: 'Red Carpet Event',
+            clothing: ['Evening Gown', 'Tuxedo'],
+            action: ['Posing for Cameras', 'Waving'],
+            lighting: ['Flash Photography', 'Spotlights'],
+            mood: ['Glamorous', 'Famous'],
+            style: ['Paparazzi Style', 'Celebrity Portrait'],
+            addons: ['Camera Flashes', 'Fame', 'Gala'],
+        },
+    },
+    {
+        id: 'fitnessModel',
+        category: 'common',
+        icon: '💪',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/fitnessModel.png',
+        },
+        data: {
+            background: 'Modern Gym',
+            clothing: ['Gym Wear', 'Athletic Gear'],
+            action: ['Workout', 'Flexing'],
+            lighting: ['Dramatic Gym Lighting', 'Highlighting Muscles'],
+            mood: ['Determined', 'Strong'],
+            style: ['Fitness Photography', 'Sports Editorial'],
+            addons: ['Sweat', 'Definition', 'Physique'],
+        },
+    },
+
+    // ============ EMOTIONS (NEW) ============
+    {
+        id: 'melancholicSadness',
+        category: 'creative',
+        icon: '🌧️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/melancholicSadness.png',
+        },
+        data: {
+            background: 'Rainy Window',
+            weather: ['Rain', 'Gloomy'],
+            action: ['Looking Out Window', 'Crying'],
+            mood: ['Sad', 'Melancholic', 'Lonely'],
+            lighting: ['Soft Cold Light', 'Blue Tones'],
+            style: ['Cinematic Drama', 'Emotional'],
+            addons: ['Teardrops', 'Raindrops', 'Mood'],
+        },
+    },
+    {
+        id: 'pureHappiness',
+        category: 'creative',
+        icon: '😄',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/pureHappiness.png',
+        },
+        data: {
+            background: 'Sunlit Park',
+            weather: ['Sunny', 'Bright'],
+            action: ['Laughing', 'Smiling Huge'],
+            mood: ['Happy', 'Joyful', 'Ecstatic'],
+            lighting: ['Bright Sunshine', 'Warm'],
+            style: ['Candid', 'Lifestyle'],
+            addons: ['Genuine Smile', 'Positivity', 'Vibrant'],
+        },
+    },
+
+
+    {
+        id: 'heartbreak',
+        category: 'creative',
+        icon: '💔',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/heartbreak.png',
+        },
+        data: {
+            background: 'Dark Empty Room',
+            lighting: ['Low Key', 'Shadows'],
+            mood: ['Heartbroken', 'Devastated', 'Dark'],
+            style: ['Moody Drama', 'Noir'],
+            colorGrading: 'Desaturated',
+            addons: ['Solitude', 'Pain', 'Emotional'],
         },
     },
 

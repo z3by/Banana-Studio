@@ -95,27 +95,27 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        
+
         {/* Subtle Background Gradient - Refined for minimalism */}
         <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
           {/* Main Top Glow */}
           <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[80%] h-[500px] bg-gradient-to-b from-amber-500/10 to-transparent rounded-[100%] blur-[100px] opacity-60" />
-           {/* Bottom subtle glow */}
-           <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px]" />
+          {/* Bottom subtle glow */}
+          <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px]" />
         </div>
 
         <LanguageProvider>
           <Header />
-          <main className="flex-1 w-full max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-16 relative z-10">
+          <main className="flex-1 w-full mx-auto px-4 md:px-6 py-8 md:py-16 relative z-10">
             {children}
           </main>
           <footer className="py-8 text-center text-zinc-600 text-xs relative z-10 border-t border-white/5 mt-12">
-             <div className="flex items-center justify-center gap-2">
-                 <span>Made with 🍌 by</span>
-                  <Link href="https://z3by.com" target="_blank" className="font-medium text-zinc-500 hover:text-amber-400 transition-colors">
-                    Ahmad Mostafa
-                  </Link>
-             </div>
+            <div className="flex items-center justify-center gap-2">
+              <span>Made with 🍌 by</span>
+              <Link href="https://z3by.com" target="_blank" className="font-medium text-zinc-500 hover:text-amber-400 transition-colors">
+                Ahmad Mostafa
+              </Link>
+            </div>
           </footer>
         </LanguageProvider>
       </body>

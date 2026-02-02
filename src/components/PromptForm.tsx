@@ -767,7 +767,7 @@ export function PromptForm() {
 
 
     return (
-        <div className="w-full max-w-6xl mx-auto space-y-8">
+        <div className="w-full mx-auto space-y-8">
 
             {/* Toast Notification */}
             {showToast && typeof document !== 'undefined' && createPortal(

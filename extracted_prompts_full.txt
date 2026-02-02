@@ -1,0 +1,5664 @@
+PRESET_ID:blackAndWhite
+PROMPT_Start
+**CORE CONCEPT**
+"A Dramatic portrait of a Young Adult Syrian Man in Simple Gradient"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Simple Gradient
+Mood: Dramatic, Timeless
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Medium Format
+Lens: 50mm Standard Lens
+Film Stock: Ilford HP5, Kodak Tri-X
+Composition: Rule of Thirds, Dramatic Framing
+Lighting: Dramatic Lighting, Rembrandt Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Black and White Photography, Fine Art Photography
+Color Grading: Black and White
+Addons: Highly Detailed, Sharp Focus, Masterpiece
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:cinematic
+PROMPT_Start
+**CORE CONCEPT**
+"A Cinematic portrait of a Young Adult Syrian Man in Moody Interior"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Moody Interior
+Mood: Cinematic, Dramatic
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: Anamorphic Lens
+Composition: Widescreen Framing, Rule of Thirds
+Lighting: Cinematic Lighting, Volumetric Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Cinematic Photography, Film Still
+Color Grading: Cinematic Color Grade
+Effects: Lens Flare, Film Grain
+Addons: Highly Detailed, Masterpiece, Cinematic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:naturalBeauty
+PROMPT_Start
+**CORE CONCEPT**
+"A Fresh portrait of a Young Adult Syrian Man in Natural Outdoors"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Front Facing Portrait, Candid/Natural
+
+**ENVIRONMENT**
+Background: Natural Outdoors
+Mood: Fresh, Natural
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 85mm Portrait Lens
+Lighting: Soft Natural Light, Diffused Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Beauty Photography, Portrait Photography
+Color Grading: Natural
+Addons: Highly Detailed, Sharp Focus, Photorealistic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:corporateHeadshot
+PROMPT_Start
+**CORE CONCEPT**
+"A Professional portrait of a Young Adult Syrian Man in Neutral Gray performing Confident and Smiling"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Business Suit, Blazer
+Pose: Headshot, Front Facing Portrait
+Action: Confident, Smiling
+
+**ENVIRONMENT**
+Background: Neutral Gray
+Mood: Professional, Confident
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 85mm Portrait Lens
+Lighting: Studio Lighting, Softbox Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Corporate Photography, Portrait Photography
+Color Grading: Natural
+Addons: Sharp Focus, Professional Photography, Highly Detailed
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:weddingBridal
+PROMPT_Start
+**CORE CONCEPT**
+"A Romantic portrait of a Young Adult Syrian Man in Garden"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Wedding Dress
+
+**ENVIRONMENT**
+Background: Garden
+Mood: Romantic, Elegant, Dreamy
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 85mm Portrait Lens, 50mm Standard Lens
+Lighting: Soft Natural Light, Backlight
+
+**STYLE & ARTISTRY**
+Art Style: Wedding Photography, Portrait Photography
+Color Grading: Soft Pastel
+Effects: Bokeh, Soft Glow
+Addons: Highly Detailed, Masterpiece, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:lifestyleCasual
+PROMPT_Start
+**CORE CONCEPT**
+"A Relaxed portrait of a Young Adult Syrian Man in Coffee Shop performing Drinking Coffee and Reading"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Casual Wear, Jeans and T-shirt
+Pose: Candid/Natural, Relaxed Sitting
+Action: Drinking Coffee, Reading
+
+**ENVIRONMENT**
+Background: Coffee Shop
+Mood: Relaxed, Authentic, Cozy
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Natural Window Light, Ambient Light
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography, Candid Photography
+Color Grading: Natural
+Addons: Highly Detailed, Photorealistic, Natural Lighting
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:fitnessSports
+PROMPT_Start
+**CORE CONCEPT**
+"A Energetic portrait of a Young Adult Syrian Man in Gym performing Exercising and Athletic Pose"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Athletic Wear, Sports Outfit
+Pose: Action Pose, Dynamic Movement
+Action: Exercising, Athletic Pose
+
+**ENVIRONMENT**
+Background: Gym
+Mood: Energetic, Powerful, Determined
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 24mm Wide Angle, 35mm Wide Angle
+Lighting: Dramatic Lighting, Side Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Sports Photography, Action Photography
+Color Grading: High Contrast
+Addons: Sharp Focus, Highly Detailed, Motion Capture
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:businessCasual
+PROMPT_Start
+**CORE CONCEPT**
+"A Professional portrait of a Young Adult Syrian Man in Modern Office"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Smart Casual, Business Casual
+Pose: Confident Stance, Front Facing Portrait
+
+**ENVIRONMENT**
+Background: Modern Office
+Mood: Professional, Approachable, Confident
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Natural Window Light, Studio Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Corporate Photography, Lifestyle Photography
+Color Grading: Natural
+Addons: Sharp Focus, Professional Photography, Highly Detailed
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:outdoorAdventure
+PROMPT_Start
+**CORE CONCEPT**
+"A Adventurous portrait of a Young Adult Syrian Man in Mountain Landscape performing Hiking and Exploring"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Outdoor Gear, Hiking Outfit
+Pose: Action Pose, Adventure Pose
+Action: Hiking, Exploring
+
+**ENVIRONMENT**
+Background: Mountain Landscape
+Weather: Clear
+Time: Afternoon
+Mood: Adventurous, Free, Energetic
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 24mm Wide Angle, 35mm Wide Angle
+Lighting: Natural Sunlight, Golden Hour Light
+
+**STYLE & ARTISTRY**
+Art Style: Adventure Photography, Outdoor Photography
+Color Grading: Vibrant
+Addons: Highly Detailed, Photorealistic, Sharp Focus
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:petWithPerson
+PROMPT_Start
+**CORE CONCEPT**
+"A Joyful portrait of a Young Adult Syrian Man in Park performing Playing with Pet and Hugging Pet"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: With Pet, Candid/Natural
+Action: Playing with Pet, Hugging Pet
+
+**ENVIRONMENT**
+Background: Park
+Mood: Joyful, Playful, Loving
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Soft Natural Light, Golden Hour Light
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography, Pet Photography
+Color Grading: Warm Tones
+Effects: Bokeh
+Addons: Highly Detailed, Photorealistic, Sharp Focus
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:maternityGlow
+PROMPT_Start
+**CORE CONCEPT**
+"A Serene portrait of a Young Adult Syrian Man in Natural Outdoors"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Flowing Dress, Maternity Gown
+Pose: Maternity Pose, Side Profile
+
+**ENVIRONMENT**
+Background: Natural Outdoors
+Mood: Serene, Romantic, Dreamy, Joyful
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 85mm Portrait Lens, 50mm Standard Lens
+Lighting: Soft Natural Light, Golden Hour Light, Backlight
+
+**STYLE & ARTISTRY**
+Art Style: Maternity Photography, Portrait Photography
+Color Grading: Soft Pastel
+Effects: Soft Glow, Bokeh
+Addons: Highly Detailed, Professional Photography, Photorealistic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:graduationDay
+PROMPT_Start
+**CORE CONCEPT**
+"A Proud portrait of a Young Adult Syrian Man in University Campus performing Throwing Cap and Holding Diploma and Smiling"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Graduation Gown, Cap and Gown
+Accessories: Graduation Cap, Diploma
+Pose: Confident Stance, Front Facing Portrait, Celebrating
+Action: Throwing Cap, Holding Diploma, Smiling
+
+**ENVIRONMENT**
+Background: University Campus
+Mood: Proud, Confident, Joyful, Accomplished
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Natural Sunlight, Soft Natural Light
+
+**STYLE & ARTISTRY**
+Art Style: Portrait Photography, Event Photography
+Color Grading: Vibrant
+Addons: Highly Detailed, Sharp Focus, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:familyPortrait
+PROMPT_Start
+**CORE CONCEPT**
+"A Warm portrait of a Young Adult Syrian Man in Park performing Family Interaction and Laughing Together"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Coordinated Outfits, Casual Wear
+Pose: Group Portrait, Candid/Natural
+Action: Family Interaction, Laughing Together
+
+**ENVIRONMENT**
+Background: Park
+Mood: Warm, Loving, Joyful, Authentic
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Soft Natural Light, Golden Hour Light
+
+**STYLE & ARTISTRY**
+Art Style: Family Photography, Portrait Photography
+Color Grading: Warm Tones
+Effects: Bokeh
+Addons: Highly Detailed, Photorealistic, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:datingProfile
+PROMPT_Start
+**CORE CONCEPT**
+"A Approachable portrait of a Young Adult Syrian Man in Urban City performing Natural Expression and Genuine Smile"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Casual Wear, Smart Casual
+Pose: Candid/Natural, Friendly Smile, Relaxed Sitting
+Action: Natural Expression, Genuine Smile
+
+**ENVIRONMENT**
+Background: Urban City
+Mood: Approachable, Friendly, Confident, Authentic
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Natural Window Light, Soft Natural Light
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography, Portrait Photography
+Color Grading: Natural
+Addons: Highly Detailed, Photorealistic, Natural Lighting
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:authorSpeaker
+PROMPT_Start
+**CORE CONCEPT**
+"A Intellectual portrait of a Young Adult Syrian Man in Library performing Reading and Thinking and Confident"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Smart Casual, Business Casual, Blazer
+Pose: Thoughtful Pose, With Books, Front Facing Portrait
+Action: Reading, Thinking, Confident
+
+**ENVIRONMENT**
+Background: Library
+Mood: Intellectual, Professional, Confident, Approachable
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 85mm Portrait Lens, 50mm Standard Lens
+Lighting: Natural Window Light, Soft Natural Light
+
+**STYLE & ARTISTRY**
+Art Style: Corporate Photography, Environmental Portrait
+Color Grading: Natural
+Addons: Sharp Focus, Professional Photography, Highly Detailed
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:summerVibes
+PROMPT_Start
+**CORE CONCEPT**
+"A Cheerful portrait of a Young Adult Syrian Man in Beach"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Summer Outfit, Beachwear, Sunglasses
+Accessories: Sunglasses, Hat
+Pose: Candid/Natural, Relaxed
+
+**ENVIRONMENT**
+Background: Beach
+Weather: Clear
+Time: Afternoon
+Mood: Cheerful, Carefree, Energetic, Happy
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Natural Sunlight, Bright Daylight
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography, Beach Photography
+Color Grading: Vibrant
+Addons: Highly Detailed, Photorealistic, Sharp Focus
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:winterPortrait
+PROMPT_Start
+**CORE CONCEPT**
+"A Cozy portrait of a Young Adult Syrian Man in Winter Landscape"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Winter Coat, Scarf, Sweater
+Accessories: Beanie, Scarf, Gloves
+Pose: Candid/Natural, Front Facing Portrait
+
+**ENVIRONMENT**
+Background: Winter Landscape
+Weather: Snowy, Overcast
+Time: Afternoon
+Mood: Cozy, Serene, Peaceful
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 85mm Portrait Lens, 50mm Standard Lens
+Lighting: Soft Natural Light, Diffused Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Portrait Photography, Seasonal Photography
+Color Grading: Cool Tones
+Effects: Bokeh, Snow Effects
+Addons: Highly Detailed, Photorealistic, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:musicianPerformer
+PROMPT_Start
+**CORE CONCEPT**
+"A Passionate portrait of a Young Adult Syrian Man in Concert Stage performing Playing Instrument and Singing"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Stage Outfit, Rock Style
+Accessories: Instrument, Microphone
+Pose: Performance Pose, Action Pose
+Action: Playing Instrument, Singing
+
+**ENVIRONMENT**
+Background: Concert Stage
+Mood: Passionate, Energetic, Dynamic
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Stage Lighting, Colored Gels, Dramatic Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Concert Photography, Music Photography
+Color Grading: High Contrast
+Addons: Highly Detailed, Motion Capture, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:chefCulinary
+PROMPT_Start
+**CORE CONCEPT**
+"A Professional portrait of a Young Adult Syrian Man in Restaurant Kitchen performing Cooking and Preparing Food"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Chef Uniform, Apron
+Accessories: Chef Hat
+Pose: Working Pose, Action Pose
+Action: Cooking, Preparing Food
+
+**ENVIRONMENT**
+Background: Restaurant Kitchen
+Mood: Professional, Focused, Passionate
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Natural Window Light, Warm Ambient Light
+
+**STYLE & ARTISTRY**
+Art Style: Culinary Photography, Commercial Photography
+Color Grading: Warm Tones
+Addons: Highly Detailed, Sharp Focus, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:yogaWellness
+PROMPT_Start
+**CORE CONCEPT**
+"A Peaceful portrait of a Young Adult Syrian Man in Yoga Studio performing Stretching and Meditating"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Yoga Attire, Athletic Wear
+Pose: Yoga Pose, Meditation Pose
+Action: Stretching, Meditating
+
+**ENVIRONMENT**
+Background: Yoga Studio
+Mood: Peaceful, Serene, Focused
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Soft Natural Light, Diffused Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Wellness Photography, Lifestyle Photography
+Color Grading: Soft Pastel
+Addons: Highly Detailed, Photorealistic, Natural Light
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:libraryScholar
+PROMPT_Start
+**CORE CONCEPT**
+"A Intellectual portrait of a Young Adult Syrian Man in Library performing Reading and Studying"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Smart Casual, Academic Attire
+Accessories: Glasses, Books
+Pose: Reading Pose, Studious Pose
+Action: Reading, Studying
+
+**ENVIRONMENT**
+Background: Library
+Mood: Intellectual, Focused, Peaceful
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Natural Window Light, Ambient Light, Reading Light
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography, Portrait Photography
+Color Grading: Warm Tones
+Addons: Highly Detailed, Photorealistic, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:dancer
+PROMPT_Start
+**CORE CONCEPT**
+"A Graceful portrait of a Young Adult Syrian Man in Dance Studio performing Dancing and Performing"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Dance Outfit, Performance Attire
+Pose: Dance Pose, Dynamic Movement
+Action: Dancing, Performing
+
+**ENVIRONMENT**
+Background: Dance Studio
+Mood: Graceful, Energetic, Passionate
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 24mm Wide Angle, 35mm Wide Angle
+Lighting: Dramatic Lighting, Stage Lighting, Backlight
+
+**STYLE & ARTISTRY**
+Art Style: Dance Photography, Performance Photography
+Color Grading: Vibrant
+Effects: Motion Blur
+Addons: Highly Detailed, Motion Capture, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:beachSunset
+PROMPT_Start
+**CORE CONCEPT**
+"A Peaceful portrait of a Young Adult Syrian Man in Beach"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Beach Wear, Summer Dress
+Pose: Silhouette, Walking Pose
+
+**ENVIRONMENT**
+Background: Beach
+Weather: Clear
+Time: Sunset
+Mood: Peaceful, Romantic, Free
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Golden Hour Light, Backlight, Natural Sunlight
+
+**STYLE & ARTISTRY**
+Art Style: Beach Photography, Lifestyle Photography
+Color Grading: Warm Tones
+Addons: Highly Detailed, Photorealistic, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:artistStudio
+PROMPT_Start
+**CORE CONCEPT**
+"A Creative portrait of a Young Adult Syrian Man in Art Studio performing Painting and Creating Art"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Casual Wear, Artist Smock
+Accessories: Paint Brushes, Palette
+Pose: Creative Pose, Working Pose
+Action: Painting, Creating Art
+
+**ENVIRONMENT**
+Background: Art Studio
+Mood: Creative, Focused, Artistic
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Natural Window Light, Soft Diffused Light
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography, Documentary Photography
+Color Grading: Natural
+Addons: Highly Detailed, Photorealistic, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:gardenBotanical
+PROMPT_Start
+**CORE CONCEPT**
+"A Peaceful portrait of a Young Adult Syrian Man in Botanical Garden performing Smelling Flowers and Walking"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Summer Dress, Floral Outfit
+Pose: Garden Pose, Natural Pose
+Action: Smelling Flowers, Walking
+
+**ENVIRONMENT**
+Background: Botanical Garden
+Weather: Clear
+Time: Morning
+Mood: Peaceful, Fresh, Natural
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 85mm Portrait Lens, 50mm Standard Lens
+Lighting: Soft Natural Light, Dappled Light
+
+**STYLE & ARTISTRY**
+Art Style: Nature Photography, Portrait Photography
+Color Grading: Vibrant
+Effects: Bokeh
+Addons: Highly Detailed, Photorealistic, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:rainyDay
+PROMPT_Start
+**CORE CONCEPT**
+"A Moody portrait of a Young Adult Syrian Man in City Street"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Raincoat, Rain Gear
+Accessories: Umbrella
+Pose: Walking Pose, Candid/Natural
+
+**ENVIRONMENT**
+Background: City Street
+Weather: Rain
+Mood: Moody, Contemplative, Atmospheric
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Overcast Light, Street Lights
+
+**STYLE & ARTISTRY**
+Art Style: Street Photography, Environmental Portrait
+Color Grading: Cool Tones
+Effects: Rain Effects, Wet Reflections
+Addons: Highly Detailed, Atmospheric, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:motorcycleRider
+PROMPT_Start
+**CORE CONCEPT**
+"A Adventurous portrait of a Young Adult Syrian Man in Open Road performing Riding and Standing with Bike"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Leather Jacket, Biker Outfit
+Accessories: Helmet, Sunglasses
+Pose: Action Pose, Confident Stance
+Action: Riding, Standing with Bike
+
+**ENVIRONMENT**
+Background: Open Road
+Mood: Adventurous, Bold, Free
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 35mm Wide Angle, 24mm Wide Angle
+Lighting: Natural Sunlight, Golden Hour Light
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography, Action Photography
+Color Grading: High Contrast
+Addons: Highly Detailed, Sharp Focus, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:architecturalPortrait
+PROMPT_Start
+**CORE CONCEPT**
+"A Modern portrait of a Young Adult Syrian Man in Modern Architecture"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Architectural Pose, Model Pose
+
+**ENVIRONMENT**
+Background: Modern Architecture
+Mood: Modern, Bold, Confident
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 24mm Wide Angle, 35mm Wide Angle
+Composition: Leading Lines, Symmetrical Framing
+Lighting: Natural Sunlight, Architectural Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Architectural Photography, Fashion Photography
+Color Grading: High Contrast
+Addons: Highly Detailed, Sharp Focus, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:cafeBarista
+PROMPT_Start
+**CORE CONCEPT**
+"A Warm portrait of a Young Adult Syrian Man in Artisan Cafe performing Making Coffee and Serving"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Apron, Casual Wear
+Accessories: Coffee Cup
+Pose: Working Pose, Barista Pose
+Action: Making Coffee, Serving
+
+**ENVIRONMENT**
+Background: Artisan Cafe
+Mood: Warm, Friendly, Cozy
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Natural Window Light, Warm Ambient Light
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography, Commercial Photography
+Color Grading: Warm Tones
+Addons: Highly Detailed, Photorealistic, Natural Lighting
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:forestNature
+PROMPT_Start
+**CORE CONCEPT**
+"A Peaceful portrait of a Young Adult Syrian Man in Forest"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Outdoor Gear, Natural Colors
+Pose: Natural Pose, Environmental Pose
+
+**ENVIRONMENT**
+Background: Forest
+Weather: Partly Cloudy
+Time: Afternoon
+Mood: Peaceful, Natural, Serene
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Dappled Light, Natural Sunlight, Forest Light
+
+**STYLE & ARTISTRY**
+Art Style: Nature Photography, Environmental Portrait
+Color Grading: Natural
+Addons: Highly Detailed, Photorealistic, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:vintageFilm
+PROMPT_Start
+**CORE CONCEPT**
+"A Nostalgic portrait of a Young Adult Syrian Man in Retro Diner"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Vintage 50s, Retro 60s
+
+**ENVIRONMENT**
+Background: Retro Diner
+Era: 1970s
+Mood: Nostalgic, Vintage
+
+**TECHNICAL SPECS**
+Camera: Vintage Film Camera, Film Camera
+Lens: 50mm Standard Lens
+Film Stock: Kodak Portra 400, Fujifilm Pro 400H
+Lighting: Available Light, Natural Sunlight
+
+**STYLE & ARTISTRY**
+Art Style: Film Photography, Analog Photography
+Color Grading: Vintage Film
+Texture: Film Grain
+Effects: Film Grain, Light Leaks, Vignette
+Addons: Highly Detailed, Photorealistic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:vaporwave
+PROMPT_Start
+**CORE CONCEPT**
+"A Retro portrait of a Young Adult Syrian Man in Neon Grid"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: 80s Neon Fashion, Streetwear
+Accessories: Oversized Sunglasses
+
+**ENVIRONMENT**
+Background: Neon Grid
+Era: 1980s
+Time: Sunset
+Mood: Retro, Dreamy
+
+**TECHNICAL SPECS**
+Camera: Vintage Film Camera, Film Camera
+Lens: 35mm Wide Angle
+Lighting: Neon Pink/Blue, Neon Lights, Colored Gels
+
+**STYLE & ARTISTRY**
+Art Style: Vaporwave, Retrowave
+Color Grading: Vaporwave
+Effects: Chromatic Aberration, Glitch Effect, VHS Effect
+Addons: Highly Detailed, Masterpiece
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:steampunkVictorian
+PROMPT_Start
+**CORE CONCEPT**
+"A Vintage portrait of a Young Adult Syrian Man in Industrial Victorian"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Steampunk Attire, Victorian
+Accessories: Goggles, Pocket Watch, Gears
+
+**ENVIRONMENT**
+Background: Industrial Victorian
+Era: Victorian
+Mood: Vintage, Industrial, Dramatic
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Medium Format
+Lens: 50mm Standard Lens
+Lighting: Warm Amber, Dramatic Lighting, Gas Light
+
+**STYLE & ARTISTRY**
+Art Style: Steampunk Art, Victorian Photography
+Color Grading: Sepia
+Effects: Steam, Brass Tones, Vignette
+Addons: Highly Detailed, Intricate Details, Masterpiece
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:animeManga
+PROMPT_Start
+**CORE CONCEPT**
+"A Energetic portrait of a Young Adult Syrian Man in Anime Background"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Hair: Anime Hair
+Eyes: Large Expressive Eyes
+
+**ENVIRONMENT**
+Background: Anime Background
+Mood: Energetic, Expressive, Vibrant
+
+**TECHNICAL SPECS**
+Camera: Digital Art
+Lens: 50mm Standard Lens
+Lighting: Soft Cel-Shaded Light, Anime Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Anime Art, Manga Style, Japanese Animation
+Color Grading: Vibrant Anime
+Effects: Cel Shading, Anime Effects
+Addons: Highly Detailed, 8K Resolution, Masterpiece, Anime Style
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:popArt
+PROMPT_Start
+**CORE CONCEPT**
+"A Bold portrait of a Young Adult Syrian Man in Bold Color Blocks"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Bold Color Blocks
+Era: 1960s
+Mood: Bold, Vibrant, Energetic
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 50mm Standard Lens
+Lighting: High Key Lighting, Flat Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Pop Art, Andy Warhol Style, Comic Book
+Color Grading: Bold Primary Colors
+Effects: Halftone Dots, Ben-Day Dots, High Contrast
+Addons: Highly Detailed, Graphic Style, Masterpiece
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:filmNoir
+PROMPT_Start
+**CORE CONCEPT**
+"A Mysterious portrait of a Young Adult Syrian Man in Dark Alley"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Trench Coat, Fedora
+
+**ENVIRONMENT**
+Background: Dark Alley
+Era: 1940s
+Weather: Rain
+Time: Night
+Mood: Mysterious, Dramatic, Noir
+
+**TECHNICAL SPECS**
+Camera: Vintage Film Camera, Film Camera
+Lens: 50mm Standard Lens
+Film Stock: Ilford HP5, Kodak Tri-X
+Lighting: Cool Blue, Low Key Lighting, Dramatic Shadows, Venetian Blinds Shadow
+
+**STYLE & ARTISTRY**
+Art Style: Film Noir, Black and White Photography
+Color Grading: Black and White
+Effects: Film Grain, High Contrast, Rain Effects
+Addons: Highly Detailed, Cinematic, Masterpiece
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:watercolorPainting
+PROMPT_Start
+**CORE CONCEPT**
+"A Dreamy portrait of a Young Adult Syrian Man in Painted Background"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Painted Background
+Mood: Dreamy, Artistic, Soft
+
+**TECHNICAL SPECS**
+Lighting: Soft Diffused Light, Natural Light
+
+**STYLE & ARTISTRY**
+Art Style: Watercolor Painting, Fine Art, Painted Portrait
+Color Grading: Soft Pastel
+Texture: Watercolor Paper, Canvas
+Effects: Watercolor Texture, Painted Edges, Soft Blending
+Addons: Highly Detailed, Artistic, Masterpiece, Hand Painted
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:neonPortrait
+PROMPT_Start
+**CORE CONCEPT**
+"A Bold portrait of a Young Adult Syrian Man in Dark Studio"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Front Facing Portrait, Fashion Pose
+
+**ENVIRONMENT**
+Background: Dark Studio
+Time: Night
+Mood: Bold, Edgy, Dramatic, Electric
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Mirrorless
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Neon Pink/Blue, Neon Lights, Colored Gels, Dramatic Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Neon Photography, Creative Portrait
+Color Grading: Neon Noir
+Effects: Neon Glow, Colored Light, High Contrast
+Addons: Highly Detailed, Sharp Focus, Masterpiece
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:sciFiFuture
+PROMPT_Start
+**CORE CONCEPT**
+"A Futuristic portrait of a Young Adult Syrian Man in Futuristic Space Station"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Sci-Fi Suit, Space Suit, Futuristic Outfit
+Accessories: Helmet, Tech Gear
+
+**ENVIRONMENT**
+Background: Futuristic Space Station
+Era: Sci-Fi Future
+Mood: Futuristic, Epic, Cinematic
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: 35mm Wide Angle
+Lighting: Cool Blue, Volumetric Lighting, Cinematic Lighting, Neon Lights
+
+**STYLE & ARTISTRY**
+Art Style: Sci-Fi Photography, Cinematic Photography, Futuristic Art
+Color Grading: Cinematic Color Grade
+Effects: Lens Flare, Particle Effects, Holographic Effects
+Addons: Highly Detailed, 8K Resolution, Masterpiece, Cinematic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:artDeco
+PROMPT_Start
+**CORE CONCEPT**
+"A Glamorous portrait of a Young Adult Syrian Man in Art Deco Interior"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: 1920s Fashion, Flapper Dress, Vintage 20s
+Accessories: Pearl Necklace, Headband, Feather
+
+**ENVIRONMENT**
+Background: Art Deco Interior
+Era: 1920s
+Mood: Glamorous, Elegant, Vintage, Luxurious
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Medium Format
+Lens: 50mm Standard Lens
+Lighting: Warm Golden, Dramatic Lighting, Glamour Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Art Deco Photography, Vintage Photography, Glamour Photography
+Color Grading: Sepia
+Effects: Film Grain, Vignette, Gold Tones
+Addons: Highly Detailed, Masterpiece, Cinematic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:surrealDream
+PROMPT_Start
+**CORE CONCEPT**
+"A Surreal portrait of a Young Adult Syrian Man in Surreal Dreamscape"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Surreal Dreamscape
+Mood: Surreal, Dreamlike, Mysterious, Otherworldly
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Mystical Purple, Ethereal Glow, Magical Lighting, Dramatic Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Surreal Art, Digital Art, Fantasy Art
+Color Grading: Fantasy Color Grade
+Effects: Double Exposure, Particle Effects, Dream Effects, Distortion
+Addons: Highly Detailed, Masterpiece, 8K Resolution, Artistic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:impressionist
+PROMPT_Start
+**CORE CONCEPT**
+"A Dreamy portrait of a Young Adult Syrian Man in Garden"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Garden
+Mood: Dreamy, Artistic, Peaceful, Romantic
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 85mm Portrait Lens
+Lighting: Soft Natural Light, Diffused Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Impressionist Painting, Fine Art, Painted Portrait
+Color Grading: Soft Pastel
+Texture: Canvas, Oil Paint
+Effects: Painted Texture, Soft Focus, Brush Strokes
+Addons: Highly Detailed, Artistic, Masterpiece, Impressionist Style
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:comicBook
+PROMPT_Start
+**CORE CONCEPT**
+"A Bold portrait of a Young Adult Syrian Man in Bold Color Blocks"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Action Pose, Dynamic Movement
+
+**ENVIRONMENT**
+Background: Bold Color Blocks
+Mood: Bold, Energetic, Dynamic, Powerful
+
+**TECHNICAL SPECS**
+Camera: Digital Art
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: High Key Lighting, Dramatic Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Comic Book Art, Graphic Novel, Pop Art
+Color Grading: Bold Primary Colors
+Effects: Halftone Dots, Comic Outline, Action Lines, High Contrast
+Addons: Highly Detailed, Graphic Style, Masterpiece, Bold Inking
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:oilPaintingClassic
+PROMPT_Start
+**CORE CONCEPT**
+"A Dramatic portrait of a Young Adult Syrian Man in Renaissance Background"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Classical Attire, Period Costume
+
+**ENVIRONMENT**
+Background: Renaissance Background
+Era: Renaissance
+Mood: Dramatic, Classical, Elegant
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 50mm Standard Lens
+Lighting: Warm Golden, Rembrandt Lighting, Dramatic Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Oil Painting, Classical Art, Renaissance Portrait
+Color Grading: Oil Paint
+Texture: Canvas, Oil Paint
+Effects: Brush Strokes, Canvas Texture, Varnish Finish
+Addons: Highly Detailed, Masterpiece, Museum Quality, Fine Art
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:holographicFuture
+PROMPT_Start
+**CORE CONCEPT**
+"A Futuristic portrait of a Young Adult Syrian Man in Holographic Environment"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Holographic Environment
+Mood: Futuristic, Ethereal, Otherworldly
+
+**TECHNICAL SPECS**
+Camera: Digital Art
+Lens: 50mm Standard Lens
+Lighting: Iridescent, Neon Lights, Holographic Glow, Colored Lights
+
+**STYLE & ARTISTRY**
+Art Style: Holographic Art, Digital Art, Futuristic Photography
+Color Grading: Holographic
+Effects: Holographic Effect, Prismatic Light, Rainbow Reflection, Glitch
+Addons: Highly Detailed, 8K Resolution, Masterpiece, Iridescent
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:minimalistMonochrome
+PROMPT_Start
+**CORE CONCEPT**
+"A Calm portrait of a Young Adult Syrian Man in Minimal White"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Minimal White
+Mood: Calm, Pure, Minimal
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Composition: Minimalist, Negative Space
+Lighting: Soft Diffused Light, Minimal Shadows
+
+**STYLE & ARTISTRY**
+Art Style: Minimalist Photography, Fine Art
+Color Grading: Black and White
+Addons: Highly Detailed, Clean, Professional Photography, Minimalist
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:doubleExposure
+PROMPT_Start
+**CORE CONCEPT**
+"A Artistic portrait of a Young Adult Syrian Man in Multiple Exposures"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Multiple Exposures
+Mood: Artistic, Dreamy, Surreal
+
+**TECHNICAL SPECS**
+Camera: Film Camera
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Film Stock: Kodak Portra 400
+Lighting: Natural Light, Cinematic Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Double Exposure, Fine Art Photography, Creative Photography
+Effects: Double Exposure, Multiple Exposure, Overlay
+Addons: Highly Detailed, Artistic, Masterpiece, Creative
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:neonCyberpunk
+PROMPT_Start
+**CORE CONCEPT**
+"A Edgy portrait of a Young Adult Syrian Man in Neon City"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Cyberpunk Fashion, Futuristic Streetwear
+Accessories: Cybernetic Implants, Tech Accessories
+
+**ENVIRONMENT**
+Background: Neon City
+Era: Cyberpunk Future
+Weather: Rain
+Time: Night
+Mood: Edgy, Futuristic, Noir
+
+**TECHNICAL SPECS**
+Camera: Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Neon Pink/Blue, Neon Lights, Dramatic Lighting, Colored Gels
+
+**STYLE & ARTISTRY**
+Art Style: Cyberpunk Photography, Neon Noir, Sci-Fi Photography
+Color Grading: Neon Noir
+Effects: Neon Glow, Rain Effects, Wet Streets, Neon Reflections
+Addons: Highly Detailed, 8K Resolution, Masterpiece, Cinematic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:abstractExpressionism
+PROMPT_Start
+**CORE CONCEPT**
+"A Bold portrait of a Young Adult Syrian Man in Abstract Background"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Abstract Background
+Mood: Bold, Emotional, Abstract, Artistic
+
+**TECHNICAL SPECS**
+Lighting: Dramatic Lighting, Colored Lights
+
+**STYLE & ARTISTRY**
+Art Style: Abstract Art, Expressionism, Contemporary Art
+Color Grading: Bold Saturated
+Texture: Canvas, Acrylic Paint
+Effects: Paint Splatter, Abstract Shapes, Color Wash, Distortion
+Addons: Highly Detailed, Artistic, Masterpiece, Museum Quality
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:desertSunset
+PROMPT_Start
+**CORE CONCEPT**
+"A Dramatic portrait of a Young Adult Syrian Man in Desert"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Flowing Dress, Desert Fashion
+
+**ENVIRONMENT**
+Background: Desert
+Weather: Clear
+Time: Sunset
+Mood: Dramatic, Mystical, Epic
+
+**TECHNICAL SPECS**
+Camera: Full Frame DSLR
+Lens: 24mm Wide Angle, 35mm Wide Angle
+Lighting: Warm Orange, Golden Hour Light, Dramatic Lighting, Backlighting
+
+**STYLE & ARTISTRY**
+Art Style: Landscape Portrait, Adventure Photography
+Color Grading: Warm Dramatic
+Effects: Lens Flare, Dust Particles
+Addons: Highly Detailed, Cinematic, Masterpiece, Epic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:retroFuturism
+PROMPT_Start
+**CORE CONCEPT**
+"A Nostalgic portrait of a Young Adult Syrian Man in Retro-Futuristic"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Retro Sci-Fi Outfit, Space Age Fashion
+
+**ENVIRONMENT**
+Background: Retro-Futuristic
+Era: 1950s Future Vision
+Mood: Nostalgic, Futuristic, Optimistic
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera
+Lens: 35mm Wide Angle
+Lighting: Retro Orange, Volumetric Lighting, Dramatic Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Retrofuturism, Vintage Sci-Fi, Atomic Age
+Color Grading: Vintage Sci-Fi
+Effects: Vintage Film Look, Ray Gun Effects
+Addons: Highly Detailed, Masterpiece, Retro-Futuristic, Cinematic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:underwaterDream
+PROMPT_Start
+**CORE CONCEPT**
+"A Dreamy portrait of a Young Adult Syrian Man in Underwater"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Flowing Dress, Ethereal Fabric
+
+**ENVIRONMENT**
+Background: Underwater
+Mood: Dreamy, Ethereal, Surreal, Peaceful
+
+**TECHNICAL SPECS**
+Camera: Underwater Camera
+Lens: 24mm Wide Angle, 35mm Wide Angle
+Lighting: Aqua Blue, Underwater Light, Volumetric Light Rays, Blue Light
+
+**STYLE & ARTISTRY**
+Art Style: Underwater Photography, Fine Art, Surreal Photography
+Color Grading: Underwater Blue
+Effects: Underwater Effects, Bubbles, Light Rays, Floating Fabric
+Addons: Highly Detailed, Masterpiece, 8K Resolution, Ethereal
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:japaneseAnime
+PROMPT_Start
+**CORE CONCEPT**
+"A Dynamic portrait of a Young Adult Syrian Man in Anime Background"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Anime Fashion, Japanese Style
+
+**ENVIRONMENT**
+Background: Anime Background
+Mood: Dynamic, Expressive, Vibrant
+
+**TECHNICAL SPECS**
+Camera: Digital Art
+Lens: 50mm Standard Lens
+Lighting: Anime Lighting, Dramatic Shadows
+
+**STYLE & ARTISTRY**
+Art Style: Anime, Japanese Animation, Manga Style
+Color Grading: Anime Colors
+Effects: Anime Eyes, Sparkles, Speed Lines, Anime Shading
+Addons: Highly Detailed, High Quality, Masterpiece, Anime Style
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:baroqueOpulence
+PROMPT_Start
+**CORE CONCEPT**
+"A Opulent portrait of a Young Adult Syrian Man in Baroque Palace"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Baroque Gown, Royal Attire, Period Costume
+Accessories: Crown, Jewelry, Royal Accessories
+
+**ENVIRONMENT**
+Background: Baroque Palace
+Era: Baroque Period
+Mood: Opulent, Regal, Dramatic, Luxurious
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 50mm Standard Lens
+Lighting: Warm Golden, Chandelier Light, Dramatic Lighting, Golden Light
+
+**STYLE & ARTISTRY**
+Art Style: Baroque Art, Historical Portrait, Fine Art
+Color Grading: Rich Golden
+Texture: Silk, Velvet
+Addons: Highly Detailed, Masterpiece, Museum Quality, Ornate
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:noirDetective
+PROMPT_Start
+**CORE CONCEPT**
+"A Mysterious portrait of a Young Adult Syrian Man in Detective Office"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Trench Coat, Fedora, Suit
+Accessories: Cigarette, Magnifying Glass
+
+**ENVIRONMENT**
+Background: Detective Office
+Era: 1940s
+Weather: Rain
+Time: Night
+Mood: Mysterious, Dark, Noir, Gritty
+
+**TECHNICAL SPECS**
+Camera: Film Camera
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Film Stock: Ilford HP5
+Lighting: Harsh White, Low Key Lighting, Venetian Blinds Shadow, Single Light Source
+
+**STYLE & ARTISTRY**
+Art Style: Film Noir, Detective Noir, Classic Noir
+Color Grading: Black and White
+Effects: Film Grain, High Contrast, Shadows, Rain
+Addons: Highly Detailed, Masterpiece, Cinematic, Noir Atmosphere
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:qualityEnhance
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**STYLE & ARTISTRY**
+Art Style: Ultra Realistic
+Addons: Highly Detailed, 8K Resolution, Sharp Focus, Masterpiece, Professional Photography, Photorealistic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:lightRetouch
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lighting: Soft Natural Light, Diffused Lighting
+
+**STYLE & ARTISTRY**
+Color Grading: Natural
+Addons: Sharp Focus, Photorealistic, Highly Detailed
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:skinPerfect
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lighting: Beauty Dish, Softbox Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Beauty Photography
+Addons: Highly Detailed, Sharp Focus, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:hdrVivid
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lighting: High Dynamic Range
+
+**STYLE & ARTISTRY**
+Art Style: HDR Photography
+Color Grading: HDR
+Addons: Highly Detailed, 8K Resolution, HDR
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:instagramReady
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lighting: Soft Natural Light
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography
+Color Grading: Vibrant
+Addons: Sharp Focus, Highly Detailed, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:linkedinPro
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man in Neutral Gray"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Headshot, Front Facing Portrait
+
+**ENVIRONMENT**
+Background: Neutral Gray
+
+**TECHNICAL SPECS**
+Lighting: Studio Lighting, Softbox Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Corporate Photography
+Color Grading: Natural
+Addons: Sharp Focus, Professional Photography, Highly Detailed
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:softDreamy
+PROMPT_Start
+**CORE CONCEPT**
+"A Dreamy portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Dreamy, Romantic
+
+**TECHNICAL SPECS**
+Lighting: Soft Natural Light, Backlight
+
+**STYLE & ARTISTRY**
+Color Grading: Soft Pastel
+Effects: Soft Glow, Bokeh
+Addons: Highly Detailed, Photorealistic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:sharpDetail
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lens: Macro Lens
+Composition: Close-up, Center Composition
+
+**STYLE & ARTISTRY**
+Art Style: Macro Photography
+Addons: Sharp Focus, Highly Detailed, 8K Resolution, Intricate Details
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:instantPro
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Mirrorless
+Lens: 85mm Portrait Lens
+Lighting: Softbox Lighting, Studio Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Professional Photography
+Addons: Professional Photography, Highly Detailed, Masterpiece, 8K Resolution, Sharp Focus
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:hairPerfect
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lighting: Rim Lighting, Backlight
+
+**STYLE & ARTISTRY**
+Addons: Voluminous Hair, Detailed Hair Texture, Perfectly Styled Hair, Shiny Hair, High Quality
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:lightingFix
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lighting: Soft Natural Light, Diffused Lighting, Cinematic Lighting
+
+**STYLE & ARTISTRY**
+Addons: Perfect Exposure, Balanced Lighting, Professional Lighting
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:outfitDetail
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR
+Lighting: Studio Lighting
+
+**STYLE & ARTISTRY**
+Addons: Detailed Fabric Texture, Intricate Patterns, High Quality Materials, Sharp Focus
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:backgroundBlur
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lens: 85mm Portrait Lens, 50mm Standard Lens
+Composition: Shallow Depth of Field, Center Composition
+
+**STYLE & ARTISTRY**
+Art Style: Portrait Photography
+Effects: Bokeh, Creamy Bokeh
+Addons: Sharp Subject Focus, Soft Background, Professional Bokeh
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:colorPop
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**STYLE & ARTISTRY**
+Art Style: Creative Photography
+Color Grading: Selective Color
+Effects: Selective Color Highlight
+Addons: Highly Detailed, Vibrant Accent Color, Black and White Background
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:eyeEnhance
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Eyes: Vibrant Eye Color
+
+**TECHNICAL SPECS**
+Lighting: Catchlight, Beauty Dish
+
+**STYLE & ARTISTRY**
+Art Style: Beauty Photography
+Addons: Sparkling Eyes, Detailed Iris, Sharp Eye Focus, Enhanced Eye Color
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:symmetryFix
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Front Facing Portrait, Straight Angle
+
+**TECHNICAL SPECS**
+Composition: Center Composition, Symmetrical Framing
+Lighting: Even Lighting, Softbox Lighting
+
+**STYLE & ARTISTRY**
+Addons: Perfect Symmetry, Balanced Features, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:zoomReady
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man in Neutral Gray"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Headshot, Front Facing Portrait, Eye Level
+
+**ENVIRONMENT**
+Background: Neutral Gray
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 85mm Portrait Lens
+Composition: Center Composition, Headroom
+Lighting: Studio Lighting, Softbox Lighting, Even Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Corporate Photography
+Color Grading: Natural
+Addons: Sharp Focus, Professional Photography, Highly Detailed, Good Lighting
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:twitterProfile
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man in Simple Gradient"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Headshot, Front Facing Portrait
+
+**ENVIRONMENT**
+Background: Simple Gradient
+
+**TECHNICAL SPECS**
+Lens: 85mm Portrait Lens
+Composition: Center Composition, Close-up
+Lighting: Soft Natural Light, Studio Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Portrait Photography
+Color Grading: Vibrant
+Addons: Sharp Focus, Highly Detailed, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:contrastBoost
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lighting: Dramatic Lighting, Side Lighting
+
+**STYLE & ARTISTRY**
+Art Style: High Contrast Photography
+Color Grading: High Contrast
+Effects: High Contrast, Enhanced Shadows
+Addons: Highly Detailed, Punchy Colors, Deep Blacks
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:vintageTone
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Film Stock: Kodak Portra 400, Fujifilm Pro 400H
+
+**STYLE & ARTISTRY**
+Art Style: Film Photography, Analog Photography
+Color Grading: Vintage Film
+Texture: Film Grain
+Effects: Film Grain, Light Leaks, Vignette, Faded Colors
+Addons: Vintage Look, Nostalgic, Film Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:professionalHeadroom
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Front Facing Portrait, Professional Stance
+
+**TECHNICAL SPECS**
+Composition: Rule of Thirds, Headroom, Eye Level
+
+**STYLE & ARTISTRY**
+Art Style: Professional Photography
+Addons: Perfect Framing, Professional Composition, Balanced
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:goldenRatioComposition
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Composition: Golden Ratio, Fibonacci Spiral, Rule of Thirds
+
+**STYLE & ARTISTRY**
+Art Style: Fine Art Photography
+Addons: Perfect Composition, Mathematically Balanced, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:dramaticShadows
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lighting: Low Key Lighting, Side Lighting, Dramatic Shadows
+
+**STYLE & ARTISTRY**
+Art Style: Dramatic Photography
+Color Grading: High Contrast
+Effects: Enhanced Shadows, Deep Blacks
+Addons: Highly Detailed, Dramatic, Moody
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:softGlam
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lighting: Beauty Dish, Softbox Lighting, Rim Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Beauty Photography, Glamour Photography
+Effects: Soft Glow, Luminous Skin
+Addons: Highly Detailed, Glamorous, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:motionFreeze
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, High Speed Camera
+
+**STYLE & ARTISTRY**
+Art Style: Action Photography, Sports Photography
+Addons: Frozen Motion, Ultra Sharp, High Shutter Speed, Action Capture
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:wideAngleDramatic
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lens: 24mm Wide Angle, 14mm Ultra Wide
+Composition: Wide Angle Perspective, Dynamic Angles
+
+**STYLE & ARTISTRY**
+Art Style: Wide Angle Photography
+Addons: Dramatic Perspective, Wide Coverage, Sharp Focus
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:macroCloseup
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lens: Macro Lens, 100mm Macro
+Composition: Extreme Close-up, Center Composition
+Lighting: Macro Ring Light, Diffused Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Macro Photography
+Addons: Extreme Detail, Intricate Textures, Sharp Focus, 8K Resolution
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:warmGoldenTone
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lighting: Warm Golden, Golden Hour Light, Warm Light
+
+**STYLE & ARTISTRY**
+Art Style: Golden Hour Photography
+Color Grading: Warm Tones
+Addons: Warm Atmosphere, Cozy Feel, Golden Glow
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:coolCinematic
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lighting: Cool Blue, Cinematic Lighting, Dramatic Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Cinematic Photography
+Color Grading: Cinematic Color Grade
+Addons: Cinematic Look, Film Grade, Professional Color
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:fashionEditorial
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Fashion Pose, Editorial Pose
+
+**TECHNICAL SPECS**
+Composition: Dynamic Angles, Fashion Composition
+Lighting: High Key Lighting, Studio Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Editorial Photography, Fashion Photography
+Addons: Magazine Quality, Editorial Style, High Fashion
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:softFocusDreamy
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lighting: Soft Diffused Light, Backlight
+
+**STYLE & ARTISTRY**
+Art Style: Fine Art Photography
+Color Grading: Soft Pastel
+Effects: Soft Focus, Dreamy Filter, Diffusion
+Addons: Dreamy Atmosphere, Romantic, Ethereal
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:urbanGritty
+PROMPT_Start
+**CORE CONCEPT**
+"A Gritty portrait of a Young Adult Syrian Man in Urban Environment"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Urban Environment
+Mood: Gritty, Urban, Raw
+
+**STYLE & ARTISTRY**
+Art Style: Street Photography, Urban Photography
+Color Grading: Desaturated
+Effects: Film Grain, Gritty Texture
+Addons: Street Style, Authentic, Documentary Feel
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:professionalLinkedin
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man in Professional Background"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Professional Headshot, Front Facing Portrait
+
+**ENVIRONMENT**
+Background: Professional Background
+
+**TECHNICAL SPECS**
+Camera: Full Frame DSLR
+Lens: 85mm Portrait Lens, 50mm Standard Lens
+Composition: Headshot Framing, Eye Level
+Lighting: Even Lighting, Softbox Lighting, Studio Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Corporate Photography, Professional Headshot
+Color Grading: Natural
+Addons: Professional Quality, Corporate Standard, Sharp Focus
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:blackBackdrop
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man in Solid Black"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Solid Black
+
+**TECHNICAL SPECS**
+Composition: Center Composition, Isolated Subject
+Lighting: Dramatic Lighting, Side Lighting, Single Light Source
+
+**STYLE & ARTISTRY**
+Art Style: Studio Photography, Dramatic Portrait
+Color Grading: High Contrast
+Addons: Dramatic, Bold, Isolated Subject, Dark Background
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:pastelSoftMood
+PROMPT_Start
+**CORE CONCEPT**
+"A Soft portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Soft, Gentle, Peaceful
+
+**TECHNICAL SPECS**
+Lighting: Soft Natural Light, Diffused Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Soft Photography, Fine Art
+Color Grading: Soft Pastel
+Effects: Soft Glow, Dreamy Filter
+Addons: Pastel Colors, Soft Aesthetic, Gentle Mood
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:mountainSummit
+PROMPT_Start
+**CORE CONCEPT**
+"A Triumphant portrait of a person in Mountain Peak"
+
+**SUBJECT DETAILS**
+Clothing: Hiking Gear, Outdoor Jacket
+Accessories: Backpack, Hiking Boots
+Pose: Standing Pose, Achievement Pose
+
+**ENVIRONMENT**
+Background: Mountain Peak
+Weather: Clear, Fog
+Time: Sunrise
+Mood: Triumphant, Adventurous, Epic
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 35mm Wide Angle, 24mm Wide Angle
+Lighting: Natural Sunlight, Dramatic Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Adventure Photography, Landscape Photography
+Color Grading: Natural
+Addons: Highly Detailed, Epic Vista, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:coffeeshopVibes
+PROMPT_Start
+**CORE CONCEPT**
+"A Cozy portrait of a Young Adult Syrian Man in Cozy Coffee Shop"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Casual Wear, Cozy Sweater
+Accessories: Coffee Cup, Book
+Pose: Relaxed Pose, Reading Pose
+
+**ENVIRONMENT**
+Background: Cozy Coffee Shop
+Time: Morning
+Mood: Cozy, Relaxed, Comfortable
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Warm Ambient Light, Natural Window Light
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography, Candid Photography
+Color Grading: Warm Tones
+Addons: Highly Detailed, Atmospheric, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:winterWonderland
+PROMPT_Start
+**CORE CONCEPT**
+"A Peaceful portrait of a person in Snowy Forest"
+
+**SUBJECT DETAILS**
+Clothing: Winter Coat, Warm Clothes
+Accessories: Scarf, Gloves, Hat
+Pose: Natural Pose, Walking in Snow
+
+**ENVIRONMENT**
+Background: Snowy Forest
+Weather: Snow
+Time: Afternoon
+Mood: Peaceful, Magical, Serene
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 85mm Portrait Lens, 50mm Standard Lens
+Lighting: Soft Natural Light, Overcast Light
+
+**STYLE & ARTISTRY**
+Art Style: Winter Photography, Portrait Photography
+Color Grading: Cool Tones
+Effects: Snowflakes, Soft Glow
+Addons: Highly Detailed, Photorealistic, Winter Magic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:yogaStudio
+PROMPT_Start
+**CORE CONCEPT**
+"A Peaceful portrait of a Young Adult Syrian Man in Yoga Studio performing Practicing Yoga and Meditating"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Yoga Outfit, Athletic Wear
+Pose: Yoga Pose, Meditation Pose
+Action: Practicing Yoga, Meditating
+
+**ENVIRONMENT**
+Background: Yoga Studio
+Time: Morning
+Mood: Peaceful, Zen, Balanced
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Soft Natural Light, Warm Ambient Light
+
+**STYLE & ARTISTRY**
+Art Style: Wellness Photography, Lifestyle Photography
+Color Grading: Natural
+Addons: Highly Detailed, Serene Atmosphere, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:autumnLeaves
+PROMPT_Start
+**CORE CONCEPT**
+"A Warm portrait of a person in Autumn Forest performing Walking and Throwing Leaves"
+
+**SUBJECT DETAILS**
+Clothing: Fall Fashion, Sweater
+Pose: Natural Pose, Playing with Leaves
+Action: Walking, Throwing Leaves
+
+**ENVIRONMENT**
+Background: Autumn Forest
+Weather: Clear
+Time: Afternoon
+Mood: Warm, Nostalgic, Cozy
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 85mm Portrait Lens, 50mm Standard Lens
+Lighting: Golden Hour Light, Dappled Light
+
+**STYLE & ARTISTRY**
+Art Style: Autumn Photography, Seasonal Photography
+Color Grading: Warm Autumn Tones
+Addons: Highly Detailed, Seasonal Beauty, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:poolsideSummer
+PROMPT_Start
+**CORE CONCEPT**
+"A Summery portrait of a Young Adult Syrian Man in Luxury Pool"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Swimwear, Summer Outfit
+Accessories: Sunglasses, Hat
+Pose: Relaxed Pose, Poolside Pose
+
+**ENVIRONMENT**
+Background: Luxury Pool
+Weather: Clear, Sunny
+Time: Afternoon
+Mood: Summery, Vibrant, Luxurious
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Bright Sunlight, Harsh Light
+
+**STYLE & ARTISTRY**
+Art Style: Summer Photography, Lifestyle Photography
+Color Grading: Vibrant
+Addons: Highly Detailed, Luxury Vibes, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:lensFlareDramatic
+PROMPT_Start
+**CORE CONCEPT**
+"A Dramatic portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Dramatic, Epic, Cinematic
+
+**TECHNICAL SPECS**
+Lighting: Backlight, Sun Light
+
+**STYLE & ARTISTRY**
+Art Style: Cinematic Photography, Dramatic Photography
+Effects: Lens Flare, Sun Flare
+Addons: Lens Flare Effect, Dramatic Light, Cinematic, Epic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:grainFilmic
+PROMPT_Start
+**CORE CONCEPT**
+"A Vintage portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Vintage, Filmic, Organic
+
+**STYLE & ARTISTRY**
+Art Style: Film Photography, Analog Photography
+Texture: Film Grain, Organic Texture
+Effects: Film Grain, Filmic Texture
+Addons: Film Grain, Filmic Look, Organic Feel, Authentic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:glamourClassic
+PROMPT_Start
+**CORE CONCEPT**
+"A Glamorous portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Glamour Pose, Confident Pose
+
+**ENVIRONMENT**
+Mood: Glamorous, Confident, Elegant
+
+**TECHNICAL SPECS**
+Lighting: Glamour Lighting, Beauty Dish, Rembrandt Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Glamour Photography, Classic Hollywood
+Addons: Classic Glamour, Hollywood Style, Masterpiece, Professional
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:toneMatching
+PROMPT_Start
+**CORE CONCEPT**
+"A Harmonious portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Harmonious, Balanced, Professional
+
+**STYLE & ARTISTRY**
+Art Style: Professional Color Grading, Balanced Photography
+Color Grading: Matched Tones
+Addons: Color Matched, Tone Balanced, Professional Grade, Consistent
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:libraryScholarly
+PROMPT_Start
+**CORE CONCEPT**
+"A Intellectual portrait of a Young Adult Syrian Man in Old Library performing Reading and Researching"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Academic Attire, Professional Wear
+Accessories: Books, Glasses
+Pose: Reading Pose, Scholarly Pose
+Action: Reading, Researching
+
+**ENVIRONMENT**
+Background: Old Library
+Mood: Intellectual, Focused, Scholarly
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Warm Library Lighting, Natural Window Light
+
+**STYLE & ARTISTRY**
+Art Style: Academic Photography, Portrait Photography
+Color Grading: Warm Tones
+Addons: Highly Detailed, Atmospheric, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:skylineUrbanNight
+PROMPT_Start
+**CORE CONCEPT**
+"A Urban portrait of a person in City Skyline"
+
+**SUBJECT DETAILS**
+Clothing: Urban Fashion, Stylish Outfit
+Pose: Urban Pose, Rooftop Pose
+
+**ENVIRONMENT**
+Background: City Skyline
+Weather: Clear
+Time: Night
+Mood: Urban, Sophisticated, Dynamic
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 24mm Wide Angle, 35mm Wide Angle
+Lighting: City Lights, Ambient Light
+
+**STYLE & ARTISTRY**
+Art Style: Urban Photography, Night Photography
+Color Grading: Cool Tones
+Effects: City Bokeh, Light Trails
+Addons: Highly Detailed, Urban Atmosphere, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:farmRustic
+PROMPT_Start
+**CORE CONCEPT**
+"A Rustic portrait of a Young Adult Syrian Man in Rustic Farm"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Casual Wear, Country Style
+Accessories: Hat, Boots
+Pose: Natural Pose, Farmhouse Pose
+
+**ENVIRONMENT**
+Background: Rustic Farm
+Weather: Clear
+Time: Golden Hour
+Mood: Rustic, Peaceful, Authentic
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Golden Hour Light, Natural Sunlight
+
+**STYLE & ARTISTRY**
+Art Style: Rural Photography, Lifestyle Photography
+Color Grading: Warm Tones
+Addons: Highly Detailed, Rustic Charm, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:floristry
+PROMPT_Start
+**CORE CONCEPT**
+"A Creative portrait of a Young Adult Syrian Man in Flower Shop performing Arranging Flowers and Holding Bouquet"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Apron, Casual Wear
+Accessories: Flowers, Bouquet
+Pose: Working Pose, Arranging Flowers
+Action: Arranging Flowers, Holding Bouquet
+
+**ENVIRONMENT**
+Background: Flower Shop
+Mood: Creative, Joyful, Artistic
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Soft Natural Light, Warm Ambient Light
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography, Commercial Photography
+Color Grading: Vibrant
+Addons: Highly Detailed, Floral Beauty, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:musicianJam
+PROMPT_Start
+**CORE CONCEPT**
+"A Passionate portrait of a Young Adult Syrian Man in Music Studio performing Playing Music and Singing"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Casual Wear, Band Outfit
+Accessories: Guitar, Microphone
+Pose: Playing Instrument, Performance Pose
+Action: Playing Music, Singing
+
+**ENVIRONMENT**
+Background: Music Studio
+Mood: Passionate, Energetic, Creative
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Dramatic Lighting, Ambient Studio Light
+
+**STYLE & ARTISTRY**
+Art Style: Music Photography, Performance Photography
+Color Grading: Moody
+Addons: Highly Detailed, Musical Atmosphere, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:desertAdventure
+PROMPT_Start
+**CORE CONCEPT**
+"A Adventurous portrait of a Young Adult Syrian Man in Desert Landscape"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Adventure Gear, Outdoor Wear
+Accessories: Hat, Sunglasses
+Pose: Adventure Pose, Exploration Pose
+
+**ENVIRONMENT**
+Background: Desert Landscape
+Weather: Clear
+Time: Sunset
+Mood: Adventurous, Free, Bold
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 35mm Wide Angle, 24mm Wide Angle
+Lighting: Golden Hour Light, Natural Sunlight
+
+**STYLE & ARTISTRY**
+Art Style: Adventure Photography, Landscape Photography
+Color Grading: Warm Desert Tones
+Addons: Highly Detailed, Epic Landscape, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:marketStreet
+PROMPT_Start
+**CORE CONCEPT**
+"A Lively portrait of a Young Adult Syrian Man in Street Market performing Shopping and Exploring"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Casual Wear, Shopping Outfit
+Accessories: Shopping Bag, Basket
+Pose: Shopping Pose, Browsing Pose
+Action: Shopping, Exploring
+
+**ENVIRONMENT**
+Background: Street Market
+Weather: Clear
+Time: Afternoon
+Mood: Lively, Authentic, Vibrant
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Natural Sunlight, Ambient Light
+
+**STYLE & ARTISTRY**
+Art Style: Street Photography, Documentary Photography
+Color Grading: Natural
+Addons: Highly Detailed, Market Atmosphere, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:parkJogging
+PROMPT_Start
+**CORE CONCEPT**
+"A Energetic portrait of a Young Adult Syrian Man in City Park performing Running and Jogging"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Athletic Wear, Running Outfit
+Accessories: Running Shoes, Headphones
+Pose: Running Pose, Athletic Pose
+Action: Running, Jogging
+
+**ENVIRONMENT**
+Background: City Park
+Weather: Clear
+Time: Morning
+Mood: Energetic, Healthy, Active
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Soft Morning Light, Natural Sunlight
+
+**STYLE & ARTISTRY**
+Art Style: Sports Photography, Lifestyle Photography
+Color Grading: Natural
+Effects: Motion Blur
+Addons: Highly Detailed, Dynamic Action, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:rooftopDining
+PROMPT_Start
+**CORE CONCEPT**
+"A Elegant portrait of a Young Adult Syrian Man in Rooftop Restaurant performing Dining and Socializing"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Elegant Outfit, Dining Attire
+Pose: Dining Pose, Social Pose
+Action: Dining, Socializing
+
+**ENVIRONMENT**
+Background: Rooftop Restaurant
+Weather: Clear
+Time: Evening
+Mood: Elegant, Sophisticated, Romantic
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Ambient Light, String Lights, City Lights
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography, Food Photography
+Color Grading: Warm Tones
+Addons: Highly Detailed, Atmospheric, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:boutiqueStyler
+PROMPT_Start
+**CORE CONCEPT**
+"A Fashionable portrait of a Young Adult Syrian Man in Fashion Boutique performing Trying On Clothes and Shopping"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Fashionable Outfit, Designer Clothes
+Accessories: Shopping Bags, Jewelry
+Pose: Fashion Pose, Shopping Pose
+Action: Trying On Clothes, Shopping
+
+**ENVIRONMENT**
+Background: Fashion Boutique
+Mood: Fashionable, Stylish, Confident
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Bright Store Lighting, Natural Window Light
+
+**STYLE & ARTISTRY**
+Art Style: Fashion Photography, Commercial Photography
+Color Grading: Vibrant
+Addons: Highly Detailed, Fashion Forward, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:vintageRecords
+PROMPT_Start
+**CORE CONCEPT**
+"A Nostalgic portrait of a person in Record Store performing Browsing Records and Listening"
+
+**SUBJECT DETAILS**
+Clothing: Vintage Casual, Retro Fashion
+Accessories: Vinyl Records, Headphones
+Pose: Browsing Pose, Nostalgic Pose
+Action: Browsing Records, Listening
+
+**ENVIRONMENT**
+Background: Record Store
+Mood: Nostalgic, Vintage, Cool
+
+**TECHNICAL SPECS**
+Camera: Film Camera
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Film Stock: Kodak Portra 400
+Lighting: Warm Ambient Light, Vintage Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Retro Photography, Lifestyle Photography
+Color Grading: Vintage Film
+Effects: Film Grain
+Addons: Highly Detailed, Vintage Vibes, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:laboratoryScience
+PROMPT_Start
+**CORE CONCEPT**
+"A Professional portrait of a Young Adult Syrian Man in Modern Laboratory performing Conducting Research and Experimenting"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Lab Coat, Professional Attire
+Accessories: Safety Goggles, Lab Equipment
+Pose: Working Pose, Scientific Pose
+Action: Conducting Research, Experimenting
+
+**ENVIRONMENT**
+Background: Modern Laboratory
+Mood: Professional, Focused, Scientific
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Cool White Light, Clinical Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Scientific Photography, Corporate Photography
+Color Grading: Cool Tones
+Addons: Highly Detailed, Professional Setting, Sharp Focus
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:constructionWorker
+PROMPT_Start
+**CORE CONCEPT**
+"A Strong portrait of a Young Adult Syrian Man in Construction Site performing Working and Building"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Work Outfit, Safety Gear
+Accessories: Hard Hat, Tools
+Pose: Working Pose, Confident Pose
+Action: Working, Building
+
+**ENVIRONMENT**
+Background: Construction Site
+Weather: Clear
+Time: Afternoon
+Mood: Strong, Professional, Hardworking
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 35mm Wide Angle, 24mm Wide Angle
+Lighting: Natural Sunlight, Harsh Light
+
+**STYLE & ARTISTRY**
+Art Style: Industrial Photography, Documentary Photography
+Color Grading: Natural
+Addons: Highly Detailed, Authentic, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:teacherClassroom
+PROMPT_Start
+**CORE CONCEPT**
+"A Professional portrait of a Young Adult Syrian Man in Classroom performing Teaching and Explaining"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Professional Attire, Smart Casual
+Accessories: Books, Whiteboard Marker
+Pose: Teaching Pose, Professional Pose
+Action: Teaching, Explaining
+
+**ENVIRONMENT**
+Background: Classroom
+Mood: Professional, Engaging, Educational
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Classroom Lighting, Natural Window Light
+
+**STYLE & ARTISTRY**
+Art Style: Documentary Photography, Corporate Photography
+Color Grading: Natural
+Addons: Highly Detailed, Educational Setting, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:marinaYacht
+PROMPT_Start
+**CORE CONCEPT**
+"A Luxurious portrait of a Young Adult Syrian Man in Marina"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Nautical Fashion, Yacht Club Attire
+Accessories: Sunglasses, Hat
+Pose: Yacht Pose, Relaxed Pose
+
+**ENVIRONMENT**
+Background: Marina
+Weather: Clear
+Time: Afternoon
+Mood: Luxurious, Free, Elegant
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Bright Sunlight, Natural Light
+
+**STYLE & ARTISTRY**
+Art Style: Yacht Photography, Lifestyle Photography
+Color Grading: Vibrant
+Addons: Highly Detailed, Luxury Lifestyle, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:garageMotorcycle
+PROMPT_Start
+**CORE CONCEPT**
+"A Cool portrait of a Young Adult Syrian Man in Garage"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Leather Jacket, Biker Outfit
+Accessories: Motorcycle Helmet, Gloves
+Pose: Biker Pose, Cool Pose
+
+**ENVIRONMENT**
+Background: Garage
+Mood: Cool, Rebellious, Bold
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Dramatic Lighting, Side Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Automotive Photography, Lifestyle Photography
+Color Grading: Moody
+Addons: Highly Detailed, Edgy Style, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:bakeryChef
+PROMPT_Start
+**CORE CONCEPT**
+"A Creative portrait of a Young Adult Syrian Man in Bakery Kitchen performing Baking and Decorating"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Chef Outfit, Apron
+Accessories: Baking Tools, Pastries
+Pose: Working Pose, Baking Pose
+Action: Baking, Decorating
+
+**ENVIRONMENT**
+Background: Bakery Kitchen
+Mood: Creative, Warm, Joyful
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Warm Ambient Light, Natural Window Light
+
+**STYLE & ARTISTRY**
+Art Style: Culinary Photography, Lifestyle Photography
+Color Grading: Warm Tones
+Addons: Highly Detailed, Cozy Atmosphere, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:hospitalMedical
+PROMPT_Start
+**CORE CONCEPT**
+"A Professional portrait of a Young Adult Syrian Man in Hospital performing Examining and Working"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Medical Scrubs, Lab Coat
+Accessories: Stethoscope, Medical Equipment
+Pose: Professional Pose, Caring Pose
+Action: Examining, Working
+
+**ENVIRONMENT**
+Background: Hospital
+Mood: Professional, Caring, Trustworthy
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Clinical Lighting, Bright White Light
+
+**STYLE & ARTISTRY**
+Art Style: Medical Photography, Corporate Photography
+Color Grading: Natural
+Addons: Highly Detailed, Professional Setting, Sharp Focus
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:concertStage
+PROMPT_Start
+**CORE CONCEPT**
+"A Energetic portrait of a Young Adult Syrian Man in Concert Stage performing Performing and Singing"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Performance Outfit, Stage Attire
+Accessories: Microphone, Instrument
+Pose: Performance Pose, Singer Pose
+Action: Performing, Singing
+
+**ENVIRONMENT**
+Background: Concert Stage
+Time: Night
+Mood: Energetic, Passionate, Electric
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Stage Lighting, Colorful Lights, Spotlights
+
+**STYLE & ARTISTRY**
+Art Style: Concert Photography, Performance Photography
+Color Grading: Vibrant
+Effects: Light Beams, Smoke
+Addons: Highly Detailed, Dynamic Energy, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:horseRiding
+PROMPT_Start
+**CORE CONCEPT**
+"A Graceful portrait of a Young Adult Syrian Man in Horse Ranch performing Riding Horse and Training"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Equestrian Outfit, Riding Gear
+Accessories: Riding Helmet, Boots
+Pose: Riding Pose, Equestrian Pose
+Action: Riding Horse, Training
+
+**ENVIRONMENT**
+Background: Horse Ranch
+Weather: Clear
+Time: Afternoon
+Mood: Graceful, Strong, Connected
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Natural Sunlight, Golden Hour Light
+
+**STYLE & ARTISTRY**
+Art Style: Equestrian Photography, Sports Photography
+Color Grading: Natural
+Addons: Highly Detailed, Majestic, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:vineyardWinery
+PROMPT_Start
+**CORE CONCEPT**
+"A Elegant portrait of a Young Adult Syrian Man in Vineyard performing Wine Tasting and Walking"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Elegant Casual, Summer Dress
+Accessories: Wine Glass, Hat
+Pose: Relaxed Pose, Vineyard Pose
+Action: Wine Tasting, Walking
+
+**ENVIRONMENT**
+Background: Vineyard
+Weather: Clear
+Time: Golden Hour
+Mood: Elegant, Refined, Peaceful
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Golden Hour Light, Natural Sunlight
+
+**STYLE & ARTISTRY**
+Art Style: Wine Photography, Lifestyle Photography
+Color Grading: Warm Tones
+Addons: Highly Detailed, Elegant Setting, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:arcadeGamer
+PROMPT_Start
+**CORE CONCEPT**
+"A Fun portrait of a Young Adult Syrian Man in Arcade performing Playing Games and Having Fun"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Casual Wear, Streetwear
+Pose: Gaming Pose, Focused Pose
+Action: Playing Games, Having Fun
+
+**ENVIRONMENT**
+Background: Arcade
+Mood: Fun, Nostalgic, Energetic
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Neon Lights, Colorful Ambient Light
+
+**STYLE & ARTISTRY**
+Art Style: Entertainment Photography, Lifestyle Photography
+Color Grading: Vibrant
+Effects: Neon Glow
+Addons: Highly Detailed, Retro Vibes, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:skiResort
+PROMPT_Start
+**CORE CONCEPT**
+"A Adventurous portrait of a Young Adult Syrian Man in Ski Resort performing Skiing and Snowboarding"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Ski Outfit, Winter Sports Gear
+Accessories: Ski Goggles, Gloves
+Pose: Skiing Pose, Action Pose
+Action: Skiing, Snowboarding
+
+**ENVIRONMENT**
+Background: Ski Resort
+Weather: Snow, Clear
+Time: Afternoon
+Mood: Adventurous, Energetic, Thrilling
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 35mm Wide Angle, 24mm Wide Angle
+Lighting: Bright Snow Light, Natural Sunlight
+
+**STYLE & ARTISTRY**
+Art Style: Sports Photography, Action Photography
+Color Grading: Cool Tones
+Effects: Motion Blur, Snow Spray
+Addons: Highly Detailed, Dynamic Action, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:penthouseView
+PROMPT_Start
+**CORE CONCEPT**
+"A Luxurious portrait of a Young Adult Syrian Man in Penthouse Apartment"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Luxury Fashion, Elegant Outfit
+Pose: Sophisticated Pose, Relaxed Luxury Pose
+
+**ENVIRONMENT**
+Background: Penthouse Apartment
+Time: Evening
+Mood: Luxurious, Sophisticated, Elite
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 24mm Wide Angle
+Lighting: Ambient Light, City View Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Luxury Photography, Lifestyle Photography
+Color Grading: Moody
+Addons: Highly Detailed, Luxury Lifestyle, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:tropicalResort
+PROMPT_Start
+**CORE CONCEPT**
+"A Relaxed portrait of a Young Adult Syrian Man in Tropical Resort"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Resort Wear, Beach Outfit
+Accessories: Sunglasses, Tropical Drink
+Pose: Vacation Pose, Relaxed Pose
+
+**ENVIRONMENT**
+Background: Tropical Resort
+Weather: Clear, Sunny
+Time: Afternoon
+Mood: Relaxed, Happy, Carefree
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Bright Tropical Light, Natural Sunlight
+
+**STYLE & ARTISTRY**
+Art Style: Travel Photography, Lifestyle Photography
+Color Grading: Tropical Tones
+Addons: Highly Detailed, Paradise Vibes, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:barbershopClassic
+PROMPT_Start
+**CORE CONCEPT**
+"A Classic portrait of a Young Adult Syrian Man in Classic Barbershop performing Getting Groomed and Styling"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Casual Wear, Stylish Outfit
+Accessories: Grooming Tools
+Pose: Getting Haircut, Grooming Pose
+Action: Getting Groomed, Styling
+
+**ENVIRONMENT**
+Background: Classic Barbershop
+Mood: Classic, Masculine, Refined
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Warm Vintage Lighting, Interior Light
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography, Vintage Photography
+Color Grading: Warm Vintage
+Addons: Highly Detailed, Classic Vibes, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:botanicalGreenhouse
+PROMPT_Start
+**CORE CONCEPT**
+"A Peaceful portrait of a person in Greenhouse"
+
+**SUBJECT DETAILS**
+Clothing: Natural Fabrics, Botanical Style
+Pose: Garden Pose, Natural Pose
+
+**ENVIRONMENT**
+Background: Greenhouse
+Time: Afternoon
+Mood: Peaceful, Natural, Fresh
+
+**TECHNICAL SPECS**
+Camera: Mirrorless Camera, Mirrorless
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Soft Diffused Light, Natural Window Light
+
+**STYLE & ARTISTRY**
+Art Style: Botanical Photography, Nature Photography
+Color Grading: Natural Green
+Effects: Soft Glow, Bokeh
+Addons: Highly Detailed, Botanical Beauty, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:cyberpunkNeonCity
+PROMPT_Start
+**CORE CONCEPT**
+"A Futuristic portrait of a Young Adult Syrian Man in Cyberpunk City"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Cyberpunk Fashion, Tech Wear
+Accessories: Tech Gadgets, Cybernetic
+
+**ENVIRONMENT**
+Background: Cyberpunk City
+Era: Cyberpunk Future
+Weather: Rain
+Time: Night
+Mood: Futuristic, Dark, Edgy, Tech
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: 35mm Wide Angle
+Lighting: Neon Purple and Blue, Neon Lights, Volumetric Lighting, Colored Lights
+
+**STYLE & ARTISTRY**
+Art Style: Cyberpunk Art, Sci-Fi Photography, Neon Photography
+Color Grading: Cyberpunk Color Grade
+Effects: Neon Glow, Rain Effects, Lens Flare, Holographic
+Addons: Highly Detailed, 8K Resolution, Masterpiece, Cyberpunk Aesthetic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:underwaterMermaid
+PROMPT_Start
+**CORE CONCEPT**
+"A Dreamy portrait of a Young Adult Syrian Man in Underwater Scene performing Swimming and Floating"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Mermaid Outfit, Flowing Fabric
+Accessories: Seashells, Coral
+Pose: Floating Pose, Swimming Pose
+Action: Swimming, Floating
+
+**ENVIRONMENT**
+Background: Underwater Scene
+Mood: Dreamy, Ethereal, Mystical, Serene
+
+**TECHNICAL SPECS**
+Camera: Underwater Camera
+Lens: 24mm Wide Angle, 35mm Wide Angle
+Lighting: Blue Green, Underwater Light, Sun Rays Through Water
+
+**STYLE & ARTISTRY**
+Art Style: Underwater Photography, Fantasy Art, Aquatic Photography
+Color Grading: Underwater Tones
+Effects: Bubbles, Light Rays, Floating Particles
+Addons: Highly Detailed, 8K Resolution, Masterpiece, Magical
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:steampunkWorkshop
+PROMPT_Start
+**CORE CONCEPT**
+"A Industrial portrait of a Young Adult Syrian Man in Steampunk Workshop"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Steampunk Fashion, Victorian Outfit, Goggles
+Accessories: Gears, Mechanical Parts, Pocket Watch
+
+**ENVIRONMENT**
+Background: Steampunk Workshop
+Era: Victorian Era
+Mood: Industrial, Victorian, Adventurous, Mysterious
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Warm Amber, Warm Gas Light, Dramatic Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Steampunk Art, Victorian Photography, Industrial Art
+Color Grading: Sepia
+Texture: Brass, Leather
+Effects: Steam, Mechanical Details, Vintage Film
+Addons: Highly Detailed, Masterpiece, Intricate Mechanical Details
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:angelicHeaven
+PROMPT_Start
+**CORE CONCEPT**
+"A Heavenly portrait of a Young Adult Syrian Man in Heavenly Clouds"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Flowing White Robes, Angelic Attire
+Accessories: Wings, Halo
+Pose: Floating Pose, Angelic Pose
+
+**ENVIRONMENT**
+Background: Heavenly Clouds
+Mood: Heavenly, Divine, Peaceful, Pure
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 85mm Portrait Lens, 50mm Standard Lens
+Lighting: Golden White, Ethereal Glow, Divine Light, Soft Heavenly Light
+
+**STYLE & ARTISTRY**
+Art Style: Fantasy Art, Divine Photography, Ethereal Art
+Color Grading: Heavenly White
+Effects: Soft Glow, Light Particles, Ethereal Mist
+Addons: Highly Detailed, 8K Resolution, Masterpiece, Divine Beauty
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:vampireGothic
+PROMPT_Start
+**CORE CONCEPT**
+"A Dark portrait of a Young Adult Syrian Man in Gothic Castle"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Gothic Fashion, Victorian Gothic, Dark Elegant
+Accessories: Gothic Jewelry, Candelabra
+Pose: Gothic Pose, Dramatic Pose
+
+**ENVIRONMENT**
+Background: Gothic Castle
+Era: Victorian Era
+Time: Night
+Mood: Dark, Gothic, Mysterious, Elegant
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Cool Blue, Dramatic Lighting, Candlelight, Moonlight
+
+**STYLE & ARTISTRY**
+Art Style: Gothic Photography, Dark Art, Victorian Photography
+Color Grading: Desaturated
+Effects: Mist, Shadows, Candlelight Flicker
+Addons: Highly Detailed, Masterpiece, Gothic Atmosphere
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:spaceAstronaut
+PROMPT_Start
+**CORE CONCEPT**
+"A Epic portrait of a Young Adult Syrian Man in Outer Space performing Space Walking and Exploring"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Space Suit, Astronaut Gear
+Accessories: Helmet, Space Equipment
+Pose: Floating Pose, Astronaut Pose
+Action: Space Walking, Exploring
+
+**ENVIRONMENT**
+Background: Outer Space
+Mood: Epic, Cosmic, Awe-Inspiring, Isolated
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: 24mm Wide Angle, 35mm Wide Angle
+Lighting: Cosmic Blue Purple, Cosmic Light, Starlight, Nebula Glow
+
+**STYLE & ARTISTRY**
+Art Style: Space Photography, Sci-Fi Art, Cosmic Art
+Color Grading: Space Color Grade
+Effects: Stars, Nebula, Zero Gravity, Cosmic Dust
+Addons: Highly Detailed, 8K Resolution, Masterpiece, Epic Scale
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:fairyForest
+PROMPT_Start
+**CORE CONCEPT**
+"A Magical portrait of a Young Adult Syrian Man in Magical Forest"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Fairy Dress, Ethereal Gown
+Accessories: Wings, Flowers, Magical Staff
+Pose: Fairy Pose, Magical Pose
+
+**ENVIRONMENT**
+Background: Magical Forest
+Mood: Magical, Whimsical, Enchanted, Dreamy
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Magical Green, Ethereal Glow, Magical Light, Firefly Lights
+
+**STYLE & ARTISTRY**
+Art Style: Fantasy Photography, Fairy Tale Art, Magical Photography
+Color Grading: Fantasy Color Grade
+Effects: Sparkles, Glowing Particles, Magic Dust, Bokeh
+Addons: Highly Detailed, Masterpiece, Enchanted Forest
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:samuraiWarrior
+PROMPT_Start
+**CORE CONCEPT**
+"A Warrior Spirit portrait of a Young Adult Syrian Man in Japanese Temple"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Samurai Armor, Traditional Japanese
+Accessories: Katana, Helmet
+Pose: Warrior Pose, Battle Stance
+
+**ENVIRONMENT**
+Background: Japanese Temple
+Era: Feudal Japan
+Mood: Warrior Spirit, Honorable, Intense, Focused
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Dramatic Lighting, Atmospheric Light
+
+**STYLE & ARTISTRY**
+Art Style: Samurai Photography, Historical Art, Cinematic Photography
+Color Grading: Cinematic Color Grade
+Effects: Mist, Dramatic Shadows
+Addons: Highly Detailed, 8K Resolution, Masterpiece, Epic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:wizardMagic
+PROMPT_Start
+**CORE CONCEPT**
+"A Magical portrait of a Young Adult Syrian Man in Wizard Tower performing Spell Casting and Magic"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Wizard Robes, Magical Attire
+Accessories: Magic Staff, Spell Book, Hat
+Pose: Casting Spell, Wizard Pose
+Action: Spell Casting, Magic
+
+**ENVIRONMENT**
+Background: Wizard Tower
+Mood: Magical, Mysterious, Powerful, Wise
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Mystical Purple, Magical Glow, Candlelight, Mystical Light
+
+**STYLE & ARTISTRY**
+Art Style: Fantasy Art, Magic Photography, Mystical Art
+Color Grading: Fantasy Color Grade
+Effects: Magic Particles, Glowing Runes, Energy Effects
+Addons: Highly Detailed, Masterpiece, 8K Resolution, Magical Effects
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:roboticFuture
+PROMPT_Start
+**CORE CONCEPT**
+"A Futuristic portrait of a Young Adult Syrian Man in Tech Laboratory"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Futuristic Outfit, Tech Suit
+Accessories: Robotic Parts, Tech Gadgets
+
+**ENVIRONMENT**
+Background: Tech Laboratory
+Era: Distant Future
+Mood: Futuristic, Tech, Advanced, Clinical
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Electric Blue, Cool LED Lighting, Tech Lighting, Neon Accents
+
+**STYLE & ARTISTRY**
+Art Style: Sci-Fi Photography, Tech Art, Futuristic Photography
+Color Grading: Tech Color Grade
+Effects: Holographic, Digital Effects, Tech Overlays
+Addons: Highly Detailed, 8K Resolution, Advanced Technology
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:phoenixRebirth
+PROMPT_Start
+**CORE CONCEPT**
+"A Powerful portrait of a Young Adult Syrian Man in Mystical Fire performing Rising and Transforming"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Flowing Robes, Phoenix Inspired
+Accessories: Wings, Fire Elements
+Pose: Rising Pose, Phoenix Pose
+Action: Rising, Transforming
+
+**ENVIRONMENT**
+Background: Mystical Fire
+Mood: Powerful, Rebirth, Fierce, Transformative
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Orange Red, Dramatic Lighting, Fire Glow, Mystical Light
+
+**STYLE & ARTISTRY**
+Art Style: Fantasy Art, Mythological Photography, Epic Art
+Color Grading: Fire Color Grade
+Effects: Fire Particles, Embers, Energy Glow, Phoenix Feathers
+Addons: Highly Detailed, 8K Resolution, Masterpiece, Epic Scale
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:holographicDigital
+PROMPT_Start
+**CORE CONCEPT**
+"A Futuristic portrait of a Young Adult Syrian Man in Digital Space"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Futuristic Fashion, Holographic Outfit
+Pose: Fashion Pose, Tech Pose
+
+**ENVIRONMENT**
+Background: Digital Space
+Mood: Futuristic, Digital, Innovative, Sleek
+
+**TECHNICAL SPECS**
+Camera: Digital Art
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Iridescent, Holographic Light, Volumetric Lighting, Tech Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Digital Art, Holographic Photography, Future Fashion
+Color Grading: Holographic Color Grade
+Effects: Holographic Effects, Digital Glitch, Iridescent Glow
+Addons: Highly Detailed, 8K Resolution, Holographic, Digital Perfection
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:dragonRider
+PROMPT_Start
+**CORE CONCEPT**
+"A Epic portrait of a Young Adult Syrian Man in Mountain Peaks performing Riding Dragon and Flying"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Fantasy Armor, Dragon Rider Outfit
+Accessories: Sword, Dragon Saddle
+Pose: Epic Pose, Riding Pose
+Action: Riding Dragon, Flying
+
+**ENVIRONMENT**
+Background: Mountain Peaks
+Mood: Epic, Adventurous, Powerful, Legendary
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: 24mm Wide Angle, 35mm Wide Angle
+Lighting: Epic Lighting, Dramatic Sky Light, Fire Glow
+
+**STYLE & ARTISTRY**
+Art Style: Fantasy Art, Epic Photography, Dragon Art
+Color Grading: Epic Color Grade
+Effects: Dragon Fire, Wind Effects, Epic Scale
+Addons: Highly Detailed, 8K Resolution, Masterpiece, Epic Fantasy
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:popArtBold
+PROMPT_Start
+**CORE CONCEPT**
+"A Bold portrait of a Young Adult Syrian Man in Bold Color Blocks"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Bold Pose, Confident Pose
+
+**ENVIRONMENT**
+Background: Bold Color Blocks
+Mood: Bold, Vibrant, Energetic, Pop
+
+**TECHNICAL SPECS**
+Camera: Digital Art
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: High Key Lighting, Even Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Pop Art, Andy Warhol Style, Graphic Art
+Color Grading: Bold Pop Colors
+Effects: Ben-Day Dots, Bold Outlines, Duotone, High Contrast
+Addons: Highly Detailed, Pop Art Style, Bold Graphics
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:neonDreamscape
+PROMPT_Start
+**CORE CONCEPT**
+"A Vibrant portrait of a person in Neon Abstract"
+
+**SUBJECT DETAILS**
+Clothing: Neon Fashion, Futuristic Outfit
+Pose: Fashion Pose, Abstract Pose
+
+**ENVIRONMENT**
+Background: Neon Abstract
+Mood: Vibrant, Electric, Dreamy, Psychedelic
+
+**TECHNICAL SPECS**
+Camera: Digital Art
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Rainbow Neon, Neon Lights, Colorful Lighting, Vibrant Glow
+
+**STYLE & ARTISTRY**
+Art Style: Neon Art, Abstract Photography, Digital Art
+Color Grading: Neon Color Grade
+Effects: Neon Glow, Light Trails, Chromatic Aberration
+Addons: Highly Detailed, 8K Resolution, Neon Dreams, Vibrant
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:timetravelerSteampunk
+PROMPT_Start
+**CORE CONCEPT**
+"A Adventurous portrait of a Young Adult Syrian Man in Time Machine Room"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Steampunk Traveler, Victorian Outfit
+Accessories: Pocket Watch, Goggles, Gear Device
+Pose: Time Traveler Pose, Adventurous Pose
+
+**ENVIRONMENT**
+Background: Time Machine Room
+Era: Victorian Steampunk
+Mood: Adventurous, Mysterious, Victorian, Inventive
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Warm Brass, Dramatic Lighting, Gear Shadows, Warm Light
+
+**STYLE & ARTISTRY**
+Art Style: Steampunk Photography, Time Travel Art, Victorian Art
+Color Grading: Vintage Sepia
+Effects: Time Effects, Gears, Steam
+Addons: Highly Detailed, Masterpiece, Intricate Details
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:crystalMagic
+PROMPT_Start
+**CORE CONCEPT**
+"A Magical portrait of a person in Crystal Cave"
+
+**SUBJECT DETAILS**
+Clothing: Crystal Inspired, Elegant Gown
+Accessories: Crystal Jewelry, Gemstones
+Pose: Elegant Pose, Mystical Pose
+
+**ENVIRONMENT**
+Background: Crystal Cave
+Mood: Magical, Ethereal, Luxurious, Mystical
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Rainbow Prismatic, Crystal Refraction, Magical Glow, Prismatic Light
+
+**STYLE & ARTISTRY**
+Art Style: Fantasy Art, Crystal Photography, Luxury Photography
+Color Grading: Prismatic
+Effects: Crystal Reflections, Light Refraction, Sparkles
+Addons: Highly Detailed, Masterpiece, Crystal Clear, 8K Resolution
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:apocalypticSurvivor
+PROMPT_Start
+**CORE CONCEPT**
+"A Gritty portrait of a Young Adult Syrian Man in Post-Apocalyptic Wasteland"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Survival Gear, Tactical Outfit
+Accessories: Gas Mask, Weapons, Backpack
+Pose: Survivor Pose, Tough Stance
+
+**ENVIRONMENT**
+Background: Post-Apocalyptic Wasteland
+Era: Post-Apocalypse
+Weather: Overcast, Dust
+Time: Dusk
+Mood: Gritty, Desolate, Survival, Dark
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: 35mm Wide Angle, 24mm Wide Angle
+Lighting: Harsh Light, Dramatic Lighting, Dusty Atmosphere
+
+**STYLE & ARTISTRY**
+Art Style: Post-Apocalyptic Photography, Dystopian Art, Cinematic
+Color Grading: Desaturated
+Effects: Dust Particles, Film Grain, Harsh Shadows
+Addons: Highly Detailed, Gritty Realism, Cinematic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:elementalFire
+PROMPT_Start
+**CORE CONCEPT**
+"A Intense portrait of a Young Adult Syrian Man in Fire Realm"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Elemental Outfit, Fire Inspired
+Accessories: Fire Elements
+Pose: Powerful Pose, Elemental Pose
+
+**ENVIRONMENT**
+Background: Fire Realm
+Mood: Intense, Powerful, Fierce, Elemental
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Fiery Orange, Fire Glow, Dramatic Lighting, Intense Light
+
+**STYLE & ARTISTRY**
+Art Style: Fantasy Art, Elemental Photography, Epic Art
+Color Grading: Fire Tones
+Effects: Fire Particles, Flames, Heat Distortion, Embers
+Addons: Highly Detailed, 8K Resolution, Masterpiece, Elemental Power
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:gelasticFantasy
+PROMPT_Start
+**CORE CONCEPT**
+"A Dreamy portrait of a Young Adult Syrian Man in Rainbow Dreamland"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Unicorn Inspired, Pastel Dress
+Accessories: Unicorn Horn, Rainbow Elements
+Pose: Dreamy Pose, Magical Pose
+
+**ENVIRONMENT**
+Background: Rainbow Dreamland
+Mood: Dreamy, Magical, Whimsical, Fantasy
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 85mm Portrait Lens, 50mm Standard Lens
+Lighting: Pastel Rainbow, Soft Dreamy Light, Rainbow Glow, Magical Light
+
+**STYLE & ARTISTRY**
+Art Style: Fantasy Art, Unicorn Photography, Kawaii Art
+Color Grading: Pastel Rainbow
+Effects: Rainbow Effects, Sparkles, Soft Glow, Magic Dust
+Addons: Highly Detailed, Masterpiece, Magical Fantasy
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:ninjaStealthy
+PROMPT_Start
+**CORE CONCEPT**
+"A Stealthy portrait of a Young Adult Syrian Man in Japanese Night performing Stealth Movement and Combat"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Ninja Outfit, Black Garb
+Accessories: Ninja Weapons, Mask
+Pose: Stealth Pose, Action Pose
+Action: Stealth Movement, Combat
+
+**ENVIRONMENT**
+Background: Japanese Night
+Era: Feudal Japan
+Time: Night
+Mood: Stealthy, Intense, Focused, Mysterious
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Moonlight, Dramatic Shadows, Low Key Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Action Photography, Ninja Art, Cinematic Photography
+Color Grading: Desaturated
+Effects: Smoke, Motion Blur, Shadows
+Addons: Highly Detailed, Cinematic, Action Packed
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:egyptianPharaoh
+PROMPT_Start
+**CORE CONCEPT**
+"A Majestic portrait of a Young Adult Syrian Man in Ancient Egyptian Temple"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Egyptian Royal Attire, Pharaoh Outfit
+Accessories: Headdress, Egyptian Jewelry, Staff
+Pose: Royal Pose, Pharaoh Stance
+
+**ENVIRONMENT**
+Background: Ancient Egyptian Temple
+Era: Ancient Egypt
+Mood: Majestic, Regal, Ancient, Powerful
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Warm Golden, Dramatic Lighting, Golden Light, Temple Shadows
+
+**STYLE & ARTISTRY**
+Art Style: Historical Photography, Ancient Art, Epic Photography
+Color Grading: Golden Ancient
+Effects: Sandstorm, Ancient Atmosphere
+Addons: Highly Detailed, Masterpiece, Historical Accuracy
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:alienWorldExplorer
+PROMPT_Start
+**CORE CONCEPT**
+"A Alien portrait of a Young Adult Syrian Man in Alien Planet performing Exploring and Discovering"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Space Explorer Suit, Sci-Fi Outfit
+Accessories: Helmet, Explorer Gear
+Pose: Explorer Pose, Discovery Pose
+Action: Exploring, Discovering
+
+**ENVIRONMENT**
+Background: Alien Planet
+Mood: Alien, Wonder, Mysterious, Otherworldly
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: 24mm Wide Angle, 35mm Wide Angle
+Lighting: Alien Purple Green, Alien Sky Light, Strange Colors, Atmospheric Glow
+
+**STYLE & ARTISTRY**
+Art Style: Sci-Fi Art, Alien Photography, Space Art
+Color Grading: Alien Color Grade
+Effects: Alien Flora, Strange Atmosphere, Bioluminescence
+Addons: Highly Detailed, 8K Resolution, Alien World, Epic Scale
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:medievalKnight
+PROMPT_Start
+**CORE CONCEPT**
+"A Heroic portrait of a Young Adult Syrian Man in Medieval Castle performing Standing Guard and Battle Ready"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Knight Armor, Medieval Attire
+Accessories: Sword, Shield, Helmet
+Pose: Warrior Pose, Knight Stance
+Action: Standing Guard, Battle Ready
+
+**ENVIRONMENT**
+Background: Medieval Castle
+Era: Medieval
+Mood: Heroic, Brave, Medieval, Epic
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Lighting: Dramatic Lighting, Torch Light, Moody Shadows
+
+**STYLE & ARTISTRY**
+Art Style: Medieval Photography, Historical Art, Epic Photography
+Color Grading: Medieval Tones
+Effects: Mist, Atmospheric Fog
+Addons: Highly Detailed, Masterpiece, Epic Scale, Historical
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:bioluminescentForest
+PROMPT_Start
+**CORE CONCEPT**
+"A Magical portrait of a person in Bioluminescent Forest"
+
+**SUBJECT DETAILS**
+Clothing: Fantasy Outfit, Nature Inspired
+Pose: Mystical Pose, Forest Pose
+
+**ENVIRONMENT**
+Background: Bioluminescent Forest
+Time: Night
+Mood: Magical, Ethereal, Mysterious, Enchanted
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 35mm Wide Angle, 50mm Standard Lens
+Lighting: Blue Green Glow, Bioluminescent Glow, Magical Light, Ethereal Glow
+
+**STYLE & ARTISTRY**
+Art Style: Fantasy Photography, Nature Art, Magical Photography
+Color Grading: Bioluminescent
+Effects: Glowing Plants, Light Particles, Ethereal Mist
+Addons: Highly Detailed, Masterpiece, Magical Forest, 8K Resolution
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:greekMythology
+PROMPT_Start
+**CORE CONCEPT**
+"A Divine portrait of a Young Adult Syrian Man in Mount Olympus"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Greek Toga, Mythological Attire
+Accessories: Laurel Wreath, Greek Jewelry
+Pose: Godlike Pose, Classical Pose
+
+**ENVIRONMENT**
+Background: Mount Olympus
+Era: Ancient Greece
+Mood: Divine, Epic, Mythological, Powerful
+
+**TECHNICAL SPECS**
+Camera: Medium Format
+Lens: 50mm Standard Lens, 85mm Portrait Lens
+Lighting: Divine Golden, Divine Light, Dramatic Lighting, Ethereal Glow
+
+**STYLE & ARTISTRY**
+Art Style: Classical Art, Mythological Photography, Epic Art
+Color Grading: Golden Classical
+Effects: Divine Light Rays, Clouds, Epic Scale
+Addons: Highly Detailed, Masterpiece, Epic Scale, Mythological
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:pirateAdventure
+PROMPT_Start
+**CORE CONCEPT**
+"A Adventurous portrait of a Young Adult Syrian Man in Pirate Ship performing Sailing and Adventure"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Pirate Outfit, Seafarer Attire
+Accessories: Pirate Hat, Sword, Treasure
+Pose: Pirate Pose, Adventurous Stance
+Action: Sailing, Adventure
+
+**ENVIRONMENT**
+Background: Pirate Ship
+Era: Golden Age of Piracy
+Weather: Stormy
+Time: Sunset
+Mood: Adventurous, Rebellious, Epic, Swashbuckling
+
+**TECHNICAL SPECS**
+Camera: Cinema Camera, Cinema Camera
+Lens: 35mm Wide Angle, 24mm Wide Angle
+Lighting: Dramatic Lighting, Storm Light, Sunset Glow
+
+**STYLE & ARTISTRY**
+Art Style: Adventure Photography, Cinematic Photography, Period Art
+Color Grading: Cinematic Pirate
+Effects: Storm Effects, Sea Spray, Dramatic Clouds
+Addons: Highly Detailed, Masterpiece, Epic Adventure
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:wildWestOutlaw
+PROMPT_Start
+**CORE CONCEPT**
+"A Rugged portrait of a Young Adult Syrian Man in Old West Town"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Western Outfit, Cowboy Attire
+Accessories: Cowboy Hat, Gun Holster, Bandana
+Pose: Western Pose, Outlaw Stance
+
+**ENVIRONMENT**
+Background: Old West Town
+Era: Wild West
+Weather: Dusty
+Time: High Noon
+Mood: Rugged, Tough, Western, Gritty
+
+**TECHNICAL SPECS**
+Camera: Film Camera
+Lens: 50mm Standard Lens, 35mm Wide Angle
+Film Stock: Kodak Gold
+Lighting: Harsh Sunlight, Desert Light
+
+**STYLE & ARTISTRY**
+Art Style: Western Photography, Period Photography, Cinematic
+Color Grading: Western Tones
+Effects: Dust, Film Grain, Desert Haze
+Addons: Highly Detailed, Western Atmosphere, Cinematic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:auroraIce
+PROMPT_Start
+**CORE CONCEPT**
+"A Magical portrait of a person in Arctic Landscape"
+
+**SUBJECT DETAILS**
+Clothing: Winter Gear, Arctic Outfit
+Pose: Awe-Inspired Pose, Gazing at Sky
+
+**ENVIRONMENT**
+Background: Arctic Landscape
+Weather: Clear
+Time: Night
+Mood: Magical, Awe-Inspiring, Peaceful, Cosmic
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 24mm Wide Angle, 14mm Ultra Wide
+Lighting: Aurora Green Purple, Aurora Borealis, Starlight, Moonlight
+
+**STYLE & ARTISTRY**
+Art Style: Aurora Photography, Landscape Photography, Night Photography
+Color Grading: Aurora Colors
+Effects: Aurora Borealis, Stars, Cold Atmosphere
+Addons: Highly Detailed, 8K Resolution, Masterpiece, Natural Wonder
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:jungleExplorer
+PROMPT_Start
+**CORE CONCEPT**
+"A Adventurous portrait of a Young Adult Syrian Man in Dense Jungle performing Exploring and Discovering"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Explorer Outfit, Safari Gear
+Accessories: Backpack, Machete, Hat
+Pose: Explorer Pose, Adventure Pose
+Action: Exploring, Discovering
+
+**ENVIRONMENT**
+Background: Dense Jungle
+Weather: Humid
+Time: Afternoon
+Mood: Adventurous, Wild, Mysterious, Untamed
+
+**TECHNICAL SPECS**
+Camera: Professional DSLR, Full Frame DSLR
+Lens: 35mm Wide Angle, 24mm Wide Angle
+Lighting: Dappled Light, Jungle Light, Green Atmosphere
+
+**STYLE & ARTISTRY**
+Art Style: Adventure Photography, Wildlife Photography, Documentary
+Color Grading: Jungle Green
+Effects: Mist, Jungle Atmosphere
+Addons: Highly Detailed, Authentic, Professional Photography
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:goldHourGlow
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Time: Golden Hour
+
+**TECHNICAL SPECS**
+Lighting: Warm Golden, Golden Hour Light, Warm Sunlight
+
+**STYLE & ARTISTRY**
+Art Style: Golden Hour Photography
+Color Grading: Warm Golden Tones
+Addons: Magical Golden Light, Warm Glow, Photorealistic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:portraitEnhance
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lens: 85mm Portrait Lens, 50mm Standard Lens
+Composition: Rule of Thirds, Center Composition
+Lighting: Softbox Lighting, Portrait Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Portrait Photography, Professional Headshot
+Addons: Professional Portrait, Highly Detailed, Sharp Focus, Flattering
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:moodDramatic
+PROMPT_Start
+**CORE CONCEPT**
+"A Dramatic portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Dramatic, Intense, Powerful
+
+**TECHNICAL SPECS**
+Lighting: Dramatic Lighting, Side Lighting, Rembrandt Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Dramatic Photography, Cinematic
+Color Grading: High Contrast
+Addons: Highly Detailed, Dramatic Atmosphere, Cinematic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:softRomantic
+PROMPT_Start
+**CORE CONCEPT**
+"A Romantic portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Romantic, Dreamy, Gentle
+
+**TECHNICAL SPECS**
+Lighting: Soft Natural Light, Backlight, Diffused Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Romantic Photography, Soft Photography
+Color Grading: Soft Romantic
+Effects: Soft Glow, Bokeh
+Addons: Highly Detailed, Romantic Atmosphere, Dreamy
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:urbanMoody
+PROMPT_Start
+**CORE CONCEPT**
+"A Urban portrait of a Young Adult Syrian Man in Urban Environment"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Urban Environment
+Mood: Urban, Moody, Atmospheric
+
+**TECHNICAL SPECS**
+Lighting: Atmospheric Light, Available Light
+
+**STYLE & ARTISTRY**
+Art Style: Urban Photography, Moody Photography
+Color Grading: Moody Urban
+Addons: Urban Atmosphere, Cinematic, Highly Detailed
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:highFashion
+PROMPT_Start
+**CORE CONCEPT**
+"A Confident portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Fashion Pose, Runway Pose
+
+**ENVIRONMENT**
+Mood: Confident, Stylish, High Fashion
+
+**TECHNICAL SPECS**
+Composition: Dynamic Angles, Fashion Composition
+Lighting: Fashion Lighting, High Key Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Fashion Photography, High Fashion Editorial
+Addons: High Fashion, Editorial Quality, Masterpiece
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:vintageFilmLook
+PROMPT_Start
+**CORE CONCEPT**
+"A Nostalgic portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Nostalgic, Vintage, Timeless
+
+**TECHNICAL SPECS**
+Film Stock: Kodak Portra 400, Fuji Pro 400H
+
+**STYLE & ARTISTRY**
+Art Style: Film Photography, Vintage Photography
+Color Grading: Vintage Film
+Effects: Film Grain, Vintage Look
+Addons: Film Photography, Vintage Aesthetic, Highly Detailed
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:studioClean
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man in White Studio"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: White Studio
+
+**TECHNICAL SPECS**
+Composition: Center Composition, Clean Background
+Lighting: Studio Lighting, Even Lighting, Clean Light
+
+**STYLE & ARTISTRY**
+Art Style: Studio Photography, Professional Photography
+Addons: Professional Studio, Clean Background, Sharp Focus, 8K Resolution
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:naturalLight
+PROMPT_Start
+**CORE CONCEPT**
+"A Natural portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Natural, Authentic, Genuine
+
+**TECHNICAL SPECS**
+Lighting: Natural Window Light, Soft Natural Light, Available Light
+
+**STYLE & ARTISTRY**
+Art Style: Natural Light Photography, Lifestyle Photography
+Color Grading: Natural
+Addons: Natural Lighting, Authentic Look, Photorealistic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:motionAction
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Action Pose, Dynamic Movement
+
+**TECHNICAL SPECS**
+Composition: Dynamic Composition, Action Shot
+
+**STYLE & ARTISTRY**
+Art Style: Action Photography, Sports Photography
+Effects: Motion Blur, Action Lines
+Addons: Dynamic Motion, Action Packed, High Energy
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:beautyGlow
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lighting: Beauty Dish, Glamour Lighting, Soft Glow
+
+**STYLE & ARTISTRY**
+Art Style: Beauty Photography, Glamour Photography
+Addons: Beauty Glow, Flawless Skin, Highly Detailed, Professional Beauty
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:productFocus
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a person"
+
+**TECHNICAL SPECS**
+Composition: Center Composition, Product Focus, Minimalist
+Lighting: Softbox Lighting, Clean Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Product Photography, Commercial Photography
+Addons: Sharp Product Focus, 8K Resolution, Commercial Quality
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:portraitCinematic
+PROMPT_Start
+**CORE CONCEPT**
+"A Cinematic portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Cinematic, Dramatic, Epic
+
+**TECHNICAL SPECS**
+Lighting: Cinematic Lighting, Dramatic Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Cinematic Photography, Film Photography
+Color Grading: Cinematic Color Grade
+Addons: Cinematic Quality, Film Look, Highly Detailed, Masterpiece
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:architecturalClean
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a person"
+
+**TECHNICAL SPECS**
+Lens: Tilt-Shift Lens, 24mm Wide Angle
+Composition: Symmetrical, Leading Lines, Architectural
+Lighting: Even Lighting, Clean Light
+
+**STYLE & ARTISTRY**
+Art Style: Architectural Photography, Professional Photography
+Addons: Architectural Precision, Sharp Focus, 8K Resolution, Clean Lines
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:foodStyling
+PROMPT_Start
+**CORE CONCEPT**
+"A Appetizing portrait of a person"
+
+**ENVIRONMENT**
+Mood: Appetizing, Fresh, Delicious
+
+**TECHNICAL SPECS**
+Composition: Overhead Shot, Food Styling
+Lighting: Natural Window Light, Soft Diffused Light
+
+**STYLE & ARTISTRY**
+Art Style: Food Photography, Culinary Photography
+Addons: Food Photography, Appetizing, Highly Detailed, Professional
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:magazineEditorial
+PROMPT_Start
+**CORE CONCEPT**
+"A Editorial portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Editorial Pose, Fashion Pose
+
+**ENVIRONMENT**
+Mood: Editorial, Sophisticated, Fashion Forward
+
+**TECHNICAL SPECS**
+Composition: Editorial Composition, Dynamic
+Lighting: Editorial Lighting, Fashion Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Editorial Photography, Magazine Photography
+Addons: Magazine Quality, Editorial Excellence, Masterpiece, High Fashion
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:blackAndWhiteArt
+PROMPT_Start
+**CORE CONCEPT**
+"A Timeless portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Timeless, Classic, Artistic
+
+**TECHNICAL SPECS**
+Lighting: Dramatic Lighting, High Contrast Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Black and White Photography, Fine Art Photography
+Color Grading: Black and White
+Addons: Fine Art Black and White, Highly Detailed, Classic, Masterpiece
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:portraitEnvironmental
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Lens: 35mm Wide Angle, 24mm Wide Angle
+Composition: Environmental Portrait, Context Included
+Lighting: Natural Light, Environmental Light
+
+**STYLE & ARTISTRY**
+Art Style: Environmental Portrait, Documentary Photography
+Addons: Environmental Context, Storytelling, Highly Detailed, Authentic
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:fashionLookbook
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Standing Pose, Fashion Lookbook Pose
+
+**TECHNICAL SPECS**
+Composition: Full Body, Fashion Lookbook
+Lighting: Even Lighting, Fashion Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Fashion Lookbook, Commercial Fashion
+Addons: Lookbook Style, Fashion Forward, Clean Aesthetic, Professional
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:lifestyleCandid
+PROMPT_Start
+**CORE CONCEPT**
+"A Authentic portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Pose: Candid/Natural, Authentic Moment
+
+**ENVIRONMENT**
+Mood: Authentic, Genuine, Natural
+
+**TECHNICAL SPECS**
+Lighting: Natural Light, Available Light
+
+**STYLE & ARTISTRY**
+Art Style: Lifestyle Photography, Candid Photography
+Addons: Candid Moment, Lifestyle Authentic, Photorealistic, Genuine
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:timeFreeze
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**STYLE & ARTISTRY**
+Art Style: High Speed Photography, Action Photography
+Effects: Frozen Motion, High Speed
+Addons: Frozen in Time, Perfect Timing, Sharp Focus, Action Capture
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:lowKeyMoody
+PROMPT_Start
+**CORE CONCEPT**
+"A Moody portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Moody, Dark, Mysterious
+
+**TECHNICAL SPECS**
+Lighting: Low Key Lighting, Single Light Source, Dramatic Shadows
+
+**STYLE & ARTISTRY**
+Art Style: Low Key Photography, Dramatic Photography
+Color Grading: Low Key
+Addons: Low Key Atmosphere, Dramatic Mood, Highly Detailed
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:highKeyBright
+PROMPT_Start
+**CORE CONCEPT**
+"A Bright portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Bright, Cheerful, Clean
+
+**TECHNICAL SPECS**
+Lighting: High Key Lighting, Bright Even Light
+
+**STYLE & ARTISTRY**
+Art Style: High Key Photography, Bright Photography
+Color Grading: High Key
+Addons: High Key Aesthetic, Bright and Airy, Clean Look
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:streetStyleUrban
+PROMPT_Start
+**CORE CONCEPT**
+"A Urban portrait of a Young Adult Syrian Man in Urban Street"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Urban Street
+Mood: Urban, Cool, Authentic
+
+**TECHNICAL SPECS**
+Lighting: Available Light, Street Light
+
+**STYLE & ARTISTRY**
+Art Style: Street Style Photography, Urban Fashion
+Addons: Street Style, Urban Cool, Authentic Style, Fashion Forward
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:etherealSoftFocus
+PROMPT_Start
+**CORE CONCEPT**
+"A Ethereal portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Ethereal, Dreamy, Soft
+
+**TECHNICAL SPECS**
+Lighting: Soft Diffused Light, Ethereal Light
+
+**STYLE & ARTISTRY**
+Art Style: Ethereal Photography, Dreamy Photography
+Effects: Soft Focus, Dreamy Filter, Ethereal Glow
+Addons: Ethereal Atmosphere, Soft Dreamy, Romantic, Gentle
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:colorTheory
+PROMPT_Start
+**CORE CONCEPT**
+"A Harmonious portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Harmonious, Balanced, Artistic
+
+**STYLE & ARTISTRY**
+Art Style: Color Theory Photography, Artistic Photography
+Color Grading: Complementary Colors
+Addons: Color Harmony, Balanced Palette, Artistic Color, Professional
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:textureDetail
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a person"
+
+**TECHNICAL SPECS**
+Composition: Close-up, Texture Focus
+Lighting: Side Lighting, Texture Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Texture Photography, Detail Photography
+Texture: Detailed Texture, Visible Grain
+Addons: Texture Emphasis, Intricate Details, Sharp Focus, 8K Resolution
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:minimalistClean
+PROMPT_Start
+**CORE CONCEPT**
+"A Clean portrait of a Young Adult Syrian Man in Minimal Background"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Minimal Background
+Mood: Clean, Simple, Modern
+
+**TECHNICAL SPECS**
+Composition: Minimalist, Negative Space, Simple
+
+**STYLE & ARTISTRY**
+Art Style: Minimalist Photography, Modern Photography
+Addons: Minimalist Aesthetic, Clean Design, Modern Look, Professional
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:goldRatio
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**TECHNICAL SPECS**
+Composition: Golden Ratio, Perfect Composition
+
+**STYLE & ARTISTRY**
+Art Style: Compositional Excellence, Professional Photography
+Addons: Perfect Composition, Golden Ratio, Balanced, Professional
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:doubleExposureArt
+PROMPT_Start
+**CORE CONCEPT**
+"A Creative portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Creative, Artistic, Surreal
+
+**STYLE & ARTISTRY**
+Art Style: Creative Photography, Artistic Photography
+Effects: Double Exposure, Multiple Exposure
+Addons: Double Exposure Effect, Creative, Artistic, Unique
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:silhouetteBold
+PROMPT_Start
+**CORE CONCEPT**
+"A Bold portrait of a Young Adult Syrian Man"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Mood: Bold, Dramatic, Striking
+
+**TECHNICAL SPECS**
+Composition: Silhouette, Bold Shape
+Lighting: Backlight, Silhouette Lighting
+
+**STYLE & ARTISTRY**
+Art Style: Silhouette Photography, Dramatic Photography
+Addons: Strong Silhouette, Bold Contrast, Dramatic Shape
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:reflectionMirror
+PROMPT_Start
+**CORE CONCEPT**
+"A stunning portrait of a person"
+
+**TECHNICAL SPECS**
+Composition: Reflection, Mirror Effect, Symmetry
+
+**STYLE & ARTISTRY**
+Art Style: Reflection Photography, Creative Photography
+Effects: Reflection, Water Reflection
+Addons: Perfect Reflection, Symmetrical, Creative Perspective
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:weatherAtmosphere
+PROMPT_Start
+**CORE CONCEPT**
+"A Atmospheric portrait of a person"
+
+**ENVIRONMENT**
+Weather: Rain, Fog, Mist
+Mood: Atmospheric, Moody, Dramatic
+
+**STYLE & ARTISTRY**
+Art Style: Atmospheric Photography, Weather Photography
+Effects: Weather Effects, Atmospheric
+Addons: Atmospheric Mood, Weather Drama, Moody Atmosphere
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:supercarOwner
+PROMPT_Start
+**CORE CONCEPT**
+"A Cool portrait of a Young Adult Syrian Man in Urban Night City performing Leaning on Car and Driving"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Street Luxury, Leather Jacket
+Action: Leaning on Car, Driving
+
+**ENVIRONMENT**
+Background: Urban Night City
+Mood: Cool, Rich
+
+**TECHNICAL SPECS**
+Lighting: Neon City Lights, Blue Hour
+
+**STYLE & ARTISTRY**
+Art Style: Automotive Lifestyle, Neon Noir
+Addons: Supercar, Bokeh, Night Vibes
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:oldMoney
+PROMPT_Start
+**CORE CONCEPT**
+"A Sophisticated portrait of a Young Adult Syrian Man in Country Estate"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Linen Shirt, Polo, Summer Dress
+
+**ENVIRONMENT**
+Background: Country Estate
+Mood: Sophisticated, Quiet Luxury
+
+**TECHNICAL SPECS**
+Lighting: Natural Afternoon Sun
+
+**STYLE & ARTISTRY**
+Art Style: Ralph Lauren Style, Classic Portrait
+Addons: Elegance, Heritage, Timeless
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:yachtLife
+PROMPT_Start
+**CORE CONCEPT**
+"A Relaxed portrait of a Young Adult Syrian Man in Luxury Yacht Deck"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: White Swimwear, Resort Wear
+Accessories: Sunglasses, Champagne
+
+**ENVIRONMENT**
+Background: Luxury Yacht Deck
+Weather: Sunny, Clear Blue Sky
+Mood: Relaxed, Wealthy
+
+**TECHNICAL SPECS**
+Lighting: Bright Sunlight
+
+**STYLE & ARTISTRY**
+Art Style: Travel Influencer, Lifestyle
+Addons: Ocean View, Luxury Travel
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:redCarpet
+PROMPT_Start
+**CORE CONCEPT**
+"A Glamorous portrait of a Young Adult Syrian Man in Red Carpet Event performing Posing for Cameras and Waving"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Evening Gown, Tuxedo
+Action: Posing for Cameras, Waving
+
+**ENVIRONMENT**
+Background: Red Carpet Event
+Mood: Glamorous, Famous
+
+**TECHNICAL SPECS**
+Lighting: Flash Photography, Spotlights
+
+**STYLE & ARTISTRY**
+Art Style: Paparazzi Style, Celebrity Portrait
+Addons: Camera Flashes, Fame, Gala
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:fitnessModel
+PROMPT_Start
+**CORE CONCEPT**
+"A Determined portrait of a Young Adult Syrian Man in Modern Gym performing Workout and Flexing"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Gym Wear, Athletic Gear
+Action: Workout, Flexing
+
+**ENVIRONMENT**
+Background: Modern Gym
+Mood: Determined, Strong
+
+**TECHNICAL SPECS**
+Lighting: Dramatic Gym Lighting, Highlighting Muscles
+
+**STYLE & ARTISTRY**
+Art Style: Fitness Photography, Sports Editorial
+Addons: Sweat, Definition, Physique
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:pureHappiness
+PROMPT_Start
+**CORE CONCEPT**
+"A Happy portrait of a Young Adult Syrian Man in Sunlit Park performing Laughing and Smiling Huge"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Action: Laughing, Smiling Huge
+
+**ENVIRONMENT**
+Background: Sunlit Park
+Weather: Sunny, Bright
+Mood: Happy, Joyful, Ecstatic
+
+**TECHNICAL SPECS**
+Lighting: Bright Sunshine, Warm
+
+**STYLE & ARTISTRY**
+Art Style: Candid, Lifestyle
+Addons: Genuine Smile, Positivity, Vibrant
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:euphoricDream
+PROMPT_Start
+**CORE CONCEPT**
+"A Euphoric portrait of a Young Adult Syrian Man in Music Festival"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Music Festival
+Mood: Euphoric, Ecstatic, Dreamy
+
+**TECHNICAL SPECS**
+Lighting: Laser Lights, Neon Strobes
+
+**STYLE & ARTISTRY**
+Art Style: Psychedelic, Dreamcore
+Effects: Motion Blur, Light Trails
+Addons: Energy, Vibe, Trance
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:romanticDate
+PROMPT_Start
+**CORE CONCEPT**
+"A Romantic portrait of a Young Adult Syrian Man in Candlelit Dinner"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+Clothing: Elegant Date Night
+Accessories: Red Wine, Rose
+
+**ENVIRONMENT**
+Background: Candlelit Dinner
+Time: Night
+Mood: Romantic, Intimate, Love
+
+**TECHNICAL SPECS**
+Lighting: Warm Candlelight, Dim
+
+**STYLE & ARTISTRY**
+Art Style: Cinematic Romance, Warm Tones
+Addons: Love, Intimacy, Cozy
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
+PRESET_ID:heartbreak
+PROMPT_Start
+**CORE CONCEPT**
+"A Heartbroken portrait of a Young Adult Syrian Man in Dark Empty Room"
+
+**SUBJECT DETAILS**
+Gender: Man
+Age: Young Adult
+Ethnicity: Syrian
+
+**ENVIRONMENT**
+Background: Dark Empty Room
+Mood: Heartbroken, Devastated, Dark
+
+**TECHNICAL SPECS**
+Lighting: Low Key, Shadows
+
+**STYLE & ARTISTRY**
+Art Style: Moody Drama, Noir
+Color Grading: Desaturated
+Addons: Solitude, Pain, Emotional
+
+**QUALITY TAGS**
+Masterpiece, Best Quality, Ultra High Res, 8k, HDR, Sharp Focus, Intricate Details, Professional Photography, Cinematic Lighting
+PROMPT_End
+---
