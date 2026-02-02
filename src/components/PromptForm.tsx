@@ -63,323 +63,16 @@ const TOAST_DURATION = 2000; // milliseconds
 const MAX_HISTORY_ITEMS = 10;
 const MAX_RECENT_PRESETS = 10;
 
+import { useOutsideClick } from '@/hooks/use-outside-click';
+import { MultiSelectField } from './ui/MultiSelectField';
+import { SelectField } from './ui/SelectField';
+import { SliderField } from './ui/SliderField';
+
 // --- Icons ---
 const IconCopy = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
 );
 
-const useOutsideClick = (callback: () => void) => {
-    const ref = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        const handleClick = (e: MouseEvent) => {
-            if (ref.current && !ref.current.contains(e.target as Node)) callback();
-        };
-        document.addEventListener('mousedown', handleClick);
-        return () => document.removeEventListener('mousedown', handleClick);
-    }, [callback]);
-    return ref;
-};
-
-const useDropdownPosition = (isOpen: boolean, triggerRef: React.RefObject<HTMLElement | null>) => {
-    const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
-
-    useEffect(() => {
-        let frameId: number;
-        const updatePosition = () => {
-            if (isOpen && triggerRef.current) {
-                const rect = triggerRef.current.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-                const spaceBelow = viewportHeight - rect.bottom;
-                const dropdownHeight = DROPDOWN_MAX_HEIGHT;
-
-                const style: React.CSSProperties = {
-                    position: 'fixed',
-                    left: rect.left,
-                    width: rect.width,
-                };
-
-                if (spaceBelow < dropdownHeight && rect.top > dropdownHeight) {
-                    style.bottom = viewportHeight - rect.top + DROPDOWN_SPACING;
-                    style.top = 'auto';
-                    style.maxHeight = Math.min(dropdownHeight, rect.top - DROPDOWN_MIN_MARGIN);
-                } else {
-                    style.top = rect.bottom + DROPDOWN_SPACING;
-                    style.bottom = 'auto';
-                    style.maxHeight = Math.min(dropdownHeight, spaceBelow - DROPDOWN_MIN_MARGIN);
-                }
-                setDropdownStyle(style);
-            }
-        };
-
-        const handleUpdate = () => {
-            cancelAnimationFrame(frameId);
-            frameId = requestAnimationFrame(updatePosition);
-        };
-
-        if (isOpen) {
-            updatePosition();
-            window.addEventListener('scroll', handleUpdate, true);
-            window.addEventListener('resize', handleUpdate);
-        }
-
-        return () => {
-            cancelAnimationFrame(frameId);
-            window.removeEventListener('scroll', handleUpdate, true);
-            window.removeEventListener('resize', handleUpdate);
-        };
-    }, [isOpen, triggerRef]);
-
-    return dropdownStyle;
-};
-
-// --- Standalone Components ---
-
-const MultiSelectField = ({ label, value, onChange, options, icon, placeholder = "Select..." }: { label: string, value: string[], onChange: (val: string[]) => void, options: Record<string, string>, icon: React.ReactNode, placeholder?: string }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [inputValue, setInputValue] = useState("");
-    const containerRef = useRef<HTMLDivElement>(null);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-    const inputRef = useRef<HTMLInputElement>(null);
-    const triggerRef = useRef<HTMLDivElement>(null);
-    const dropdownStyle = useDropdownPosition(isOpen, triggerRef);
-
-    useEffect(() => {
-        const handleClick = (e: MouseEvent) => {
-            if (!isOpen) return;
-            const target = e.target as Node;
-            const clickedInsideContainer = containerRef.current?.contains(target);
-            const clickedInsideDropdown = dropdownRef.current?.contains(target);
-            if (!clickedInsideContainer && !clickedInsideDropdown) {
-                setIsOpen(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClick);
-        return () => document.removeEventListener('mousedown', handleClick);
-    }, [isOpen]);
-
-    const toggleValue = (val: string) => {
-        const updated = value.includes(val) ? value.filter(i => i !== val) : [...value, val];
-        onChange(updated);
-    };
-
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter' && inputValue.trim()) {
-            e.preventDefault();
-            if (!value.includes(inputValue.trim())) {
-                onChange([...value, inputValue.trim()]);
-            }
-            setInputValue("");
-        } else if (e.key === 'Backspace' && !inputValue && value.length > 0) {
-            onChange(value.slice(0, -1));
-        }
-    };
-
-    const getLabel = (val: string) => options[val] || val;
-
-    const dropdownContent = isOpen && typeof document !== 'undefined' ? createPortal(
-        <div
-            ref={dropdownRef}
-            className="z-[9999] glass-panel rounded-lg overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar border border-white/10 shadow-2xl"
-            style={dropdownStyle}
-        >
-            {Object.entries(options).map(([k, v]) => {
-                if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
-                const isSelected = value.includes(k);
-                return (
-                    <button key={k} type="button" onClick={() => { toggleValue(k); setInputValue(""); }} className={`px-4 py-2 text-sm flex items-center justify-between transition-all w-full text-left ${isSelected ? 'bg-amber-500/10 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
-                        <span>{v}</span>
-                        {isSelected && <Check size={14} />}
-                    </button>
-                );
-            })}
-            {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
-                <button key="custom-add" type="button" onClick={() => { onChange([...value, inputValue]); setInputValue(""); }} className="px-4 py-2 text-sm text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5 w-full text-left">
-                    <PenLine size={12} /> Add &quot;{inputValue}&quot;
-                </button>
-            )}
-        </div>,
-        document.body
-    ) : null;
-
-    return (
-        <div className="space-y-1.5" ref={containerRef}>
-            <label className="text-xs font-medium text-zinc-500 flex items-center gap-1.5 px-1 uppercase tracking-wide">
-                {icon} {label}
-            </label>
-            <div className="relative">
-                <div
-                    ref={triggerRef}
-                    onClick={() => { setIsOpen(true); inputRef.current?.focus(); }}
-                    className={`w-full input-minimal rounded-lg p-2 min-h-[42px] flex flex-wrap gap-2 cursor-text text-sm transition-all ${isOpen ? 'ring-1 ring-amber-500/50 bg-white/5' : ''}`}
-                >
-                    {value.map((val) => (
-                        <span key={val} className="bg-amber-500/10 text-amber-300 px-2 py-0.5 rounded text-xs flex items-center gap-1 border border-amber-500/10">
-                            {getLabel(val)}
-                            <button className="hover:text-amber-100/70 p-0.5" onClick={(e) => { e.stopPropagation(); toggleValue(val); }}>×</button>
-                        </span>
-                    ))}
-                    <input
-                        ref={inputRef}
-                        type="text"
-                        className="bg-transparent outline-none flex-1 min-w-[60px] text-zinc-200 placeholder:text-zinc-600 h-6 text-sm"
-                        placeholder={value.length === 0 ? placeholder : ""}
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        onFocus={() => setIsOpen(true)}
-                    />
-                </div>
-                {dropdownContent}
-            </div>
-        </div>
-    );
-};
-
-const SelectField = ({ label, value, onChange, options, icon, placeholder = "Select..." }: { label: string, value: string, onChange: (val: string) => void, options: Record<string, string>, icon: React.ReactNode, placeholder?: string }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [inputValue, setInputValue] = useState("");
-    const [isManual, setIsManual] = useState(false);
-    const containerRef = useRef<HTMLDivElement>(null);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-    const inputRef = useRef<HTMLInputElement>(null);
-    const triggerRef = useRef<HTMLDivElement>(null);
-    const dropdownStyle = useDropdownPosition(isOpen, triggerRef);
-
-    useEffect(() => {
-        const handleClick = (e: MouseEvent) => {
-            if (!isOpen) return;
-            const target = e.target as Node;
-            const clickedInsideContainer = containerRef.current?.contains(target);
-            const clickedInsideDropdown = dropdownRef.current?.contains(target);
-            if (!clickedInsideContainer && !clickedInsideDropdown) setIsOpen(false);
-        };
-        document.addEventListener('mousedown', handleClick);
-        return () => document.removeEventListener('mousedown', handleClick);
-    }, [isOpen]);
-
-    const handleSelect = (key: string) => {
-        onChange(key);
-        setIsOpen(false);
-        setInputValue("");
-    };
-
-    const getLabel = (val: string) => options[val] || val;
-
-    const dropdownContent = isOpen && typeof document !== 'undefined' ? createPortal(
-        <div
-            ref={dropdownRef}
-            className="z-[9999] glass-panel rounded-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-100 dark-scrollbar"
-            style={dropdownStyle}
-        >
-            <div className="p-2 sticky top-0 bg-[#0c0c0e]/95 backdrop-blur-md border-b border-white/5 z-10">
-                <input
-                    ref={inputRef}
-                    type="text"
-                    className="w-full bg-white/5 border border-transparent rounded-md px-3 py-1.5 text-xs text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:bg-white/10"
-                    placeholder="Search..."
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    onClick={(e) => e.stopPropagation()}
-                />
-            </div>
-            <div className="max-h-[200px] overflow-auto">
-                {Object.entries(options).map(([k, v]) => {
-                    if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
-                    const isSelected = value === k;
-                    return (
-                        <button key={k} type="button" onClick={() => handleSelect(k)} className={`px-4 py-2 text-sm flex items-center justify-between transition-colors w-full text-left ${isSelected ? 'bg-amber-500/10 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
-                            <span>{v}</span>
-                            {isSelected && <Check size={14} />}
-                        </button>
-                    );
-                })}
-                {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
-                    <button key="custom-use" type="button" onClick={() => handleSelect(inputValue)} className="px-4 py-2 text-sm text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5 w-full text-left">
-                        <PenLine size={12} /> Use &quot;{inputValue}&quot;
-                    </button>
-                )}
-            </div>
-        </div>,
-        document.body
-    ) : null;
-
-    return (
-        <div className="space-y-1.5 group" ref={containerRef}>
-            <div className="flex justify-between items-center px-1">
-                <label className="text-xs font-medium text-zinc-500 flex items-center gap-1.5 uppercase tracking-wide">
-                    {icon} {label}
-                </label>
-                <button
-                    onClick={() => { setIsManual(!isManual); setIsOpen(false); }}
-                    className="text-[10px] text-zinc-600 hover:text-amber-500 transition-colors flex items-center gap-1 opacity-0 group-hover:opacity-100 focus:opacity-100"
-                    title={isManual ? "Switch to List" : "Switch to Manual Input"}
-                >
-                    {isManual ? <List size={12} /> : <Keyboard size={12} />}
-                </button>
-            </div>
-
-            <div className="relative">
-                {isManual ? (
-                    <div className="relative">
-                        <input
-                            type="text"
-                            className="w-full input-minimal rounded-lg px-3 py-2.5 text-zinc-200 text-sm placeholder:text-zinc-600 focus:outline-none"
-                            value={value}
-                            onChange={(e) => onChange(e.target.value)}
-                            placeholder="Type anything..."
-                        />
-                        <div className="absolute inset-y-0 end-3 flex items-center pointer-events-none text-zinc-600"><PenLine size={12} /></div>
-                    </div>
-                ) : (
-                    <div
-                        ref={triggerRef}
-                        onClick={() => {
-                            setIsOpen(!isOpen);
-                            if (!isOpen && !isManual) {
-                                setInputValue("");
-                                setTimeout(() => inputRef.current?.focus(), 0);
-                            }
-                        }}
-                        className={`w-full input-minimal rounded-lg px-3 py-2.5 flex justify-between items-center cursor-pointer text-sm transition-all ${isOpen ? 'ring-1 ring-amber-500/50 bg-white/5' : ''}`}
-                    >
-                        <span className={`truncate ${!value ? 'text-zinc-600' : 'text-zinc-200'}`}>
-                            {value ? getLabel(value) : placeholder}
-                        </span>
-                        <ChevronsUpDown size={14} className="text-zinc-600" />
-                    </div>
-                )}
-                {dropdownContent}
-            </div>
-        </div>
-    );
-};
-
-const SliderField = ({ label, value, onChange, min, max, icon, tooltip }: { label: string, value: number, onChange: (val: number) => void, min: number, max: number, icon: React.ReactNode, tooltip?: string }) => (
-    <div className="space-y-3 group p-4 rounded-lg bg-white/5 hover:bg-white/[0.07] transition-colors border border-transparent hover:border-white/5">
-        <label className="text-sm font-medium text-zinc-300 flex items-center justify-between">
-            <span className="flex items-center gap-2">
-                {icon} {label}
-                {tooltip && (
-                    <div className="relative group/tooltip">
-                        <Info size={14} className="text-zinc-500 hover:text-zinc-300 cursor-help transition-colors" />
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-zinc-900 border border-white/10 text-zinc-200 text-xs rounded-lg opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10 shadow-xl">
-                            {tooltip}
-                        </div>
-                    </div>
-                )}
-            </span>
-            <span className="text-amber-400 font-mono text-xs">{value}</span>
-        </label>
-        <div className="relative py-1">
-            <input
-                type="range" min={min} max={max} value={value}
-                onChange={(e) => onChange(parseInt(e.target.value))}
-                className="w-full h-1 bg-zinc-700/50 rounded-full appearance-none cursor-pointer accent-amber-400 hover:accent-amber-300 transition-all"
-            />
-            <div className="absolute -bottom-3 left-0 right-0 flex justify-between text-[8px] text-zinc-600 font-mono uppercase"><span>{min}</span><span>{max}</span></div>
-        </div>
-    </div>
-);
 
 
 import { translations } from '@/i18n/translations';
@@ -452,7 +145,12 @@ export function PromptForm() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [currentStep, setCurrentStep] = useState(1);
     const [showToast, setShowToast] = useState<string | null>(null);
+    const [mounted, setMounted] = useState(false);
     const resultRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
     const [history, setHistory] = useState<{ prompt: string, timestamp: number }[]>(() => {
         if (typeof window !== 'undefined') {
             const saved = localStorage.getItem('prompt_history_v2');
@@ -612,7 +310,7 @@ export function PromptForm() {
         if (data.weirdness > 0) parts.push(`weird:${data.weirdness}`);
         if (data.negativePrompt) parts.push(`⛔ ${data.negativePrompt.slice(0, 30)}...`);
 
-        if (parts.length === 0) return '🎨 Start filling fields to see preview...';
+        if (parts.length === 0) return t.form.messages.previewPlaceholder;
         return parts.join(' • ');
     };
 
@@ -656,7 +354,7 @@ export function PromptForm() {
             setCopied(false);
             addToHistory(result);
             setIsGenerating(false);
-            showToastMessage('✨ Prompt generated!');
+            showToastMessage(t.form.messages.promptGenerated);
             // Auto-scroll to result after a brief delay
             setTimeout(() => {
                 resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -669,15 +367,15 @@ export function PromptForm() {
         try {
             await navigator.clipboard.writeText(generated);
             setCopied(true);
-            showToastMessage('📋 Copied to clipboard!');
+            showToastMessage(t.form.messages.copiedToClipboard);
             setTimeout(() => setCopied(false), TOAST_DURATION);
         } catch {
-            showToastMessage('❌ Failed to copy to clipboard');
+            showToastMessage(t.form.messages.failedToCopy);
         }
     };
 
     const handleReset = () => {
-        if (window.confirm('Are you sure you want to clear all fields?')) {
+        if (window.confirm(t.form.messages.confirmClear)) {
             setData({ ...initialData, addons: getDefaultAddons() });
             setGenerated('');
             setCurrentStep(1);
@@ -723,7 +421,7 @@ export function PromptForm() {
             await navigator.clipboard.writeText(shareUrl);
             showToastMessage(t.form.shareCopied);
         } catch {
-            showToastMessage('❌ Failed to copy share link');
+            showToastMessage(t.form.messages.failedToShare);
         }
     };
 
@@ -779,7 +477,7 @@ export function PromptForm() {
             }
             return updated;
         });
-        showToastMessage('🔄 Step reset!');
+        showToastMessage(t.form.messages.stepReset);
     };
 
     // Apply a preset to the current form data (resets everything first)
@@ -957,64 +655,64 @@ export function PromptForm() {
                             onChange={(v) => handleChange('gender', v)}
                             options={getOptions('options', 'gender')}
                             icon={<User size={14} />}
-                            placeholder={t.form.selectOption}
+                            placeholder={t.ui.select}
                         />
-                        <SelectField label={t.form.ageGroup} value={data.ageGroup} onChange={(v) => handleChange('ageGroup', v)} options={getOptions('options', 'ageGroup')} icon={<User size={14} />} placeholder={t.form.selectOption} />
-                        <SelectField label={t.form.ethnicity} value={data.ethnicity} onChange={(v) => handleChange('ethnicity', v)} options={getOptions('options', 'ethnicity')} icon={<Globe size={14} />} placeholder={t.form.selectOption} />
-                        <SelectField label={t.form.eyeColor} value={data.eyeColor} onChange={(v) => handleChange('eyeColor', v)} options={getOptions('options', 'eyeColor')} icon={<Eye size={14} />} placeholder={t.form.selectOption} />
+                        <SelectField label={t.form.ageGroup} value={data.ageGroup} onChange={(v) => handleChange('ageGroup', v)} options={getOptions('options', 'ageGroup')} icon={<User size={14} />} placeholder={t.ui.select} />
+                        <SelectField label={t.form.ethnicity} value={data.ethnicity} onChange={(v) => handleChange('ethnicity', v)} options={getOptions('options', 'ethnicity')} icon={<Globe size={14} />} placeholder={t.ui.select} />
+                        <SelectField label={t.form.eyeColor} value={data.eyeColor} onChange={(v) => handleChange('eyeColor', v)} options={getOptions('options', 'eyeColor')} icon={<Eye size={14} />} placeholder={t.ui.select} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.hairStyle} value={data.hairStyle} onChange={(v) => handleChange('hairStyle', v)} options={getOptions('options', 'hairStyle')} icon={<Scissors size={14} />} placeholder={t.form.selectOption} />
-                        <SelectField label={t.form.hairColor} value={data.hairColor} onChange={(v) => handleChange('hairColor', v)} options={getOptions('options', 'hairColor')} icon={<Palette size={14} />} placeholder={t.form.selectOption} />
-                        <MultiSelectField label={t.form.makeup} value={data.makeup} onChange={(v) => handleChange('makeup', v)} options={getOptions('options', 'makeup')} icon={<Smile size={14} />} placeholder={t.form.selectOption} />
-                        <MultiSelectField label={t.form.pose} value={data.pose} onChange={(v) => handleChange('pose', v)} options={getOptions('options', 'pose')} icon={<User size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.hairStyle} value={data.hairStyle} onChange={(v) => handleChange('hairStyle', v)} options={getOptions('options', 'hairStyle')} icon={<Scissors size={14} />} placeholder={t.ui.select} />
+                        <SelectField label={t.form.hairColor} value={data.hairColor} onChange={(v) => handleChange('hairColor', v)} options={getOptions('options', 'hairColor')} icon={<Palette size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.makeup} value={data.makeup} onChange={(v) => handleChange('makeup', v)} options={getOptions('options', 'makeup')} icon={<Smile size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.pose} value={data.pose} onChange={(v) => handleChange('pose', v)} options={getOptions('options', 'pose')} icon={<User size={14} />} placeholder={t.ui.select} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <MultiSelectField label={t.form.clothing} value={data.clothing} onChange={(v) => handleChange('clothing', v)} options={getOptions('options', 'clothing')} icon={<Shirt size={14} />} placeholder={t.form.selectOption} />
-                        <MultiSelectField label={t.form.accessories} value={data.accessories} onChange={(v) => handleChange('accessories', v)} options={getOptions('options', 'accessories')} icon={<Glasses size={14} />} placeholder={t.form.selectOption} />
-                        <MultiSelectField label={t.form.action} value={data.action} onChange={(v) => handleChange('action', v)} options={getOptions('options', 'action')} icon={<Meh size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.clothing} value={data.clothing} onChange={(v) => handleChange('clothing', v)} options={getOptions('options', 'clothing')} icon={<Shirt size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.accessories} value={data.accessories} onChange={(v) => handleChange('accessories', v)} options={getOptions('options', 'accessories')} icon={<Glasses size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.action} value={data.action} onChange={(v) => handleChange('action', v)} options={getOptions('options', 'action')} icon={<Meh size={14} />} placeholder={t.ui.select} />
                     </div>
                 </div>
             );
             case 2: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <SelectField label={t.form.background} value={data.background} onChange={(v) => handleChange('background', v)} options={getOptions('options', 'background')} icon={<ImageIcon size={14} />} placeholder={t.form.selectOption} />
-                        <SelectField label={t.form.era} value={data.era} onChange={(v) => handleChange('era', v)} options={getOptions('options', 'era')} icon={<Hourglass size={14} />} placeholder={t.form.selectOption} />
-                        <MultiSelectField label={t.form.weather} value={data.weather} onChange={(v) => handleChange('weather', v)} options={getOptions('options', 'weather')} icon={<CloudSun size={14} />} placeholder={t.form.selectOption} />
-                        <SelectField label={t.form.timeOfDay} value={data.timeOfDay} onChange={(v) => handleChange('timeOfDay', v)} options={getOptions('options', 'timeOfDay')} icon={<Clock size={14} />} placeholder={t.form.selectOption} />
+                        <SelectField label={t.form.background} value={data.background} onChange={(v) => handleChange('background', v)} options={getOptions('options', 'background')} icon={<ImageIcon size={14} />} placeholder={t.ui.select} />
+                        <SelectField label={t.form.era} value={data.era} onChange={(v) => handleChange('era', v)} options={getOptions('options', 'era')} icon={<Hourglass size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.weather} value={data.weather} onChange={(v) => handleChange('weather', v)} options={getOptions('options', 'weather')} icon={<CloudSun size={14} />} placeholder={t.ui.select} />
+                        <SelectField label={t.form.timeOfDay} value={data.timeOfDay} onChange={(v) => handleChange('timeOfDay', v)} options={getOptions('options', 'timeOfDay')} icon={<Clock size={14} />} placeholder={t.ui.select} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.lighting} value={data.lighting} onChange={(v) => handleChange('lighting', v)} options={getFlatOptions('lighting')} icon={<Lightbulb size={14} />} placeholder={t.form.selectOption} />
-                        <SelectField label={t.form.lightColor} value={data.lightColor} onChange={(v) => handleChange('lightColor', v)} options={getOptions('options', 'lightColor')} icon={<Palette size={14} />} placeholder={t.form.selectOption} />
-                        <MultiSelectField label={t.form.mood} value={data.mood} onChange={(v) => handleChange('mood', v)} options={getOptions('options', 'mood')} icon={<Focus size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.lighting} value={data.lighting} onChange={(v) => handleChange('lighting', v)} options={getFlatOptions('lighting')} icon={<Lightbulb size={14} />} placeholder={t.ui.select} />
+                        <SelectField label={t.form.lightColor} value={data.lightColor} onChange={(v) => handleChange('lightColor', v)} options={getOptions('options', 'lightColor')} icon={<Palette size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.mood} value={data.mood} onChange={(v) => handleChange('mood', v)} options={getOptions('options', 'mood')} icon={<Focus size={14} />} placeholder={t.ui.select} />
                     </div>
                 </div>
             );
             case 3: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <SelectField label={t.form.cameraType} value={data.cameraType} onChange={(v) => handleChange('cameraType', v)} options={getOptions('options', 'cameraType')} icon={<CameraIcon size={14} />} placeholder={t.form.selectOption} />
-                        <SelectField label={t.form.camera} value={data.camera} onChange={(v) => handleChange('camera', v)} options={getOptions('options', 'camera')} icon={<Aperture size={14} />} placeholder={t.form.selectOption} />
-                        <MultiSelectField label={t.form.lens} value={data.lens} onChange={(v) => handleChange('lens', v)} options={getOptions('options', 'lens')} icon={<Eye size={14} />} placeholder={t.form.selectOption} />
-                        <MultiSelectField label={t.form.filmStock} value={data.filmStock} onChange={(v) => handleChange('filmStock', v)} options={getOptions('options', 'filmStock')} icon={<Film size={14} />} placeholder={t.form.selectOption} />
+                        <SelectField label={t.form.cameraType} value={data.cameraType} onChange={(v) => handleChange('cameraType', v)} options={getOptions('options', 'cameraType')} icon={<CameraIcon size={14} />} placeholder={t.ui.select} />
+                        <SelectField label={t.form.camera} value={data.camera} onChange={(v) => handleChange('camera', v)} options={getOptions('options', 'camera')} icon={<Aperture size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.lens} value={data.lens} onChange={(v) => handleChange('lens', v)} options={getOptions('options', 'lens')} icon={<Eye size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.filmStock} value={data.filmStock} onChange={(v) => handleChange('filmStock', v)} options={getOptions('options', 'filmStock')} icon={<Film size={14} />} placeholder={t.ui.select} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.composition} value={data.composition} onChange={(v) => handleChange('composition', v)} options={getOptions('options', 'composition')} icon={<Layout size={14} />} placeholder={t.form.selectOption} />
-                        <SelectField label={t.form.aspectRatio} value={data.aspectRatio} onChange={(v) => handleChange('aspectRatio', v)} options={getOptions('options', 'aspectRatio')} icon={<Maximize size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.composition} value={data.composition} onChange={(v) => handleChange('composition', v)} options={getOptions('options', 'composition')} icon={<Layout size={14} />} placeholder={t.ui.select} />
+                        <SelectField label={t.form.aspectRatio} value={data.aspectRatio} onChange={(v) => handleChange('aspectRatio', v)} options={getOptions('options', 'aspectRatio')} icon={<Maximize size={14} />} placeholder={t.ui.select} />
                     </div>
                 </div>
             );
             case 4: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.style} value={data.style} onChange={(v) => handleChange('style', v)} options={getFlatOptions('styles')} icon={<Palette size={14} />} placeholder={t.form.selectOption} />
-                        <MultiSelectField label={t.form.photographerStyle} value={data.photographerStyle} onChange={(v) => handleChange('photographerStyle', v)} options={getOptions('options', 'photographerStyle')} icon={<User size={14} />} placeholder={t.form.selectOption} />
-                        <SelectField label={t.form.colorGrading} value={data.colorGrading} onChange={(v) => handleChange('colorGrading', v)} options={getOptions('options', 'colorGrading')} icon={<MonitorPlay size={14} />} placeholder={t.form.selectOption} />
-                        <MultiSelectField label={t.form.specialEffects} value={data.specialEffects} onChange={(v) => handleChange('specialEffects', v)} options={getOptions('options', 'specialEffects')} icon={<Sparkles size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.style} value={data.style} onChange={(v) => handleChange('style', v)} options={getFlatOptions('styles')} icon={<Palette size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.photographerStyle} value={data.photographerStyle} onChange={(v) => handleChange('photographerStyle', v)} options={getOptions('options', 'photographerStyle')} icon={<User size={14} />} placeholder={t.ui.select} />
+                        <SelectField label={t.form.colorGrading} value={data.colorGrading} onChange={(v) => handleChange('colorGrading', v)} options={getOptions('options', 'colorGrading')} icon={<MonitorPlay size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.specialEffects} value={data.specialEffects} onChange={(v) => handleChange('specialEffects', v)} options={getOptions('options', 'specialEffects')} icon={<Sparkles size={14} />} placeholder={t.ui.select} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.texture} value={data.texture} onChange={(v) => handleChange('texture', v)} options={getOptions('options', 'texture')} icon={<Gauge size={14} />} placeholder={t.form.selectOption} />
+                        <MultiSelectField label={t.form.texture} value={data.texture} onChange={(v) => handleChange('texture', v)} options={getOptions('options', 'texture')} icon={<Gauge size={14} />} placeholder={t.ui.select} />
                     </div>
                 </div>
             );
@@ -1133,7 +831,7 @@ export function PromptForm() {
                         <div className="relative w-full mb-6">
                             <input
                                 type="text"
-                                placeholder="Search presets..."
+                                placeholder={t.ui.search}
                                 value={presetSearch}
                                 onChange={(e) => setPresetSearch(e.target.value)}
                                 onClick={(e) => e.stopPropagation()}
@@ -1163,7 +861,7 @@ export function PromptForm() {
                             >
                                 <Star size={14} className={presetCategory === 'favorites' ? 'fill-yellow-400' : ''} />
                                 {t.form.presets.favorites || 'Favorites'}
-                                {favoritePresets.length > 0 && (
+                                {mounted && favoritePresets.length > 0 && (
                                     <span className="text-xs opacity-70">({favoritePresets.length})</span>
                                 )}
                             </button>
@@ -1176,7 +874,7 @@ export function PromptForm() {
                             >
                                 <History size={14} />
                                 {t.form.presets.recent || 'Recent'}
-                                {recentPresets.length > 0 && (
+                                {mounted && recentPresets.length > 0 && (
                                     <span className="text-xs opacity-70">({recentPresets.length})</span>
                                 )}
                             </button>
@@ -1343,13 +1041,13 @@ export function PromptForm() {
                         >
                             <History size={16} />
                             <span className="hidden sm:inline">{t.form.actions.history}</span>
-                            {history.length > 0 && <span className="bg-yellow-500/20 text-yellow-500 text-[10px] px-1.5 py-0.5 rounded-full font-bold">{history.length}</span>}
+                            {mounted && history.length > 0 && <span className="bg-yellow-500/20 text-yellow-500 text-[10px] px-1.5 py-0.5 rounded-full font-bold">{history.length}</span>}
                         </button>
                         {showHistory && (
                             <div className="absolute right-0 top-full mt-2 w-80 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-2">
                                 <div className="flex justify-between items-center mb-3">
                                     <h4 className="text-sm font-bold text-zinc-300">{t.form.history.title}</h4>
-                                    {history.length > 0 && <button
+                                    {mounted && history.length > 0 && <button
                                         onClick={clearHistory}
                                         className="text-xs text-red-500 hover:text-red-400 flex items-center gap-1"
                                         aria-label={t.form.history.clear}
@@ -1439,8 +1137,7 @@ export function PromptForm() {
                                     key={s.id}
                                     onClick={() => setCurrentStep(s.id)}
                                     className={`h-1.5 rounded-full transition-all duration-500 ${isActive ? 'w-12 bg-amber-500' : isCompleted ? 'w-8 bg-zinc-600 hover:bg-zinc-500' : 'w-8 bg-zinc-800 hover:bg-zinc-700'}`}
-                                    title={s.title}
-                                />
+                                    title={s.title} />
                             );
                         })}
                     </div>

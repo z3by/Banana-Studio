@@ -211,13 +211,30 @@ export const translations = {
       shareTitle: 'Banana Studio Prompt',
       shareCopied: 'Share link copied!',
       downloaded: 'Prompt downloaded!',
+      messages: {
+        promptGenerated: '✨ Prompt generated!',
+        copiedToClipboard: '📋 Copied to clipboard!',
+        failedToCopy: '❌ Failed to copy to clipboard',
+        confirmClear: 'Are you sure you want to clear all fields?',
+        stepReset: '🔄 Step reset!',
+        failedToShare: '❌ Failed to copy share link',
+        previewPlaceholder: '🎨 Start filling fields to see preview...',
+      },
+    },
+    ui: {
+      select: 'Select...',
+      search: 'Search...',
+      add: 'Add',
+      use: 'Use',
+      typeAnything: 'Type anything...',
+      switchToList: 'Switch to List',
+      switchToManual: 'Switch to Manual Input',
     },
     options: {
       gender: {
         woman: 'Woman',
         man: 'Man',
         person: 'Person',
-        nonbinary: 'Non-binary Person',
         child: 'Child',
         teenager: 'Teenager',
         couple: 'Couple',
@@ -1856,6 +1873,16 @@ export const translations = {
         empty: 'لا يوجد سجل بعد.',
         clear: 'مسح السجل',
       },
+      messages: {
+        promptGenerated: '✨ تم إنشاء الأمر!',
+        copiedToClipboard: '📋 تم النسخ إلى الحافظة!',
+        failedToCopy: '❌ فشل النسخ إلى الحافظة',
+        confirmClear: 'هل أنت متأكد أنك تريد مسح جميع الحقول؟',
+        stepReset: '🔄 تم إعادة تعيين الخطوة!',
+        failedToShare: '❌ فشل نسخ رابط المشاركة',
+        previewPlaceholder: '🎨 ابدأ بملء الحقول لرؤية المعاينة...',
+      },
+
       presets: {
         title: 'قوالب سريعة',
         description: 'اختر قالباً لتكوين إعداداتك فوراً',
@@ -2030,12 +2057,21 @@ export const translations = {
       shareCopied: 'تم نسخ رابط المشاركة!',
       downloaded: 'تم تحميل الأمر!',
     },
+
+    ui: {
+      select: 'اختر...',
+      search: 'بحث...',
+      add: 'إضافة',
+      use: 'استخدم',
+      typeAnything: 'اكتب أي شيء...',
+      switchToList: 'التبديل للقائمة',
+      switchToManual: 'التبديل للإدخال اليدوي',
+    },
     options: {
       gender: {
         woman: 'امرأة',
         man: 'رجل',
         person: 'شخص',
-        nonbinary: 'شخص غير ثنائي',
         child: 'طفل',
         teenager: 'مراهق',
         couple: 'زوجان',
@@ -2045,12 +2081,7 @@ export const translations = {
         robot: 'روبوت',
         alien: 'كائن فضائي',
         elf: 'قزم (Elf)',
-        vampire: 'مصاص دماء',
-        fairy: 'جنية',
         mermaid: 'حورية البحر',
-        angel: 'ملاك',
-        demon: 'شيطان',
-        witch: 'ساحر/ة',
         superhero: 'بطل خارق',
       },
       ageGroup: {
@@ -2545,5 +2576,6 @@ export const translations = {
       colorSplash: 'دفقة ألوان',
     },
     footer: 'صنع بـ 🍌 من أجل بنانا ستوديو'
-  }
-};
+  },
+}
+
