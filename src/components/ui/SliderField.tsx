@@ -19,7 +19,7 @@ export const SliderField = ({ label, value, onChange, min, max, icon, tooltip }:
                 {tooltip && (
                     <div className="relative group/tooltip">
                         <Info size={14} className="text-zinc-500 hover:text-zinc-300 cursor-help transition-colors" />
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-zinc-900 border border-white/10 text-zinc-200 text-xs rounded-lg opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10 shadow-xl">
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 backdrop-blur-md border border-white/10 text-zinc-200 text-xs rounded-lg opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10 shadow-xl">
                             {tooltip}
                         </div>
                     </div>
@@ -31,7 +31,7 @@ export const SliderField = ({ label, value, onChange, min, max, icon, tooltip }:
             <input
                 type="range" min={min} max={max} value={value}
                 onChange={(e) => onChange(parseInt(e.target.value))}
-                className="w-full h-1 bg-zinc-700/50 rounded-full appearance-none cursor-pointer accent-amber-400 hover:accent-amber-300 transition-all"
+                className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-amber-500 hover:accent-amber-400 transition-all"
             />
             <div className="absolute -bottom-3 left-0 right-0 flex justify-between text-[8px] text-zinc-600 font-mono uppercase"><span>{min}</span><span>{max}</span></div>
         </div>

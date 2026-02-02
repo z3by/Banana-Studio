@@ -1,3 +1,5 @@
+import { translations } from '../i18n/translations';
+
 export interface PromptData {
     // Subject
     gender: string;
@@ -46,133 +48,213 @@ export interface PromptData {
     addons: string[];
 }
 
+// --- Translation Helper ---
+// Maps a potentially localized value back to English
+const toEnglish = (category: string, value: string): string => {
+    if (!value) return '';
+
+    // specialized mappings from data keys to translation keys
+    let lookupKey = category;
+    let isRootKey = false;
+
+    if (category === 'style') {
+        lookupKey = 'styles';
+        isRootKey = true;
+    } else if (category === 'lighting') {
+        isRootKey = true;
+    }
+
+    // Try finding dictionary
+    let enDict: Record<string, string> | undefined;
+    let arDict: Record<string, string> | undefined;
+
+    if (isRootKey) {
+        enDict = (translations.en as any)[lookupKey];
+        arDict = (translations.ar as any)[lookupKey];
+    } else {
+        // Safe access to options
+        enDict = (translations.en.options as any)[lookupKey];
+        arDict = (translations.ar.options as any)[lookupKey];
+    }
+
+    if (!enDict) return value; // No dictionary found, return raw value
+
+    // 1. Check if it's already an English known value
+    const enValues = Object.values(enDict);
+    if (enValues.includes(value)) return value;
+
+    // 2. Check localized (Arabic) values
+    if (arDict) {
+        const entry = Object.entries(arDict).find(([_, label]) => label === value);
+        if (entry) {
+            const [key] = entry;
+            return enDict[key] || value;
+        }
+    }
+
+    return value; // Custom value or not found
+};
+
+// Helper for arrays
+const toEnglishArray = (category: string, values: string[]): string[] => {
+    return values.map(v => toEnglish(category, v));
+};
+
+
 // --- Prompt Generation Logic ---
 export function generatePrompt(data: PromptData): string {
     // Sections array to hold non-empty parts
     const sections: string[] = [];
+
+    // Translate all data to English first
+    const en = {
+        gender: toEnglish('gender', data.gender),
+        ageGroup: toEnglish('ageGroup', data.ageGroup),
+        ethnicity: toEnglish('ethnicity', data.ethnicity),
+        eyeColor: toEnglish('eyeColor', data.eyeColor),
+        hairColor: toEnglish('hairColor', data.hairColor),
+        hairStyle: toEnglishArray('hairStyle', data.hairStyle),
+        makeup: toEnglishArray('makeup', data.makeup),
+        clothing: toEnglishArray('clothing', data.clothing),
+        accessories: toEnglishArray('accessories', data.accessories),
+        pose: toEnglishArray('pose', data.pose),
+        action: toEnglishArray('action', data.action),
+        background: toEnglish('background', data.background),
+        era: toEnglish('era', data.era),
+        weather: toEnglishArray('weather', data.weather),
+        timeOfDay: toEnglish('timeOfDay', data.timeOfDay),
+        mood: toEnglishArray('mood', data.mood),
+        camera: toEnglish('camera', data.camera),
+        cameraType: toEnglish('cameraType', data.cameraType),
+        lens: toEnglishArray('lens', data.lens),
+        filmStock: toEnglishArray('filmStock', data.filmStock),
+        composition: toEnglishArray('composition', data.composition),
+        style: toEnglishArray('style', data.style),
+        photographerStyle: toEnglishArray('photographerStyle', data.photographerStyle),
+        lighting: toEnglishArray('lighting', data.lighting),
+        lightColor: toEnglish('lightColor', data.lightColor),
+        colorGrading: toEnglish('colorGrading', data.colorGrading),
+        specialEffects: toEnglishArray('specialEffects', data.specialEffects),
+        texture: toEnglishArray('texture', data.texture),
+        // Addons are a bit special, often English keys or values. Assuming English because check logic in PromptForm uses EN keys.
+        addons: data.addons
+    };
 
     // Helper to format a line if value exists
     const line = (key: string, value: string | string[]) => {
         if (!value || (Array.isArray(value) && value.length === 0)) return null;
         const valStr = Array.isArray(value) ? value.filter(Boolean).join(', ') : value;
         if (!valStr) return null;
-        return `- ${key}: ${valStr}`;
+        return `${key}: ${valStr}`; // Removed dash for cleaner block format
     };
 
     // 1. Role / Instruction (System Prompt Injection)
-    // Highly detailed instruction to set the quality bar.
-    sections.push(`ROLE & OBJECTIVE:
-You are an expert photographer and digital artist.
-Your goal is to create a breathtaking, photorealistic image with cinematic lighting and incredible detail.
+    // Removed to keep the prompt focused on image description for the model, unless this is for ChatGPT.
+    // User requested "best way possible to help the model create best results".
+    // For Midjourney/Flux/DALLE, a comma-separated list is often better than "Role: ...".
+    // However, if this is for an LLM *generating* the image prompt, the previous format was fine.
+    // Assuming this `generatePrompt` IS the final image prompt?
+    // The previous code had "ROLE & OBJECTIVE"... which suggests this output is fed to an LLM (ChatGPT) to *write* the final Midjourney prompt.
+    // "You are an expert photographer..."
+    // IF the output is for an LLM, then LTR English is critical.
 
-REFERENCE IMAGE:
-If a reference image is provided, you MUST use it as the primary visual reference for the subject's likeness, features, and characteristics. Preserve the identity and key attributes from the reference while applying the specified style and settings.
-If no reference image is provided, please ask the user whether to proceed with an AI-generated subject or if they would like to provide a reference image first.
-
-SAFETY: Subject must be depicted as 18+ years old.
-Adhere strictly to the structured specifications below. If a detail is missing, infer a high-quality default that fits the [Environment] and [Mood].`);
+    sections.push(`**ROLE & OBJECTIVE**
+You are an expert photographer and digital artist. Create a breathtaking, photorealistic image prompt based on the specifications below.
+Ensure the final prompt includes all details, uses high-level vocabulary, and is formatted for a top-tier text-to-image model.`);
 
     // 2. Natural Language Summary (Anchor)
-    // Creates a sentence like: "A portrait of a [Age] [Ethnicity] [Gender] in [Background]."
     const summaryParts = [
         'A',
-        data.mood.length > 0 ? data.mood[0] : 'stunning',
-        'image of a',
-        data.ageGroup,
-        data.ethnicity,
-        data.gender,
-        data.background ? `in ${data.background}` : '',
-        data.action.length > 0 ? `performing ${data.action.join(' and ')}` : ''
+        en.mood.length > 0 ? en.mood[0] : 'stunning',
+        'portrait of a',
+        en.ageGroup,
+        en.ethnicity,
+        en.gender,
+        en.background ? `in ${en.background}` : '',
+        en.action.length > 0 ? `performing ${en.action.join(' and ')}` : ''
     ].filter(Boolean).join(' ');
 
-    sections.push(`SUMMARY:\n${summaryParts}.`);
+    sections.push(`**CORE CONCEPT**\n"${summaryParts}"`);
 
     // 3. Subject Details
     const subjectLines = [
-        line('Gender', data.gender),
-        line('Age Group', data.ageGroup),
-        line('Ethnicity', data.ethnicity),
-        line('Hair Style', data.hairStyle),
-        line('Hair Color', data.hairColor),
-        line('Eye Color', data.eyeColor),
-        line('Makeup', data.makeup),
-        line('Clothing', data.clothing),
-        line('Accessories', data.accessories),
-        line('Pose', data.pose),
-        line('Action', data.action)
+        line('Gender', en.gender),
+        line('Age', en.ageGroup),
+        line('Ethnicity', en.ethnicity),
+        line('Hair', [en.hairColor, ...en.hairStyle].filter(Boolean).join(', ')),
+        line('Eyes', en.eyeColor),
+        line('Makeup', en.makeup),
+        line('Clothing', en.clothing),
+        line('Accessories', en.accessories),
+        line('Pose', en.pose),
+        line('Action', en.action)
     ].filter(Boolean);
 
     if (subjectLines.length > 0) {
-        sections.push(`SUBJECT SPECS:\n${subjectLines.join('\n')}`);
+        sections.push(`**SUBJECT DETAILS**\n${subjectLines.join('\n')}`);
     }
 
-    // 4. Environment & Atmosphere
+    // 4. Environment
     const envLines = [
-        line('Background', data.background),
-        line('Era', data.era),
-        line('Weather', data.weather),
-        line('Time of Day', data.timeOfDay),
-        line('Mood', data.mood)
+        line('Background', en.background),
+        line('Era', en.era),
+        line('Weather', en.weather),
+        line('Time', en.timeOfDay),
+        line('Mood', en.mood)
     ].filter(Boolean);
 
     if (envLines.length > 0) {
-        sections.push(`ENVIRONMENT & ATMOSPHERE:\n${envLines.join('\n')}`);
+        sections.push(`**ENVIRONMENT**\n${envLines.join('\n')}`);
     }
 
-    // 5. Technical Specifications
+    // 5. Technical
     const techLines = [
-        line('Camera Type', data.cameraType),
-        line('Camera Model', data.camera),
-        line('Lens', data.lens),
-        line('Film Stock', data.filmStock),
-        line('Composition', data.composition),
-        line('Aspect Ratio', data.aspectRatio),
-        line('Lighting', data.lighting),
-        line('Light Color', data.lightColor)
+        line('Camera', [en.cameraType, en.camera].filter(Boolean).join(', ')),
+        line('Lens', en.lens),
+        line('Film Stock', en.filmStock),
+        line('Composition', en.composition),
+        line('Aspect Ratio', data.aspectRatio), // Aspect ratio usually technically formatted like "16:9"
+        line('Lighting', [en.lightColor, ...en.lighting].filter(Boolean).join(', '))
     ].filter(Boolean);
 
     if (techLines.length > 0) {
-        sections.push(`TECHNICAL CONFIG:\n${techLines.join('\n')}`);
+        sections.push(`**TECHNICAL SPECS**\n${techLines.join('\n')}`);
     }
 
-    // 6. Style & Artistry
+    // 6. Style
     const styleLines = [
-        line('Art Style', data.style),
-        line('Photographer Inspiration', data.photographerStyle),
-        line('Color Grading', data.colorGrading),
-        line('Texture', data.texture),
-        line('Special Effects', data.specialEffects),
-        line('Addons', data.addons)
+        line('Art Style', en.style),
+        line('Inspiration', en.photographerStyle),
+        line('Color Grading', en.colorGrading),
+        line('Texture', en.texture),
+        line('Effects', en.specialEffects),
+        line('Addons', en.addons)
     ].filter(Boolean);
 
     if (styleLines.length > 0) {
-        sections.push(`STYLE & AESTHETICS:\n${styleLines.join('\n')}`);
+        sections.push(`**STYLE & ARTISTRY**\n${styleLines.join('\n')}`);
     }
 
-    // 7. Quality Assurance (Implicit)
+    // 7. Quality Tags
     const qualityKeywords = [
-        'Masterpiece', 'Best Quality', 'High Resolution', '8k', 'HDR', 'Sharp Focus',
-        'Intricate Details', 'Professional Photography', 'Cinematic'
+        'Masterpiece', 'Best Quality', 'Ultra High Res', '8k', 'HDR', 'Sharp Focus',
+        'Intricate Details', 'Professional Photography', 'Cinematic Lighting'
     ];
-    // Filter out any that might already be in addons to avoid dupes? 
-    // For now, simpler to just append a Quality block.
-    sections.push(`QUALITY ASSURANCE:\n- Quality Tags: ${qualityKeywords.join(', ')}`);
+    sections.push(`**QUALITY TAGS (MUST INCLUDE)**\n${qualityKeywords.join(', ')}`);
 
     // 8. Parameters
     const params: string[] = [];
     if (data.stylize > 0) params.push(`--stylize ${data.stylize}`);
     if (data.weirdness > 0) params.push(`--weirdness ${data.weirdness}`);
     if (data.chaos > 0) params.push(`--chaos ${data.chaos}`);
-
     if (params.length > 0) {
-        sections.push(`PARAMETERS:\n${params.join(' ')}`);
+        sections.push(`**PARAMETERS**\n${params.join(' ')}`);
     }
 
     // 9. Negative Prompt
     if (data.negativePrompt) {
-        sections.push(`NEGATIVE PROMPT (AVOID):\n${data.negativePrompt}`);
+        sections.push(`**NEGATIVE PROMPT**\n${data.negativePrompt}`);
     }
 
-    // Join all sections with double newlines
     return sections.join('\n\n');
 }

@@ -66,6 +66,7 @@ const MAX_RECENT_PRESETS = 10;
 import { useOutsideClick } from '@/hooks/use-outside-click';
 import { MultiSelectField } from './ui/MultiSelectField';
 import { SelectField } from './ui/SelectField';
+import { PresetSelector } from './PresetSelector';
 import { SliderField } from './ui/SliderField';
 
 // --- Icons ---
@@ -168,9 +169,7 @@ export function PromptForm() {
     });
     const [showHistory, setShowHistory] = useState(false);
     const [showPreview, setShowPreview] = useState(false);
-    const [presetsExpanded, setPresetsExpanded] = useState(true);
-    const [presetCategory, setPresetCategory] = useState<'common' | 'creative' | 'utility' | 'favorites' | 'recent'>('common');
-    const [presetSearch, setPresetSearch] = useState('');
+
     const [favoritePresets, setFavoritePresets] = useState<string[]>(() => {
         if (typeof window !== 'undefined') {
             try {
@@ -651,81 +650,75 @@ export function PromptForm() {
             case 1: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <SelectField
-                            label={t.form.gender}
-                            value={data.gender}
-                            onChange={(v) => handleChange('gender', v)}
-                            options={getOptions('options', 'gender')}
-                            icon={<User size={14} />}
-                            placeholder={t.ui.select}
-                        />
-                        <SelectField label={t.form.ageGroup} value={data.ageGroup} onChange={(v) => handleChange('ageGroup', v)} options={getOptions('options', 'ageGroup')} icon={<User size={14} />} placeholder={t.ui.select} />
-                        <SelectField label={t.form.ethnicity} value={data.ethnicity} onChange={(v) => handleChange('ethnicity', v)} options={getOptions('options', 'ethnicity')} icon={<Globe size={14} />} placeholder={t.ui.select} />
-                        <SelectField label={t.form.eyeColor} value={data.eyeColor} onChange={(v) => handleChange('eyeColor', v)} options={getOptions('options', 'eyeColor')} icon={<Eye size={14} />} placeholder={t.ui.select} />
+                        <SelectField label={t.form.gender} value={data.gender} onChange={(v) => handleChange('gender', v)} options={getOptions('options', 'gender')} icon={<User size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
+                        <SelectField label={t.form.ageGroup} value={data.ageGroup} onChange={(v) => handleChange('ageGroup', v)} options={getOptions('options', 'ageGroup')} icon={<User size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
+                        <SelectField label={t.form.ethnicity} value={data.ethnicity} onChange={(v) => handleChange('ethnicity', v)} options={getOptions('options', 'ethnicity')} icon={<Globe size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
+                        <SelectField label={t.form.eyeColor} value={data.eyeColor} onChange={(v) => handleChange('eyeColor', v)} options={getOptions('options', 'eyeColor')} icon={<Eye size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.hairStyle} value={data.hairStyle} onChange={(v) => handleChange('hairStyle', v)} options={getOptions('options', 'hairStyle')} icon={<Scissors size={14} />} placeholder={t.ui.select} />
-                        <SelectField label={t.form.hairColor} value={data.hairColor} onChange={(v) => handleChange('hairColor', v)} options={getOptions('options', 'hairColor')} icon={<Palette size={14} />} placeholder={t.ui.select} />
-                        <MultiSelectField label={t.form.makeup} value={data.makeup} onChange={(v) => handleChange('makeup', v)} options={getOptions('options', 'makeup')} icon={<Smile size={14} />} placeholder={t.ui.select} />
-                        <MultiSelectField label={t.form.pose} value={data.pose} onChange={(v) => handleChange('pose', v)} options={getOptions('options', 'pose')} icon={<User size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.hairStyle} value={data.hairStyle} onChange={(v) => handleChange('hairStyle', v)} options={getOptions('options', 'hairStyle')} icon={<Scissors size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <SelectField label={t.form.hairColor} value={data.hairColor} onChange={(v) => handleChange('hairColor', v)} options={getOptions('options', 'hairColor')} icon={<Palette size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
+                        <MultiSelectField label={t.form.makeup} value={data.makeup} onChange={(v) => handleChange('makeup', v)} options={getOptions('options', 'makeup')} icon={<Smile size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <MultiSelectField label={t.form.pose} value={data.pose} onChange={(v) => handleChange('pose', v)} options={getOptions('options', 'pose')} icon={<User size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <MultiSelectField label={t.form.clothing} value={data.clothing} onChange={(v) => handleChange('clothing', v)} options={getOptions('options', 'clothing')} icon={<Shirt size={14} />} placeholder={t.ui.select} />
-                        <MultiSelectField label={t.form.accessories} value={data.accessories} onChange={(v) => handleChange('accessories', v)} options={getOptions('options', 'accessories')} icon={<Glasses size={14} />} placeholder={t.ui.select} />
-                        <MultiSelectField label={t.form.action} value={data.action} onChange={(v) => handleChange('action', v)} options={getOptions('options', 'action')} icon={<Meh size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.clothing} value={data.clothing} onChange={(v) => handleChange('clothing', v)} options={getOptions('options', 'clothing')} icon={<Shirt size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <MultiSelectField label={t.form.accessories} value={data.accessories} onChange={(v) => handleChange('accessories', v)} options={getOptions('options', 'accessories')} icon={<Glasses size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <MultiSelectField label={t.form.action} value={data.action} onChange={(v) => handleChange('action', v)} options={getOptions('options', 'action')} icon={<Meh size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
                     </div>
                 </div>
             );
             case 2: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <SelectField label={t.form.background} value={data.background} onChange={(v) => handleChange('background', v)} options={getOptions('options', 'background')} icon={<ImageIcon size={14} />} placeholder={t.ui.select} />
-                        <SelectField label={t.form.era} value={data.era} onChange={(v) => handleChange('era', v)} options={getOptions('options', 'era')} icon={<Hourglass size={14} />} placeholder={t.ui.select} />
-                        <MultiSelectField label={t.form.weather} value={data.weather} onChange={(v) => handleChange('weather', v)} options={getOptions('options', 'weather')} icon={<CloudSun size={14} />} placeholder={t.ui.select} />
-                        <SelectField label={t.form.timeOfDay} value={data.timeOfDay} onChange={(v) => handleChange('timeOfDay', v)} options={getOptions('options', 'timeOfDay')} icon={<Clock size={14} />} placeholder={t.ui.select} />
+                        <SelectField label={t.form.background} value={data.background} onChange={(v) => handleChange('background', v)} options={getOptions('options', 'background')} icon={<ImageIcon size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
+                        <SelectField label={t.form.era} value={data.era} onChange={(v) => handleChange('era', v)} options={getOptions('options', 'era')} icon={<Hourglass size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
+                        <MultiSelectField label={t.form.weather} value={data.weather} onChange={(v) => handleChange('weather', v)} options={getOptions('options', 'weather')} icon={<CloudSun size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <SelectField label={t.form.timeOfDay} value={data.timeOfDay} onChange={(v) => handleChange('timeOfDay', v)} options={getOptions('options', 'timeOfDay')} icon={<Clock size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.lighting} value={data.lighting} onChange={(v) => handleChange('lighting', v)} options={getFlatOptions('lighting')} icon={<Lightbulb size={14} />} placeholder={t.ui.select} />
-                        <SelectField label={t.form.lightColor} value={data.lightColor} onChange={(v) => handleChange('lightColor', v)} options={getOptions('options', 'lightColor')} icon={<Palette size={14} />} placeholder={t.ui.select} />
-                        <MultiSelectField label={t.form.mood} value={data.mood} onChange={(v) => handleChange('mood', v)} options={getOptions('options', 'mood')} icon={<Focus size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.lighting} value={data.lighting} onChange={(v) => handleChange('lighting', v)} options={getFlatOptions('lighting')} icon={<Lightbulb size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <SelectField label={t.form.lightColor} value={data.lightColor} onChange={(v) => handleChange('lightColor', v)} options={getOptions('options', 'lightColor')} icon={<Palette size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
+                        <MultiSelectField label={t.form.mood} value={data.mood} onChange={(v) => handleChange('mood', v)} options={getOptions('options', 'mood')} icon={<Focus size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
                     </div>
                 </div>
             );
             case 3: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <SelectField label={t.form.cameraType} value={data.cameraType} onChange={(v) => handleChange('cameraType', v)} options={getOptions('options', 'cameraType')} icon={<CameraIcon size={14} />} placeholder={t.ui.select} />
-                        <SelectField label={t.form.camera} value={data.camera} onChange={(v) => handleChange('camera', v)} options={getOptions('options', 'camera')} icon={<Aperture size={14} />} placeholder={t.ui.select} />
-                        <MultiSelectField label={t.form.lens} value={data.lens} onChange={(v) => handleChange('lens', v)} options={getOptions('options', 'lens')} icon={<Eye size={14} />} placeholder={t.ui.select} />
-                        <MultiSelectField label={t.form.filmStock} value={data.filmStock} onChange={(v) => handleChange('filmStock', v)} options={getOptions('options', 'filmStock')} icon={<Film size={14} />} placeholder={t.ui.select} />
+                        <SelectField label={t.form.cameraType} value={data.cameraType} onChange={(v) => handleChange('cameraType', v)} options={getOptions('options', 'cameraType')} icon={<CameraIcon size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
+                        <SelectField label={t.form.camera} value={data.camera} onChange={(v) => handleChange('camera', v)} options={getOptions('options', 'camera')} icon={<Aperture size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
+                        <MultiSelectField label={t.form.lens} value={data.lens} onChange={(v) => handleChange('lens', v)} options={getOptions('options', 'lens')} icon={<Eye size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <MultiSelectField label={t.form.filmStock} value={data.filmStock} onChange={(v) => handleChange('filmStock', v)} options={getOptions('options', 'filmStock')} icon={<Film size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.composition} value={data.composition} onChange={(v) => handleChange('composition', v)} options={getOptions('options', 'composition')} icon={<Layout size={14} />} placeholder={t.ui.select} />
-                        <SelectField label={t.form.aspectRatio} value={data.aspectRatio} onChange={(v) => handleChange('aspectRatio', v)} options={getOptions('options', 'aspectRatio')} icon={<Maximize size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.composition} value={data.composition} onChange={(v) => handleChange('composition', v)} options={getOptions('options', 'composition')} icon={<Layout size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <SelectField label={t.form.aspectRatio} value={data.aspectRatio} onChange={(v) => handleChange('aspectRatio', v)} options={getOptions('options', 'aspectRatio')} icon={<Maximize size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
                     </div>
                 </div>
             );
             case 4: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.style} value={data.style} onChange={(v) => handleChange('style', v)} options={getFlatOptions('styles')} icon={<Palette size={14} />} placeholder={t.ui.select} />
-                        <MultiSelectField label={t.form.photographerStyle} value={data.photographerStyle} onChange={(v) => handleChange('photographerStyle', v)} options={getOptions('options', 'photographerStyle')} icon={<User size={14} />} placeholder={t.ui.select} />
-                        <SelectField label={t.form.colorGrading} value={data.colorGrading} onChange={(v) => handleChange('colorGrading', v)} options={getOptions('options', 'colorGrading')} icon={<MonitorPlay size={14} />} placeholder={t.ui.select} />
-                        <MultiSelectField label={t.form.specialEffects} value={data.specialEffects} onChange={(v) => handleChange('specialEffects', v)} options={getOptions('options', 'specialEffects')} icon={<Sparkles size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.style} value={data.style} onChange={(v) => handleChange('style', v)} options={getFlatOptions('styles')} icon={<Palette size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <MultiSelectField label={t.form.photographerStyle} value={data.photographerStyle} onChange={(v) => handleChange('photographerStyle', v)} options={getOptions('options', 'photographerStyle')} icon={<User size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <SelectField label={t.form.colorGrading} value={data.colorGrading} onChange={(v) => handleChange('colorGrading', v)} options={getOptions('options', 'colorGrading')} icon={<MonitorPlay size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
+                        <MultiSelectField label={t.form.specialEffects} value={data.specialEffects} onChange={(v) => handleChange('specialEffects', v)} options={getOptions('options', 'specialEffects')} icon={<Sparkles size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.texture} value={data.texture} onChange={(v) => handleChange('texture', v)} options={getOptions('options', 'texture')} icon={<Gauge size={14} />} placeholder={t.ui.select} />
+                        <MultiSelectField label={t.form.texture} value={data.texture} onChange={(v) => handleChange('texture', v)} options={getOptions('options', 'texture')} icon={<Gauge size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
                     </div>
                 </div>
             );
             case 5: return (
                 <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-300">
                     {/* Advanced Sliders */}
-                    <div className="bg-zinc-950/50 p-6 rounded-2xl border border-zinc-800/50 space-y-6">
+                    {/* Advanced Sliders */}
+                    <div className="glass-panel p-8 rounded-2xl space-y-8">
                         <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-                            <Sliders size={14} /> {t.form.advancedParams}
+                            <Sliders size={14} className="text-amber-500" /> {t.form.advancedParams}
                         </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                             <SliderField label={t.form.stylize} value={data.stylize} onChange={(v: number) => handleChange('stylize', v)} min={0} max={1000} icon={<Palette size={14} />} tooltip={t.form.guidance.stylize} />
                             <SliderField label={t.form.chaos} value={data.chaos} onChange={(v: number) => handleChange('chaos', v)} min={0} max={100} icon={<Sparkles size={14} />} tooltip={t.form.guidance.chaos} />
                             <SliderField label={t.form.weirdness} value={data.weirdness} onChange={(v: number) => handleChange('weirdness', v)} min={0} max={3000} icon={<Gauge size={14} />} tooltip={t.form.guidance.weirdness} />
@@ -733,17 +726,17 @@ export function PromptForm() {
                     </div>
 
                     {/* Addons */}
-                    <div className="bg-zinc-950/50 p-6 rounded-2xl border border-zinc-800/50 space-y-4">
+                    <div className="glass-panel p-8 rounded-2xl space-y-6">
                         <h3 className="text-xs font-bold text-green-400/80 uppercase tracking-widest flex items-center gap-2">
-                            <Settings size={14} /> {t.form.addons}
+                            <Settings size={14} className="text-green-400" /> {t.form.addons}
                         </h3>
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {Object.entries(translations.en.addons).map(([k, enVal]) => {
                                 const localVal = t.addons[k as keyof typeof t.addons];
                                 const isChecked = data.addons.includes(enVal);
                                 return (
-                                    <button key={k} type="button" onClick={() => toggleAddon(enVal)} className={`rounded-xl p-3 border transition-all flex items-center gap-3 select-none w-full text-left ${isChecked ? 'bg-zinc-800 border-yellow-500/50 text-yellow-100 shadow-[0_0_15px_-3px_rgba(234,179,8,0.2)]' : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:bg-zinc-900'}`}>
-                                        {isChecked ? <CheckCircle2 size={18} className="text-yellow-500" /> : <Circle size={18} className="text-zinc-600" />}
+                                    <button key={k} type="button" onClick={() => toggleAddon(enVal)} className={`rounded-xl p-4 border transition-all flex items-center gap-3 select-none w-full text-left ${isChecked ? 'bg-amber-500/10 border-amber-500/50 text-amber-100 shadow-[0_0_20px_-5px_rgba(245,158,11,0.3)]' : 'bg-black/20 border-white/5 text-zinc-400 hover:border-white/10 hover:bg-white/5'}`}>
+                                        {isChecked ? <CheckCircle2 size={18} className="text-amber-500" /> : <Circle size={18} className="text-zinc-700" />}
                                         <span className="text-sm font-medium">{localVal}</span>
                                     </button>
                                 );
@@ -752,15 +745,15 @@ export function PromptForm() {
                     </div>
 
                     {/* Negative Prompt */}
-                    <div className="bg-zinc-950/50 p-6 rounded-2xl border border-zinc-800/50 space-y-4 border-red-900/10">
+                    <div className="glass-panel p-8 rounded-2xl space-y-4 border-red-500/10">
                         <div className="flex justify-between items-center">
-                            <h3 className="text-xs font-bold text-red-500/80 uppercase tracking-widest flex items-center gap-2">
-                                <Ban size={14} /> {t.form.negativePrompt}
+                            <h3 className="text-xs font-bold text-red-400/80 uppercase tracking-widest flex items-center gap-2">
+                                <Ban size={14} className="text-red-500" /> {t.form.negativePrompt}
                             </h3>
-                            <span className="text-[10px] text-zinc-600">{data.negativePrompt.length} {t.form.charCount}</span>
+                            <span className="text-[10px] text-zinc-500 font-mono tracking-widest">{data.negativePrompt.length} {t.form.charCount}</span>
                         </div>
                         <textarea
-                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-red-500/30 appearance-none text-sm placeholder:text-zinc-700 resize-none"
+                            className="w-full bg-black/30 border border-white/5 rounded-xl p-4 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-red-500/30 focus:border-red-500/30 appearance-none text-sm placeholder:text-zinc-600 resize-none transition-all"
                             rows={2}
                             placeholder={t.form.negativePlaceholder}
                             value={data.negativePrompt}
@@ -787,239 +780,22 @@ export function PromptForm() {
             )}
 
             {/* ✨ Quick Start Presets - Prominent Section */}
-            <div className="glass-panel border-amber-500/10 rounded-xl relative overflow-hidden">
-                {/* Header */}
-                <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 pb-4">
-                    <div className="flex items-center gap-3 flex-1">
-                        <div className="bg-gradient-to-br from-amber-400 to-orange-600 p-2.5 rounded-xl">
-                            <Layers size={20} className="text-black" />
-                        </div>
-                        <div>
-                            <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                                {t.form.presets.title || 'Quick Start Presets'}
-                                <span className="text-[10px] font-bold bg-white/10 text-zinc-300 px-2 py-0.5 rounded-full border border-white/5">
-                                    {presets.length}
-                                </span>
-                            </h2>
-                            <p className="text-xs text-zinc-400">{t.form.presets.description || 'Choose a preset to instantly configure your prompt'}</p>
-                        </div>
-                    </div>
-
-                    {/* Collapse Toggle Button */}
-                    <button
-                        onClick={() => setPresetsExpanded(!presetsExpanded)}
-                        aria-expanded={presetsExpanded}
-                        aria-label="Toggle presets section"
-                        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-black/40 hover:bg-black/60 border border-white/10 hover:border-white/20 transition-all text-sm text-zinc-400 hover:text-white"
-                    >
-                        {presetsExpanded ? (
-                            <>
-                                <ChevronLeft size={16} className="rotate-90" />
-                                <span className="hidden sm:inline">Collapse</span>
-                            </>
-                        ) : (
-                            <>
-                                <ChevronRight size={16} className="rotate-90" />
-                                <span className="hidden sm:inline">Expand</span>
-                            </>
-                        )}
-                    </button>
-                </div>
-
-                {/* Collapsible Content */}
-                {presetsExpanded && (
-                    <div className="px-6 pb-6 animate-in fade-in slide-in-from-top-2 duration-300">
-                        {/* Search Input */}
-                        <div className="relative w-full mb-6">
-                            <input
-                                type="text"
-                                placeholder={t.ui.search}
-                                value={presetSearch}
-                                onChange={(e) => setPresetSearch(e.target.value)}
-                                onClick={(e) => e.stopPropagation()}
-                                className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/50 focus:bg-black/60 pr-9 transition-all"
-                            />
-                            {presetSearch ? (
-                                <button
-                                    onClick={(e) => { e.stopPropagation(); setPresetSearch(''); }}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
-                                    aria-label="Clear search"
-                                >
-                                    ×
-                                </button>
-                            ) : (
-                                <Sparkles size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600" />
-                            )}
-                        </div>
-
-                        {/* Category Tabs */}
-                        <div className="relative flex items-center gap-1 mb-6 bg-black/40 border border-white/5 p-1 rounded-xl w-fit backdrop-blur-md overflow-x-auto scrollbar-thin scrollbar-thumb-white/10">
-                            <button
-                                onClick={() => setPresetCategory('favorites')}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'favorites'
-                                    ? 'bg-yellow-500/20 text-yellow-400'
-                                    : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
-                                    }`}
-                            >
-                                <Star size={14} className={presetCategory === 'favorites' ? 'fill-yellow-400' : ''} />
-                                {t.form.presets.favorites || 'Favorites'}
-                                {mounted && favoritePresets.length > 0 && (
-                                    <span className="text-xs opacity-70">({favoritePresets.length})</span>
-                                )}
-                            </button>
-                            <button
-                                onClick={() => setPresetCategory('recent')}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'recent'
-                                    ? 'bg-blue-500/20 text-blue-400'
-                                    : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
-                                    }`}
-                            >
-                                <History size={14} />
-                                {t.form.presets.recent || 'Recent'}
-                                {mounted && recentPresets.length > 0 && (
-                                    <span className="text-xs opacity-70">({recentPresets.length})</span>
-                                )}
-                            </button>
-                            <button
-                                onClick={() => setPresetCategory('common')}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'common'
-                                    ? 'bg-emerald-500/20 text-emerald-400'
-                                    : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
-                                    }`}
-                            >
-                                <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'common' ? 'bg-emerald-400' : 'bg-emerald-900'}`} />
-                                {t.form.presets.common}
-                            </button>
-                            <button
-                                onClick={() => setPresetCategory('creative')}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'creative'
-                                    ? 'bg-purple-500/20 text-purple-400'
-                                    : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
-                                    }`}
-                            >
-                                <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'creative' ? 'bg-purple-400' : 'bg-purple-900'}`} />
-                                {t.form.presets.creative}
-                            </button>
-                            <button
-                                onClick={() => setPresetCategory('utility')}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'utility'
-                                    ? 'bg-cyan-500/20 text-cyan-400'
-                                    : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
-                                    }`}
-                            >
-                                <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'utility' ? 'bg-cyan-400' : 'bg-cyan-900'}`} />
-                                {t.form.presets.utility}
-                            </button>
-                        </div>
-
-                        {/* Preset Grid - Now larger and more visual */}
-                        <div className="relative">
-                            <div className="flex gap-3 overflow-x-auto pb-4 pt-1 px-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-                                {presets
-                                    .filter(p => {
-                                        // Filter by category or favorites/recent
-                                        if (presetCategory === 'favorites') {
-                                            return favoritePresets.includes(p.id);
-                                        } else if (presetCategory === 'recent') {
-                                            return recentPresets.includes(p.id);
-                                        } else {
-                                            return p.category === presetCategory;
-                                        }
-                                    })
-                                    .sort((a, b) => {
-                                        // Sort recent presets by most recent first
-                                        if (presetCategory === 'recent') {
-                                            return recentPresets.indexOf(a.id) - recentPresets.indexOf(b.id);
-                                        }
-                                        return 0;
-                                    })
-                                    .filter(p => {
-                                        if (!presetSearch) return true;
-                                        const translation = t.form.presets[p.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
-                                        const name = translation?.name || p.id;
-                                        const desc = translation?.desc || '';
-                                        return name.toLowerCase().includes(presetSearch.toLowerCase()) ||
-                                            desc.toLowerCase().includes(presetSearch.toLowerCase());
-                                    })
-                                    .map((preset) => {
-                                        const presetTranslation = t.form.presets[preset.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
-                                        const gradientClass = preset.category === 'common'
-                                            ? 'from-emerald-900/40 to-emerald-900/10 border-emerald-500/20 hover:border-emerald-500/50 hover:from-emerald-900/60 hover:to-emerald-900/30'
-                                            : preset.category === 'creative'
-                                                ? 'from-purple-900/40 to-purple-900/10 border-purple-500/20 hover:border-purple-500/50 hover:from-purple-900/60 hover:to-purple-900/30'
-                                                : 'from-cyan-900/40 to-cyan-900/10 border-cyan-500/20 hover:border-cyan-500/50 hover:from-cyan-900/60 hover:to-cyan-900/30';
-
-                                        const categoryColorText = preset.category === 'common' ? 'text-emerald-400' : preset.category === 'creative' ? 'text-purple-400' : 'text-cyan-400';
-
-                                        return (
-                                            <div
-                                                key={preset.id}
-                                                className={`preset-card flex-shrink-0 group flex flex-col items-center gap-3 px-5 py-5 rounded-xl border bg-gradient-to-br ${gradientClass} transition-all duration-300 min-w-[150px] relative overflow-hidden cursor-pointer shadow-lg hover:shadow-xl`}
-                                                title={presetTranslation?.desc || preset.id}
-                                                onClick={() => applyPreset(preset)}
-                                            >
-                                                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                                {/* Favorite Star Button */}
-                                                <button
-                                                    onClick={(e) => toggleFavorite(preset.id, e)}
-                                                    className="absolute top-2 right-2 z-20 p-1.5 rounded-lg bg-black/40 hover:bg-black/60 transition-all opacity-0 group-hover:opacity-100"
-                                                    title={favoritePresets.includes(preset.id) ? 'Remove from favorites' : 'Add to favorites'}
-                                                >
-                                                    <Star size={14} className={`transition-colors ${favoritePresets.includes(preset.id) ? 'fill-yellow-400 text-yellow-400' : 'text-zinc-400 hover:text-yellow-400'}`} />
-                                                </button>
-                                                <span className={`text-3xl transition-transform duration-300 ${categoryColorText}`}>{preset.icon}</span>
-                                                <div className="text-center relative z-10">
-                                                    <div className={`text-sm font-bold text-zinc-100 group-hover:text-white transition-colors`}>
-                                                        {presetTranslation?.name || preset.id}
-                                                    </div>
-                                                    <div className="text-[10px] text-zinc-500 group-hover:text-zinc-400 transition-colors mt-1 line-clamp-2 max-w-[130px] leading-relaxed">
-                                                        {presetTranslation?.desc || ''}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
-                                {presets.filter(p => {
-                                    // Filter by category or favorites/recent
-                                    if (presetCategory === 'favorites') {
-                                        return favoritePresets.includes(p.id);
-                                    } else if (presetCategory === 'recent') {
-                                        return recentPresets.includes(p.id);
-                                    } else {
-                                        return p.category === presetCategory;
-                                    }
-                                }).filter(p => {
-                                    if (!presetSearch) return true;
-                                    const translation = t.form.presets[p.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
-                                    const name = translation?.name || p.id;
-                                    return name.toLowerCase().includes(presetSearch.toLowerCase());
-                                }).length === 0 && (
-                                        <div className="text-sm text-zinc-500 italic py-8 px-4 w-full text-center flex flex-col items-center gap-3">
-                                            <div className="bg-zinc-900/50 p-3 rounded-full">
-                                                {presetCategory === 'favorites' ? <Star size={20} className="text-zinc-700" /> :
-                                                    presetCategory === 'recent' ? <History size={20} className="text-zinc-700" /> :
-                                                        <Sparkles size={20} className="text-zinc-700" />}
-                                            </div>
-                                            {presetSearch ? `No presets found matching "${presetSearch}"` :
-                                                presetCategory === 'favorites' ? 'No favorite presets yet. Click the star on any preset to add it!' :
-                                                    presetCategory === 'recent' ? 'No recent presets. Apply a preset to see it here!' :
-                                                        'No presets available'}
-                                        </div>
-                                    )}
-                            </div>
-                            {/* Fade gradient on right edge */}
-                            <div className="absolute right-0 top-0 bottom-4 w-24 bg-gradient-to-l from-black/80 to-transparent pointer-events-none"></div>
-                        </div>
-                    </div>
-                )}
+            <div className="mb-8 animate-in fade-in slide-in-from-top-4 duration-500">
+                <PresetSelector
+                    t={t}
+                    recentPresets={recentPresets}
+                    favoritePresets={favoritePresets}
+                    onSelect={applyPreset}
+                    onToggleFavorite={toggleFavorite}
+                />
             </div>
 
             {/* Toolbar Actions Row */}
-            <div className="flex flex-wrap justify-between items-center gap-3 px-2">
+            < div className="flex flex-wrap justify-between items-center gap-3 px-2" >
                 {/* Left side actions */}
-                <div className="flex items-center gap-2">
+                < div className="flex items-center gap-2" >
                     {/* Live Preview Toggle */}
-                    <button
+                    < button
                         onClick={() => setShowPreview(!showPreview)}
                         className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all text-sm font-medium ${showPreview
                             ? 'bg-green-500/10 border-green-500/30 text-green-400'
@@ -1028,13 +804,13 @@ export function PromptForm() {
                     >
                         <Eye size={16} />
                         <span className="hidden sm:inline">Preview</span>
-                    </button>
-                </div>
+                    </button >
+                </div >
 
                 {/* Right side actions */}
-                <div className="flex items-center gap-2">
+                < div className="flex items-center gap-2" >
                     {/* History Toggle */}
-                    <div className="relative" ref={historyRef}>
+                    < div className="relative" ref={historyRef} >
                         <button
                             onClick={() => setShowHistory(!showHistory)}
                             className="flex items-center gap-2 text-zinc-400 hover:text-white px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all text-sm font-medium"
@@ -1045,36 +821,38 @@ export function PromptForm() {
                             <span className="hidden sm:inline">{t.form.actions.history}</span>
                             {mounted && history.length > 0 && <span className="bg-yellow-500/20 text-yellow-500 text-[10px] px-1.5 py-0.5 rounded-full font-bold">{history.length}</span>}
                         </button>
-                        {showHistory && (
-                            <div className="absolute right-0 top-full mt-2 w-80 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-2">
-                                <div className="flex justify-between items-center mb-3">
-                                    <h4 className="text-sm font-bold text-zinc-300">{t.form.history.title}</h4>
-                                    {mounted && history.length > 0 && <button
-                                        onClick={clearHistory}
-                                        className="text-xs text-red-500 hover:text-red-400 flex items-center gap-1"
-                                        aria-label={t.form.history.clear}
-                                    ><Trash2 size={12} /> {t.form.history.clear}</button>}
-                                </div>
-                                {history.length === 0 ? (
-                                    <p className="text-xs text-zinc-600 italic">{t.form.history.empty}</p>
-                                ) : (
-                                    <div className="space-y-2 max-h-64 overflow-y-auto dark-scrollbar">
-                                        {history.map((h, i) => (
-                                            <button
-                                                key={i}
-                                                type="button"
-                                                className="text-xs bg-zinc-950 border border-zinc-800 p-3 rounded-lg hover:bg-zinc-800 hover:border-zinc-700 text-zinc-400 transition-all group w-full text-left"
-                                                onClick={() => { setGenerated(h.prompt); setShowHistory(false); showToastMessage('📜 Prompt loaded from history'); }}
-                                            >
-                                                <p className="line-clamp-2 group-hover:text-zinc-200 transition-colors">{h.prompt}</p>
-                                                <p className="text-[10px] text-zinc-600 mt-1.5 flex items-center gap-1"><Clock size={10} /> {new Date(h.timestamp).toLocaleString()}</p>
-                                            </button>
-                                        ))}
+                        {
+                            showHistory && (
+                                <div className="absolute right-0 top-full mt-2 w-80 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-2">
+                                    <div className="flex justify-between items-center mb-3">
+                                        <h4 className="text-sm font-bold text-zinc-300">{t.form.history.title}</h4>
+                                        {mounted && history.length > 0 && <button
+                                            onClick={clearHistory}
+                                            className="text-xs text-red-500 hover:text-red-400 flex items-center gap-1"
+                                            aria-label={t.form.history.clear}
+                                        ><Trash2 size={12} /> {t.form.history.clear}</button>}
                                     </div>
-                                )}
-                            </div>
-                        )}
-                    </div>
+                                    {history.length === 0 ? (
+                                        <p className="text-xs text-zinc-600 italic">{t.form.history.empty}</p>
+                                    ) : (
+                                        <div className="space-y-2 max-h-64 overflow-y-auto dark-scrollbar">
+                                            {history.map((h, i) => (
+                                                <button
+                                                    key={i}
+                                                    type="button"
+                                                    className="text-xs bg-zinc-950 border border-zinc-800 p-3 rounded-lg hover:bg-zinc-800 hover:border-zinc-700 text-zinc-400 transition-all group w-full text-left"
+                                                    onClick={() => { setGenerated(h.prompt); setShowHistory(false); showToastMessage('📜 Prompt loaded from history'); }}
+                                                >
+                                                    <p className="line-clamp-2 group-hover:text-zinc-200 transition-colors">{h.prompt}</p>
+                                                    <p className="text-[10px] text-zinc-600 mt-1.5 flex items-center gap-1"><Clock size={10} /> {new Date(h.timestamp).toLocaleString()}</p>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )
+                        }
+                    </div >
 
                     <button
                         onClick={handleRandomize}
@@ -1100,19 +878,21 @@ export function PromptForm() {
                     >
                         <RefreshCw size={16} />
                     </button>
-                </div>
-            </div>
+                </div >
+            </div >
 
             {/* Live Preview Panel */}
-            {showPreview && (
-                <div className="animate-in fade-in slide-in-from-top-2 duration-300 bg-zinc-900/90 border border-zinc-800 rounded-xl p-4 backdrop-blur-sm">
-                    <div className="flex items-center gap-2 mb-2">
-                        <Eye size={14} className="text-green-400" />
-                        <span className="text-xs font-bold text-green-400 uppercase tracking-wide">Live Preview</span>
+            {
+                showPreview && (
+                    <div className="animate-in fade-in slide-in-from-top-2 duration-300 bg-zinc-900/90 border border-zinc-800 rounded-xl p-4 backdrop-blur-sm">
+                        <div className="flex items-center gap-2 mb-2">
+                            <Eye size={14} className="text-green-400" />
+                            <span className="text-xs font-bold text-green-400 uppercase tracking-wide">Live Preview</span>
+                        </div>
+                        <p className="text-sm text-zinc-300 italic leading-relaxed">{getPreviewSummary()}</p>
                     </div>
-                    <p className="text-sm text-zinc-300 italic leading-relaxed">{getPreviewSummary()}</p>
-                </div>
-            )}
+                )
+            }
 
             {/* Main Card */}
             <div className="glass-panel rounded-xl overflow-hidden flex flex-col min-h-[600px] border border-white/5 relative">
@@ -1194,50 +974,52 @@ export function PromptForm() {
 
             {/* Result Section */}
             {/* Result Section */}
-            {generated && (
-                <div ref={resultRef} className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 scroll-mt-8">
-                    <div className="flex justify-between items-center mb-4 px-1">
-                        <label className="text-sm font-medium text-zinc-400 flex items-center gap-2">
-                            <Sparkles size={16} className="text-amber-500" />
-                            {t.form.resultLabel}
-                        </label>
-                        <span className="text-xs text-zinc-600 font-mono bg-white/5 px-2 py-0.5 rounded">
-                            {generated.length} / 1000
-                        </span>
-                    </div>
-                    <div className="glass-panel border-amber-500/20 rounded-2xl p-8 relative group shadow-[0_0_50px_-10px_rgba(251,191,36,0.1)]">
-                        <p className="text-base md:text-lg text-zinc-100 font-light leading-relaxed break-words pe-12 selection:bg-amber-500/30 selection:text-amber-100">
-                            {generated}
-                        </p>
+            {
+                generated && (
+                    <div ref={resultRef} className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 scroll-mt-8">
+                        <div className="flex justify-between items-center mb-4 px-1">
+                            <label className="text-sm font-medium text-zinc-400 flex items-center gap-2">
+                                <Sparkles size={16} className="text-amber-500" />
+                                {t.form.resultLabel}
+                            </label>
+                            <span className="text-xs text-zinc-600 font-mono bg-white/5 px-2 py-0.5 rounded">
+                                {generated.length} / 1000
+                            </span>
+                        </div>
+                        <div className="glass-panel border-amber-500/20 rounded-2xl p-8 relative group shadow-[0_0_50px_-10px_rgba(251,191,36,0.1)]">
+                            <p dir="ltr" className="text-sm md:text-base text-zinc-100 font-mono whitespace-pre-wrap leading-relaxed break-words pe-12 selection:bg-amber-500/30 selection:text-amber-100">
+                                {generated}
+                            </p>
 
-                        {/* Action buttons - Bottom Right */}
-                        <div className="flex gap-2 mt-8 justify-end border-t border-white/5 pt-4">
-                            <button
-                                onClick={handleCopy}
-                                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 hover:text-white text-zinc-400 transition-all text-sm font-medium"
-                            >
-                                {copied ? <Check size={16} className="text-emerald-400" /> : <IconCopy className="w-4 h-4" />}
-                                {copied ? 'Copied' : t.form.copy}
-                            </button>
-                            <div className="w-px bg-white/10 mx-1" />
-                            <button
-                                onClick={handleDownload}
-                                className="p-2 rounded-lg hover:bg-white/10 text-zinc-500 hover:text-zinc-200 transition-all"
-                                title={t.form.actions.download}
-                            >
-                                <Download size={18} />
-                            </button>
-                            <button
-                                onClick={handleShare}
-                                className="p-2 rounded-lg hover:bg-white/10 text-zinc-500 hover:text-zinc-200 transition-all"
-                                title={t.form.actions.share}
-                            >
-                                <Share2 size={18} />
-                            </button>
+                            {/* Action buttons - Bottom Right */}
+                            <div className="flex gap-2 mt-8 justify-end border-t border-white/5 pt-4">
+                                <button
+                                    onClick={handleCopy}
+                                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 hover:text-white text-zinc-400 transition-all text-sm font-medium"
+                                >
+                                    {copied ? <Check size={16} className="text-emerald-400" /> : <IconCopy className="w-4 h-4" />}
+                                    {copied ? 'Copied' : t.form.copy}
+                                </button>
+                                <div className="w-px bg-white/10 mx-1" />
+                                <button
+                                    onClick={handleDownload}
+                                    className="p-2 rounded-lg hover:bg-white/10 text-zinc-500 hover:text-zinc-200 transition-all"
+                                    title={t.form.actions.download}
+                                >
+                                    <Download size={18} />
+                                </button>
+                                <button
+                                    onClick={handleShare}
+                                    className="p-2 rounded-lg hover:bg-white/10 text-zinc-500 hover:text-zinc-200 transition-all"
+                                    title={t.form.actions.share}
+                                >
+                                    <Share2 size={18} />
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )
+            }
             {/* Floating Mobile Generate Button */}
             <button
                 onClick={handleGenerate}
@@ -1247,6 +1029,6 @@ export function PromptForm() {
                 <Wand2 size={24} strokeWidth={2.5} />
             </button>
 
-        </div>
+        </div >
     );
 }

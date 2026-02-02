@@ -10,9 +10,12 @@ interface SelectFieldProps {
     options: Record<string, string>;
     icon: React.ReactNode;
     placeholder?: string;
+    searchPlaceholder?: string;
+    manualPlaceholder?: string;
+    useLabel?: string;
 }
 
-export const SelectField = ({ label, value, onChange, options, icon, placeholder = "Select..." }: SelectFieldProps) => {
+export const SelectField = ({ label, value, onChange, options, icon, placeholder = "Select...", searchPlaceholder = "Search...", manualPlaceholder = "Type anything...", useLabel = "Use" }: SelectFieldProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState("");
     const [isManual, setIsManual] = useState(false);
@@ -48,12 +51,12 @@ export const SelectField = ({ label, value, onChange, options, icon, placeholder
             className="z-[9999] glass-panel rounded-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-100 dark-scrollbar"
             style={dropdownStyle}
         >
-            <div className="p-2 sticky top-0 bg-[#0c0c0e]/95 backdrop-blur-md border-b border-white/5 z-10">
+            <div className="p-2 sticky top-0 bg-black/80 backdrop-blur-md border-b border-white/5 z-10">
                 <input
                     ref={inputRef}
                     type="text"
-                    className="w-full bg-white/5 border border-transparent rounded-md px-3 py-1.5 text-xs text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:bg-white/10"
-                    placeholder="Search..."
+                    className="w-full bg-white/5 border border-transparent rounded-md px-3 py-1.5 text-xs text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:bg-white/10 transition-colors"
+                    placeholder={searchPlaceholder}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onClick={(e) => e.stopPropagation()}
@@ -72,7 +75,7 @@ export const SelectField = ({ label, value, onChange, options, icon, placeholder
                 })}
                 {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
                     <button key="custom-use" type="button" onClick={() => handleSelect(inputValue)} className="px-4 py-2 text-sm text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5 w-full text-left">
-                        <PenLine size={12} /> Use &quot;{inputValue}&quot;
+                        <PenLine size={12} /> {useLabel} &quot;{inputValue}&quot;
                     </button>
                 )}
             </div>
@@ -103,7 +106,7 @@ export const SelectField = ({ label, value, onChange, options, icon, placeholder
                             className="w-full input-minimal rounded-lg px-3 py-2.5 text-zinc-200 text-sm placeholder:text-zinc-600 focus:outline-none"
                             value={value}
                             onChange={(e) => onChange(e.target.value)}
-                            placeholder="Type anything..."
+                            placeholder={manualPlaceholder}
                         />
                         <div className="absolute inset-y-0 end-3 flex items-center pointer-events-none text-zinc-600"><PenLine size={12} /></div>
                     </div>
@@ -117,7 +120,7 @@ export const SelectField = ({ label, value, onChange, options, icon, placeholder
                                 setTimeout(() => inputRef.current?.focus(), 0);
                             }
                         }}
-                        className={`w-full input-minimal rounded-lg px-3 py-2.5 flex justify-between items-center cursor-pointer text-sm transition-all ${isOpen ? 'ring-1 ring-amber-500/50 bg-white/5' : ''}`}
+                        className={`w-full input-minimal rounded-lg px-3 py-2.5 flex justify-between items-center cursor-pointer text-sm transition-all ${isOpen ? 'ring-1 ring-amber-500/50 bg-white/10' : ''}`}
                     >
                         <span className={`truncate ${!value ? 'text-zinc-600' : 'text-zinc-200'}`}>
                             {value ? getLabel(value) : placeholder}

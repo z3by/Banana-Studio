@@ -10,9 +10,10 @@ interface MultiSelectFieldProps {
     options: Record<string, string>;
     icon: React.ReactNode;
     placeholder?: string;
+    addLabel?: string;
 }
 
-export const MultiSelectField = ({ label, value, onChange, options, icon, placeholder = "Select..." }: MultiSelectFieldProps) => {
+export const MultiSelectField = ({ label, value, onChange, options, icon, placeholder = "Select...", addLabel = "Add" }: MultiSelectFieldProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState("");
     const containerRef = useRef<HTMLDivElement>(null);
@@ -72,7 +73,7 @@ export const MultiSelectField = ({ label, value, onChange, options, icon, placeh
             })}
             {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
                 <button key="custom-add" type="button" onClick={() => { onChange([...value, inputValue]); setInputValue(""); }} className="px-4 py-2 text-sm text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5 w-full text-left">
-                    <PenLine size={12} /> Add &quot;{inputValue}&quot;
+                    <PenLine size={12} /> {addLabel} &quot;{inputValue}&quot;
                 </button>
             )}
         </div>,
@@ -88,7 +89,7 @@ export const MultiSelectField = ({ label, value, onChange, options, icon, placeh
                 <div
                     ref={triggerRef}
                     onClick={() => { setIsOpen(true); inputRef.current?.focus(); }}
-                    className={`w-full input-minimal rounded-lg p-2 min-h-[42px] flex flex-wrap gap-2 cursor-text text-sm transition-all ${isOpen ? 'ring-1 ring-amber-500/50 bg-white/5' : ''}`}
+                    className={`w-full input-minimal rounded-lg p-2 min-h-[42px] flex flex-wrap gap-2 cursor-text text-sm transition-all ${isOpen ? 'ring-1 ring-amber-500/50 bg-white/10' : ''}`}
                 >
                     {value.map((val) => (
                         <span key={val} className="bg-amber-500/10 text-amber-300 px-2 py-0.5 rounded text-xs flex items-center gap-1 border border-amber-500/10">
