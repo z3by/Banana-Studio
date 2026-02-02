@@ -101,6 +101,7 @@ export function PromptForm() {
         return Object.keys(enOptions).reduce((acc, key) => {
             const enVal = enOptions[key];
             const localVal = localOptions[key];
+            // Fallback to English value if translation is missing
             acc[enVal] = localVal;
             return acc;
         }, {} as Record<string, string>);
@@ -115,6 +116,7 @@ export function PromptForm() {
         return Object.keys(enOptions).reduce((acc, key) => {
             const enVal = enOptions[key];
             const localVal = localOptions[key];
+            // Fallback to English value if translation is missing
             acc[enVal] = localVal;
             return acc;
         }, {} as Record<string, string>);
