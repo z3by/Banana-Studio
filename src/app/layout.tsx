@@ -3,6 +3,9 @@ import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageContext";
 import { Header } from "@/components/Header";
 import Link from "next/link";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bananastudio.app"),
@@ -40,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Banana Studio",
     description: "Generate high-quality prompts for your AI portrait edits.",
-    creator: "@z3by", // Assuming handle based on link, or can remove if unknown
+    creator: "@z3by",
     images: ["/icon.png"],
   },
   robots: {
@@ -85,26 +88,34 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body
         suppressHydrationWarning
-        className="antialiased min-h-screen flex flex-col relative"
+        className={`${inter.className} antialiased min-h-screen flex flex-col relative bg-[#0c0c0e] text-zinc-100 selection:bg-amber-500/30`}
       >
         {/* JSON-LD structured data for SEO */}
         <script
           type="application/ld+json"
-          // Safe: jsonLd is a static object defined above, not user input
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Subtle Background Gradient */}
+        
+        {/* Subtle Background Gradient - Refined for minimalism */}
         <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[40%] bg-amber-500/5 rounded-full blur-[120px]" />
+          {/* Main Top Glow */}
+          <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[80%] h-[500px] bg-gradient-to-b from-amber-500/10 to-transparent rounded-[100%] blur-[100px] opacity-60" />
+           {/* Bottom subtle glow */}
+           <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px]" />
         </div>
 
         <LanguageProvider>
           <Header />
-          <main className="flex-1 w-full max-w-5xl mx-auto px-4 md:px-8 py-8 md:py-12 relative z-10">
+          <main className="flex-1 w-full max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-16 relative z-10">
             {children}
           </main>
-          <footer className="py-6 text-center text-zinc-600 text-xs relative z-10">
-            Made with 🍌 by <Link href="https://z3by.com" target="_blank" className="text-zinc-500 hover:text-zinc-400 transition-colors">Ahmad Mostafa</Link>
+          <footer className="py-8 text-center text-zinc-600 text-xs relative z-10 border-t border-white/5 mt-12">
+             <div className="flex items-center justify-center gap-2">
+                 <span>Made with 🍌 by</span>
+                  <Link href="https://z3by.com" target="_blank" className="font-medium text-zinc-500 hover:text-amber-400 transition-colors">
+                    Ahmad Mostafa
+                  </Link>
+             </div>
           </footer>
         </LanguageProvider>
       </body>

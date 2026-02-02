@@ -143,7 +143,6 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
     const triggerRef = useRef<HTMLDivElement>(null);
     const dropdownStyle = useDropdownPosition(isOpen, triggerRef);
 
-    // Custom outside click handler that includes the portal dropdown
     useEffect(() => {
         const handleClick = (e: MouseEvent) => {
             if (!isOpen) return;
@@ -175,25 +174,19 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
         }
     };
 
-    // Find label for a given english value
-    const getLabel = (val: string) => {
-        // If val is in options values (it's English), return the label. 
-        // But wait, the options passed here are { key: "Localized Value" }. 
-        // Actually, I am changing how options are passed. I will pass { [EnglishValue]: "Localized Label" }.
-        return options[val] || val;
-    };
+    const getLabel = (val: string) => options[val] || val;
 
     const dropdownContent = isOpen && typeof document !== 'undefined' ? createPortal(
         <div
             ref={dropdownRef}
-            className="z-[9999] glass-panel rounded-xl overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar"
+            className="z-[9999] glass-panel rounded-lg overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar border border-white/10 shadow-2xl"
             style={dropdownStyle}
         >
             {Object.entries(options).map(([k, v]) => {
                 if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
                 const isSelected = value.includes(k);
                 return (
-                    <button key={k} type="button" onClick={() => { toggleValue(k); setInputValue(""); }} className={`px-4 py-2 text-sm flex items-center justify-between transition-colors w-full text-left ${isSelected ? 'bg-amber-500/20 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
+                    <button key={k} type="button" onClick={() => { toggleValue(k); setInputValue(""); }} className={`px-4 py-2 text-sm flex items-center justify-between transition-all w-full text-left ${isSelected ? 'bg-amber-500/10 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
                         <span>{v}</span>
                         {isSelected && <Check size={14} />}
                     </button>
@@ -209,36 +202,32 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
     ) : null;
 
     return (
-        <div className="space-y-2" ref={containerRef}>
-            <label className="text-sm font-medium text-zinc-400 flex items-center gap-1.5 whitespace-nowrap px-1">
+        <div className="space-y-1.5" ref={containerRef}>
+            <label className="text-xs font-medium text-zinc-500 flex items-center gap-1.5 px-1 uppercase tracking-wide">
                 {icon} {label}
             </label>
             <div className="relative">
                 <div
                     ref={triggerRef}
                     onClick={() => { setIsOpen(true); inputRef.current?.focus(); }}
-                    className={`w-full bg-black/40 backdrop-blur-sm border rounded-xl p-2 min-h-[52px] flex flex-wrap gap-2 cursor-text text-sm transition-all ${isOpen ? 'border-amber-500/50' : 'border-white/10 hover:border-white/20 hover:bg-white/5'}`}
+                    className={`w-full input-minimal rounded-lg p-2 min-h-[42px] flex flex-wrap gap-2 cursor-text text-sm transition-all ${isOpen ? 'ring-1 ring-amber-500/50 bg-white/5' : ''}`}
                 >
                     {value.map((val) => (
-                        <span key={val} className="bg-amber-500/10 text-amber-200 px-3 py-1 rounded-xl text-xs flex items-center gap-1 border border-amber-500/20 animate-in fade-in zoom-in-95 duration-200">
+                        <span key={val} className="bg-amber-500/10 text-amber-300 px-2 py-0.5 rounded text-xs flex items-center gap-1 border border-amber-500/10">
                             {getLabel(val)}
-                            <button className="hover:text-amber-400 ml-1 rounded-full p-0.5 hover:bg-amber-500/20" onClick={(e) => { e.stopPropagation(); toggleValue(val); }}>×</button>
+                            <button className="hover:text-amber-100/70 p-0.5" onClick={(e) => { e.stopPropagation(); toggleValue(val); }}>×</button>
                         </span>
                     ))}
                     <input
                         ref={inputRef}
                         type="text"
-                        className="bg-transparent outline-none flex-1 min-w-[60px] text-zinc-200 placeholder:text-zinc-600 h-8"
+                        className="bg-transparent outline-none flex-1 min-w-[60px] text-zinc-200 placeholder:text-zinc-600 h-6 text-sm"
                         placeholder={value.length === 0 ? placeholder : ""}
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         onKeyDown={handleKeyDown}
                         onFocus={() => setIsOpen(true)}
                     />
-                    <div className="ml-auto self-center text-zinc-500 text-xs flex items-center gap-1 pr-2">
-                        {isOpen && inputValue.length > 0 && <span className="text-[10px] bg-white/10 px-1.5 py-0.5 rounded hidden md:inline">Press Enter</span>}
-                        <ChevronsUpDown size={14} className="opacity-50" />
-                    </div>
                 </div>
                 {dropdownContent}
             </div>
@@ -249,23 +238,20 @@ const MultiSelectField = ({ label, value, onChange, options, icon, placeholder =
 const SelectField = ({ label, value, onChange, options, icon, placeholder = "Select..." }: { label: string, value: string, onChange: (val: string) => void, options: Record<string, string>, icon: React.ReactNode, placeholder?: string }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState("");
-    const [isManual, setIsManual] = useState(false); // Toggle between list and raw input
+    const [isManual, setIsManual] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
     const dropdownStyle = useDropdownPosition(isOpen, triggerRef);
 
-    // Custom outside click handler that includes the portal dropdown
     useEffect(() => {
         const handleClick = (e: MouseEvent) => {
             if (!isOpen) return;
             const target = e.target as Node;
             const clickedInsideContainer = containerRef.current?.contains(target);
             const clickedInsideDropdown = dropdownRef.current?.contains(target);
-            if (!clickedInsideContainer && !clickedInsideDropdown) {
-                setIsOpen(false);
-            }
+            if (!clickedInsideContainer && !clickedInsideDropdown) setIsOpen(false);
         };
         document.addEventListener('mousedown', handleClick);
         return () => document.removeEventListener('mousedown', handleClick);
@@ -277,78 +263,74 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
         setInputValue("");
     };
 
-    const getLabel = (val: string) => {
-        return options[val] || val;
-    };
+    const getLabel = (val: string) => options[val] || val;
 
     const dropdownContent = isOpen && typeof document !== 'undefined' ? createPortal(
         <div
             ref={dropdownRef}
-            className="z-[9999] glass-panel rounded-2xl shadow-2xl overflow-auto animate-in fade-in zoom-in-95 duration-100 dark-scrollbar"
+            className="z-[9999] glass-panel rounded-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-100 dark-scrollbar"
             style={dropdownStyle}
         >
-            <div className="p-2 sticky top-0 bg-black/50 backdrop-blur-md border-b border-white/5 z-10">
+            <div className="p-2 sticky top-0 bg-[#0c0c0e]/95 backdrop-blur-md border-b border-white/5 z-10">
                 <input
                     ref={inputRef}
                     type="text"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/50 focus:bg-black/40"
+                    className="w-full bg-white/5 border border-transparent rounded-md px-3 py-1.5 text-xs text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:bg-white/10"
                     placeholder="Search..."
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onClick={(e) => e.stopPropagation()}
                 />
             </div>
-            {Object.entries(options).map(([k, v]) => {
-                if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
-                const isSelected = value === k;
-                return (
-                    <button key={k} type="button" onClick={() => handleSelect(k)} className={`px-4 py-2 text-sm flex items-center justify-between transition-colors w-full text-left ${isSelected ? 'bg-amber-500/20 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
-                        <span>{v}</span>
-                        {isSelected && <Check size={14} />}
+            <div className="max-h-[200px] overflow-auto">
+                {Object.entries(options).map(([k, v]) => {
+                    if (inputValue && !v.toLowerCase().includes(inputValue.toLowerCase()) && !k.toLowerCase().includes(inputValue.toLowerCase())) return null;
+                    const isSelected = value === k;
+                    return (
+                        <button key={k} type="button" onClick={() => handleSelect(k)} className={`px-4 py-2 text-sm flex items-center justify-between transition-colors w-full text-left ${isSelected ? 'bg-amber-500/10 text-amber-400' : 'text-zinc-300 hover:bg-white/5'}`}>
+                            <span>{v}</span>
+                            {isSelected && <Check size={14} />}
+                        </button>
+                    );
+                })}
+                {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
+                    <button key="custom-use" type="button" onClick={() => handleSelect(inputValue)} className="px-4 py-2 text-sm text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5 w-full text-left">
+                        <PenLine size={12} /> Use &quot;{inputValue}&quot;
                     </button>
-                );
-            })}
-            {inputValue && !Object.values(options).some((v: string) => v.toLowerCase() === inputValue.toLowerCase()) && (
-                <button key="custom-use" type="button" onClick={() => handleSelect(inputValue)} className="px-4 py-2 text-sm text-blue-400 hover:bg-white/5 flex items-center gap-2 italic border-t border-white/5 w-full text-left">
-                    <PenLine size={12} /> Use &quot;{inputValue}&quot;
-                </button>
-            )}
+                )}
+            </div>
         </div>,
         document.body
     ) : null;
 
     return (
-        <div className="space-y-2 group" ref={containerRef}>
-            <div className="flex justify-between items-center">
-                <label className="text-sm font-medium text-zinc-400 flex items-center gap-1.5 whitespace-nowrap px-1">
+        <div className="space-y-1.5 group" ref={containerRef}>
+            <div className="flex justify-between items-center px-1">
+                <label className="text-xs font-medium text-zinc-500 flex items-center gap-1.5 uppercase tracking-wide">
                     {icon} {label}
                 </label>
                 <button
-                    onClick={() => {
-                        setIsManual(!isManual);
-                        setIsOpen(false);
-                    }}
-                    className="text-[10px] text-zinc-600 hover:text-amber-500 transition-colors flex items-center gap-1 opacity-0 group-hover:opacity-100 focus:opacity-100 px-2"
+                    onClick={() => { setIsManual(!isManual); setIsOpen(false); }}
+                    className="text-[10px] text-zinc-600 hover:text-amber-500 transition-colors flex items-center gap-1 opacity-0 group-hover:opacity-100 focus:opacity-100"
                     title={isManual ? "Switch to List" : "Switch to Manual Input"}
                 >
                     {isManual ? <List size={12} /> : <Keyboard size={12} />}
-                    {isManual ? "List" : "Type"}
                 </button>
             </div>
 
-            {isManual ? (
-                <div className="relative">
-                    <input
-                        type="text"
-                        className="w-full bg-black/40 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-zinc-100 focus:outline-none focus:border-amber-500/50 appearance-none text-sm transition-all placeholder:text-zinc-600"
-                        value={value}
-                        onChange={(e) => onChange(e.target.value)}
-                        placeholder="Type anything..."
-                    />
-                    <div className="absolute inset-y-0 end-4 flex items-center pointer-events-none text-zinc-500"><PenLine size={14} /></div>
-                </div>
-            ) : (
-                <div className="relative">
+            <div className="relative">
+                {isManual ? (
+                    <div className="relative">
+                        <input
+                            type="text"
+                            className="w-full input-minimal rounded-lg px-3 py-2.5 text-zinc-200 text-sm placeholder:text-zinc-600 focus:outline-none"
+                            value={value}
+                            onChange={(e) => onChange(e.target.value)}
+                            placeholder="Type anything..."
+                        />
+                        <div className="absolute inset-y-0 end-3 flex items-center pointer-events-none text-zinc-600"><PenLine size={12} /></div>
+                    </div>
+                ) : (
                     <div
                         ref={triggerRef}
                         onClick={() => {
@@ -358,43 +340,43 @@ const SelectField = ({ label, value, onChange, options, icon, placeholder = "Sel
                                 setTimeout(() => inputRef.current?.focus(), 0);
                             }
                         }}
-                        className={`w-full bg-black/40 backdrop-blur-sm border rounded-xl p-4 flex justify-between items-center cursor-pointer text-sm transition-all ${isOpen ? 'border-amber-500/50' : 'border-white/10 hover:border-white/20 hover:bg-white/5'}`}
+                        className={`w-full input-minimal rounded-lg px-3 py-2.5 flex justify-between items-center cursor-pointer text-sm transition-all ${isOpen ? 'ring-1 ring-amber-500/50 bg-white/5' : ''}`}
                     >
                         <span className={`truncate ${!value ? 'text-zinc-600' : 'text-zinc-200'}`}>
                             {value ? getLabel(value) : placeholder}
                         </span>
-                        <ChevronsUpDown size={14} className="text-zinc-500 opacity-50" />
+                        <ChevronsUpDown size={14} className="text-zinc-600" />
                     </div>
-                    {dropdownContent}
-                </div>
-            )}
+                )}
+                {dropdownContent}
+            </div>
         </div>
     );
 };
 
 const SliderField = ({ label, value, onChange, min, max, icon, tooltip }: { label: string, value: number, onChange: (val: number) => void, min: number, max: number, icon: React.ReactNode, tooltip?: string }) => (
-    <div className="space-y-4 group p-4 rounded-xl border border-white/10 bg-black/20 hover:bg-white/5 transition-colors">
+    <div className="space-y-3 group p-4 rounded-lg bg-white/5 hover:bg-white/[0.07] transition-colors border border-transparent hover:border-white/5">
         <label className="text-sm font-medium text-zinc-300 flex items-center justify-between">
             <span className="flex items-center gap-2">
                 {icon} {label}
                 {tooltip && (
                     <div className="relative group/tooltip">
                         <Info size={14} className="text-zinc-500 hover:text-zinc-300 cursor-help transition-colors" />
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-zinc-900 border border-white/10 text-zinc-200 text-xs rounded-xl opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10 backdrop-blur-md">
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-zinc-900 border border-white/10 text-zinc-200 text-xs rounded-lg opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10 shadow-xl">
                             {tooltip}
                         </div>
                     </div>
                 )}
             </span>
-            <span className="text-amber-400 font-bold bg-amber-500/10 px-3 py-1 rounded-lg text-xs border border-amber-500/20">{value}</span>
+            <span className="text-amber-400 font-mono text-xs">{value}</span>
         </label>
-        <div className="relative py-2">
+        <div className="relative py-1">
             <input
                 type="range" min={min} max={max} value={value}
                 onChange={(e) => onChange(parseInt(e.target.value))}
-                className="w-full h-1.5 bg-zinc-800 rounded-full appearance-none cursor-pointer accent-amber-500 transition-all"
+                className="w-full h-1 bg-zinc-700/50 rounded-full appearance-none cursor-pointer accent-amber-400 hover:accent-amber-300 transition-all"
             />
-            <div className="absolute -bottom-4 left-0 right-0 flex justify-between text-[10px] text-zinc-600 font-mono"><span>{min}</span><span>{max}</span></div>
+            <div className="absolute -bottom-3 left-0 right-0 flex justify-between text-[8px] text-zinc-600 font-mono uppercase"><span>{min}</span><span>{max}</span></div>
         </div>
     </div>
 );
@@ -1124,7 +1106,7 @@ export function PromptForm() {
                     </div>
 
                     {/* Collapse Toggle Button */}
-                    <button 
+                    <button
                         onClick={() => setPresetsExpanded(!presetsExpanded)}
                         aria-expanded={presetsExpanded}
                         aria-label="Toggle presets section"
@@ -1176,158 +1158,158 @@ export function PromptForm() {
                                 onClick={() => setPresetCategory('favorites')}
                                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'favorites'
                                     ? 'bg-yellow-500/20 text-yellow-400'
-                            : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
-                            }`}
-                    >
-                        <Star size={14} className={presetCategory === 'favorites' ? 'fill-yellow-400' : ''} />
-                        {t.form.presets.favorites || 'Favorites'}
-                        {favoritePresets.length > 0 && (
-                            <span className="text-xs opacity-70">({favoritePresets.length})</span>
-                        )}
-                    </button>
-                    <button
-                        onClick={() => setPresetCategory('recent')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'recent'
-                            ? 'bg-blue-500/20 text-blue-400'
-                            : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
-                            }`}
-                    >
-                        <History size={14} />
-                        {t.form.presets.recent || 'Recent'}
-                        {recentPresets.length > 0 && (
-                            <span className="text-xs opacity-70">({recentPresets.length})</span>
-                        )}
-                    </button>
-                    <button
-                        onClick={() => setPresetCategory('common')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'common'
-                            ? 'bg-emerald-500/20 text-emerald-400'
-                            : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
-                            }`}
-                    >
-                        <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'common' ? 'bg-emerald-400' : 'bg-emerald-900'}`} />
-                        {t.form.presets.common}
-                    </button>
-                    <button
-                        onClick={() => setPresetCategory('creative')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'creative'
-                            ? 'bg-purple-500/20 text-purple-400'
-                            : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
-                            }`}
-                    >
-                        <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'creative' ? 'bg-purple-400' : 'bg-purple-900'}`} />
-                        {t.form.presets.creative}
-                    </button>
-                    <button
-                        onClick={() => setPresetCategory('utility')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'utility'
-                            ? 'bg-cyan-500/20 text-cyan-400'
-                            : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
-                            }`}
-                    >
-                        <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'utility' ? 'bg-cyan-400' : 'bg-cyan-900'}`} />
-                        {t.form.presets.utility}
-                    </button>
-                </div>
+                                    : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
+                                    }`}
+                            >
+                                <Star size={14} className={presetCategory === 'favorites' ? 'fill-yellow-400' : ''} />
+                                {t.form.presets.favorites || 'Favorites'}
+                                {favoritePresets.length > 0 && (
+                                    <span className="text-xs opacity-70">({favoritePresets.length})</span>
+                                )}
+                            </button>
+                            <button
+                                onClick={() => setPresetCategory('recent')}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'recent'
+                                    ? 'bg-blue-500/20 text-blue-400'
+                                    : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
+                                    }`}
+                            >
+                                <History size={14} />
+                                {t.form.presets.recent || 'Recent'}
+                                {recentPresets.length > 0 && (
+                                    <span className="text-xs opacity-70">({recentPresets.length})</span>
+                                )}
+                            </button>
+                            <button
+                                onClick={() => setPresetCategory('common')}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'common'
+                                    ? 'bg-emerald-500/20 text-emerald-400'
+                                    : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
+                                    }`}
+                            >
+                                <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'common' ? 'bg-emerald-400' : 'bg-emerald-900'}`} />
+                                {t.form.presets.common}
+                            </button>
+                            <button
+                                onClick={() => setPresetCategory('creative')}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'creative'
+                                    ? 'bg-purple-500/20 text-purple-400'
+                                    : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
+                                    }`}
+                            >
+                                <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'creative' ? 'bg-purple-400' : 'bg-purple-900'}`} />
+                                {t.form.presets.creative}
+                            </button>
+                            <button
+                                onClick={() => setPresetCategory('utility')}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap ${presetCategory === 'utility'
+                                    ? 'bg-cyan-500/20 text-cyan-400'
+                                    : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
+                                    }`}
+                            >
+                                <div className={`w-1.5 h-1.5 rounded-full ${presetCategory === 'utility' ? 'bg-cyan-400' : 'bg-cyan-900'}`} />
+                                {t.form.presets.utility}
+                            </button>
+                        </div>
 
-                {/* Preset Grid - Now larger and more visual */}
-                <div className="relative">
-                    <div className="flex gap-3 overflow-x-auto pb-4 pt-1 px-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-                        {presets
-                            .filter(p => {
-                                // Filter by category or favorites/recent
-                                if (presetCategory === 'favorites') {
-                                    return favoritePresets.includes(p.id);
-                                } else if (presetCategory === 'recent') {
-                                    return recentPresets.includes(p.id);
-                                } else {
-                                    return p.category === presetCategory;
-                                }
-                            })
-                            .sort((a, b) => {
-                                // Sort recent presets by most recent first
-                                if (presetCategory === 'recent') {
-                                    return recentPresets.indexOf(a.id) - recentPresets.indexOf(b.id);
-                                }
-                                return 0;
-                            })
-                            .filter(p => {
-                                if (!presetSearch) return true;
-                                const translation = t.form.presets[p.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
-                                const name = translation?.name || p.id;
-                                const desc = translation?.desc || '';
-                                return name.toLowerCase().includes(presetSearch.toLowerCase()) ||
-                                    desc.toLowerCase().includes(presetSearch.toLowerCase());
-                            })
-                            .map((preset) => {
-                                const presetTranslation = t.form.presets[preset.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
-                                const gradientClass = preset.category === 'common'
-                                    ? 'from-emerald-900/40 to-emerald-900/10 border-emerald-500/20 hover:border-emerald-500/50 hover:from-emerald-900/60 hover:to-emerald-900/30'
-                                    : preset.category === 'creative'
-                                        ? 'from-purple-900/40 to-purple-900/10 border-purple-500/20 hover:border-purple-500/50 hover:from-purple-900/60 hover:to-purple-900/30'
-                                        : 'from-cyan-900/40 to-cyan-900/10 border-cyan-500/20 hover:border-cyan-500/50 hover:from-cyan-900/60 hover:to-cyan-900/30';
+                        {/* Preset Grid - Now larger and more visual */}
+                        <div className="relative">
+                            <div className="flex gap-3 overflow-x-auto pb-4 pt-1 px-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+                                {presets
+                                    .filter(p => {
+                                        // Filter by category or favorites/recent
+                                        if (presetCategory === 'favorites') {
+                                            return favoritePresets.includes(p.id);
+                                        } else if (presetCategory === 'recent') {
+                                            return recentPresets.includes(p.id);
+                                        } else {
+                                            return p.category === presetCategory;
+                                        }
+                                    })
+                                    .sort((a, b) => {
+                                        // Sort recent presets by most recent first
+                                        if (presetCategory === 'recent') {
+                                            return recentPresets.indexOf(a.id) - recentPresets.indexOf(b.id);
+                                        }
+                                        return 0;
+                                    })
+                                    .filter(p => {
+                                        if (!presetSearch) return true;
+                                        const translation = t.form.presets[p.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
+                                        const name = translation?.name || p.id;
+                                        const desc = translation?.desc || '';
+                                        return name.toLowerCase().includes(presetSearch.toLowerCase()) ||
+                                            desc.toLowerCase().includes(presetSearch.toLowerCase());
+                                    })
+                                    .map((preset) => {
+                                        const presetTranslation = t.form.presets[preset.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
+                                        const gradientClass = preset.category === 'common'
+                                            ? 'from-emerald-900/40 to-emerald-900/10 border-emerald-500/20 hover:border-emerald-500/50 hover:from-emerald-900/60 hover:to-emerald-900/30'
+                                            : preset.category === 'creative'
+                                                ? 'from-purple-900/40 to-purple-900/10 border-purple-500/20 hover:border-purple-500/50 hover:from-purple-900/60 hover:to-purple-900/30'
+                                                : 'from-cyan-900/40 to-cyan-900/10 border-cyan-500/20 hover:border-cyan-500/50 hover:from-cyan-900/60 hover:to-cyan-900/30';
 
-                                const categoryColorText = preset.category === 'common' ? 'text-emerald-400' : preset.category === 'creative' ? 'text-purple-400' : 'text-cyan-400';
+                                        const categoryColorText = preset.category === 'common' ? 'text-emerald-400' : preset.category === 'creative' ? 'text-purple-400' : 'text-cyan-400';
 
-                                return (
-                                    <div
-                                        key={preset.id}
-                                        className={`preset-card flex-shrink-0 group flex flex-col items-center gap-3 px-5 py-5 rounded-xl border bg-gradient-to-br ${gradientClass} transition-all duration-300 min-w-[150px] relative overflow-hidden cursor-pointer shadow-lg hover:shadow-xl`}
-                                        title={presetTranslation?.desc || preset.id}
-                                        onClick={() => applyPreset(preset)}
-                                    >
-                                        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                        {/* Favorite Star Button */}
-                                        <button
-                                            onClick={(e) => toggleFavorite(preset.id, e)}
-                                            className="absolute top-2 right-2 z-20 p-1.5 rounded-lg bg-black/40 hover:bg-black/60 transition-all opacity-0 group-hover:opacity-100"
-                                            title={favoritePresets.includes(preset.id) ? 'Remove from favorites' : 'Add to favorites'}
-                                        >
-                                            <Star size={14} className={`transition-colors ${favoritePresets.includes(preset.id) ? 'fill-yellow-400 text-yellow-400' : 'text-zinc-400 hover:text-yellow-400'}`} />
-                                        </button>
-                                        <span className={`text-3xl transition-transform duration-300 ${categoryColorText}`}>{preset.icon}</span>
-                                        <div className="text-center relative z-10">
-                                            <div className={`text-sm font-bold text-zinc-100 group-hover:text-white transition-colors`}>
-                                                {presetTranslation?.name || preset.id}
+                                        return (
+                                            <div
+                                                key={preset.id}
+                                                className={`preset-card flex-shrink-0 group flex flex-col items-center gap-3 px-5 py-5 rounded-xl border bg-gradient-to-br ${gradientClass} transition-all duration-300 min-w-[150px] relative overflow-hidden cursor-pointer shadow-lg hover:shadow-xl`}
+                                                title={presetTranslation?.desc || preset.id}
+                                                onClick={() => applyPreset(preset)}
+                                            >
+                                                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                {/* Favorite Star Button */}
+                                                <button
+                                                    onClick={(e) => toggleFavorite(preset.id, e)}
+                                                    className="absolute top-2 right-2 z-20 p-1.5 rounded-lg bg-black/40 hover:bg-black/60 transition-all opacity-0 group-hover:opacity-100"
+                                                    title={favoritePresets.includes(preset.id) ? 'Remove from favorites' : 'Add to favorites'}
+                                                >
+                                                    <Star size={14} className={`transition-colors ${favoritePresets.includes(preset.id) ? 'fill-yellow-400 text-yellow-400' : 'text-zinc-400 hover:text-yellow-400'}`} />
+                                                </button>
+                                                <span className={`text-3xl transition-transform duration-300 ${categoryColorText}`}>{preset.icon}</span>
+                                                <div className="text-center relative z-10">
+                                                    <div className={`text-sm font-bold text-zinc-100 group-hover:text-white transition-colors`}>
+                                                        {presetTranslation?.name || preset.id}
+                                                    </div>
+                                                    <div className="text-[10px] text-zinc-500 group-hover:text-zinc-400 transition-colors mt-1 line-clamp-2 max-w-[130px] leading-relaxed">
+                                                        {presetTranslation?.desc || ''}
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="text-[10px] text-zinc-500 group-hover:text-zinc-400 transition-colors mt-1 line-clamp-2 max-w-[130px] leading-relaxed">
-                                                {presetTranslation?.desc || ''}
+                                        );
+                                    })}
+                                {presets.filter(p => {
+                                    // Filter by category or favorites/recent
+                                    if (presetCategory === 'favorites') {
+                                        return favoritePresets.includes(p.id);
+                                    } else if (presetCategory === 'recent') {
+                                        return recentPresets.includes(p.id);
+                                    } else {
+                                        return p.category === presetCategory;
+                                    }
+                                }).filter(p => {
+                                    if (!presetSearch) return true;
+                                    const translation = t.form.presets[p.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
+                                    const name = translation?.name || p.id;
+                                    return name.toLowerCase().includes(presetSearch.toLowerCase());
+                                }).length === 0 && (
+                                        <div className="text-sm text-zinc-500 italic py-8 px-4 w-full text-center flex flex-col items-center gap-3">
+                                            <div className="bg-zinc-900/50 p-3 rounded-full">
+                                                {presetCategory === 'favorites' ? <Star size={20} className="text-zinc-700" /> :
+                                                    presetCategory === 'recent' ? <History size={20} className="text-zinc-700" /> :
+                                                        <Sparkles size={20} className="text-zinc-700" />}
                                             </div>
+                                            {presetSearch ? `No presets found matching "${presetSearch}"` :
+                                                presetCategory === 'favorites' ? 'No favorite presets yet. Click the star on any preset to add it!' :
+                                                    presetCategory === 'recent' ? 'No recent presets. Apply a preset to see it here!' :
+                                                        'No presets available'}
                                         </div>
-                                    </div>
-                                );
-                            })}
-                        {presets.filter(p => {
-                            // Filter by category or favorites/recent
-                            if (presetCategory === 'favorites') {
-                                return favoritePresets.includes(p.id);
-                            } else if (presetCategory === 'recent') {
-                                return recentPresets.includes(p.id);
-                            } else {
-                                return p.category === presetCategory;
-                            }
-                        }).filter(p => {
-                            if (!presetSearch) return true;
-                            const translation = t.form.presets[p.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
-                            const name = translation?.name || p.id;
-                            return name.toLowerCase().includes(presetSearch.toLowerCase());
-                        }).length === 0 && (
-                                <div className="text-sm text-zinc-500 italic py-8 px-4 w-full text-center flex flex-col items-center gap-3">
-                                    <div className="bg-zinc-900/50 p-3 rounded-full">
-                                        {presetCategory === 'favorites' ? <Star size={20} className="text-zinc-700" /> : 
-                                         presetCategory === 'recent' ? <History size={20} className="text-zinc-700" /> : 
-                                         <Sparkles size={20} className="text-zinc-700" />}
-                                    </div>
-                                    {presetSearch ? `No presets found matching "${presetSearch}"` :
-                                     presetCategory === 'favorites' ? 'No favorite presets yet. Click the star on any preset to add it!' :
-                                     presetCategory === 'recent' ? 'No recent presets. Apply a preset to see it here!' :
-                                     'No presets available'}
-                                </div>
-                            )}
-                    </div>
-                    {/* Fade gradient on right edge */}
-                    <div className="absolute right-0 top-0 bottom-4 w-24 bg-gradient-to-l from-black/80 to-transparent pointer-events-none"></div>
-                </div>
+                                    )}
+                            </div>
+                            {/* Fade gradient on right edge */}
+                            <div className="absolute right-0 top-0 bottom-4 w-24 bg-gradient-to-l from-black/80 to-transparent pointer-events-none"></div>
+                        </div>
                     </div>
                 )}
             </div>
@@ -1353,8 +1335,8 @@ export function PromptForm() {
                 <div className="flex items-center gap-2">
                     {/* History Toggle */}
                     <div className="relative" ref={historyRef}>
-                        <button 
-                            onClick={() => setShowHistory(!showHistory)} 
+                        <button
+                            onClick={() => setShowHistory(!showHistory)}
                             className="flex items-center gap-2 text-zinc-400 hover:text-white px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all text-sm font-medium"
                             aria-label={t.form.actions.history}
                             aria-expanded={showHistory}
@@ -1367,8 +1349,8 @@ export function PromptForm() {
                             <div className="absolute right-0 top-full mt-2 w-80 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-2">
                                 <div className="flex justify-between items-center mb-3">
                                     <h4 className="text-sm font-bold text-zinc-300">{t.form.history.title}</h4>
-                                    {history.length > 0 && <button 
-                                        onClick={clearHistory} 
+                                    {history.length > 0 && <button
+                                        onClick={clearHistory}
                                         className="text-xs text-red-500 hover:text-red-400 flex items-center gap-1"
                                         aria-label={t.form.history.clear}
                                     ><Trash2 size={12} /> {t.form.history.clear}</button>}
@@ -1378,15 +1360,15 @@ export function PromptForm() {
                                 ) : (
                                     <div className="space-y-2 max-h-64 overflow-y-auto dark-scrollbar">
                                         {history.map((h, i) => (
-                                    <button
-                                        key={i}
-                                        type="button"
-                                        className="text-xs bg-zinc-950 border border-zinc-800 p-3 rounded-lg hover:bg-zinc-800 hover:border-zinc-700 text-zinc-400 transition-all group w-full text-left"
-                                        onClick={() => { setGenerated(h.prompt); setShowHistory(false); showToastMessage('📜 Prompt loaded from history'); }}
-                                    >
-                                        <p className="line-clamp-2 group-hover:text-zinc-200 transition-colors">{h.prompt}</p>
-                                        <p className="text-[10px] text-zinc-600 mt-1.5 flex items-center gap-1"><Clock size={10} /> {new Date(h.timestamp).toLocaleString()}</p>
-                                    </button>
+                                            <button
+                                                key={i}
+                                                type="button"
+                                                className="text-xs bg-zinc-950 border border-zinc-800 p-3 rounded-lg hover:bg-zinc-800 hover:border-zinc-700 text-zinc-400 transition-all group w-full text-left"
+                                                onClick={() => { setGenerated(h.prompt); setShowHistory(false); showToastMessage('📜 Prompt loaded from history'); }}
+                                            >
+                                                <p className="line-clamp-2 group-hover:text-zinc-200 transition-colors">{h.prompt}</p>
+                                                <p className="text-[10px] text-zinc-600 mt-1.5 flex items-center gap-1"><Clock size={10} /> {new Date(h.timestamp).toLocaleString()}</p>
+                                            </button>
                                         ))}
                                     </div>
                                 )}
@@ -1394,8 +1376,8 @@ export function PromptForm() {
                         )}
                     </div>
 
-                    <button 
-                        onClick={handleRandomize} 
+                    <button
+                        onClick={handleRandomize}
                         className="flex items-center gap-2 text-purple-400 hover:text-purple-300 px-4 py-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20 hover:border-purple-500/30 transition-all text-sm font-medium"
                         aria-label={t.form.actions.randomize}
                     >
@@ -1435,19 +1417,19 @@ export function PromptForm() {
             {/* Main Card */}
             <div className="glass-panel rounded-xl overflow-hidden flex flex-col min-h-[600px] border border-white/5 relative">
                 {/* Wizard Header (Steps) */}
-                <div className="bg-black/20 border-b border-white/5 p-6 md:p-8 backdrop-blur-md">
-                    <div className="flex justify-between items-center mb-8">
-                        <div className="space-y-1">
+                <div className="bg-[#0c0c0e]/50 border-b border-white/5 p-6 backdrop-blur-xl">
+                    <div className="flex items-end justify-between mb-8">
+                        <div>
                             <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-3">
-                                <span className="p-2 rounded-xl bg-white/5 border border-white/5 text-amber-400 shadow-inner">{steps[currentStep - 1].icon}</span>
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400">{steps[currentStep - 1].title}</span>
+                                <span className="text-amber-400">{steps[currentStep - 1].icon}</span>
+                                <span>{steps[currentStep - 1].title}</span>
                             </h2>
-                            <p className="text-sm text-zinc-400 ml-1">{steps[currentStep - 1].desc}</p>
+                            <p className="text-sm text-zinc-400 mt-1">{steps[currentStep - 1].desc}</p>
                         </div>
-                        <div className="text-5xl font-black text-white/5 select-none">{currentStep}/5</div>
+                        <div className="text-4xl font-bold text-white/5 select-none">{currentStep}<span className="text-2xl text-white/5">/5</span></div>
                     </div>
-                    {/* Clickable Step Indicators */}
-                    <div className="flex items-center justify-between gap-2">
+                    {/* Minimal Step Indicators */}
+                    <div className="flex items-center gap-2">
                         {steps.map((s, index) => {
                             const fieldCount = getStepFieldCount(s.id);
                             const isActive = s.id === currentStep;
@@ -1456,37 +1438,12 @@ export function PromptForm() {
                                 <button
                                     key={s.id}
                                     onClick={() => setCurrentStep(s.id)}
-                                    className={`relative flex-1 group transition-all duration-300 ${isActive ? 'scale-105' : 'hover:scale-[1.02]'}`}
-                                >
-                                    <div className={`flex items-center justify-center gap-2 py-3 px-3 rounded-xl border transition-all duration-300 ${isActive
-                                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-400'
-                                        : isCompleted
-                                            ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400'
-                                            : 'bg-black/20 border-white/5 text-zinc-600 hover:border-white/10 hover:text-zinc-400'
-                                        }`}>
-                                        <span className={`text-xs font-bold ${isActive ? 'text-amber-400' : isCompleted ? 'text-emerald-400' : 'text-zinc-600'
-                                            }`}>
-                                            {isCompleted ? <Check size={14} strokeWidth={3} /> : s.id}
-                                        </span>
-                                        <span className="text-xs font-medium hidden md:inline truncate tracking-wide">{s.title}</span>
-                                        {fieldCount > 0 && (
-                                            <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold ${isActive ? 'bg-amber-500/20 text-amber-300' : 'bg-white/5 text-zinc-500'
-                                                }`}>
-                                                {fieldCount}
-                                            </span>
-                                        )}
-                                    </div>
-                                    {/* Progress line connector */}
-                                    {index < steps.length - 1 && (
-                                        <div className={`absolute top-1/2 -right-1 w-2 h-0.5 transition-all duration-500 ${isCompleted ? 'bg-emerald-500/30' : 'bg-white/5'
-                                            }`} />
-                                    )}
-                                </button>
+                                    className={`h-1.5 rounded-full transition-all duration-500 ${isActive ? 'w-12 bg-amber-500' : isCompleted ? 'w-8 bg-zinc-600 hover:bg-zinc-500' : 'w-8 bg-zinc-800 hover:bg-zinc-700'}`}
+                                    title={s.title}
+                                />
                             );
                         })}
                     </div>
-                    {/* Keyboard hint */}
-                    <p className="text-[10px] text-zinc-600 text-center mt-4 hidden md:block">{t.form.keyboardHint}</p>
                 </div>
 
                 {/* Wizard Body */}
@@ -1513,8 +1470,8 @@ export function PromptForm() {
                         >
                             {isGenerating ? (
                                 <>
-                                    <div className="spinner w-4 h-4 border-2 border-black/30 border-t-black rounded-full" />
-                                    Generating...
+                                    <div className="spinner w-5 h-5 border-2 border-black/30 border-t-black rounded-full" />
+                                    <span>Generating...</span>
                                 </>
                             ) : (
                                 <>
@@ -1540,41 +1497,43 @@ export function PromptForm() {
             {/* Result Section */}
             {generated && (
                 <div ref={resultRef} className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 scroll-mt-8">
-                    <div className="flex justify-between items-center mb-3 px-1">
+                    <div className="flex justify-between items-center mb-4 px-1">
                         <label className="text-sm font-medium text-zinc-400 flex items-center gap-2">
                             <Sparkles size={16} className="text-amber-500" />
                             {t.form.resultLabel}
                         </label>
-                        <span className="text-xs text-zinc-600 font-mono">
+                        <span className="text-xs text-zinc-600 font-mono bg-white/5 px-2 py-0.5 rounded">
                             {generated.length} / 1000
                         </span>
                     </div>
-                    <div className="bg-black/40 border border-white/10 rounded-xl p-8 relative group backdrop-blur-md">
-                        <p className="text-sm md:text-base text-zinc-200 font-mono whitespace-pre-wrap leading-relaxed break-words pe-20 selection:bg-amber-500/30 selection:text-amber-100">
+                    <div className="glass-panel border-amber-500/20 rounded-2xl p-8 relative group shadow-[0_0_50px_-10px_rgba(251,191,36,0.1)]">
+                        <p className="text-base md:text-lg text-zinc-100 font-light leading-relaxed break-words pe-12 selection:bg-amber-500/30 selection:text-amber-100">
                             {generated}
                         </p>
-                        {/* Action buttons */}
-                        <div className="absolute top-6 end-6 flex flex-col gap-2">
+
+                        {/* Action buttons - Bottom Right */}
+                        <div className="flex gap-2 mt-8 justify-end border-t border-white/5 pt-4">
                             <button
                                 onClick={handleCopy}
-                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all flex items-center gap-2 backdrop-blur-md"
-                                title={t.form.copy}
+                                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 hover:text-white text-zinc-400 transition-all text-sm font-medium"
                             >
-                                {copied ? <Check size={16} className="text-emerald-400" /> : <IconCopy />}
+                                {copied ? <Check size={16} className="text-emerald-400" /> : <IconCopy className="w-4 h-4" />}
+                                {copied ? 'Copied' : t.form.copy}
                             </button>
+                            <div className="w-px bg-white/10 mx-1" />
                             <button
                                 onClick={handleDownload}
-                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all backdrop-blur-md"
+                                className="p-2 rounded-lg hover:bg-white/10 text-zinc-500 hover:text-zinc-200 transition-all"
                                 title={t.form.actions.download}
                             >
-                                <Download size={16} />
+                                <Download size={18} />
                             </button>
                             <button
                                 onClick={handleShare}
-                                className="bg-black/40 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 p-3 rounded-xl transition-all backdrop-blur-md"
+                                className="p-2 rounded-lg hover:bg-white/10 text-zinc-500 hover:text-zinc-200 transition-all"
                                 title={t.form.actions.share}
                             >
-                                <Share2 size={16} />
+                                <Share2 size={18} />
                             </button>
                         </div>
                     </div>
