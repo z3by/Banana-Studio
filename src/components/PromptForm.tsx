@@ -753,19 +753,20 @@ export function PromptForm() {
             </div>
 
             {/* Toolbar Actions Row */}
-            <div className="flex flex-wrap justify-between items-center gap-3 px-2">
+            <div className="flex flex-wrap justify-between items-center gap-3 px-1">
                 {/* Left side actions */}
                 <div className="flex items-center gap-2">
                     {/* Live Preview Toggle */}
                     <button
                         onClick={() => setShowPreview(!showPreview)}
-                        className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all text-sm font-medium ${showPreview
-                            ? 'bg-green-500/10 border-green-500/30 text-green-400'
-                            : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-white hover:border-zinc-700'
+                        className={`relative flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all text-sm font-medium overflow-hidden ${showPreview
+                            ? 'bg-green-500/15 border-green-500/30 text-green-400 shadow-[0_0_20px_-5px_rgba(34,197,94,0.3)]'
+                            : 'bg-white/[0.02] border-white/[0.06] text-zinc-500 hover:bg-white/[0.04] hover:text-white hover:border-white/10'
                             }`}
                     >
-                        <Eye size={16} />
-                        <span className="hidden sm:inline">Preview</span>
+                        {showPreview && <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-transparent" />}
+                        <Eye size={16} className="relative" />
+                        <span className="hidden sm:inline relative">Preview</span>
                     </button>
                 </div>
 
@@ -775,38 +776,38 @@ export function PromptForm() {
                     <div className="relative" ref={historyRef}>
                         <button
                             onClick={() => setShowHistory(!showHistory)}
-                            className="flex items-center gap-2 text-zinc-400 hover:text-white px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all text-sm font-medium"
+                            className="flex items-center gap-2 text-zinc-500 hover:text-white px-4 py-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-white/10 transition-all text-sm font-medium"
                             aria-label={t.form.actions.history}
                             aria-expanded={showHistory}
                         >
                             <History size={16} />
                             <span className="hidden sm:inline">{t.form.actions.history}</span>
-                            {mounted && history.length > 0 && <span className="bg-yellow-500/20 text-yellow-500 text-[10px] px-1.5 py-0.5 rounded-full font-bold">{history.length}</span>}
+                            {mounted && history.length > 0 && <span className="bg-amber-500/20 text-amber-400 text-[10px] px-1.5 py-0.5 rounded-full font-bold">{history.length}</span>}
                         </button>
                         {
                             showHistory && (
-                                <div className="absolute right-0 top-full mt-2 w-80 bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-2">
-                                    <div className="flex justify-between items-center mb-3">
-                                        <h4 className="text-sm font-bold text-zinc-300">{t.form.history.title}</h4>
+                                <div className="absolute right-0 top-full mt-2 w-80 bg-gradient-to-b from-zinc-900 to-zinc-950 border border-white/10 rounded-2xl shadow-2xl shadow-black/50 p-5 z-50 animate-in fade-in slide-in-from-top-2 backdrop-blur-xl">
+                                    <div className="flex justify-between items-center mb-4">
+                                        <h4 className="text-sm font-bold text-zinc-200">{t.form.history.title}</h4>
                                         {mounted && history.length > 0 && <button
                                             onClick={clearHistory}
-                                            className="text-xs text-red-500 hover:text-red-400 flex items-center gap-1"
+                                            className="text-xs text-red-400 hover:text-red-300 flex items-center gap-1.5 px-2 py-1 rounded-lg hover:bg-red-500/10 transition-all"
                                             aria-label={t.form.history.clear}
                                         ><Trash2 size={12} /> {t.form.history.clear}</button>}
                                     </div>
                                     {history.length === 0 ? (
-                                        <p className="text-xs text-zinc-600 italic">{t.form.history.empty}</p>
+                                        <p className="text-xs text-zinc-600 italic py-4 text-center">{t.form.history.empty}</p>
                                     ) : (
                                         <div className="space-y-2 max-h-64 overflow-y-auto dark-scrollbar">
                                             {history.map((h, i) => (
                                                 <button
                                                     key={i}
                                                     type="button"
-                                                    className="text-xs bg-zinc-950 border border-zinc-800 p-3 rounded-lg hover:bg-zinc-800 hover:border-zinc-700 text-zinc-400 transition-all group w-full text-left"
+                                                    className="text-xs bg-black/40 border border-white/[0.04] p-3.5 rounded-xl hover:bg-white/[0.04] hover:border-white/10 text-zinc-400 transition-all group w-full text-left"
                                                     onClick={() => { setGenerated(h.prompt); setShowHistory(false); showToastMessage('📜 Prompt loaded from history'); }}
                                                 >
                                                     <p className="line-clamp-2 group-hover:text-zinc-200 transition-colors">{h.prompt}</p>
-                                                    <p className="text-[10px] text-zinc-600 mt-1.5 flex items-center gap-1"><Clock size={10} /> {new Date(h.timestamp).toLocaleString()}</p>
+                                                    <p className="text-[10px] text-zinc-600 mt-2 flex items-center gap-1.5"><Clock size={10} /> {new Date(h.timestamp).toLocaleString()}</p>
                                                 </button>
                                             ))}
                                         </div>
@@ -818,7 +819,7 @@ export function PromptForm() {
 
                     <button
                         onClick={() => setIsGuideOpen(true)}
-                        className="flex items-center gap-2 text-zinc-400 hover:text-amber-400 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-amber-500/30 transition-all text-sm font-medium"
+                        className="flex items-center gap-2 text-zinc-500 hover:text-amber-400 px-4 py-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-amber-500/5 hover:border-amber-500/20 transition-all text-sm font-medium"
                         title={t.guidance.guideTitle}
                     >
                         <Info size={16} /> <span className="hidden sm:inline">{t.ui.help}</span>
@@ -826,24 +827,26 @@ export function PromptForm() {
 
                     <button
                         onClick={handleRandomize}
-                        className="flex items-center gap-2 text-purple-400 hover:text-purple-300 px-4 py-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20 hover:border-purple-500/30 transition-all text-sm font-medium"
+                        className="relative flex items-center gap-2 text-purple-400 hover:text-purple-300 px-4 py-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/15 hover:border-purple-500/30 hover:shadow-[0_0_20px_-5px_rgba(168,85,247,0.3)] transition-all text-sm font-medium overflow-hidden"
                         aria-label={t.form.actions.randomize}
                     >
-                        <Dices size={16} /> <span className="hidden sm:inline">{t.form.actions.randomize}</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-transparent" />
+                        <Dices size={16} className="relative" /> <span className="hidden sm:inline relative">{t.form.actions.randomize}</span>
                     </button>
 
                     <button
                         onClick={handleResetStep}
-                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 px-4 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 hover:border-blue-500/30 transition-all text-sm font-medium"
+                        className="relative flex items-center gap-2 text-cyan-400 hover:text-cyan-300 px-4 py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 hover:bg-cyan-500/15 hover:border-cyan-500/30 hover:shadow-[0_0_20px_-5px_rgba(6,182,212,0.3)] transition-all text-sm font-medium overflow-hidden"
                         title={t.form.actions.resetStep}
                         aria-label={t.form.actions.resetStep}
                     >
-                        <RotateCcw size={16} /> <span className="hidden md:inline">{t.form.actions.resetStep}</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-transparent" />
+                        <RotateCcw size={16} className="relative" /> <span className="hidden md:inline relative">{t.form.actions.resetStep}</span>
                     </button>
 
                     <button
                         onClick={handleReset}
-                        className="text-zinc-500 hover:text-red-400 p-2.5 rounded-xl hover:bg-red-500/10 transition-all"
+                        className="text-zinc-600 hover:text-red-400 p-2.5 rounded-xl hover:bg-red-500/10 border border-transparent hover:border-red-500/20 transition-all"
                         title={t.form.actions.clear}
                     >
                         <RefreshCw size={16} />
@@ -854,31 +857,46 @@ export function PromptForm() {
             {/* Live Preview Panel */}
             {
                 showPreview && (
-                    <div className="animate-in fade-in slide-in-from-top-2 duration-300 bg-zinc-900/90 border border-zinc-800 rounded-xl p-4 backdrop-blur-sm">
-                        <div className="flex items-center gap-2 mb-2">
-                            <Eye size={14} className="text-green-400" />
-                            <span className="text-xs font-bold text-green-400 uppercase tracking-wide">Live Preview</span>
+                    <div className="animate-in fade-in slide-in-from-top-2 duration-300 glass-panel rounded-2xl p-5 border border-green-500/10 relative overflow-hidden">
+                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/30 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-green-500/[0.02] to-transparent pointer-events-none" />
+                        <div className="flex items-center gap-2.5 mb-3 relative">
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-green-500/40 blur-md" />
+                                <Eye size={16} className="text-green-400 relative" />
+                            </div>
+                            <span className="text-xs font-bold text-green-400 uppercase tracking-widest">Live Preview</span>
                         </div>
-                        <p className="text-sm text-zinc-300 italic leading-relaxed">{getPreviewSummary()}</p>
+                        <p className="text-sm text-zinc-300 leading-relaxed relative">{getPreviewSummary()}</p>
                     </div>
                 )
             }
 
+
             {/* Main Card */}
-            <div className="glass-panel rounded-xl overflow-hidden flex flex-col min-h-[600px] border border-white/5 relative">
+            <div className="glass-panel rounded-2xl overflow-hidden flex flex-col min-h-[600px] border border-white/[0.06] relative">
+                {/* Top Aurora Line */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/40 to-transparent" />
+
                 {/* Wizard Header (Steps) */}
-                <div className="bg-[#0c0c0e]/50 border-b border-white/5 p-6 backdrop-blur-xl">
-                    <div className="flex items-end justify-between mb-8">
+                <div className="bg-gradient-to-b from-black/40 to-transparent border-b border-white/[0.04] p-6 md:p-8 backdrop-blur-xl relative">
+                    {/* Subtle glow behind title */}
+                    <div className="absolute top-8 left-20 w-32 h-32 bg-amber-500/10 blur-3xl pointer-events-none" />
+
+                    <div className="flex items-end justify-between mb-8 relative">
                         <div>
-                            <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-3">
-                                <span className="text-amber-400">{steps[currentStep - 1].icon}</span>
-                                <span>{steps[currentStep - 1].title}</span>
+                            <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-4">
+                                <span className="text-3xl">{steps[currentStep - 1].icon}</span>
+                                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-100 to-zinc-300">{steps[currentStep - 1].title}</span>
                             </h2>
-                            <p className="text-sm text-zinc-400 mt-1">{steps[currentStep - 1].desc}</p>
+                            <p className="text-sm text-zinc-500 mt-2 max-w-lg">{steps[currentStep - 1].desc}</p>
                         </div>
-                        <div className="text-4xl font-bold text-white/5 select-none">{currentStep}<span className="text-2xl text-white/5">/5</span></div>
+                        <div className="hidden sm:block text-5xl font-black text-white/[0.03] select-none tabular-nums">
+                            {currentStep}<span className="text-3xl text-white/[0.02]">/5</span>
+                        </div>
                     </div>
-                    {/* Minimal Step Indicators */}
+
+                    {/* Premium Step Indicators */}
                     <div className="flex items-center gap-2">
                         {steps.map((s) => {
                             const isActive = s.id === currentStep;
@@ -887,8 +905,18 @@ export function PromptForm() {
                                 <button
                                     key={s.id}
                                     onClick={() => setCurrentStep(s.id)}
-                                    className={`h-1.5 rounded-full transition-all duration-500 ${isActive ? 'w-12 bg-amber-500' : isCompleted ? 'w-8 bg-zinc-600 hover:bg-zinc-500' : 'w-8 bg-zinc-800 hover:bg-zinc-700'}`}
-                                    title={s.title} />
+                                    className={`relative h-2 rounded-full transition-all duration-500 ${isActive
+                                        ? 'w-14 bg-gradient-to-r from-amber-400 to-amber-600 shadow-lg shadow-amber-500/30'
+                                        : isCompleted
+                                            ? 'w-10 bg-gradient-to-r from-zinc-600 to-zinc-700 hover:from-zinc-500 hover:to-zinc-600'
+                                            : 'w-10 bg-zinc-800/50 hover:bg-zinc-700/50'
+                                        }`}
+                                    title={s.title}
+                                >
+                                    {isActive && (
+                                        <div className="absolute inset-0 rounded-full bg-amber-400/50 blur-sm animate-pulse" />
+                                    )}
+                                </button>
                             );
                         })}
                     </div>
@@ -922,23 +950,31 @@ export function PromptForm() {
                             </button>
                         )}
 
-                        {/* Generate Button (Primary) */}
+                        {/* Generate Button (Primary) - Ultra Premium */}
                         <button
                             onClick={handleGenerate}
                             disabled={isGenerating}
-                            className="relative w-full md:w-auto group overflow-hidden px-10 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 hover:from-amber-300 hover:via-orange-400 hover:to-amber-500 text-black font-black transition-all flex items-center justify-center gap-2 shadow-[0_0_40px_-10px_rgba(245,158,11,0.5)] hover:shadow-[0_0_60px_-15px_rgba(245,158,11,0.7)] disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5 active:translate-y-0"
+                            className="relative w-full md:w-auto group overflow-hidden px-12 py-4 rounded-2xl bg-gradient-to-r from-amber-300 via-amber-500 to-orange-600 hover:from-amber-200 hover:via-amber-400 hover:to-orange-500 text-black font-black text-sm tracking-wide transition-all flex items-center justify-center gap-3 shadow-[0_8px_40px_-10px_rgba(245,158,11,0.6),0_0_0_1px_rgba(255,255,255,0.15)_inset] hover:shadow-[0_12px_50px_-10px_rgba(245,158,11,0.8),0_0_80px_-15px_rgba(255,184,0,0.4),0_0_0_1px_rgba(255,255,255,0.25)_inset] disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-1 hover:scale-[1.02] active:translate-y-0 active:scale-100"
                         >
-                            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 skew-y-12"></div>
-                            <span className="relative flex items-center gap-2">
+                            {/* Inner shine */}
+                            <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-transparent opacity-60" />
+
+                            {/* Animated shimmer sweep */}
+                            <div className="absolute top-0 left-[-150%] w-[80%] h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] group-hover:left-[150%] transition-all duration-700 ease-out" />
+
+                            {/* Hover fill effect */}
+                            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-out" />
+
+                            <span className="relative flex items-center gap-2.5">
                                 {isGenerating ? (
                                     <>
-                                        <div className="spinner w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                                        <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
                                         <span>Generating...</span>
                                     </>
                                 ) : (
                                     <>
-                                        <Wand2 size={20} strokeWidth={2.5} />
-                                        {currentStep === 5 ? 'GENERATE PROMPT' : t.form.navigation.finish}
+                                        <Wand2 size={20} strokeWidth={2.5} className="drop-shadow-sm" />
+                                        <span className="drop-shadow-sm">{currentStep === 5 ? 'GENERATE PROMPT' : t.form.navigation.finish}</span>
                                     </>
                                 )}
                             </span>
@@ -948,44 +984,53 @@ export function PromptForm() {
 
             </div>
 
-            {/* Result Section */}
+            {/* Result Section - Premium */}
             {
                 generated && (
                     <div ref={resultRef} className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 scroll-mt-8">
-                        <div className="flex justify-between items-center mb-4 px-1">
-                            <label className="text-sm font-medium text-zinc-400 flex items-center gap-2">
-                                <Sparkles size={16} className="text-amber-500" />
+                        <div className="flex justify-between items-center mb-5 px-1">
+                            <label className="text-sm font-semibold text-zinc-300 flex items-center gap-2.5">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-amber-500/40 blur-lg" />
+                                    <Sparkles size={18} className="text-amber-400 relative" />
+                                </div>
                                 {t.form.resultLabel}
                             </label>
-                            <span className="text-xs text-zinc-600 font-mono bg-white/5 px-2 py-0.5 rounded">
+                            <span className="text-xs text-zinc-500 font-mono bg-gradient-to-r from-white/[0.03] to-white/[0.06] px-3 py-1 rounded-full border border-white/[0.04]">
                                 {generated.length} / 1000
                             </span>
                         </div>
-                        <div className="glass-panel border-amber-500/20 rounded-2xl p-8 relative group shadow-[0_0_50px_-10px_rgba(251,191,36,0.1)]">
-                            <p dir="ltr" className="text-sm md:text-base text-zinc-100 font-mono whitespace-pre-wrap leading-relaxed break-words pe-12 selection:bg-amber-500/30 selection:text-amber-100">
+                        <div className="glass-panel rounded-2xl p-8 relative group shadow-[0_0_80px_-20px_rgba(251,191,36,0.15)] border border-amber-500/10 overflow-hidden">
+                            {/* Top glow line */}
+                            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
+
+                            {/* Background gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/[0.02] via-transparent to-transparent pointer-events-none" />
+
+                            <p dir="ltr" className="text-sm md:text-base text-zinc-100 font-mono whitespace-pre-wrap leading-relaxed break-words pe-12 selection:bg-amber-500/30 selection:text-amber-100 relative">
                                 {generated}
                             </p>
 
                             {/* Action buttons - Bottom Right */}
-                            <div className="flex gap-2 mt-8 justify-end border-t border-white/5 pt-4">
+                            <div className="flex gap-2 mt-8 justify-end border-t border-white/[0.04] pt-5 relative">
                                 <button
                                     onClick={handleCopy}
-                                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 hover:text-white text-zinc-400 transition-all text-sm font-medium"
+                                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-white/[0.04] to-white/[0.08] hover:from-amber-500/10 hover:to-amber-500/5 hover:text-amber-200 text-zinc-400 transition-all text-sm font-medium border border-white/[0.04] hover:border-amber-500/20"
                                 >
                                     {copied ? <Check size={16} className="text-emerald-400" /> : <IconCopy className="w-4 h-4" />}
-                                    {copied ? 'Copied' : t.form.copy}
+                                    {copied ? 'Copied!' : t.form.copy}
                                 </button>
-                                <div className="w-px bg-white/10 mx-1" />
+                                <div className="w-px bg-white/[0.06] mx-1" />
                                 <button
                                     onClick={handleDownload}
-                                    className="p-2 rounded-lg hover:bg-white/10 text-zinc-500 hover:text-zinc-200 transition-all"
+                                    className="p-2.5 rounded-xl hover:bg-white/5 text-zinc-500 hover:text-zinc-200 transition-all border border-transparent hover:border-white/[0.04]"
                                     title={t.form.actions.download}
                                 >
                                     <Download size={18} />
                                 </button>
                                 <button
                                     onClick={handleShare}
-                                    className="p-2 rounded-lg hover:bg-white/10 text-zinc-500 hover:text-zinc-200 transition-all"
+                                    className="p-2.5 rounded-xl hover:bg-white/5 text-zinc-500 hover:text-zinc-200 transition-all border border-transparent hover:border-white/[0.04]"
                                     title={t.form.actions.share}
                                 >
                                     <Share2 size={18} />
@@ -995,13 +1040,15 @@ export function PromptForm() {
                     </div>
                 )
             }
-            {/* Floating Mobile Generate Button */}
+            {/* Floating Mobile Generate Button - Enhanced */}
             <button
                 onClick={handleGenerate}
-                className="fixed bottom-6 right-6 md:hidden z-50 bg-gradient-to-r from-amber-500 to-orange-600 text-black p-4 rounded-full shadow-2xl shadow-amber-500/30 animate-in fade-in zoom-in duration-300 ring-4 ring-black/50"
+                className="fixed bottom-6 right-6 md:hidden z-50 bg-gradient-to-br from-amber-400 via-amber-500 to-orange-600 text-black p-5 rounded-2xl shadow-[0_8px_30px_-5px_rgba(245,158,11,0.5),0_0_0_4px_rgba(0,0,0,0.4)] animate-in fade-in zoom-in duration-300 active:scale-95 transition-transform"
                 title={t.form.navigation.finish}
             >
-                <Wand2 size={24} strokeWidth={2.5} />
+                {/* Inner shine */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/30 via-transparent to-transparent pointer-events-none" />
+                <Wand2 size={24} strokeWidth={2.5} className="relative drop-shadow-sm" />
             </button>
 
             {/* Wizard Guide */}

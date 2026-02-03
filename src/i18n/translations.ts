@@ -140,8 +140,14 @@ export const translations = {
       presets: {
         title: 'Quick Start Presets',
         description: 'Choose a preset to instantly configure your prompt',
-        common: 'Common',
-        creative: 'Creative',
+        portrait: 'Portrait & Headshot',
+        lifestyle: 'Lifestyle & Casual',
+        event: 'Events & Celebrations',
+        outdoor: 'Outdoor & Nature',
+        professional: 'Professional & Work',
+        artistic: 'Art & Vintage',
+        fantasy: 'Fantasy & Sci-Fi',
+        tools: 'Quick Tools',
         favorites: 'Favorites',
         recent: 'Recent',
         apply: 'Apply Preset',
@@ -209,8 +215,6 @@ export const translations = {
         japaneseAnime: { name: 'Japanese Anime', desc: 'Anime art style' },
         baroqueOpulence: { name: 'Baroque Opulence', desc: 'Royal ornate luxury' },
         noirDetective: { name: 'Noir Detective', desc: '1940s detective mystery' },
-        // Utility presets
-        utility: 'Quick Tools',
         qualityEnhance: { name: 'Quality Boost', desc: 'Max quality & resolution' },
         lightRetouch: { name: 'Light Retouch', desc: 'Subtle skin enhancement' },
         skinPerfect: { name: 'Skin Perfect', desc: 'Flawless skin finish' },
@@ -2108,8 +2112,14 @@ export const translations = {
       presets: {
         title: 'قوالب سريعة',
         description: 'اختر قالباً لتكوين إعداداتك فوراً',
-        common: 'شائعة',
-        creative: 'إبداعية',
+        portrait: 'الصور الشخصية',
+        lifestyle: 'أسلوب الحياة',
+        event: 'المناسبات والاحتفالات',
+        outdoor: 'الطبيعة والمغامرات',
+        professional: 'المهن والأعمال',
+        artistic: 'الفني والكلاسيكي',
+        fantasy: 'الخيال والخيال العلمي',
+        tools: 'أدوات سريعة',
         favorites: 'المفضلة',
         recent: 'الأخيرة',
         apply: 'تطبيق القالب',
@@ -2190,10 +2200,7 @@ export const translations = {
         melancholicSadness: { name: 'حزن ميلانكولي', desc: 'مطر، دموع، جو كئيب' },
         pureHappiness: { name: 'سعادة غامرة', desc: 'ضحك، شمس مشرقة، فرح' },
 
-
         heartbreak: { name: 'انكسار القلب', desc: 'غرفة مظلمة، وحدة، ألم' },
-        // أدوات سريعة
-        utility: 'أدوات سريعة',
         qualityEnhance: { name: 'تحسين الجودة', desc: 'أقصى جودة ودقة' },
         lightRetouch: { name: 'تنقيح خفيف', desc: 'تحسين البشرة بشكل خفيف' },
         skinPerfect: { name: 'بشرة مثالية', desc: 'لمسة نهائية خالية من العيوب' },

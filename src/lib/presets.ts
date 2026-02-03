@@ -2,7 +2,7 @@ import { PromptData } from './prompt-builder';
 
 export interface Preset {
     id: string;
-    category: 'common' | 'creative' | 'utility';
+    category: 'portrait' | 'lifestyle' | 'event' | 'outdoor' | 'professional' | 'artistic' | 'fantasy' | 'tools';
     icon: string;
     images?: {
         before: string;
@@ -16,7 +16,7 @@ export const presets: Preset[] = [
 
     {
         id: 'studioPortrait',
-        category: 'common',
+        category: 'portrait',
         icon: '📸',
         images: {
             before: '/placeholder-preset.png',
@@ -38,7 +38,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'editorialFashion',
-        category: 'common',
+        category: 'professional',
         icon: '👗',
         images: {
             before: '/placeholder-preset.png',
@@ -61,7 +61,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'goldenHour',
-        category: 'common',
+        category: 'outdoor',
         icon: '🌅',
         images: {
             before: '/placeholder-preset.png',
@@ -84,7 +84,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'productShot',
-        category: 'common',
+        category: 'professional',
         icon: '📦',
         images: {
             before: '/placeholder-preset.png',
@@ -105,7 +105,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'streetPhotography',
-        category: 'common',
+        category: 'lifestyle',
         icon: '🏙️',
         images: {
             before: '/placeholder-preset.png',
@@ -128,7 +128,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'blackAndWhite',
-        category: 'common',
+        category: 'portrait',
         icon: '⚫',
         images: {
             before: '/placeholder-preset.png',
@@ -150,7 +150,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'cinematic',
-        category: 'common',
+        category: 'artistic',
         icon: '🎬',
         images: {
             before: '/placeholder-preset.png',
@@ -173,7 +173,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'naturalBeauty',
-        category: 'common',
+        category: 'portrait',
         icon: '🌿',
         images: {
             before: '/placeholder-preset.png',
@@ -195,7 +195,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'corporateHeadshot',
-        category: 'common',
+        category: 'portrait',
         icon: '💼',
         images: {
             before: '/placeholder-preset.png',
@@ -218,7 +218,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'weddingBridal',
-        category: 'common',
+        category: 'event',
         icon: '💒',
         images: {
             before: '/placeholder-preset.png',
@@ -240,7 +240,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'lifestyleCasual',
-        category: 'common',
+        category: 'lifestyle',
         icon: '☕',
         images: {
             before: '/placeholder-preset.png',
@@ -263,7 +263,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'fitnessSports',
-        category: 'common',
+        category: 'professional',
         icon: '💪',
         images: {
             before: '/placeholder-preset.png',
@@ -286,7 +286,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'businessCasual',
-        category: 'common',
+        category: 'portrait',
         icon: '👨‍💼',
         images: {
             before: '/placeholder-preset.png',
@@ -308,7 +308,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'outdoorAdventure',
-        category: 'common',
+        category: 'outdoor',
         icon: '⛰️',
         images: {
             before: '/placeholder-preset.png',
@@ -333,7 +333,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'petWithPerson',
-        category: 'common',
+        category: 'event',
         icon: '🐕',
         images: {
             before: '/placeholder-preset.png',
@@ -356,7 +356,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'maternityGlow',
-        category: 'common',
+        category: 'event',
         icon: '🤰',
         images: {
             before: '/placeholder-preset.png',
@@ -379,7 +379,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'graduationDay',
-        category: 'common',
+        category: 'event',
         icon: '🎓',
         images: {
             before: '/placeholder-preset.png',
@@ -403,7 +403,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'familyPortrait',
-        category: 'common',
+        category: 'event',
         icon: '👨‍👩‍👧‍👦',
         images: {
             before: '/placeholder-preset.png',
@@ -428,7 +428,7 @@ export const presets: Preset[] = [
 
     {
         id: 'authorSpeaker',
-        category: 'common',
+        category: 'portrait',
         icon: '📚',
         images: {
             before: '/placeholder-preset.png',
@@ -452,7 +452,7 @@ export const presets: Preset[] = [
 
     {
         id: 'winterPortrait',
-        category: 'common',
+        category: 'outdoor',
         icon: '❄️',
         images: {
             before: '/placeholder-preset.png',
@@ -479,7 +479,7 @@ export const presets: Preset[] = [
 
     {
         id: 'chefCulinary',
-        category: 'common',
+        category: 'professional',
         icon: '👨‍🍳',
         images: {
             before: '/placeholder-preset.png',
@@ -504,7 +504,7 @@ export const presets: Preset[] = [
 
     {
         id: 'libraryScholar',
-        category: 'common',
+        category: 'professional',
         icon: '📖',
         images: {
             before: '/placeholder-preset.png',
@@ -530,7 +530,7 @@ export const presets: Preset[] = [
 
     {
         id: 'artistStudio',
-        category: 'common',
+        category: 'professional',
         icon: '🖌️',
         images: {
             before: '/placeholder-preset.png',
@@ -554,7 +554,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'gardenBotanical',
-        category: 'common',
+        category: 'outdoor',
         icon: '🌺',
         images: {
             before: '/placeholder-preset.png',
@@ -580,7 +580,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'rainyDay',
-        category: 'common',
+        category: 'outdoor',
         icon: '☔',
         images: {
             before: '/placeholder-preset.png',
@@ -605,7 +605,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'motorcycleRider',
-        category: 'common',
+        category: 'lifestyle',
         icon: '🏍️',
         images: {
             before: '/placeholder-preset.png',
@@ -629,7 +629,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'architecturalPortrait',
-        category: 'common',
+        category: 'professional',
         icon: '🏛️',
         images: {
             before: '/placeholder-preset.png',
@@ -651,7 +651,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'cafeBarista',
-        category: 'common',
+        category: 'lifestyle',
         icon: '☕',
         images: {
             before: '/placeholder-preset.png',
@@ -675,7 +675,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'forestNature',
-        category: 'common',
+        category: 'outdoor',
         icon: '🌲',
         images: {
             before: '/placeholder-preset.png',
@@ -702,7 +702,7 @@ export const presets: Preset[] = [
 
     {
         id: 'cyberpunkNeon',
-        category: 'creative',
+        category: 'fantasy',
         icon: '🌃',
         images: {
             before: '/placeholder-preset.png',
@@ -730,7 +730,7 @@ export const presets: Preset[] = [
 
     {
         id: 'vintageFilm',
-        category: 'creative',
+        category: 'artistic',
         icon: '📽️',
         images: {
             before: '/placeholder-preset.png',
@@ -755,7 +755,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'vaporwave',
-        category: 'creative',
+        category: 'artistic',
         icon: '🌴',
         images: {
             before: '/placeholder-preset.png',
@@ -781,7 +781,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'steampunkVictorian',
-        category: 'creative',
+        category: 'fantasy',
         icon: '⚙️',
         images: {
             before: '/placeholder-preset.png',
@@ -806,7 +806,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'animeManga',
-        category: 'creative',
+        category: 'artistic',
         icon: '🎌',
         images: {
             before: '/placeholder-preset.png',
@@ -828,7 +828,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'popArt',
-        category: 'creative',
+        category: 'artistic',
         icon: '🎨',
         images: {
             before: '/placeholder-preset.png',
@@ -850,7 +850,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'filmNoir',
-        category: 'creative',
+        category: 'artistic',
         icon: '🎭',
         images: {
             before: '/placeholder-preset.png',
@@ -877,7 +877,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'watercolorPainting',
-        category: 'creative',
+        category: 'artistic',
         icon: '🖌️',
         images: {
             before: '/placeholder-preset.png',
@@ -896,7 +896,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'neonPortrait',
-        category: 'creative',
+        category: 'artistic',
         icon: '💡',
         images: {
             before: '/placeholder-preset.png',
@@ -920,7 +920,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'sciFiFuture',
-        category: 'creative',
+        category: 'fantasy',
         icon: '🚀',
         images: {
             before: '/placeholder-preset.png',
@@ -945,7 +945,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'artDeco',
-        category: 'creative',
+        category: 'artistic',
         icon: '🏛️',
         images: {
             before: '/placeholder-preset.png',
@@ -972,7 +972,7 @@ export const presets: Preset[] = [
 
     {
         id: 'impressionist',
-        category: 'creative',
+        category: 'artistic',
         icon: '🌻',
         images: {
             before: '/placeholder-preset.png',
@@ -993,7 +993,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'comicBook',
-        category: 'creative',
+        category: 'artistic',
         icon: '💥',
         images: {
             before: '/placeholder-preset.png',
@@ -1014,7 +1014,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'oilPaintingClassic',
-        category: 'creative',
+        category: 'artistic',
         icon: '🖼️',
         images: {
             before: '/placeholder-preset.png',
@@ -1038,7 +1038,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'holographicFuture',
-        category: 'creative',
+        category: 'artistic',
         icon: '✨',
         images: {
             before: '/placeholder-preset.png',
@@ -1059,7 +1059,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'minimalistMonochrome',
-        category: 'creative',
+        category: 'artistic',
         icon: '⬜',
         images: {
             before: '/placeholder-preset.png',
@@ -1079,7 +1079,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'doubleExposure',
-        category: 'creative',
+        category: 'artistic',
         icon: '🌃',
         images: {
             before: '/placeholder-preset.png',
@@ -1099,7 +1099,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'neonCyberpunk',
-        category: 'creative',
+        category: 'artistic',
         icon: '🌆',
         images: {
             before: '/placeholder-preset.png',
@@ -1125,7 +1125,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'abstractExpressionism',
-        category: 'creative',
+        category: 'artistic',
         icon: '🌈',
         images: {
             before: '/placeholder-preset.png',
@@ -1144,7 +1144,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'desertSunset',
-        category: 'creative',
+        category: 'outdoor',
         icon: '🏜️',
         images: {
             before: '/placeholder-preset.png',
@@ -1168,7 +1168,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'retroFuturism',
-        category: 'creative',
+        category: 'artistic',
         icon: '🚀',
         images: {
             before: '/placeholder-preset.png',
@@ -1191,7 +1191,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'underwaterDream',
-        category: 'creative',
+        category: 'artistic',
         icon: '🌊',
         images: {
             before: '/placeholder-preset.png',
@@ -1213,7 +1213,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'japaneseAnime',
-        category: 'creative',
+        category: 'artistic',
         icon: '🎌',
         images: {
             before: '/placeholder-preset.png',
@@ -1234,7 +1234,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'baroqueOpulence',
-        category: 'creative',
+        category: 'artistic',
         icon: '👑',
         images: {
             before: '/placeholder-preset.png',
@@ -1259,7 +1259,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'noirDetective',
-        category: 'creative',
+        category: 'artistic',
         icon: '🕵️',
         images: {
             before: '/placeholder-preset.png',
@@ -1289,7 +1289,7 @@ export const presets: Preset[] = [
 
     {
         id: 'qualityEnhance',
-        category: 'utility',
+        category: 'tools',
         icon: '✨',
         images: {
             before: '/placeholder-preset.png',
@@ -1302,7 +1302,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'lightRetouch',
-        category: 'utility',
+        category: 'tools',
         icon: '🪄',
         images: {
             before: '/placeholder-preset.png',
@@ -1317,7 +1317,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'skinPerfect',
-        category: 'utility',
+        category: 'portrait',
         icon: '💎',
         images: {
             before: '/placeholder-preset.png',
@@ -1332,7 +1332,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'hdrVivid',
-        category: 'utility',
+        category: 'tools',
         icon: '🌈',
         images: {
             before: '/placeholder-preset.png',
@@ -1347,7 +1347,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'instagramReady',
-        category: 'utility',
+        category: 'tools',
         icon: '📱',
         images: {
             before: '/placeholder-preset.png',
@@ -1363,7 +1363,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'linkedinPro',
-        category: 'utility',
+        category: 'portrait',
         icon: '👔',
         images: {
             before: '/placeholder-preset.png',
@@ -1380,7 +1380,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'softDreamy',
-        category: 'utility',
+        category: 'tools',
         icon: '☁️',
         images: {
             before: '/placeholder-preset.png',
@@ -1396,7 +1396,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'sharpDetail',
-        category: 'utility',
+        category: 'tools',
         icon: '🔍',
         images: {
             before: '/placeholder-preset.png',
@@ -1411,7 +1411,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'instantPro',
-        category: 'utility',
+        category: 'portrait',
         icon: '📸',
         images: {
             before: '/placeholder-preset.png',
@@ -1428,7 +1428,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'hairPerfect',
-        category: 'utility',
+        category: 'tools',
         icon: '💇‍♀️',
         images: {
             before: '/placeholder-preset.png',
@@ -1441,7 +1441,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'lightingFix',
-        category: 'utility',
+        category: 'tools',
         icon: '💡',
         images: {
             before: '/placeholder-preset.png',
@@ -1454,7 +1454,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'outfitDetail',
-        category: 'utility',
+        category: 'tools',
         icon: '👗',
         images: {
             before: '/placeholder-preset.png',
@@ -1468,7 +1468,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'backgroundBlur',
-        category: 'utility',
+        category: 'tools',
         icon: '🌫️',
         images: {
             before: '/placeholder-preset.png',
@@ -1484,7 +1484,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'colorPop',
-        category: 'utility',
+        category: 'tools',
         icon: '🔴',
         images: {
             before: '/placeholder-preset.png',
@@ -1499,7 +1499,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'eyeEnhance',
-        category: 'utility',
+        category: 'tools',
         icon: '👁️',
         images: {
             before: '/placeholder-preset.png',
@@ -1514,7 +1514,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'symmetryFix',
-        category: 'utility',
+        category: 'portrait',
         icon: '⚖️',
         images: {
             before: '/placeholder-preset.png',
@@ -1529,7 +1529,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'zoomReady',
-        category: 'utility',
+        category: 'portrait',
         icon: '💻',
         images: {
             before: '/placeholder-preset.png',
@@ -1550,7 +1550,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'twitterProfile',
-        category: 'utility',
+        category: 'portrait',
         icon: '🐦',
         images: {
             before: '/placeholder-preset.png',
@@ -1570,7 +1570,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'contrastBoost',
-        category: 'utility',
+        category: 'tools',
         icon: '⚡',
         images: {
             before: '/placeholder-preset.png',
@@ -1586,7 +1586,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'vintageTone',
-        category: 'utility',
+        category: 'tools',
         icon: '📼',
         images: {
             before: '/placeholder-preset.png',
@@ -1603,7 +1603,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'professionalHeadroom',
-        category: 'utility',
+        category: 'portrait',
         icon: '📐',
         images: {
             before: '/placeholder-preset.png',
@@ -1618,7 +1618,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'goldenRatioComposition',
-        category: 'utility',
+        category: 'tools',
         icon: '🔶',
         images: {
             before: '/placeholder-preset.png',
@@ -1632,7 +1632,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'dramaticShadows',
-        category: 'utility',
+        category: 'tools',
         icon: '🌑',
         images: {
             before: '/placeholder-preset.png',
@@ -1648,7 +1648,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'softGlam',
-        category: 'utility',
+        category: 'tools',
         icon: '💫',
         images: {
             before: '/placeholder-preset.png',
@@ -1664,7 +1664,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'motionFreeze',
-        category: 'utility',
+        category: 'tools',
         icon: '⏸️',
         images: {
             before: '/placeholder-preset.png',
@@ -1679,7 +1679,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'wideAngleDramatic',
-        category: 'utility',
+        category: 'tools',
         icon: '📷',
         images: {
             before: '/placeholder-preset.png',
@@ -1694,7 +1694,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'macroCloseup',
-        category: 'utility',
+        category: 'tools',
         icon: '🔬',
         images: {
             before: '/placeholder-preset.png',
@@ -1710,7 +1710,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'warmGoldenTone',
-        category: 'utility',
+        category: 'tools',
         icon: '🌟',
         images: {
             before: '/placeholder-preset.png',
@@ -1726,7 +1726,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'coolCinematic',
-        category: 'utility',
+        category: 'tools',
         icon: '🎬',
         images: {
             before: '/placeholder-preset.png',
@@ -1742,7 +1742,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'fashionEditorial',
-        category: 'utility',
+        category: 'tools',
         icon: '📰',
         images: {
             before: '/placeholder-preset.png',
@@ -1758,7 +1758,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'softFocusDreamy',
-        category: 'utility',
+        category: 'tools',
         icon: '💭',
         images: {
             before: '/placeholder-preset.png',
@@ -1774,7 +1774,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'urbanGritty',
-        category: 'utility',
+        category: 'tools',
         icon: '🏙️',
         images: {
             before: '/placeholder-preset.png',
@@ -1791,7 +1791,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'professionalLinkedin',
-        category: 'utility',
+        category: 'portrait',
         icon: '💼',
         images: {
             before: '/placeholder-preset.png',
@@ -1811,7 +1811,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'blackBackdrop',
-        category: 'utility',
+        category: 'tools',
         icon: '⬛',
         images: {
             before: '/placeholder-preset.png',
@@ -1828,7 +1828,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'pastelSoftMood',
-        category: 'utility',
+        category: 'tools',
         icon: '🎀',
         images: {
             before: '/placeholder-preset.png',
@@ -1847,7 +1847,7 @@ export const presets: Preset[] = [
 
     {
         id: 'mountainSummit',
-        category: 'common',
+        category: 'outdoor',
         icon: '⛰️',
         images: {
             before: '/placeholder-preset.png',
@@ -1872,7 +1872,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'coffeeshopVibes',
-        category: 'common',
+        category: 'lifestyle',
         icon: '☕',
         images: {
             before: '/placeholder-preset.png',
@@ -1896,7 +1896,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'winterWonderland',
-        category: 'common',
+        category: 'outdoor',
         icon: '❄️',
         images: {
             before: '/placeholder-preset.png',
@@ -1923,7 +1923,7 @@ export const presets: Preset[] = [
 
     {
         id: 'autumnLeaves',
-        category: 'common',
+        category: 'outdoor',
         icon: '🍂',
         images: {
             before: '/placeholder-preset.png',
@@ -1949,7 +1949,7 @@ export const presets: Preset[] = [
 
     {
         id: 'lensFlareDramatic',
-        category: 'utility',
+        category: 'tools',
         icon: '✴️',
         images: {
             before: '/placeholder-preset.png',
@@ -1965,7 +1965,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'grainFilmic',
-        category: 'utility',
+        category: 'tools',
         icon: '📷',
         images: {
             before: '/placeholder-preset.png',
@@ -1981,7 +1981,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'glamourClassic',
-        category: 'utility',
+        category: 'tools',
         icon: '💄',
         images: {
             before: '/placeholder-preset.png',
@@ -1998,7 +1998,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'toneMatching',
-        category: 'utility',
+        category: 'tools',
         icon: '🎨',
         images: {
             before: '/placeholder-preset.png',
@@ -2013,7 +2013,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'libraryScholarly',
-        category: 'common',
+        category: 'professional',
         icon: '📚',
         images: {
             before: '/placeholder-preset.png',
@@ -2037,7 +2037,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'skylineUrbanNight',
-        category: 'common',
+        category: 'professional',
         icon: '🌃',
         images: {
             before: '/placeholder-preset.png',
@@ -2062,7 +2062,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'farmRustic',
-        category: 'common',
+        category: 'outdoor',
         icon: '🚜',
         images: {
             before: '/placeholder-preset.png',
@@ -2087,7 +2087,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'floristry',
-        category: 'common',
+        category: 'professional',
         icon: '💐',
         images: {
             before: '/placeholder-preset.png',
@@ -2112,7 +2112,7 @@ export const presets: Preset[] = [
 
     {
         id: 'desertAdventure',
-        category: 'common',
+        category: 'outdoor',
         icon: '🏜️',
         images: {
             before: '/placeholder-preset.png',
@@ -2137,7 +2137,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'marketStreet',
-        category: 'common',
+        category: 'lifestyle',
         icon: '🛒',
         images: {
             before: '/placeholder-preset.png',
@@ -2163,7 +2163,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'parkJogging',
-        category: 'common',
+        category: 'lifestyle',
         icon: '🏃',
         images: {
             before: '/placeholder-preset.png',
@@ -2190,7 +2190,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'rooftopDining',
-        category: 'common',
+        category: 'lifestyle',
         icon: '🍽️',
         images: {
             before: '/placeholder-preset.png',
@@ -2215,7 +2215,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'boutiqueStyler',
-        category: 'common',
+        category: 'lifestyle',
         icon: '👠',
         images: {
             before: '/placeholder-preset.png',
@@ -2239,7 +2239,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'vintageRecords',
-        category: 'common',
+        category: 'lifestyle',
         icon: '📀',
         images: {
             before: '/placeholder-preset.png',
@@ -2264,7 +2264,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'laboratoryScience',
-        category: 'common',
+        category: 'professional',
         icon: '🔬',
         images: {
             before: '/placeholder-preset.png',
@@ -2288,7 +2288,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'constructionWorker',
-        category: 'common',
+        category: 'professional',
         icon: '👷',
         images: {
             before: '/placeholder-preset.png',
@@ -2314,7 +2314,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'teacherClassroom',
-        category: 'common',
+        category: 'professional',
         icon: '👨‍🏫',
         images: {
             before: '/placeholder-preset.png',
@@ -2338,7 +2338,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'marinaYacht',
-        category: 'common',
+        category: 'outdoor',
         icon: '⛵',
         images: {
             before: '/placeholder-preset.png',
@@ -2363,7 +2363,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'garageMotorcycle',
-        category: 'common',
+        category: 'lifestyle',
         icon: '🏍️',
         images: {
             before: '/placeholder-preset.png',
@@ -2386,7 +2386,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'bakeryChef',
-        category: 'common',
+        category: 'professional',
         icon: '🧁',
         images: {
             before: '/placeholder-preset.png',
@@ -2410,7 +2410,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'hospitalMedical',
-        category: 'common',
+        category: 'professional',
         icon: '⚕️',
         images: {
             before: '/placeholder-preset.png',
@@ -2435,7 +2435,7 @@ export const presets: Preset[] = [
 
     {
         id: 'horseRiding',
-        category: 'common',
+        category: 'outdoor',
         icon: '🐴',
         images: {
             before: '/placeholder-preset.png',
@@ -2462,7 +2462,7 @@ export const presets: Preset[] = [
 
     {
         id: 'arcadeGamer',
-        category: 'common',
+        category: 'lifestyle',
         icon: '🕹️',
         images: {
             before: '/placeholder-preset.png',
@@ -2486,7 +2486,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'skiResort',
-        category: 'common',
+        category: 'outdoor',
         icon: '⛷️',
         images: {
             before: '/placeholder-preset.png',
@@ -2513,7 +2513,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'penthouseView',
-        category: 'common',
+        category: 'lifestyle',
         icon: '🏢',
         images: {
             before: '/placeholder-preset.png',
@@ -2537,7 +2537,7 @@ export const presets: Preset[] = [
 
     {
         id: 'barbershopClassic',
-        category: 'common',
+        category: 'lifestyle',
         icon: '💈',
         images: {
             before: '/placeholder-preset.png',
@@ -2561,7 +2561,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'botanicalGreenhouse',
-        category: 'common',
+        category: 'outdoor',
         icon: '🌿',
         images: {
             before: '/placeholder-preset.png',
@@ -2588,7 +2588,7 @@ export const presets: Preset[] = [
 
     {
         id: 'cyberpunkNeonCity',
-        category: 'creative',
+        category: 'fantasy',
         icon: '🌃',
         images: {
             before: '/placeholder-preset.png',
@@ -2616,7 +2616,7 @@ export const presets: Preset[] = [
 
     {
         id: 'steampunkWorkshop',
-        category: 'creative',
+        category: 'fantasy',
         icon: '⚙️',
         images: {
             before: '/placeholder-preset.png',
@@ -2643,7 +2643,7 @@ export const presets: Preset[] = [
 
     {
         id: 'spaceAstronaut',
-        category: 'creative',
+        category: 'fantasy',
         icon: '👨‍🚀',
         images: {
             before: '/placeholder-preset.png',
@@ -2670,7 +2670,7 @@ export const presets: Preset[] = [
 
     {
         id: 'samuraiWarrior',
-        category: 'creative',
+        category: 'fantasy',
         icon: '⚔️',
         images: {
             before: '/placeholder-preset.png',
@@ -2696,7 +2696,7 @@ export const presets: Preset[] = [
 
     {
         id: 'roboticFuture',
-        category: 'creative',
+        category: 'fantasy',
         icon: '🤖',
         images: {
             before: '/placeholder-preset.png',
@@ -2722,7 +2722,7 @@ export const presets: Preset[] = [
 
     {
         id: 'holographicDigital',
-        category: 'creative',
+        category: 'fantasy',
         icon: '💎',
         images: {
             before: '/placeholder-preset.png',
@@ -2746,7 +2746,7 @@ export const presets: Preset[] = [
 
     {
         id: 'popArtBold',
-        category: 'creative',
+        category: 'artistic',
         icon: '🎨',
         images: {
             before: '/placeholder-preset.png',
@@ -2767,7 +2767,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'neonDreamscape',
-        category: 'creative',
+        category: 'artistic',
         icon: '🌈',
         images: {
             before: '/placeholder-preset.png',
@@ -2790,7 +2790,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'timetravelerSteampunk',
-        category: 'creative',
+        category: 'fantasy',
         icon: '⏰',
         images: {
             before: '/placeholder-preset.png',
@@ -2816,7 +2816,7 @@ export const presets: Preset[] = [
 
     {
         id: 'apocalypticSurvivor',
-        category: 'creative',
+        category: 'fantasy',
         icon: '☢️',
         images: {
             before: '/placeholder-preset.png',
@@ -2843,7 +2843,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'elementalFire',
-        category: 'creative',
+        category: 'fantasy',
         icon: '🔥',
         images: {
             before: '/placeholder-preset.png',
@@ -2869,7 +2869,7 @@ export const presets: Preset[] = [
 
     {
         id: 'ninjaStealthy',
-        category: 'creative',
+        category: 'fantasy',
         icon: '🥷',
         images: {
             before: '/placeholder-preset.png',
@@ -2896,7 +2896,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'egyptianPharaoh',
-        category: 'creative',
+        category: 'fantasy',
         icon: '𓀀',
         images: {
             before: '/placeholder-preset.png',
@@ -2922,7 +2922,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'alienWorldExplorer',
-        category: 'creative',
+        category: 'fantasy',
         icon: '👽',
         images: {
             before: '/placeholder-preset.png',
@@ -2948,7 +2948,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'medievalKnight',
-        category: 'creative',
+        category: 'fantasy',
         icon: '🛡️',
         images: {
             before: '/placeholder-preset.png',
@@ -2976,7 +2976,7 @@ export const presets: Preset[] = [
 
     {
         id: 'pirateAdventure',
-        category: 'creative',
+        category: 'fantasy',
         icon: '🏴‍☠️',
         images: {
             before: '/placeholder-preset.png',
@@ -3004,7 +3004,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'wildWestOutlaw',
-        category: 'creative',
+        category: 'fantasy',
         icon: '🤠',
         images: {
             before: '/placeholder-preset.png',
@@ -3031,7 +3031,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'auroraIce',
-        category: 'creative',
+        category: 'outdoor',
         icon: '🌌',
         images: {
             before: '/placeholder-preset.png',
@@ -3057,7 +3057,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'jungleExplorer',
-        category: 'creative',
+        category: 'outdoor',
         icon: '🌴',
         images: {
             before: '/placeholder-preset.png',
@@ -3087,7 +3087,7 @@ export const presets: Preset[] = [
 
     {
         id: 'goldHourGlow',
-        category: 'utility',
+        category: 'tools',
         icon: '🌇',
         images: {
             before: '/placeholder-preset.png',
@@ -3104,7 +3104,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'portraitEnhance',
-        category: 'utility',
+        category: 'tools',
         icon: '📷',
         images: {
             before: '/placeholder-preset.png',
@@ -3120,7 +3120,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'moodDramatic',
-        category: 'utility',
+        category: 'tools',
         icon: '🎭',
         images: {
             before: '/placeholder-preset.png',
@@ -3136,7 +3136,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'softRomantic',
-        category: 'utility',
+        category: 'tools',
         icon: '💕',
         images: {
             before: '/placeholder-preset.png',
@@ -3153,7 +3153,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'urbanMoody',
-        category: 'utility',
+        category: 'tools',
         icon: '🏙️',
         images: {
             before: '/placeholder-preset.png',
@@ -3170,7 +3170,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'highFashion',
-        category: 'utility',
+        category: 'tools',
         icon: '💃',
         images: {
             before: '/placeholder-preset.png',
@@ -3187,7 +3187,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'vintageFilmLook',
-        category: 'utility',
+        category: 'tools',
         icon: '📽️',
         images: {
             before: '/placeholder-preset.png',
@@ -3204,7 +3204,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'studioClean',
-        category: 'utility',
+        category: 'tools',
         icon: '🎬',
         images: {
             before: '/placeholder-preset.png',
@@ -3220,7 +3220,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'naturalLight',
-        category: 'utility',
+        category: 'tools',
         icon: '☀️',
         images: {
             before: '/placeholder-preset.png',
@@ -3236,7 +3236,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'motionAction',
-        category: 'utility',
+        category: 'tools',
         icon: '⚡',
         images: {
             before: '/placeholder-preset.png',
@@ -3252,7 +3252,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'beautyGlow',
-        category: 'utility',
+        category: 'tools',
         icon: '✨',
         images: {
             before: '/placeholder-preset.png',
@@ -3267,7 +3267,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'productFocus',
-        category: 'utility',
+        category: 'tools',
         icon: '🎯',
         images: {
             before: '/placeholder-preset.png',
@@ -3282,7 +3282,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'portraitCinematic',
-        category: 'utility',
+        category: 'tools',
         icon: '🎥',
         images: {
             before: '/placeholder-preset.png',
@@ -3298,7 +3298,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'architecturalClean',
-        category: 'utility',
+        category: 'tools',
         icon: '🏛️',
         images: {
             before: '/placeholder-preset.png',
@@ -3314,7 +3314,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'foodStyling',
-        category: 'utility',
+        category: 'tools',
         icon: '🍱',
         images: {
             before: '/placeholder-preset.png',
@@ -3330,7 +3330,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'magazineEditorial',
-        category: 'utility',
+        category: 'tools',
         icon: '📰',
         images: {
             before: '/placeholder-preset.png',
@@ -3347,7 +3347,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'blackAndWhiteArt',
-        category: 'utility',
+        category: 'tools',
         icon: '⚫',
         images: {
             before: '/placeholder-preset.png',
@@ -3363,7 +3363,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'portraitEnvironmental',
-        category: 'utility',
+        category: 'tools',
         icon: '🌍',
         images: {
             before: '/placeholder-preset.png',
@@ -3379,7 +3379,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'fashionLookbook',
-        category: 'utility',
+        category: 'tools',
         icon: '👔',
         images: {
             before: '/placeholder-preset.png',
@@ -3395,7 +3395,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'lifestyleCandid',
-        category: 'utility',
+        category: 'tools',
         icon: '📸',
         images: {
             before: '/placeholder-preset.png',
@@ -3411,7 +3411,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'timeFreeze',
-        category: 'utility',
+        category: 'tools',
         icon: '⏸️',
         images: {
             before: '/placeholder-preset.png',
@@ -3425,7 +3425,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'lowKeyMoody',
-        category: 'utility',
+        category: 'tools',
         icon: '🌑',
         images: {
             before: '/placeholder-preset.png',
@@ -3441,7 +3441,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'highKeyBright',
-        category: 'utility',
+        category: 'tools',
         icon: '⚪',
         images: {
             before: '/placeholder-preset.png',
@@ -3457,7 +3457,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'streetStyleUrban',
-        category: 'utility',
+        category: 'tools',
         icon: '🚶',
         images: {
             before: '/placeholder-preset.png',
@@ -3473,7 +3473,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'etherealSoftFocus',
-        category: 'utility',
+        category: 'tools',
         icon: '🌫️',
         images: {
             before: '/placeholder-preset.png',
@@ -3489,7 +3489,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'colorTheory',
-        category: 'utility',
+        category: 'tools',
         icon: '🎨',
         images: {
             before: '/placeholder-preset.png',
@@ -3504,7 +3504,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'textureDetail',
-        category: 'utility',
+        category: 'tools',
         icon: '🔲',
         images: {
             before: '/placeholder-preset.png',
@@ -3520,7 +3520,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'minimalistClean',
-        category: 'utility',
+        category: 'tools',
         icon: '⬜',
         images: {
             before: '/placeholder-preset.png',
@@ -3536,7 +3536,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'goldRatio',
-        category: 'utility',
+        category: 'tools',
         icon: '📐',
         images: {
             before: '/placeholder-preset.png',
@@ -3550,7 +3550,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'doubleExposureArt',
-        category: 'utility',
+        category: 'tools',
         icon: '👥',
         images: {
             before: '/placeholder-preset.png',
@@ -3565,7 +3565,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'silhouetteBold',
-        category: 'utility',
+        category: 'tools',
         icon: '🌆',
         images: {
             before: '/placeholder-preset.png',
@@ -3581,7 +3581,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'reflectionMirror',
-        category: 'utility',
+        category: 'tools',
         icon: '🪞',
         images: {
             before: '/placeholder-preset.png',
@@ -3596,7 +3596,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'weatherAtmosphere',
-        category: 'utility',
+        category: 'tools',
         icon: '🌧️',
         images: {
             before: '/placeholder-preset.png',
@@ -3614,7 +3614,7 @@ export const presets: Preset[] = [
     // ============ WEALTH & LUXURY (NEW) ============
     {
         id: 'billionaireLuxury',
-        category: 'creative',
+        category: 'fantasy',
         icon: '🛩️',
         images: {
             before: '/placeholder-preset.png',
@@ -3632,7 +3632,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'supercarOwner',
-        category: 'creative',
+        category: 'fantasy',
         icon: '🏎️',
         images: {
             before: '/placeholder-preset.png',
@@ -3650,7 +3650,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'oldMoney',
-        category: 'creative',
+        category: 'fantasy',
         icon: '🏰',
         images: {
             before: '/placeholder-preset.png',
@@ -3670,7 +3670,7 @@ export const presets: Preset[] = [
     // ============ BEAUTY & SOCIAL (NEW) ============
     {
         id: 'instagramInfluencer',
-        category: 'common',
+        category: 'lifestyle',
         icon: '🤳',
         images: {
             before: '/placeholder-preset.png',
@@ -3689,7 +3689,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'redCarpet',
-        category: 'creative',
+        category: 'event',
         icon: '🎬',
         images: {
             before: '/placeholder-preset.png',
@@ -3707,7 +3707,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'fitnessModel',
-        category: 'common',
+        category: 'professional',
         icon: '💪',
         images: {
             before: '/placeholder-preset.png',
@@ -3727,7 +3727,7 @@ export const presets: Preset[] = [
     // ============ EMOTIONS (NEW) ============
     {
         id: 'melancholicSadness',
-        category: 'creative',
+        category: 'fantasy',
         icon: '🌧️',
         images: {
             before: '/placeholder-preset.png',
@@ -3745,7 +3745,7 @@ export const presets: Preset[] = [
     },
     {
         id: 'pureHappiness',
-        category: 'creative',
+        category: 'fantasy',
         icon: '😄',
         images: {
             before: '/placeholder-preset.png',
@@ -3765,7 +3765,7 @@ export const presets: Preset[] = [
 
     {
         id: 'heartbreak',
-        category: 'creative',
+        category: 'fantasy',
         icon: '💔',
         images: {
             before: '/placeholder-preset.png',
@@ -3784,7 +3784,7 @@ export const presets: Preset[] = [
 ];
 
 // Helper to get presets by category
-export const getPresetsByCategory = (category: 'common' | 'creative' | 'utility'): Preset[] => {
+export const getPresetsByCategory = (category: 'portrait' | 'lifestyle' | 'event' | 'outdoor' | 'professional' | 'artistic' | 'fantasy' | 'tools'): Preset[] => {
     return presets.filter((p) => p.category === category);
 };
 

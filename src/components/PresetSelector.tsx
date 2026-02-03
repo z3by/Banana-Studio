@@ -21,7 +21,7 @@ export const PresetSelector = ({
 }: PresetSelectorProps) => {
     const [isOpen, setIsOpen] = useState(true);
     const [search, setSearch] = useState('');
-    const [category, setCategory] = useState('common');
+    const [category, setCategory] = useState('portrait');
     const [currentPage, setCurrentPage] = useState(1);
     const [mounted, setMounted] = useState(false);
     useEffect(() => {
@@ -37,11 +37,16 @@ export const PresetSelector = ({
     }, [category, search]);
 
     const categories = [
-        { id: 'favorites', label: t.form.presets.favorites || 'Favorites', icon: Star, color: 'yellow' },
+        { id: 'favorites', label: t.form.presets.favorites || 'Favorites', icon: Star, color: 'amber' },
         { id: 'recent', label: t.form.presets.recent || 'Recent', icon: History, color: 'blue' },
-        { id: 'common', label: t.form.presets.common, color: 'emerald' },
-        { id: 'creative', label: t.form.presets.creative, color: 'purple' },
-        { id: 'utility', label: t.form.presets.utility, color: 'cyan' },
+        { id: 'portrait', label: t.form.presets.portrait || 'Portrait', color: 'rose' },
+        { id: 'lifestyle', label: t.form.presets.lifestyle || 'Lifestyle', color: 'emerald' },
+        { id: 'event', label: t.form.presets.event || 'Events', color: 'pink' },
+        { id: 'outdoor', label: t.form.presets.outdoor || 'Outdoor', color: 'green' },
+        { id: 'professional', label: t.form.presets.professional || 'Professional', color: 'blue' },
+        { id: 'artistic', label: t.form.presets.artistic || 'Artistic', color: 'purple' },
+        { id: 'fantasy', label: t.form.presets.fantasy || 'Fantasy', color: 'violet' },
+        { id: 'tools', label: t.form.presets.tools || 'Quick Tools', color: 'cyan' },
     ];
 
     const filteredPresets = presets
@@ -66,150 +71,161 @@ export const PresetSelector = ({
         });
 
     return (
-        <div className="glass-panel rounded-2xl overflow-hidden border border-white/5 transition-all duration-500">
+        <div className="glass-panel rounded-2xl overflow-hidden border border-white/[0.06] transition-all duration-500 relative">
+            {/* Subtle Top Shine */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+
             {/* Header */}
-            <div className="p-4 flex items-center justify-between border-b border-white/5 bg-black/20">
-                <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-amber-500/10 text-amber-500">
-                        <Sparkles size={18} />
+            <div className="p-5 flex items-center justify-between border-b border-white/[0.04] bg-gradient-to-r from-black/30 via-black/20 to-black/30 relative">
+                <div className="flex items-center gap-4">
+                    {/* Icon with glow */}
+                    <div className="relative">
+                        <div className="absolute inset-0 bg-amber-500/30 blur-xl opacity-60 animate-pulse" />
+                        <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-amber-400/20 via-amber-500/15 to-amber-600/10 text-amber-400 border border-amber-500/20">
+                            <Sparkles size={20} />
+                        </div>
                     </div>
                     <div>
                         <h2 className="text-sm font-bold text-white flex items-center gap-2">
                             {t.form.presets.title || 'Quick Start Presets'}
-                            <span className="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full text-zinc-300">
+                            <span className="text-[10px] bg-gradient-to-r from-white/10 to-white/5 px-2 py-0.5 rounded-full text-zinc-300 font-medium">
                                 {presets.length}
                             </span>
                         </h2>
-                        <p className="text-[10px] text-zinc-400">
+                        <p className="text-[11px] text-zinc-500 mt-0.5">
                             {t.form.presets.description || 'Choose to instantly configure'}
                         </p>
                     </div>
                 </div>
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="p-1.5 rounded-lg hover:bg-white/5 text-zinc-400 transition-colors"
+                    className="p-2 rounded-lg hover:bg-white/5 text-zinc-500 hover:text-white transition-all duration-300"
                 >
-                    {isOpen ? <ChevronLeft size={16} className="rotate-90" /> : <ChevronRight size={16} className="rotate-90" />}
+                    <ChevronLeft size={18} className={`transition-transform duration-300 ${isOpen ? 'rotate-90' : '-rotate-90'}`} />
                 </button>
             </div>
 
             {/* Content */}
             {isOpen && (
-                <div className="p-4 bg-black/10 animate-in slide-in-from-top-2 fade-in duration-300">
+                <div className="p-5 bg-gradient-to-b from-black/20 to-black/5 animate-in slide-in-from-top-2 fade-in duration-300">
 
                     {/* Search & Tabs */}
-                    <div className="flex flex-col gap-4 mb-4">
+                    <div className="flex flex-col gap-4 mb-5">
                         {/* Search */}
-                        <div className="relative">
+                        <div className="relative group">
                             <input
                                 type="text"
                                 placeholder={t.ui.search}
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                className="w-full bg-black/20 border border-white/5 rounded-xl px-3 py-2 text-xs text-zinc-200 focus:outline-none focus:border-amber-500/30 transition-all pr-8"
+                                className="w-full bg-black/40 border border-white/[0.06] rounded-xl px-4 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-amber-500/40 focus:bg-black/60 focus:ring-2 focus:ring-amber-500/10 transition-all pr-10 placeholder:text-zinc-600"
                             />
                             {search ? (
-                                <button onClick={() => setSearch('')} className="absolute right-2.5 top-2 text-zinc-500 hover:text-white">
-                                    <X size={12} />
+                                <button onClick={() => setSearch('')} className="absolute right-3 top-2.5 text-zinc-500 hover:text-amber-400 transition-colors p-0.5">
+                                    <X size={14} />
                                 </button>
                             ) : (
-                                <Sparkles size={12} className="absolute right-2.5 top-2.5 text-zinc-600" />
+                                <Sparkles size={14} className="absolute right-3.5 top-3 text-zinc-600 group-focus-within:text-amber-500/50 transition-colors" />
                             )}
                         </div>
 
-                        {/* Tabs with scroll indicator */}
+                        {/* Tabs */}
                         <div className="relative">
-                            {/* Left fade - shows when scrolled */}
-                            <div className="absolute left-0 top-0 bottom-2 w-6 bg-gradient-to-r from-black/30 to-transparent pointer-events-none z-10 opacity-0 md:hidden" id="scroll-fade-left" />
-
-                            <div className="flex gap-1 overflow-x-auto pb-2 scrollbar-none scroll-smooth" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                                {categories.map(cat => (
-                                    <button
-                                        key={cat.id}
-                                        onClick={() => setCategory(cat.id)}
-                                        className={`
-                                            flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all flex-shrink-0
-                                            ${category === cat.id
-                                                ? `bg-${cat.color}-500/20 text-${cat.color}-400 border border-${cat.color}-500/20`
-                                                : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5 border border-transparent'}
-                                        `}
-                                    >
-                                        {cat.icon ? <cat.icon size={12} className={category === cat.id ? `text-${cat.color}-400` : ''} /> : <div className={`w-1.5 h-1.5 rounded-full bg-${cat.color}-400`} />}
-                                        {cat.label}
-                                        {mounted && cat.id === 'favorites' && favoritePresets.length > 0 && <span className="opacity-50 ml-0.5">({favoritePresets.length})</span>}
-                                    </button>
-                                ))}
+                            <div className="flex gap-1.5 overflow-x-auto pb-2 scrollbar-none scroll-smooth" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                                {categories.map(cat => {
+                                    const isActive = category === cat.id;
+                                    return (
+                                        <button
+                                            key={cat.id}
+                                            onClick={() => setCategory(cat.id)}
+                                            className={`
+                                                relative flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0 overflow-hidden
+                                                ${isActive
+                                                    ? 'text-amber-300 border border-amber-500/30'
+                                                    : 'text-zinc-500 hover:text-zinc-300 border border-transparent hover:border-white/5 hover:bg-white/[0.02]'}
+                                            `}
+                                        >
+                                            {/* Active Background */}
+                                            {isActive && (
+                                                <div className="absolute inset-0 bg-gradient-to-r from-amber-500/15 via-amber-500/10 to-amber-600/5" />
+                                            )}
+                                            <span className="relative flex items-center gap-2">
+                                                {cat.icon ? <cat.icon size={13} className={isActive ? 'text-amber-400' : ''} /> : <div className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-amber-400' : 'bg-zinc-600'}`} />}
+                                                {cat.label}
+                                                {mounted && cat.id === 'favorites' && favoritePresets.length > 0 && (
+                                                    <span className={`text-[10px] ${isActive ? 'text-amber-400/70' : 'text-zinc-600'}`}>({favoritePresets.length})</span>
+                                                )}
+                                            </span>
+                                        </button>
+                                    );
+                                })}
                             </div>
-
-                            {/* Right fade + scroll hint - always visible on mobile when more content exists */}
-                            <div className="absolute right-0 top-0 bottom-2 w-8 bg-gradient-to-l from-black/40 via-black/20 to-transparent pointer-events-none z-10 flex items-center justify-end md:hidden">
-                                <ChevronRight size={14} className="text-zinc-500 animate-pulse mr-0.5" />
-                            </div>
+                            {/* Right fade */}
+                            <div className="absolute right-0 top-0 bottom-2 w-10 bg-gradient-to-l from-black/60 to-transparent pointer-events-none z-10 md:hidden" />
                         </div>
                     </div>
 
                     {/* Grid */}
-                    {/* Pagination Logic */}
-                    <div className="flex flex-col gap-4">
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                    <div className="flex flex-col gap-5">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                             {filteredPresets.slice((currentPage - 1) * 12, currentPage * 12).map(preset => {
                                 const translation = t.form.presets[preset.id as keyof typeof t.form.presets] as { name: string; desc: string } | undefined;
                                 const name = translation?.name || preset.id;
                                 const desc = translation?.desc || '';
                                 const isFav = favoritePresets.includes(preset.id);
 
-                                // Use provided image or fallback to placeholder
                                 const imageUrl = preset.images?.after || '/placeholder-preset.png';
-
-                                let accentColor = 'emerald';
-                                if (preset.category === 'creative') accentColor = 'purple';
-                                if (preset.category === 'utility') accentColor = 'cyan';
 
                                 return (
                                     <div
                                         key={preset.id}
                                         onClick={() => onSelect(preset)}
-                                        className={`
-                                            group relative flex flex-col rounded-xl overflow-hidden
-                                            border border-white/5 bg-black/40
-                                            cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:border-${accentColor}-500/30 hover:shadow-lg hover:shadow-${accentColor}-900/10
-                                        `}
+                                        className="group relative flex flex-col rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.03] border border-white/[0.04] hover:border-amber-500/30 bg-gradient-to-b from-white/[0.02] to-transparent"
                                     >
                                         {/* Image Container */}
-                                        <div className="relative aspect-[4/3] w-full overflow-hidden bg-zinc-900 group-hover:brightness-110 transition-all">
+                                        <div className="relative aspect-[4/3] w-full overflow-hidden bg-zinc-950">
                                             <Image
                                                 src={imageUrl}
                                                 alt={name}
                                                 fill
                                                 sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
-                                                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                                className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
                                             />
 
                                             {/* Gradient Overlay */}
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-70 transition-opacity duration-500" />
+
+                                            {/* Top Shine on Hover */}
+                                            <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                                             {/* Favorite Button */}
                                             <button
                                                 onClick={(e) => { e.stopPropagation(); onToggleFavorite(preset.id, e); }}
-                                                className={`absolute top-2 right-2 p-1.5 rounded-full backdrop-blur-md bg-black/20 border border-white/10 transition-all ${isFav ? 'text-yellow-400 opacity-100' : 'text-white/60 opacity-0 group-hover:opacity-100 hover:text-yellow-400 hover:bg-black/50'}`}
+                                                className={`absolute top-2.5 right-2.5 p-2 rounded-full backdrop-blur-md transition-all duration-300 ${isFav
+                                                    ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40 shadow-lg shadow-amber-500/20'
+                                                    : 'bg-black/30 text-white/50 border border-white/10 opacity-0 group-hover:opacity-100 hover:text-amber-400 hover:bg-black/50 hover:border-amber-500/30'
+                                                    }`}
                                             >
-                                                <Star size={12} className={isFav ? 'fill-yellow-400' : ''} />
+                                                <Star size={12} className={isFav ? 'fill-amber-400' : ''} />
                                             </button>
 
-                                            {/* Icon (Optional overlay) */}
-                                            <div className="absolute top-2 left-2 p-1.5 rounded-lg backdrop-blur-md bg-black/20 border border-white/10 text-lg leading-none">
+                                            {/* Emoji Icon */}
+                                            <div className="absolute top-2.5 left-2.5 p-2 rounded-lg backdrop-blur-md bg-black/30 border border-white/10 text-base leading-none shadow-lg">
                                                 {preset.icon}
                                             </div>
                                         </div>
 
                                         {/* Text Content */}
-                                        <div className="absolute bottom-0 left-0 right-0 p-3 pt-6 bg-gradient-to-t from-black via-black/90 to-transparent">
-                                            <div className="text-xs font-bold text-zinc-100 truncate leading-tight mb-0.5">{name}</div>
-                                            <div className="text-[10px] text-zinc-400 truncate leading-tight group-hover:text-zinc-300 transition-colors">{desc}</div>
+                                        <div className="absolute bottom-0 left-0 right-0 p-3.5 pt-8 bg-gradient-to-t from-black via-black/95 to-transparent">
+                                            <div className="text-sm font-bold text-zinc-100 truncate leading-tight mb-1 group-hover:text-amber-100 transition-colors duration-300">{name}</div>
+                                            <div className="text-[11px] text-zinc-500 truncate leading-tight group-hover:text-zinc-400 transition-colors duration-300">{desc}</div>
                                         </div>
 
-                                        {/* Active State Border */}
-                                        <div className={`absolute inset-0 border-2 border-${accentColor}-500/0 group-hover:border-${accentColor}-500/50 rounded-xl pointer-events-none transition-all duration-300`} />
+                                        {/* Hover Glow Border */}
+                                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border-2 border-amber-500/20" />
+
+                                        {/* Bottom Glow */}
+                                        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-20 bg-amber-500/20 blur-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none" />
                                     </div>
                                 );
                             })}
@@ -217,36 +233,47 @@ export const PresetSelector = ({
 
                         {/* Pagination Controls */}
                         {filteredPresets.length > 12 && (
-                            <div className="flex items-center justify-between px-2 pt-2 border-t border-white/5">
+                            <div className="flex items-center justify-between px-2 pt-4 border-t border-white/[0.04]">
                                 <button
                                     onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                                     disabled={currentPage === 1}
-                                    className="flex items-center gap-1 text-xs text-zinc-400 hover:text-white disabled:opacity-30 disabled:hover:text-zinc-400 transition-colors"
+                                    className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-white disabled:opacity-30 disabled:hover:text-zinc-500 transition-all duration-300 group px-3 py-1.5 rounded-lg hover:bg-white/5"
                                 >
-                                    <ChevronLeft size={14} />
+                                    <ChevronLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
                                     {t.ui?.previous || 'Previous'}
                                 </button>
 
-                                <span className="text-[10px] text-zinc-500 font-mono">
-                                    {currentPage} / {Math.ceil(filteredPresets.length / 12)}
-                                </span>
+                                <div className="flex items-center gap-1.5">
+                                    {Array.from({ length: Math.ceil(filteredPresets.length / 12) }).map((_, i) => (
+                                        <button
+                                            key={i}
+                                            onClick={() => setCurrentPage(i + 1)}
+                                            className={`w-2 h-2 rounded-full transition-all duration-300 ${currentPage === i + 1
+                                                ? 'bg-amber-500 w-6'
+                                                : 'bg-zinc-700 hover:bg-zinc-600'
+                                                }`}
+                                        />
+                                    ))}
+                                </div>
 
                                 <button
                                     onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredPresets.length / 12), p + 1))}
                                     disabled={currentPage === Math.ceil(filteredPresets.length / 12)}
-                                    className="flex items-center gap-1 text-xs text-zinc-400 hover:text-white disabled:opacity-30 disabled:hover:text-zinc-400 transition-colors"
+                                    className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-white disabled:opacity-30 disabled:hover:text-zinc-500 transition-all duration-300 group px-3 py-1.5 rounded-lg hover:bg-white/5"
                                 >
                                     {t.ui?.next || 'Next'}
-                                    <ChevronRight size={14} />
+                                    <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
                                 </button>
                             </div>
                         )}
                     </div>
 
                     {filteredPresets.length === 0 && (
-                        <div className="py-12 flex flex-col items-center justify-center text-zinc-500 gap-3">
-                            <ImageIcon size={24} className="opacity-20" />
-                            <div className="text-xs italic">
+                        <div className="py-16 flex flex-col items-center justify-center text-zinc-600 gap-4">
+                            <div className="p-4 rounded-full bg-white/[0.02] border border-white/5">
+                                <ImageIcon size={28} className="opacity-30" />
+                            </div>
+                            <div className="text-sm">
                                 {search ? 'No matches found' : 'No presets in this category'}
                             </div>
                         </div>
