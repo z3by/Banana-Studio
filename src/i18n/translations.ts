@@ -7,6 +7,59 @@ export const translations = {
     landing: {
       title: 'Create Perfect Portraits',
       subtitle: 'Generate professional prompts for Nano Banana Pro',
+      features: {
+        title: 'Why Choose Banana Prompt?',
+        professionalPresets: {
+          title: 'Professional Presets',
+          desc: 'Access over 180+ curated styles ranging from cinematic portraits to editorial fashion.',
+        },
+        advancedControl: {
+          title: 'Advanced Control',
+          desc: 'Fine-tune every detail including lighting, camera angles, film stock, and composition.',
+        },
+        culturalCompliance: {
+          title: 'Culturally Safe',
+          desc: 'Built-in safety guardrails ensure all generated prompts are culturally and religiously appropriate.',
+        },
+        multiLanguage: {
+          title: 'Bilingual Support',
+          desc: 'Native support for both English and Arabic with fully localized prompt generation.',
+        },
+      },
+      howItWorks: {
+        title: 'How It Works',
+        step1: {
+          title: 'Choose Guidelines',
+          desc: 'Select your subject basics like gender, age, and ethnicity.',
+        },
+        step2: {
+          title: 'Customize Details',
+          desc: 'Refine the look with specific lighting, camera settings, and artistic styles.',
+        },
+        step3: {
+          title: 'Generate & Create',
+          desc: 'Get a perfectly optimized prompt ready for your favorite AI image generator.',
+        },
+      },
+      faq: {
+        title: 'Frequently Asked Questions',
+        q1: {
+          q: 'What is Banana Prompt?',
+          a: 'Banana Prompt is a specialized AI prompt engineering tool designed to help you create high-quality portrait prompts for AI image generators like Midjourney, Stable Diffusion, and Nano Banana Pro.',
+        },
+        q2: {
+          q: 'Which AI models is this compatible with?',
+          a: 'While optimized for Nano Banana Pro and Gemini, the prompts use universal keywords compatible with Midjourney v6, Stable Diffusion XL, Flux, and DALL-E 3.',
+        },
+        q3: {
+          q: 'Is it free to use?',
+          a: 'Yes, Banana Prompt is completely free to use for generating and refining your AI art prompts.',
+        },
+        q4: {
+          q: 'What makes it "Culturally Safe"?',
+          a: 'We have implemented strict filtering to prevent the generation of content that may be considered sensitive, immodest, or non-compliant with cultural values.',
+        },
+      },
     },
     form: {
       mood: 'Mood',
@@ -1912,6 +1965,59 @@ export const translations = {
     landing: {
       title: 'اصنع صور بورتريه مثالية',
       subtitle: 'أنشئ أوامر احترافية لـ نانو بنانا برو',
+      features: {
+        title: 'لماذا تختار Banana Prompt؟',
+        professionalPresets: {
+          title: 'قوالب احترافية',
+          desc: 'اختر من بين أكثر من 180 قالبًا منسقًا بعناية، من البورتريه السينمائي إلى أزياء الموضة.',
+        },
+        advancedControl: {
+          title: 'تحكم متقدم',
+          desc: 'اضبط كل التفاصيل بما في ذلك الإضاءة وزوايا الكاميرا ونوع الفيلم والتكوين.',
+        },
+        culturalCompliance: {
+          title: 'آمن ثقافياً',
+          desc: 'حواجز أمان مدمجة لضمان أن جميع الأوامر المولدة مناسبة ثقافياً ودينياً.',
+        },
+        multiLanguage: {
+          title: 'دعم ثنائي اللغة',
+          desc: 'دعم أصلي لكل من الإنجليزية والعربية مع إنشاء أوامر مترجمة بالكامل.',
+        },
+      },
+      howItWorks: {
+        title: 'كيف يعمل',
+        step1: {
+          title: 'اختر المبادئ التوجيهية',
+          desc: 'حدد أساسيات الشخصية مثل الجنس والعمر والعرق.',
+        },
+        step2: {
+          title: 'تخصيص التفاصيل',
+          desc: 'حسن المظهر بإضاءة محددة وإعدادات الكاميرا وأنماط فنية.',
+        },
+        step3: {
+          title: 'توليد وإنشاء',
+          desc: 'احصل على أمر محسّن تمامًا جاهز لمولد الصور بالذكاء الاصطناعي المفضل لديك.',
+        },
+      },
+      faq: {
+        title: 'الأسئلة الشائعة',
+        q1: {
+          q: 'ما هو Banana Prompt؟',
+          a: 'Banana Prompt هي أداة متخصصة في هندسة الأوامر بالذكاء الاصطناعي مصممة لمساعدتك على إنشاء أوامر بورتريه عالية الجودة لمولدات الصور مثل Midjourney و Stable Diffusion و Nano Banana Pro.',
+        },
+        q2: {
+          q: 'ما هي نماذج الذكاء الاصطناعي المتوافقة؟',
+          a: 'بينما تم تحسينه لـ Nano Banana Pro و Gemini، تستخدم الأوامر كلمات مفتاحية عالمية متوافقة مع Midjourney v6 و Stable Diffusion XL و Flux و DALL-E 3.',
+        },
+        q3: {
+          q: 'هل الاستخدام مجاني؟',
+          a: 'نعم، Banana Prompt مجاني تمامًا للاستخدام لتوليد وتحسين أوامر فن الذكاء الاصطناعي الخاصة بك.',
+        },
+        q4: {
+          q: 'ما الذي يجعله "آمنًا ثقافيًا"؟',
+          a: 'لقد طبقنا تصفية صارمة لمنع إنشاء محتوى قد يعتبر حساسًا أو غير محتشم أو غير متوافق مع القيم الثقافية.',
+        },
+      },
     },
     form: {
       mood: 'المزاج',
