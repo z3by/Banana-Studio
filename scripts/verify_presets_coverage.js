@@ -1,6 +1,9 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const fs = require('fs');
-const path = require('path');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Extract preset IDs from presets.ts
 const presetsPath = path.join(__dirname, '../src/lib/presets.ts');
@@ -35,13 +38,6 @@ presetIds.forEach(id => {
 
     // For now, let's stick to the user request: "missing images for presets".
     // I will check if `public/presets/${id}.png` exists.
-
-    const possibleFilenames = [
-        `${id}.png`,
-        `${id}.jpg`,
-        `${id}.jpeg`,
-        // Start checking strictly for what I generated
-    ];
 
     const found = existingImages.some(img => img === `${id}.png`);
 

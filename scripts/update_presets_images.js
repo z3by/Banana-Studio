@@ -1,6 +1,9 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const fs = require('fs');
-const path = require('path');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const presetsFile = path.join(__dirname, '../src/lib/presets.ts');
 const lines = fs.readFileSync(presetsFile, 'utf8').split('\n');
@@ -202,9 +205,7 @@ const updates = {
     'portraitEnhance': 'portraitEnhance.png'
 };
 
-const newLines = [];
 let currentId = null;
-let skipLines = false;
 
 for (let i = 0; i < lines.length; i++) {
     const line = lines[i];

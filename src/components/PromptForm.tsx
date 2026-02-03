@@ -221,37 +221,6 @@ export function PromptForm() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isRTL, generated]);
 
-    // Calculate filled fields per step
-    const getStepFieldCount = (stepId: number): number => {
-        switch (stepId) {
-            case 1:
-                return [data.gender, data.ageGroup, data.ethnicity, data.eyeColor, data.hairColor]
-                    .filter(v => v).length +
-                    [data.hairStyle, data.makeup, data.pose, data.clothing, data.accessories, data.action]
-                        .filter(arr => arr.length > 0).length;
-            case 2:
-                return [data.background, data.era, data.timeOfDay, data.lightColor]
-                    .filter(v => v).length +
-                    [data.weather, data.lighting, data.mood]
-                        .filter(arr => arr.length > 0).length;
-            case 3:
-                return [data.cameraType, data.camera, data.aspectRatio]
-                    .filter(v => v).length +
-                    [data.lens, data.filmStock, data.composition]
-                        .filter(arr => arr.length > 0).length;
-            case 4:
-                return [data.colorGrading]
-                    .filter(v => v).length +
-                    [data.style, data.photographerStyle, data.specialEffects, data.texture]
-                        .filter(arr => arr.length > 0).length;
-            case 5:
-                return (data.stylize > 0 ? 1 : 0) + (data.chaos > 0 ? 1 : 0) + (data.weirdness > 0 ? 1 : 0) +
-                    (data.addons.length > 0 ? 1 : 0) + (data.negativePrompt ? 1 : 0);
-            default:
-                return 0;
-        }
-    };
-
     // Generate live preview summary - includes ALL fields
     const getPreviewSummary = (): string => {
         const parts: string[] = [];

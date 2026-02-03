@@ -1,6 +1,9 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const fs = require('fs');
-const path = require('path');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const presetsFile = path.join(__dirname, '../src/lib/presets.ts');
 const fileContent = fs.readFileSync(presetsFile, 'utf8');
@@ -9,9 +12,6 @@ const lines = fileContent.split('\n');
 function generatePrompt(data) {
     const sectionHeader = (title) => `**${title}**`;
     const sections = [];
-
-    // Simple identity function for translation mock
-    const t = (v) => v;
 
     // Helper to format a line if value exists
     const line = (key, value) => {
@@ -152,37 +152,7 @@ for (let i = 0; i < lines.length; i++) {
                     // Defaults
                     const sampleData = { ...data };
 
-                    // List of presets that are clearly objects or styles not needing a person
-                    const objectPresets = [
-                        'productShot', 'foodStyling', 'vintageRecords', 'botanicalGreenhouse',
-                        'flowerCrown', // maybe person? Let's check. Actually flowerCrown implies a person wearing it.
-                        'qualityEnhance', 'lightRetouch', 'skinPerfect', 'hdrVivid', 'instagramReady', 'linkedinPro',
-                        'softDreamy', 'sharpDetail', 'instantPro', 'hairPerfect', 'lightingFix', 'outfitDetail',
-                        'backgroundBlur', 'colorPop', 'eyeEnhance', 'symmetryFix', 'zoomReady', 'twitterProfile',
-                        'contrastBoost', 'vintageTone', 'professionalHeadroom', 'goldenRatioComposition',
-                        'dramaticShadows', 'softGlam', 'motionFreeze', 'wideAngleDramatic', 'macroCloseup',
-                        'warmGoldenTone', 'coolCinematic', 'fashionEditorial', 'softFocusDreamy', 'urbanGritty',
-                        'professionalLinkedin', 'blackBackdrop', 'pastelSoftMood', 'mountainSummit', 'coffeeshopVibes',
-                        'winterWonderland', 'yogaStudio', 'autumnLeaves', 'poolsideSummer', 'lensFlareDramatic',
-                        'grainFilmic', 'glamourClassic', 'toneMatching', 'libraryScholarly', 'skylineUrbanNight',
-                        'farmRustic', 'floristry', 'desertAdventure', 'marketStreet', 'rooftopDining', 'boutiqueStyler',
-                        'laboratoryScience', 'concertStage', 'vineyardWinery', 'skiResort', 'penthouseView',
-                        'tropicalResort', 'barbershopClassic', 'steampunkWorkshop', 'holographicDigital',
-                        'neonDreamscape', 'crystalMagic', 'elementalFire', 'bioluminescentForest', 'auroraIce',
-                        'goldHourGlow', 'portraitEnhance', 'moodDramatic', 'softRomantic', 'urbanMoody',
-                        'highFashion', 'vintageFilmLook', 'studioClean', 'naturalLight', 'motionAction',
-                        'beautyGlow', 'productFocus', 'portraitCinematic', 'architecturalClean', 'magazineEditorial',
-                        'blackAndWhiteArt', 'portraitEnvironmental', 'fashionLookbook', 'lifestyleCandid',
-                        'timeFreeze', 'lowKeyMoody', 'highKeyBright', 'streetStyleUrban', 'etherealSoftFocus',
-                        'colorTheory', 'textureDetail', 'minimalistClean', 'goldRatio', 'doubleExposureArt',
-                        'silhouetteBold', 'reflectionMirror', 'weatherAtmosphere', 'oldMoney', 'yachtLife',
-                        'redCarpet', 'fitnessModel', 'pureHappiness', 'euphoricDream', 'romanticDate', 'heartbreak'
-                    ];
-
-                    const isPerson = !objectPresets.includes(currentId) &&
-                        !['mountainSummit', 'winterWonderland', 'autumnLeaves', 'skylineUrbanNight', 'marinaYacht', 'tropicalResort', 'botanicalGreenhouse', 'neonDreamscape', 'bioluminescentForest', 'auroraIce', 'jungleExplorer', 'alienWorldExplorer', 'architecturalClean', 'foodStyling', 'textureDetail', 'reflectionMirror', 'weatherAtmosphere'].includes(currentId);
-
-                    // For the sake of "One guy for all images", we will apply it to almost everything that ISN'T clearly an object/scene.
+                    // Presets that are strictly non-human (no person needed)
                     // Even "yachtLife" or "oldMoney" which are in objectPresets for safety above, actually imply a lifestyle, so maybe should have a person.
                     // The user said: "no images of girls, only one guy for all images". 
                     // Let's err on the side of adding the guy unless it's strictly a "Product Focus" or "Landscape".
