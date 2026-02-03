@@ -1,16 +1,16 @@
 <div align="center">
-  <img src="public/Logo.jpeg" alt="Banana Studio Logo" width="120" height="120" style="border-radius: 20%;" />
+  <img src="public/Logo.jpeg" alt="Banana Prompt Logo" width="120" height="120" style="border-radius: 20%;" />
   
-  # Banana Studio
+  # Banana Prompt
   ### Create Perfect Portraits with AI
 
-  **Banana Studio** is a high-end, professional prompt generation tool designed specifically for **Nano Banana Pro / Gemini**. It empowers creators to craft detailed, high-quality portrait prompts with a seamless, premium interface.
+  **Banana Prompt** is a high-end, professional prompt generation tool designed specifically for **Nano Banana Pro / Gemini**. It empowers creators to craft detailed, high-quality portrait prompts with a seamless, premium interface.
 
   [English](README.md) • [العربية](README.md) *(i18n ready)*
 
   ---
 
-  ![Banana Studio UI Screenshot](public/screenshot.png)
+  ![Banana Prompt UI Screenshot](public/screenshot.png)
 
 </div>
 
@@ -84,5 +84,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
-  Made with 🍌 by Banana Studio Team
+  Made with 🍌 by Banana Prompt Team
 </div>

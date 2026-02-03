@@ -1,6 +1,6 @@
-# 🗺️ Roadmap: Banana Studio
+# 🗺️ Roadmap: Banana Prompt
 
-This document outlines the development roadmap and future plans for **Banana Studio**, the premium AI portrait prompt generator.
+This document outlines the development roadmap and future plans for **Banana Prompt**, the premium AI portrait prompt generator.
 
 ## 📍 Phase 1: Foundation (Completed)
 - **Objective**: Create a high-quality, professional UI for generating prompts.

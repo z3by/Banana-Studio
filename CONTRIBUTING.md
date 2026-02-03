@@ -1,6 +1,6 @@
-# Contributing to Banana Studio 🍌
+# Contributing to Banana Prompt 🍌
 
-First off, thank you for considering contributing to Banana Studio! It's people like you that make Banana Studio such a great tool.
+First off, thank you for considering contributing to Banana Prompt! It's people like you that make Banana Prompt such a great tool.
 
 ## How Can I Contribute?
 
@@ -33,7 +33,7 @@ First off, thank you for considering contributing to Banana Studio! It's people 
 
 ## i18n Contributions
 
-Banana Studio supports multiple languages. If you are adding a new language:
+Banana Prompt supports multiple languages. If you are adding a new language:
 1. Create a new translation file in `src/i18n/`.
 2. Update the `LanguageContext.tsx` to include the new language.
 3. Ensure RTL support (if applicable).
