@@ -71,7 +71,7 @@ export const PresetSelector = ({
         });
 
     return (
-        <div className="glass-panel rounded-2xl overflow-hidden border border-white/[0.06] transition-all duration-500 relative">
+        <div className="glass-panel rounded-2xl overflow-hidden border border-white/[0.06] transition-all duration-500 relative noise-overlay">
             {/* Subtle Top Shine */}
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
 
@@ -139,10 +139,10 @@ export const PresetSelector = ({
                                             key={cat.id}
                                             onClick={() => setCategory(cat.id)}
                                             className={`
-                                                relative flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0 overflow-hidden
+                                                relative flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0 overflow-hidden btn-premium-hover
                                                 ${isActive
-                                                    ? 'text-amber-300 border border-amber-500/30'
-                                                    : 'text-zinc-500 hover:text-zinc-300 border border-transparent hover:border-white/5 hover:bg-white/[0.02]'}
+                                                    ? 'text-amber-300 border border-amber-500/30 shadow-[0_0_20px_-5px_rgba(255,184,0,0.25)]'
+                                                    : 'text-zinc-500 hover:text-zinc-300 border border-transparent hover:border-white/10 hover:bg-white/[0.04]'}
                                             `}
                                         >
                                             {/* Active Background */}
@@ -180,10 +180,13 @@ export const PresetSelector = ({
                                     <div
                                         key={preset.id}
                                         onClick={() => onSelect(preset)}
-                                        className="group relative flex flex-col rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.03] border border-white/[0.04] hover:border-amber-500/30 bg-gradient-to-b from-white/[0.02] to-transparent"
+                                        className={`group relative flex flex-col rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.03] border border-white/[0.04] hover:border-amber-500/30 bg-gradient-to-b from-white/[0.02] to-transparent card-3d animate-spring-in stagger-${(filteredPresets.indexOf(preset) % 8) + 1}`}
+                                        style={{ animationFillMode: 'backwards' }}
                                     >
                                         {/* Image Container */}
                                         <div className="relative aspect-[4/3] w-full overflow-hidden bg-zinc-950">
+                                            {/* Skeleton loader behind image */}
+                                            <div className="absolute inset-0 skeleton" />
                                             <Image
                                                 src={imageUrl}
                                                 alt={name}
@@ -222,7 +225,7 @@ export const PresetSelector = ({
                                         </div>
 
                                         {/* Hover Glow Border */}
-                                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border-2 border-amber-500/20" />
+                                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border-2 border-amber-500/25 shadow-[inset_0_0_30px_rgba(255,184,0,0.1)]" />
 
                                         {/* Bottom Glow */}
                                         <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-20 bg-amber-500/20 blur-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none" />

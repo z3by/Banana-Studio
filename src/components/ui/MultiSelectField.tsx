@@ -64,7 +64,7 @@ export const MultiSelectField = ({ label, value, onChange, options, icon, placeh
             className="z-[9999] overflow-hidden animate-in fade-in zoom-in-95 duration-150 dark-scrollbar"
             style={dropdownStyle}
         >
-            <div className="bg-gradient-to-b from-zinc-900 via-zinc-900/98 to-black/99 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl shadow-black/60 overflow-hidden max-h-[200px] overflow-auto">
+            <div className="bg-gradient-to-b from-zinc-900 via-zinc-900/98 to-black/99 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl shadow-black/60 overflow-hidden max-h-[200px] overflow-auto liquid-glass">
                 {/* Top shine */}
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
@@ -77,7 +77,7 @@ export const MultiSelectField = ({ label, value, onChange, options, icon, placeh
                                 key={k}
                                 type="button"
                                 onClick={() => { toggleValue(k); setInputValue(""); }}
-                                className={`relative w-full px-3.5 py-2.5 text-left text-sm flex items-center justify-between gap-2 transition-all duration-200 mx-1.5 rounded-lg overflow-hidden group/option
+                                className={`relative w-full px-3.5 py-2.5 text-left text-sm flex items-center justify-between gap-2 transition-all duration-200 mx-1.5 rounded-lg overflow-hidden group/option btn-premium-hover
                                     ${isSelected ? 'text-amber-300' : 'text-zinc-300 hover:text-white'}`}
                                 style={{ width: 'calc(100% - 12px)' }}
                             >
@@ -114,7 +114,7 @@ export const MultiSelectField = ({ label, value, onChange, options, icon, placeh
         <div className="space-y-2.5 group" ref={containerRef}>
             <div className="flex justify-between items-baseline px-1 mb-1.5">
                 <label className="text-xs font-semibold text-zinc-400 flex items-center gap-2 group-hover:text-zinc-300 transition-colors">
-                    <span className="text-amber-500/70 group-hover:text-amber-400 transition-colors">{icon}</span>
+                    <span className="text-amber-500/70 group-hover:text-amber-400 transition-colors icon-bounce">{icon}</span>
                     <span>{label}</span>
                     {tooltip && (
                         <div className="group/tooltip relative">
@@ -133,16 +133,16 @@ export const MultiSelectField = ({ label, value, onChange, options, icon, placeh
                 <div
                     ref={triggerRef}
                     onClick={() => { setIsOpen(true); inputRef.current?.focus(); }}
-                    className={`w-full rounded-xl px-4 py-3 min-h-[48px] flex flex-wrap gap-2 cursor-text text-sm transition-all duration-300 ${value.length > 0
-                        ? 'bg-gradient-to-b from-white/[0.04] to-white/[0.02] border border-amber-500/20 shadow-[0_0_20px_-8px_rgba(255,184,0,0.15)]'
-                        : 'bg-gradient-to-b from-white/[0.02] to-transparent border border-white/[0.06] hover:border-white/10 hover:bg-white/[0.03]'
-                        } ${isOpen ? 'ring-2 ring-amber-500/20 border-amber-500/30' : ''}`}
+                    className={`w-full rounded-xl px-4 py-3 min-h-[48px] flex flex-wrap gap-2 cursor-text text-sm transition-all duration-300 focus-within:ring-2 focus-within:ring-amber-500/25 ${value.length > 0
+                        ? 'bg-gradient-to-b from-white/[0.04] to-white/[0.02] border border-amber-500/25 shadow-[0_0_25px_-8px_rgba(255,184,0,0.2)]'
+                        : 'bg-gradient-to-b from-white/[0.02] to-transparent border border-white/[0.06] hover:border-white/12 hover:bg-white/[0.04]'
+                        } ${isOpen ? 'ring-2 ring-amber-500/25 border-amber-500/35' : ''}`}
                 >
                     {value.length > 0 && <div className="absolute inset-0 bg-gradient-to-r from-amber-500/[0.03] to-transparent pointer-events-none rounded-xl" />}
                     {value.map((val) => (
                         <span
                             key={val}
-                            className="group/pill relative inline-flex items-center gap-1.5 text-xs font-medium bg-gradient-to-r from-amber-500/20 via-amber-500/15 to-amber-600/10 text-amber-200 px-2.5 py-1 rounded-lg border border-amber-500/25 transition-all hover:border-amber-500/40 hover:shadow-[0_0_12px_-3px_rgba(255,184,0,0.3)] z-10"
+                            className="group/pill relative inline-flex items-center gap-1.5 text-xs font-medium bg-gradient-to-r from-amber-500/25 via-amber-500/20 to-amber-600/15 text-amber-200 px-2.5 py-1 rounded-lg border border-amber-500/30 transition-all hover:border-amber-500/50 hover:shadow-[0_0_15px_-3px_rgba(255,184,0,0.35)] z-10 shine-sweep"
                         >
                             <span className="truncate max-w-[100px]">{getLabel(val)}</span>
                             <button
