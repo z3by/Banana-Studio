@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageContext";
 import { Header } from "@/components/Header";
@@ -7,6 +7,13 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  userScalable: true,
+  themeColor: "#eab308",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bananastudio.app"),
