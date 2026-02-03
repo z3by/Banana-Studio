@@ -26,7 +26,7 @@ export const SelectField = ({ label, value, onChange, options, icon, placeholder
     const dropdownRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
-    const dropdownStyle = useDropdownPosition(isOpen, triggerRef);
+    const dropdownStyle = useDropdownPosition(isOpen, triggerRef, () => setIsOpen(false));
 
     useEffect(() => {
         const handleClick = (e: MouseEvent) => {
@@ -157,7 +157,7 @@ export const SelectField = ({ label, value, onChange, options, icon, placeholder
                             setIsOpen(!isOpen);
                             if (!isOpen && !isManual) {
                                 setInputValue("");
-                                setTimeout(() => inputRef.current?.focus(), 0);
+                                setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 0);
                             }
                         }}
                         className={`w-full rounded-xl px-4 py-3 flex justify-between items-center cursor-pointer text-sm transition-all duration-300 focus-ring-premium ${value

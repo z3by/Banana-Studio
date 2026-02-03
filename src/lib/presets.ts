@@ -11,6 +11,220 @@ export interface Preset {
     data: Partial<PromptData>;
 }
 
+// ═══════════════════════════════════════════════════════════════════════════════
+// SMART PRESET DEFAULTS SYSTEM
+// Automatically enriches presets with intelligent category-based defaults
+// ═══════════════════════════════════════════════════════════════════════════════
+
+interface CategoryDefaults {
+    camera?: string;
+    cameraType?: string;
+    lens?: string[];
+    composition?: string[];
+    lighting?: string[];
+    addons?: string[];
+    aspectRatio?: string;
+    colorGrading?: string;
+    mood?: string[];
+}
+
+/**
+ * Smart defaults based on preset category
+ * These are applied when a preset doesn't specify these values
+ */
+const CATEGORY_SMART_DEFAULTS: Record<string, CategoryDefaults> = {
+    portrait: {
+        camera: 'Medium Format',
+        cameraType: 'Professional DSLR',
+        lens: ['85mm Portrait Lens'],
+        composition: ['Rule of Thirds', 'Center Composition'],
+        lighting: ['Soft Natural Light'],
+        addons: ['Highly Detailed', 'Sharp Focus', 'Professional Photography'],
+        aspectRatio: '4:5 Portrait',
+        colorGrading: 'Natural',
+    },
+    lifestyle: {
+        camera: 'Mirrorless',
+        cameraType: 'Mirrorless Camera',
+        lens: ['35mm Wide Angle', '50mm Standard Lens'],
+        composition: ['Rule of Thirds', 'Environmental Portrait'],
+        lighting: ['Natural Window Light', 'Available Light'],
+        addons: ['Highly Detailed', 'Photorealistic', 'Natural Lighting'],
+        aspectRatio: '3:2 Standard',
+        colorGrading: 'Natural',
+    },
+    event: {
+        camera: 'Full Frame DSLR',
+        cameraType: 'Professional DSLR',
+        lens: ['50mm Standard Lens', '85mm Portrait Lens'],
+        composition: ['Rule of Thirds', 'Dynamic Angles'],
+        lighting: ['Soft Natural Light', 'Available Light'],
+        addons: ['Highly Detailed', 'Professional Photography', 'Sharp Focus'],
+        aspectRatio: '3:2 Standard',
+        colorGrading: 'Warm Tones',
+    },
+    outdoor: {
+        camera: 'Mirrorless',
+        cameraType: 'Mirrorless Camera',
+        lens: ['24mm Wide Angle', '35mm Wide Angle'],
+        composition: ['Rule of Thirds', 'Leading Lines'],
+        lighting: ['Natural Sunlight', 'Golden Hour Light'],
+        addons: ['Highly Detailed', 'Photorealistic', 'Sharp Focus'],
+        aspectRatio: '16:9 Widescreen',
+        colorGrading: 'Vibrant',
+    },
+    professional: {
+        camera: 'Medium Format',
+        cameraType: 'Professional DSLR',
+        lens: ['85mm Portrait Lens', '50mm Standard Lens'],
+        composition: ['Rule of Thirds', 'Center Composition'],
+        lighting: ['Studio Lighting', 'Softbox Lighting'],
+        addons: ['Highly Detailed', 'Masterpiece', 'Professional Photography', '8K Resolution'],
+        aspectRatio: '4:5 Portrait',
+        colorGrading: 'High Contrast',
+    },
+    artistic: {
+        camera: 'Cinema Camera',
+        cameraType: 'Cinema Camera',
+        lens: ['Anamorphic Lens', '50mm Standard Lens'],
+        composition: ['Dramatic Framing', 'Rule of Thirds'],
+        lighting: ['Cinematic Lighting', 'Dramatic Lighting'],
+        addons: ['Masterpiece', 'Highly Detailed', 'Cinematic'],
+        aspectRatio: '21:9 Cinematic',
+        colorGrading: 'Cinematic Color Grade',
+    },
+    fantasy: {
+        camera: 'Full Frame DSLR',
+        cameraType: 'Professional DSLR',
+        lens: ['50mm Standard Lens'],
+        composition: ['Dramatic Framing', 'Dynamic Angles'],
+        lighting: ['Dramatic Lighting', 'Volumetric Lighting'],
+        addons: ['Masterpiece', 'Highly Detailed', 'Sharp Focus', 'Photorealistic'],
+        aspectRatio: '16:9 Widescreen',
+        colorGrading: 'Cinematic Color Grade',
+    },
+    tools: {
+        camera: 'Full Frame DSLR',
+        cameraType: 'Professional DSLR',
+        lens: ['50mm Standard Lens'],
+        composition: ['Rule of Thirds'],
+        lighting: ['Studio Lighting'],
+        addons: ['Highly Detailed', 'Professional Photography'],
+        aspectRatio: '1:1 Square',
+        colorGrading: 'Natural',
+    },
+};
+
+/**
+ * Time of day based lighting suggestions
+ */
+const TIME_LIGHTING_MAP: Record<string, string[]> = {
+    'Golden Hour': ['Golden Hour Light', 'Natural Sunlight', 'Backlight'],
+    'Blue Hour': ['Blue Hour Light', 'Ambient Light'],
+    'Sunset': ['Sunset Light', 'Golden Hour Light', 'Warm Light'],
+    'Sunrise': ['Sunrise Light', 'Soft Natural Light'],
+    'Night': ['City Lights', 'Neon Lights', 'Low Key Lighting'],
+    'Afternoon': ['Natural Sunlight', 'Side Lighting'],
+    'Morning': ['Soft Natural Light', 'Diffused Lighting'],
+    'Midday': ['Natural Sunlight', 'Hard Light'],
+    'Overcast': ['Soft Natural Light', 'Diffused Lighting'],
+};
+
+/**
+ * Background based composition suggestions
+ */
+const BACKGROUND_COMPOSITION_MAP: Record<string, string[]> = {
+    'Urban City': ['Leading Lines', 'Rule of Thirds', 'Environmental Portrait'],
+    'Beach': ['Rule of Thirds', 'Minimalist', 'Leading Lines'],
+    'Mountain Landscape': ['Rule of Thirds', 'Leading Lines', 'Wide Shot'],
+    'Studio': ['Center Composition', 'Minimalist'],
+    'Garden': ['Rule of Thirds', 'Natural Framing'],
+    'Coffee Shop': ['Environmental Portrait', 'Rule of Thirds'],
+    'Modern Office': ['Leading Lines', 'Environmental Portrait'],
+};
+
+/**
+ * Enriches a preset with smart defaults based on its category and existing data
+ * This is applied when the preset is selected to fill in missing but contextually appropriate values
+ */
+export function enrichPresetWithDefaults(preset: Preset): Partial<PromptData> {
+    const categoryDefaults = CATEGORY_SMART_DEFAULTS[preset.category] || {};
+    const enrichedData: Partial<PromptData> = { ...preset.data };
+
+    // Apply category defaults for missing fields
+    if (!enrichedData.camera && categoryDefaults.camera) {
+        enrichedData.camera = categoryDefaults.camera;
+    }
+    if (!enrichedData.cameraType && categoryDefaults.cameraType) {
+        enrichedData.cameraType = categoryDefaults.cameraType;
+    }
+    if ((!enrichedData.lens || enrichedData.lens.length === 0) && categoryDefaults.lens) {
+        enrichedData.lens = categoryDefaults.lens;
+    }
+    if ((!enrichedData.composition || enrichedData.composition.length === 0) && categoryDefaults.composition) {
+        enrichedData.composition = categoryDefaults.composition;
+    }
+    if (!enrichedData.aspectRatio && categoryDefaults.aspectRatio) {
+        enrichedData.aspectRatio = categoryDefaults.aspectRatio;
+    }
+    if (!enrichedData.colorGrading && categoryDefaults.colorGrading) {
+        enrichedData.colorGrading = categoryDefaults.colorGrading;
+    }
+
+    // Smart lighting based on time of day
+    if (enrichedData.timeOfDay && (!enrichedData.lighting || enrichedData.lighting.length === 0)) {
+        const timeLighting = TIME_LIGHTING_MAP[enrichedData.timeOfDay];
+        if (timeLighting) {
+            enrichedData.lighting = timeLighting.slice(0, 2);
+        }
+    }
+
+    // Smart composition based on background
+    if (enrichedData.background && (!enrichedData.composition || enrichedData.composition.length === 0)) {
+        // Find matching background key
+        for (const [bgKey, compositions] of Object.entries(BACKGROUND_COMPOSITION_MAP)) {
+            if (enrichedData.background.toLowerCase().includes(bgKey.toLowerCase())) {
+                enrichedData.composition = compositions.slice(0, 2);
+                break;
+            }
+        }
+    }
+
+    // Fallback to category lighting if still missing
+    if ((!enrichedData.lighting || enrichedData.lighting.length === 0) && categoryDefaults.lighting) {
+        enrichedData.lighting = categoryDefaults.lighting;
+    }
+
+    // Smart addons - merge with category defaults, avoiding duplicates
+    if (categoryDefaults.addons) {
+        const existingAddons = enrichedData.addons || [];
+        const mergedAddons = [...new Set([...existingAddons, ...categoryDefaults.addons])];
+        enrichedData.addons = mergedAddons;
+    }
+
+    // Smart mood enhancement based on existing elements
+    if (enrichedData.mood && enrichedData.mood.length > 0) {
+        // If dramatic mood, ensure appropriate lighting
+        if (enrichedData.mood.some(m => m.toLowerCase().includes('dramatic'))) {
+            if (!enrichedData.lighting?.some(l => l.toLowerCase().includes('dramatic'))) {
+                enrichedData.lighting = [...(enrichedData.lighting || []), 'Dramatic Lighting'];
+            }
+        }
+        // If romantic mood, add soft effects
+        if (enrichedData.mood.some(m => m.toLowerCase().includes('romantic') || m.toLowerCase().includes('dreamy'))) {
+            if (!enrichedData.specialEffects || enrichedData.specialEffects.length === 0) {
+                enrichedData.specialEffects = ['Soft Glow', 'Bokeh'];
+            }
+        }
+    }
+
+    return enrichedData;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PRESETS ARRAY
+// ═══════════════════════════════════════════════════════════════════════════════
+
 export const presets: Preset[] = [
     // ============ COMMON PRESETS (70 total) ============
 

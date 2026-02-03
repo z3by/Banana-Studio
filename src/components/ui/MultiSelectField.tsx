@@ -23,7 +23,7 @@ export const MultiSelectField = ({ label, value, onChange, options, icon, placeh
     const dropdownRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
-    const dropdownStyle = useDropdownPosition(isOpen, triggerRef);
+    const dropdownStyle = useDropdownPosition(isOpen, triggerRef, () => setIsOpen(false));
 
     useEffect(() => {
         const handleClick = (e: MouseEvent) => {
@@ -132,7 +132,7 @@ export const MultiSelectField = ({ label, value, onChange, options, icon, placeh
             <div className="relative">
                 <div
                     ref={triggerRef}
-                    onClick={() => { setIsOpen(true); inputRef.current?.focus(); }}
+                    onClick={() => { setIsOpen(true); inputRef.current?.focus({ preventScroll: true }); }}
                     className={`w-full rounded-xl px-4 py-3 min-h-[48px] flex flex-wrap gap-2 cursor-text text-sm transition-all duration-300 focus-within:ring-2 focus-within:ring-amber-500/25 ${value.length > 0
                         ? 'bg-gradient-to-b from-white/[0.04] to-white/[0.02] border border-amber-500/25 shadow-[0_0_25px_-8px_rgba(255,184,0,0.2)]'
                         : 'bg-gradient-to-b from-white/[0.02] to-transparent border border-white/[0.06] hover:border-white/12 hover:bg-white/[0.04]'

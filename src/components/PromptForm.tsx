@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useLanguage } from './LanguageContext';
 import { generatePrompt, PromptData } from '@/lib/prompt-builder';
-import { Preset } from '@/lib/presets';
+import { Preset, enrichPresetWithDefaults } from '@/lib/presets';
 import {
     RefreshCw,
     Wand2,
@@ -449,8 +449,12 @@ export function PromptForm() {
     const applyPreset = (preset: Preset) => {
         // Start from a clean slate
         const updated = { ...initialData } as Record<string, unknown>;
-        // Apply preset data on top of initial data
-        Object.entries(preset.data).forEach(([key, value]) => {
+
+        // Get enriched preset data with smart defaults
+        const enrichedPresetData = enrichPresetWithDefaults(preset);
+
+        // Apply enriched preset data on top of initial data
+        Object.entries(enrichedPresetData).forEach(([key, value]) => {
             if (value !== undefined && value !== '' && (Array.isArray(value) ? value.length > 0 : true)) {
                 updated[key] = value;
             }
