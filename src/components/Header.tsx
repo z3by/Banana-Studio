@@ -11,21 +11,21 @@ export function Header() {
     };
 
     return (
-        <header className="sticky top-0 z-50 w-full glass-panel border-b-0 rounded-none border-b border-white/5">
+        <header className="sticky top-0 z-50 w-full glass-panel border-b border-white/5 rounded-none shadow-none backdrop-blur-xl bg-black/40">
             <div className="flex items-center justify-between py-4 px-4 md:px-6 max-w-7xl mx-auto">
-                <div className="flex items-center gap-3 group cursor-pointer">
-                    <div className="relative">
-                        <div className="absolute inset-0 bg-amber-500 blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-black font-bold text-xl shadow-lg shadow-amber-500/20 relative z-10 group-hover:scale-105 transition-transform duration-300">
+                <div className="flex items-center gap-4 group cursor-pointer select-none">
+                    <div className="relative group-hover:scale-105 transition-transform duration-500">
+                        <div className="absolute inset-0 bg-amber-500/30 blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-500 animate-pulse-glow"></div>
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700 flex items-center justify-center text-black font-black text-xl shadow-lg shadow-amber-500/20 relative z-10 border border-amber-200/20">
                             B
                         </div>
                     </div>
                     <div className="flex flex-col">
-                        <h1 className="text-lg font-bold tracking-tight text-white/95 group-hover:text-amber-400 transition-colors">
+                        <h1 className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-zinc-400 group-hover:text-gradient-gold transition-all duration-300">
                             Banana Prompt
                         </h1>
-                        <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-semibold group-hover:text-zinc-400 transition-colors">
-                            Professional Prompt Engineer
+                        <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold group-hover:text-amber-500/80 transition-colors duration-300">
+                            Professional AI Studio
                         </span>
                     </div>
                 </div>
@@ -33,12 +33,11 @@ export function Header() {
                 <div className="flex items-center gap-4">
                     <button
                         onClick={toggleLanguage}
-                        className="px-4 py-2 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all active:scale-95"
+                        className="glass-card px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:border-amber-500/30 transition-all active:scale-95 flex items-center gap-2"
                     >
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                         {language === 'en' ? 'العربية' : 'English'}
                     </button>
-
-
                 </div>
             </div>
         </header>

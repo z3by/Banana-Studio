@@ -900,42 +900,49 @@ export function PromptForm() {
                 </div>
 
                 {/* Wizard Footer (Navigation) */}
-                <div className="p-6 md:p-8 border-t border-white/5 bg-black/40 backdrop-blur-md flex flex-wrap gap-4 justify-between items-center">
+                <div className="p-6 md:p-8 border-t border-white/5 bg-black/40 backdrop-blur-md flex flex-col md:flex-row gap-4 justify-between items-center">
                     <button
                         onClick={() => setCurrentStep(prev => Math.max(1, prev - 1))}
                         disabled={currentStep === 1}
-                        className="px-6 py-3 rounded-xl text-zinc-400 hover:text-white hover:bg-white/5 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-zinc-400 transition-all font-medium flex items-center gap-2"
+                        className="w-full md:w-auto px-6 py-3.5 rounded-xl text-zinc-400 hover:text-white hover:bg-white/5 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-zinc-400 transition-all font-medium flex items-center justify-center gap-2 group"
                     >
-                        {isRTL ? <ChevronRight size={18} /> : <ChevronLeft size={18} />} {t.form.navigation.back}
+                        <span className="group-hover:-translate-x-1 transition-transform">{isRTL ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}</span>
+                        <span>{t.form.navigation.back}</span>
                     </button>
 
-                    <div className="flex gap-3">
-                        {/* Always show Generate Button */}
-                        <button
-                            onClick={handleGenerate}
-                            disabled={isGenerating}
-                            className="btn-primary px-8 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-600 hover:from-amber-300 hover:to-orange-500 text-black font-bold transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:from-amber-400 disabled:hover:to-orange-600 disabled:hover:shadow-lg disabled:hover:shadow-amber-500/20 disabled:transform-none"
-                        >
-                            {isGenerating ? (
-                                <>
-                                    <div className="spinner w-5 h-5 border-2 border-black/30 border-t-black rounded-full" />
-                                    <span>Generating...</span>
-                                </>
-                            ) : (
-                                <>
-                                    <Wand2 size={18} /> {t.form.navigation.finish}
-                                </>
-                            )}
-                        </button>
-
+                    <div className="flex flex-col-reverse md:flex-row gap-3 w-full md:w-auto">
+                        {/* Next Button (Secondary) */}
                         {currentStep < 5 && (
                             <button
                                 onClick={() => setCurrentStep(prev => Math.min(5, prev + 1))}
-                                className="px-6 py-3 rounded-xl bg-white text-black hover:bg-zinc-200 font-bold transition-all flex items-center gap-2 hover:shadow-lg"
+                                className="w-full md:w-auto px-8 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold transition-all flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-white/5 border border-white/5 backdrop-blur-lg group"
                             >
-                                {t.form.navigation.next} {isRTL ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
+                                <span>{t.form.navigation.next}</span>
+                                <span className="group-hover:translate-x-1 transition-transform">{isRTL ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}</span>
                             </button>
                         )}
+
+                        {/* Generate Button (Primary) */}
+                        <button
+                            onClick={handleGenerate}
+                            disabled={isGenerating}
+                            className="relative w-full md:w-auto group overflow-hidden px-10 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 hover:from-amber-300 hover:via-orange-400 hover:to-amber-500 text-black font-black transition-all flex items-center justify-center gap-2 shadow-[0_0_40px_-10px_rgba(245,158,11,0.5)] hover:shadow-[0_0_60px_-15px_rgba(245,158,11,0.7)] disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5 active:translate-y-0"
+                        >
+                            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 skew-y-12"></div>
+                            <span className="relative flex items-center gap-2">
+                                {isGenerating ? (
+                                    <>
+                                        <div className="spinner w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                                        <span>Generating...</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Wand2 size={20} strokeWidth={2.5} />
+                                        {currentStep === 5 ? 'GENERATE PROMPT' : t.form.navigation.finish}
+                                    </>
+                                )}
+                            </span>
+                        </button>
                     </div>
                 </div>
 
