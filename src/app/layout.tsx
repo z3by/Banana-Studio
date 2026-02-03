@@ -105,6 +105,21 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
 
+        {/* Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-BCG0V6DB6L"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-BCG0V6DB6L');
+          `}
+        </Script>
+
         {/* Subtle Background Gradient - Refined for minimalism */}
         <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
           {/* Main Top Glow */}
