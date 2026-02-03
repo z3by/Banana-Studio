@@ -2563,6 +2563,10 @@ export const presets: Preset[] = [
         id: 'botanicalGreenhouse',
         category: 'common',
         icon: '🌿',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/botanicalGreenhouse.png',
+        },
         data: {
             background: 'Greenhouse',
             timeOfDay: 'Afternoon',
@@ -2814,6 +2818,10 @@ export const presets: Preset[] = [
         id: 'apocalypticSurvivor',
         category: 'creative',
         icon: '☢️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/apocalypticSurvivor.png',
+        },
         data: {
             background: 'Post-Apocalyptic Wasteland',
             era: 'Post-Apocalypse',
@@ -2916,6 +2924,10 @@ export const presets: Preset[] = [
         id: 'alienWorldExplorer',
         category: 'creative',
         icon: '👽',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/alienWorldExplorer.png',
+        },
         data: {
             background: 'Alien Planet',
             lighting: ['Alien Sky Light', 'Strange Colors', 'Atmospheric Glow'],
@@ -2994,6 +3006,10 @@ export const presets: Preset[] = [
         id: 'wildWestOutlaw',
         category: 'creative',
         icon: '🤠',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/wildWestOutlaw.png',
+        },
         data: {
             background: 'Old West Town',
             era: 'Wild West',
@@ -3017,6 +3033,10 @@ export const presets: Preset[] = [
         id: 'auroraIce',
         category: 'creative',
         icon: '🌌',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/auroraIce.png',
+        },
         data: {
             background: 'Arctic Landscape',
             timeOfDay: 'Night',
@@ -3086,6 +3106,10 @@ export const presets: Preset[] = [
         id: 'portraitEnhance',
         category: 'utility',
         icon: '📷',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/portraitEnhance.png',
+        },
         data: {
             lens: ['85mm Portrait Lens', '50mm Standard Lens'],
             lighting: ['Softbox Lighting', 'Portrait Lighting'],
@@ -3148,6 +3172,10 @@ export const presets: Preset[] = [
         id: 'highFashion',
         category: 'utility',
         icon: '💃',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/highFashion.png',
+        },
         data: {
             lighting: ['Fashion Lighting', 'High Key Lighting'],
             composition: ['Dynamic Angles', 'Fashion Composition'],
@@ -3161,6 +3189,10 @@ export const presets: Preset[] = [
         id: 'vintageFilmLook',
         category: 'utility',
         icon: '📽️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/vintageFilmLook.png',
+        },
         data: {
             filmStock: ['Kodak Portra 400', 'Fuji Pro 400H'],
             colorGrading: 'Vintage Film',
@@ -3190,6 +3222,10 @@ export const presets: Preset[] = [
         id: 'naturalLight',
         category: 'utility',
         icon: '☀️',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/naturalLight.png',
+        },
         data: {
             lighting: ['Natural Window Light', 'Soft Natural Light', 'Available Light'],
             colorGrading: 'Natural',
@@ -3218,6 +3254,10 @@ export const presets: Preset[] = [
         id: 'beautyGlow',
         category: 'utility',
         icon: '✨',
+        images: {
+            before: '/placeholder-preset.png',
+            after: '/presets/beautyGlow.png',
+        },
         data: {
             lighting: ['Beauty Dish', 'Glamour Lighting', 'Soft Glow'],
             makeup: ['Dewy/Glass Skin', 'Glamorous/Full Glam'],

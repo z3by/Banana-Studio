@@ -189,7 +189,17 @@ const updates = {
     'steampunkWorkshop': 'steampunkWorkshop.png',
     'studioClean': 'studioClean.png',
     'timetravelerSteampunk': 'timetravelerSteampunk.png',
-    'urbanMoody': 'urbanMoody.png'
+    'urbanMoody': 'urbanMoody.png',
+    'vintageFilmLook': 'vintageFilmLook.png',
+    'wildWestOutlaw': 'wildWestOutlaw.png',
+    'apocalypticSurvivor': 'apocalypticSurvivor.png',
+    'alienWorldExplorer': 'alienWorldExplorer.png',
+    'auroraIce': 'auroraIce.png',
+    'beautyGlow': 'beautyGlow.png',
+    'botanicalGreenhouse': 'botanicalGreenhouse.png',
+    'highFashion': 'highFashion.png',
+    'naturalLight': 'naturalLight.png',
+    'portraitEnhance': 'portraitEnhance.png'
 };
 
 const newLines = [];

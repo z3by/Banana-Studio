@@ -68,6 +68,7 @@ import { MultiSelectField } from './ui/MultiSelectField';
 import { SelectField } from './ui/SelectField';
 import { PresetSelector } from './PresetSelector';
 import { SliderField } from './ui/SliderField';
+import { WizardGuide } from './WizardGuide';
 
 // --- Icons ---
 const IconCopy = (props: React.SVGProps<SVGSVGElement>) => (
@@ -148,6 +149,7 @@ export function PromptForm() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [currentStep, setCurrentStep] = useState(1);
     const [showToast, setShowToast] = useState<string | null>(null);
+    const [isGuideOpen, setIsGuideOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
     const resultRef = useRef<HTMLDivElement>(null);
 
@@ -656,57 +658,57 @@ export function PromptForm() {
                         <SelectField label={t.form.eyeColor} value={data.eyeColor} onChange={(v) => handleChange('eyeColor', v)} options={getOptions('options', 'eyeColor')} icon={<Eye size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.hairStyle} value={data.hairStyle} onChange={(v) => handleChange('hairStyle', v)} options={getOptions('options', 'hairStyle')} icon={<Scissors size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <MultiSelectField label={t.form.hairStyle} value={data.hairStyle} onChange={(v) => handleChange('hairStyle', v)} options={getOptions('options', 'hairStyle')} icon={<Scissors size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.hairStyle} />
                         <SelectField label={t.form.hairColor} value={data.hairColor} onChange={(v) => handleChange('hairColor', v)} options={getOptions('options', 'hairColor')} icon={<Palette size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
-                        <MultiSelectField label={t.form.makeup} value={data.makeup} onChange={(v) => handleChange('makeup', v)} options={getOptions('options', 'makeup')} icon={<Smile size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
-                        <MultiSelectField label={t.form.pose} value={data.pose} onChange={(v) => handleChange('pose', v)} options={getOptions('options', 'pose')} icon={<User size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <MultiSelectField label={t.form.makeup} value={data.makeup} onChange={(v) => handleChange('makeup', v)} options={getOptions('options', 'makeup')} icon={<Smile size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.makeup} />
+                        <MultiSelectField label={t.form.pose} value={data.pose} onChange={(v) => handleChange('pose', v)} options={getOptions('options', 'pose')} icon={<User size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.pose} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <MultiSelectField label={t.form.clothing} value={data.clothing} onChange={(v) => handleChange('clothing', v)} options={getOptions('options', 'clothing')} icon={<Shirt size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
-                        <MultiSelectField label={t.form.accessories} value={data.accessories} onChange={(v) => handleChange('accessories', v)} options={getOptions('options', 'accessories')} icon={<Glasses size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
-                        <MultiSelectField label={t.form.action} value={data.action} onChange={(v) => handleChange('action', v)} options={getOptions('options', 'action')} icon={<Meh size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <MultiSelectField label={t.form.clothing} value={data.clothing} onChange={(v) => handleChange('clothing', v)} options={getOptions('options', 'clothing')} icon={<Shirt size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.clothing} />
+                        <MultiSelectField label={t.form.accessories} value={data.accessories} onChange={(v) => handleChange('accessories', v)} options={getOptions('options', 'accessories')} icon={<Glasses size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.accessories} />
+                        <MultiSelectField label={t.form.action} value={data.action} onChange={(v) => handleChange('action', v)} options={getOptions('options', 'action')} icon={<Meh size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.action} />
                     </div>
                 </div>
             );
             case 2: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <SelectField label={t.form.background} value={data.background} onChange={(v) => handleChange('background', v)} options={getOptions('options', 'background')} icon={<ImageIcon size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
-                        <SelectField label={t.form.era} value={data.era} onChange={(v) => handleChange('era', v)} options={getOptions('options', 'era')} icon={<Hourglass size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
-                        <MultiSelectField label={t.form.weather} value={data.weather} onChange={(v) => handleChange('weather', v)} options={getOptions('options', 'weather')} icon={<CloudSun size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
-                        <SelectField label={t.form.timeOfDay} value={data.timeOfDay} onChange={(v) => handleChange('timeOfDay', v)} options={getOptions('options', 'timeOfDay')} icon={<Clock size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
+                        <SelectField label={t.form.background} value={data.background} onChange={(v) => handleChange('background', v)} options={getOptions('options', 'background')} icon={<ImageIcon size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} description={t.form.fieldDescriptions.background} />
+                        <SelectField label={t.form.era} value={data.era} onChange={(v) => handleChange('era', v)} options={getOptions('options', 'era')} icon={<Hourglass size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} description={t.form.fieldDescriptions.era} />
+                        <MultiSelectField label={t.form.weather} value={data.weather} onChange={(v) => handleChange('weather', v)} options={getOptions('options', 'weather')} icon={<CloudSun size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.weather} />
+                        <SelectField label={t.form.timeOfDay} value={data.timeOfDay} onChange={(v) => handleChange('timeOfDay', v)} options={getOptions('options', 'timeOfDay')} icon={<Clock size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} description={t.form.fieldDescriptions.timeOfDay} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.lighting} value={data.lighting} onChange={(v) => handleChange('lighting', v)} options={getFlatOptions('lighting')} icon={<Lightbulb size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <MultiSelectField label={t.form.lighting} value={data.lighting} onChange={(v) => handleChange('lighting', v)} options={getFlatOptions('lighting')} icon={<Lightbulb size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.lighting} />
                         <SelectField label={t.form.lightColor} value={data.lightColor} onChange={(v) => handleChange('lightColor', v)} options={getOptions('options', 'lightColor')} icon={<Palette size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
-                        <MultiSelectField label={t.form.mood} value={data.mood} onChange={(v) => handleChange('mood', v)} options={getOptions('options', 'mood')} icon={<Focus size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <MultiSelectField label={t.form.mood} value={data.mood} onChange={(v) => handleChange('mood', v)} options={getOptions('options', 'mood')} icon={<Focus size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.mood} />
                     </div>
                 </div>
             );
             case 3: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <SelectField label={t.form.cameraType} value={data.cameraType} onChange={(v) => handleChange('cameraType', v)} options={getOptions('options', 'cameraType')} icon={<CameraIcon size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
-                        <SelectField label={t.form.camera} value={data.camera} onChange={(v) => handleChange('camera', v)} options={getOptions('options', 'camera')} icon={<Aperture size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
-                        <MultiSelectField label={t.form.lens} value={data.lens} onChange={(v) => handleChange('lens', v)} options={getOptions('options', 'lens')} icon={<Eye size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
-                        <MultiSelectField label={t.form.filmStock} value={data.filmStock} onChange={(v) => handleChange('filmStock', v)} options={getOptions('options', 'filmStock')} icon={<Film size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <SelectField label={t.form.cameraType} value={data.cameraType} onChange={(v) => handleChange('cameraType', v)} options={getOptions('options', 'cameraType')} icon={<CameraIcon size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} description={t.form.fieldDescriptions.cameraType} />
+                        <SelectField label={t.form.camera} value={data.camera} onChange={(v) => handleChange('camera', v)} options={getOptions('options', 'camera')} icon={<Aperture size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} description={t.form.fieldDescriptions.camera} />
+                        <MultiSelectField label={t.form.lens} value={data.lens} onChange={(v) => handleChange('lens', v)} options={getOptions('options', 'lens')} icon={<Eye size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.lens} />
+                        <MultiSelectField label={t.form.filmStock} value={data.filmStock} onChange={(v) => handleChange('filmStock', v)} options={getOptions('options', 'filmStock')} icon={<Film size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.filmStock} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.composition} value={data.composition} onChange={(v) => handleChange('composition', v)} options={getOptions('options', 'composition')} icon={<Layout size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
-                        <SelectField label={t.form.aspectRatio} value={data.aspectRatio} onChange={(v) => handleChange('aspectRatio', v)} options={getOptions('options', 'aspectRatio')} icon={<Maximize size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
+                        <MultiSelectField label={t.form.composition} value={data.composition} onChange={(v) => handleChange('composition', v)} options={getOptions('options', 'composition')} icon={<Layout size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.composition} />
+                        <SelectField label={t.form.aspectRatio} value={data.aspectRatio} onChange={(v) => handleChange('aspectRatio', v)} options={getOptions('options', 'aspectRatio')} icon={<Maximize size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} description={t.form.fieldDescriptions.aspectRatio} />
                     </div>
                 </div>
             );
             case 4: return (
                 <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.style} value={data.style} onChange={(v) => handleChange('style', v)} options={getFlatOptions('styles')} icon={<Palette size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
-                        <MultiSelectField label={t.form.photographerStyle} value={data.photographerStyle} onChange={(v) => handleChange('photographerStyle', v)} options={getOptions('options', 'photographerStyle')} icon={<User size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
-                        <SelectField label={t.form.colorGrading} value={data.colorGrading} onChange={(v) => handleChange('colorGrading', v)} options={getOptions('options', 'colorGrading')} icon={<MonitorPlay size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} />
-                        <MultiSelectField label={t.form.specialEffects} value={data.specialEffects} onChange={(v) => handleChange('specialEffects', v)} options={getOptions('options', 'specialEffects')} icon={<Sparkles size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <MultiSelectField label={t.form.style} value={data.style} onChange={(v) => handleChange('style', v)} options={getFlatOptions('styles')} icon={<Palette size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.style} />
+                        <MultiSelectField label={t.form.photographerStyle} value={data.photographerStyle} onChange={(v) => handleChange('photographerStyle', v)} options={getOptions('options', 'photographerStyle')} icon={<User size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.photographerStyle} />
+                        <SelectField label={t.form.colorGrading} value={data.colorGrading} onChange={(v) => handleChange('colorGrading', v)} options={getOptions('options', 'colorGrading')} icon={<MonitorPlay size={14} />} placeholder={t.ui.select} searchPlaceholder={t.ui.search} manualPlaceholder={t.ui.typeAnything} useLabel={t.ui.use} description={t.form.fieldDescriptions.colorGrading} />
+                        <MultiSelectField label={t.form.specialEffects} value={data.specialEffects} onChange={(v) => handleChange('specialEffects', v)} options={getOptions('options', 'specialEffects')} icon={<Sparkles size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.specialEffects} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <MultiSelectField label={t.form.texture} value={data.texture} onChange={(v) => handleChange('texture', v)} options={getOptions('options', 'texture')} icon={<Gauge size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} />
+                        <MultiSelectField label={t.form.texture} value={data.texture} onChange={(v) => handleChange('texture', v)} options={getOptions('options', 'texture')} icon={<Gauge size={14} />} placeholder={t.ui.select} addLabel={t.ui.add} description={t.form.fieldDescriptions.texture} />
                     </div>
                 </div>
             );
@@ -719,9 +721,9 @@ export function PromptForm() {
                             <Sliders size={14} className="text-amber-500" /> {t.form.advancedParams}
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                            <SliderField label={t.form.stylize} value={data.stylize} onChange={(v: number) => handleChange('stylize', v)} min={0} max={1000} icon={<Palette size={14} />} tooltip={t.form.guidance.stylize} />
-                            <SliderField label={t.form.chaos} value={data.chaos} onChange={(v: number) => handleChange('chaos', v)} min={0} max={100} icon={<Sparkles size={14} />} tooltip={t.form.guidance.chaos} />
-                            <SliderField label={t.form.weirdness} value={data.weirdness} onChange={(v: number) => handleChange('weirdness', v)} min={0} max={3000} icon={<Gauge size={14} />} tooltip={t.form.guidance.weirdness} />
+                            <SliderField label={t.form.stylize} value={data.stylize} onChange={(v: number) => handleChange('stylize', v)} min={0} max={1000} icon={<Palette size={14} />} tooltip={t.form.tooltips.styling} />
+                            <SliderField label={t.form.chaos} value={data.chaos} onChange={(v: number) => handleChange('chaos', v)} min={0} max={100} icon={<Sparkles size={14} />} tooltip={t.form.tooltips.chaos} />
+                            <SliderField label={t.form.weirdness} value={data.weirdness} onChange={(v: number) => handleChange('weirdness', v)} min={0} max={3000} icon={<Gauge size={14} />} tooltip={t.form.tooltips.weirdness} />
                         </div>
                     </div>
 
@@ -853,6 +855,14 @@ export function PromptForm() {
                             )
                         }
                     </div >
+
+                    <button
+                        onClick={() => setIsGuideOpen(true)}
+                        className="flex items-center gap-2 text-zinc-400 hover:text-amber-400 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-amber-500/30 transition-all text-sm font-medium"
+                        title={t.guidance.guideTitle}
+                    >
+                        <Info size={16} /> <span className="hidden sm:inline">{t.ui.help}</span>
+                    </button>
 
                     <button
                         onClick={handleRandomize}
@@ -1029,6 +1039,8 @@ export function PromptForm() {
                 <Wand2 size={24} strokeWidth={2.5} />
             </button>
 
+            {/* Wizard Guide */}
+            <WizardGuide isOpen={isGuideOpen} onClose={() => setIsGuideOpen(false)} />
         </div >
     );
 }

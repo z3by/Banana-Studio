@@ -11,9 +11,12 @@ interface MultiSelectFieldProps {
     icon: React.ReactNode;
     placeholder?: string;
     addLabel?: string;
+
+    description?: string;
+    tooltip?: string;
 }
 
-export const MultiSelectField = ({ label, value, onChange, options, icon, placeholder = "Select...", addLabel = "Add" }: MultiSelectFieldProps) => {
+export const MultiSelectField = ({ label, value, onChange, options, icon, placeholder = "Select...", addLabel = "Add", description, tooltip }: MultiSelectFieldProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState("");
     const containerRef = useRef<HTMLDivElement>(null);
@@ -82,9 +85,22 @@ export const MultiSelectField = ({ label, value, onChange, options, icon, placeh
 
     return (
         <div className="space-y-1.5" ref={containerRef}>
-            <label className="text-xs font-medium text-zinc-500 flex items-center gap-1.5 px-1 uppercase tracking-wide">
-                {icon} {label}
-            </label>
+            <div className="flex justify-between items-baseline px-1 mb-1.5">
+                <label className="text-xs font-medium text-zinc-500 flex items-center gap-1.5 uppercase tracking-wide">
+                    {icon} {label}
+                    {tooltip && (
+                        <div className="group/tooltip relative">
+                            <div className="cursor-help text-zinc-600 hover:text-zinc-400 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" /></svg>
+                            </div>
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black/90 text-zinc-200 text-[10px] rounded border border-white/10 whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 pointer-events-none transition-opacity z-50">
+                                {tooltip}
+                            </div>
+                        </div>
+                    )}
+                </label>
+                {description && <span className="text-[10px] text-zinc-600">{description}</span>}
+            </div>
             <div className="relative">
                 <div
                     ref={triggerRef}
@@ -110,6 +126,6 @@ export const MultiSelectField = ({ label, value, onChange, options, icon, placeh
                 </div>
                 {dropdownContent}
             </div>
-        </div>
+        </div >
     );
 };

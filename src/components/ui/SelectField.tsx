@@ -13,9 +13,12 @@ interface SelectFieldProps {
     searchPlaceholder?: string;
     manualPlaceholder?: string;
     useLabel?: string;
+
+    description?: string;
+    tooltip?: string;
 }
 
-export const SelectField = ({ label, value, onChange, options, icon, placeholder = "Select...", searchPlaceholder = "Search...", manualPlaceholder = "Type anything...", useLabel = "Use" }: SelectFieldProps) => {
+export const SelectField = ({ label, value, onChange, options, icon, placeholder = "Select...", searchPlaceholder = "Search...", manualPlaceholder = "Type anything...", useLabel = "Use", description, tooltip }: SelectFieldProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState("");
     const [isManual, setIsManual] = useState(false);
@@ -88,7 +91,18 @@ export const SelectField = ({ label, value, onChange, options, icon, placeholder
             <div className="flex justify-between items-center px-1">
                 <label className="text-xs font-medium text-zinc-500 flex items-center gap-1.5 uppercase tracking-wide">
                     {icon} {label}
+                    {tooltip && (
+                        <div className="group/tooltip relative">
+                            <div className="cursor-help text-zinc-600 hover:text-zinc-400 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" /></svg>
+                            </div>
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black/90 text-zinc-200 text-[10px] rounded border border-white/10 whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 pointer-events-none transition-opacity z-50">
+                                {tooltip}
+                            </div>
+                        </div>
+                    )}
                 </label>
+                {description && <span className="text-[10px] text-zinc-500">{description}</span>}
                 <button
                     onClick={() => { setIsManual(!isManual); setIsOpen(false); }}
                     className="text-[10px] text-zinc-600 hover:text-amber-500 transition-colors flex items-center gap-1 opacity-0 group-hover:opacity-100 focus:opacity-100"
