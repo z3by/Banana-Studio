@@ -56,6 +56,7 @@ export const WizardGuide = ({ isOpen, onClose }: WizardGuideProps) => {
                     <button
                         onClick={onClose}
                         className="p-2 hover:bg-white/10 rounded-full transition-colors text-zinc-400 hover:text-white"
+                        aria-label="Close guide"
                     >
                         <X size={20} />
                     </button>

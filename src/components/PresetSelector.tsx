@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Star, History, Sparkles, ChevronLeft, ChevronRight, X, ImageIcon } from 'lucide-react';
 import { presets, Preset } from '@/lib/presets';
 import { translations } from '@/i18n/translations';
@@ -176,10 +177,12 @@ export const PresetSelector = ({
                                     >
                                         {/* Image Container */}
                                         <div className="relative aspect-[4/3] w-full overflow-hidden bg-zinc-900 group-hover:brightness-110 transition-all">
-                                            <img
+                                            <Image
                                                 src={imageUrl}
                                                 alt={name}
-                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                                fill
+                                                sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                                                className="object-cover transition-transform duration-700 group-hover:scale-110"
                                             />
 
                                             {/* Gradient Overlay */}

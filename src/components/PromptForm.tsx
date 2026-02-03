@@ -281,7 +281,6 @@ export function PromptForm() {
     };
 
     // Save History
-    // Save History
     const addToHistory = (prompt: string) => {
         const newEntry = { prompt, timestamp: Date.now() };
         const newHistory = [newEntry, ...history].slice(0, MAX_HISTORY_ITEMS);
@@ -536,7 +535,6 @@ export function PromptForm() {
         const newData: PromptData = { ...data };
 
         // Subject
-        // Subject
         newData.gender = pick(enT.options.gender);
         newData.ageGroup = pick(enT.options.ageGroup);
         newData.ethnicity = pick(enT.options.ethnicity);
@@ -678,7 +676,6 @@ export function PromptForm() {
             case 5: return (
                 <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-300">
                     {/* Advanced Sliders */}
-                    {/* Advanced Sliders */}
                     <div className="glass-panel p-8 rounded-2xl space-y-8">
                         <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-2">
                             <Sliders size={14} className="text-amber-500" /> {t.form.advancedParams}
@@ -756,11 +753,11 @@ export function PromptForm() {
             </div>
 
             {/* Toolbar Actions Row */}
-            < div className="flex flex-wrap justify-between items-center gap-3 px-2" >
+            <div className="flex flex-wrap justify-between items-center gap-3 px-2">
                 {/* Left side actions */}
-                < div className="flex items-center gap-2" >
+                <div className="flex items-center gap-2">
                     {/* Live Preview Toggle */}
-                    < button
+                    <button
                         onClick={() => setShowPreview(!showPreview)}
                         className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all text-sm font-medium ${showPreview
                             ? 'bg-green-500/10 border-green-500/30 text-green-400'
@@ -769,13 +766,13 @@ export function PromptForm() {
                     >
                         <Eye size={16} />
                         <span className="hidden sm:inline">Preview</span>
-                    </button >
-                </div >
+                    </button>
+                </div>
 
                 {/* Right side actions */}
-                < div className="flex items-center gap-2" >
+                <div className="flex items-center gap-2">
                     {/* History Toggle */}
-                    < div className="relative" ref={historyRef} >
+                    <div className="relative" ref={historyRef}>
                         <button
                             onClick={() => setShowHistory(!showHistory)}
                             className="flex items-center gap-2 text-zinc-400 hover:text-white px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all text-sm font-medium"
@@ -817,7 +814,7 @@ export function PromptForm() {
                                 </div>
                             )
                         }
-                    </div >
+                    </div>
 
                     <button
                         onClick={() => setIsGuideOpen(true)}
@@ -851,8 +848,8 @@ export function PromptForm() {
                     >
                         <RefreshCw size={16} />
                     </button>
-                </div >
-            </div >
+                </div>
+            </div>
 
             {/* Live Preview Panel */}
             {
@@ -945,7 +942,6 @@ export function PromptForm() {
             </div>
 
             {/* Result Section */}
-            {/* Result Section */}
             {
                 generated && (
                     <div ref={resultRef} className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 scroll-mt-8">
@@ -1003,6 +999,6 @@ export function PromptForm() {
 
             {/* Wizard Guide */}
             <WizardGuide isOpen={isGuideOpen} onClose={() => setIsGuideOpen(false)} />
-        </div >
+        </div>
     );
 }
