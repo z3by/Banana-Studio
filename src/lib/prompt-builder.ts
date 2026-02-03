@@ -64,17 +64,17 @@ const toEnglish = (category: string, value: string): string => {
         isRootKey = true;
     }
 
-    // Try finding dictionary
+    // Try finding dictionary using type-safe access
     let enDict: Record<string, string> | undefined;
     let arDict: Record<string, string> | undefined;
 
     if (isRootKey) {
-        enDict = (translations.en as any)[lookupKey];
-        arDict = (translations.ar as any)[lookupKey];
+        enDict = (translations.en as unknown as Record<string, Record<string, string>>)[lookupKey];
+        arDict = (translations.ar as unknown as Record<string, Record<string, string>>)[lookupKey];
     } else {
         // Safe access to options
-        enDict = (translations.en.options as any)[lookupKey];
-        arDict = (translations.ar.options as any)[lookupKey];
+        enDict = (translations.en.options as unknown as Record<string, Record<string, string>>)[lookupKey];
+        arDict = (translations.ar.options as unknown as Record<string, Record<string, string>>)[lookupKey];
     }
 
     if (!enDict) return value; // No dictionary found, return raw value
@@ -85,7 +85,7 @@ const toEnglish = (category: string, value: string): string => {
 
     // 2. Check localized (Arabic) values
     if (arDict) {
-        const entry = Object.entries(arDict).find(([_, label]) => label === value);
+        const entry = Object.entries(arDict).find(([, label]) => label === value);
         if (entry) {
             const [key] = entry;
             return enDict[key] || value;

@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useLanguage } from './LanguageContext';
 import { generatePrompt, PromptData } from '@/lib/prompt-builder';
-import { presets, Preset } from '@/lib/presets';
+import { Preset } from '@/lib/presets';
 import {
     RefreshCw,
     Wand2,
@@ -37,7 +37,7 @@ import {
     Gauge,
     Sliders,
     Focus,
-    ChevronsUpDown,
+
     Check,
     ChevronRight,
     ChevronLeft,
@@ -45,20 +45,14 @@ import {
     History,
     Trash2,
     Info,
-    PenLine,
-    Keyboard,
-    List,
+
     Download,
     Share2,
     RotateCcw,
-    Layers,
-    Star
+
 } from 'lucide-react';
 
 // --- Constants ---
-const DROPDOWN_MAX_HEIGHT = 240; // max-h-60 = 15rem = 240px
-const DROPDOWN_SPACING = 8; // pixels
-const DROPDOWN_MIN_MARGIN = 16; // pixels
 const TOAST_DURATION = 2000; // milliseconds
 const MAX_HISTORY_ITEMS = 10;
 const MAX_RECENT_PRESETS = 10;
@@ -920,8 +914,7 @@ export function PromptForm() {
                     </div>
                     {/* Minimal Step Indicators */}
                     <div className="flex items-center gap-2">
-                        {steps.map((s, index) => {
-                            const fieldCount = getStepFieldCount(s.id);
+                        {steps.map((s) => {
                             const isActive = s.id === currentStep;
                             const isCompleted = s.id < currentStep;
                             return (

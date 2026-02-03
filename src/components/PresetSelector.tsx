@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Star, History, Sparkles, ChevronLeft, ChevronRight, X, ImageIcon } from 'lucide-react';
 import { presets, Preset } from '@/lib/presets';
+import { translations } from '@/i18n/translations';
 
 interface PresetSelectorProps {
-    t: any;
+    t: typeof translations['en'];
     recentPresets: string[];
     favoritePresets: string[];
     onSelect: (preset: Preset) => void;
@@ -22,12 +23,15 @@ export const PresetSelector = ({
     const [category, setCategory] = useState('common');
     const [currentPage, setCurrentPage] = useState(1);
     const [mounted, setMounted] = useState(false);
-
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
     }, []);
 
+    // Reset page when category or search changes - this is a legitimate use case
+    // for setting state in an effect to reset dependent state
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setCurrentPage(1);
     }, [category, search]);
 

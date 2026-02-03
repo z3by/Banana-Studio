@@ -8,8 +8,7 @@ interface WizardGuideProps {
 }
 
 export const WizardGuide = ({ isOpen, onClose }: WizardGuideProps) => {
-    const { t, language } = useLanguage();
-    const isRTL = language === 'ar';
+    const { t } = useLanguage();
 
     if (!isOpen) return null;
 
