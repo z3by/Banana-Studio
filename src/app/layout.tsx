@@ -4,6 +4,7 @@ import { LanguageProvider } from "@/components/LanguageContext";
 import { Header } from "@/components/Header";
 import Link from "next/link";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -94,6 +95,14 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5354627004153904"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
         />
 
         {/* Subtle Background Gradient - Refined for minimalism */}
