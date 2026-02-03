@@ -116,24 +116,34 @@ export const PresetSelector = ({
                             )}
                         </div>
 
-                        {/* Tabs */}
-                        <div className="flex gap-1 overflow-x-auto pb-2 scrollbar-none">
-                            {categories.map(cat => (
-                                <button
-                                    key={cat.id}
-                                    onClick={() => setCategory(cat.id)}
-                                    className={`
-                                        flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all
-                                        ${category === cat.id
-                                            ? `bg-${cat.color}-500/20 text-${cat.color}-400 border border-${cat.color}-500/20`
-                                            : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5 border border-transparent'}
-                                    `}
-                                >
-                                    {cat.icon ? <cat.icon size={12} className={category === cat.id ? `text-${cat.color}-400` : ''} /> : <div className={`w-1.5 h-1.5 rounded-full bg-${cat.color}-400`} />}
-                                    {cat.label}
-                                    {mounted && cat.id === 'favorites' && favoritePresets.length > 0 && <span className="opacity-50 ml-0.5">({favoritePresets.length})</span>}
-                                </button>
-                            ))}
+                        {/* Tabs with scroll indicator */}
+                        <div className="relative">
+                            {/* Left fade - shows when scrolled */}
+                            <div className="absolute left-0 top-0 bottom-2 w-6 bg-gradient-to-r from-black/30 to-transparent pointer-events-none z-10 opacity-0 md:hidden" id="scroll-fade-left" />
+
+                            <div className="flex gap-1 overflow-x-auto pb-2 scrollbar-none scroll-smooth" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                                {categories.map(cat => (
+                                    <button
+                                        key={cat.id}
+                                        onClick={() => setCategory(cat.id)}
+                                        className={`
+                                            flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all flex-shrink-0
+                                            ${category === cat.id
+                                                ? `bg-${cat.color}-500/20 text-${cat.color}-400 border border-${cat.color}-500/20`
+                                                : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5 border border-transparent'}
+                                        `}
+                                    >
+                                        {cat.icon ? <cat.icon size={12} className={category === cat.id ? `text-${cat.color}-400` : ''} /> : <div className={`w-1.5 h-1.5 rounded-full bg-${cat.color}-400`} />}
+                                        {cat.label}
+                                        {mounted && cat.id === 'favorites' && favoritePresets.length > 0 && <span className="opacity-50 ml-0.5">({favoritePresets.length})</span>}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Right fade + scroll hint - always visible on mobile when more content exists */}
+                            <div className="absolute right-0 top-0 bottom-2 w-8 bg-gradient-to-l from-black/40 via-black/20 to-transparent pointer-events-none z-10 flex items-center justify-end md:hidden">
+                                <ChevronRight size={14} className="text-zinc-500 animate-pulse mr-0.5" />
+                            </div>
                         </div>
                     </div>
 
