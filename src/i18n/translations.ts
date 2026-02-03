@@ -50,7 +50,7 @@ export const translations = {
       lightColor: 'Light Color',
       downloaded: 'Prompt downloaded!',
       shareCopied: 'Share link copied!',
-      shareTitle: 'Banana Studio Prompt',
+      shareTitle: 'Banana Prompt',
       copied: 'Copied!',
       steps: {
         subject: 'Subject Details',
@@ -508,7 +508,7 @@ export const translations = {
       splashArt: 'Splash Art',
       coverArt: 'Cover Art',
       posterArt: 'Poster Art',
-      footer: 'Made with 🍌 for Banana Studio'
+      footer: 'Made with 🍌 for Banana Prompt'
     },
     options: {
       gender: {
@@ -1955,7 +1955,7 @@ export const translations = {
       resultLabel: 'الأمر الخاص بك',
       downloaded: 'تم تحميل الأمر!',
       shareCopied: 'تم نسخ رابط المشاركة!',
-      shareTitle: 'أمر Banana Studio',
+      shareTitle: 'أمر Banana Prompt',
       copied: 'تم النسخ!',
       steps: {
         subject: 'تفاصيل الشخصية',

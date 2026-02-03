@@ -11,14 +11,14 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://bananastudio.app"),
   title: {
-    default: "Banana Studio",
-    template: "%s | Banana Studio",
+    default: "Banana Prompt",
+    template: "%s | Banana Prompt",
   },
   description: "Generate high-quality prompts for your AI portrait edits. Professional AI prompt engineering made simple.",
   keywords: ["AI", "Prompt Engineering", "Portraits", "Nano Banana Pro", "Image Generation", "AI Art", "Photography", "Studio"],
   authors: [{ name: "Ahmad Mostafa", url: "https://z3by.com" }],
   creator: "Ahmad Mostafa",
-  publisher: "Banana Studio",
+  publisher: "Banana Prompt",
   alternates: {
     canonical: "/",
   },
@@ -32,17 +32,17 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Banana Studio",
+    title: "Banana Prompt",
     description: "Generate high-quality prompts for your AI portrait edits. Create stunning AI art with professional prompts.",
     url: "https://bananastudio.app",
-    siteName: "Banana Studio",
-    images: [{ url: "/icon.png", width: 512, height: 512, alt: "Banana Studio Logo" }],
+    siteName: "Banana Prompt",
+    images: [{ url: "/icon.png", width: 512, height: 512, alt: "Banana Prompt Logo" }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Banana Studio",
+    title: "Banana Prompt",
     description: "Generate high-quality prompts for your AI portrait edits.",
     creator: "@z3by",
     images: ["/icon.png"],
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Banana Studio",
+  "name": "Banana Prompt",
   "url": "https://bananastudio.app",
   "description": "Generate high-quality prompts for your AI portrait edits.",
   "applicationCategory": "DesignApplication",

@@ -2,8 +2,8 @@ import { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
     return {
-        name: "Banana Studio",
-        short_name: "Banana Studio",
+        name: "Banana Prompt",
+        short_name: "Banana Prompt",
         description: "Generate high-quality prompts for your AI portrait edits.",
         start_url: "/",
         display: "standalone",

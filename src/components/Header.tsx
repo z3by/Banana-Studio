@@ -22,7 +22,7 @@ export function Header() {
                     </div>
                     <div className="flex flex-col">
                         <h1 className="text-lg font-bold tracking-tight text-white/95 group-hover:text-amber-400 transition-colors">
-                            Banana Studio
+                            Banana Prompt
                         </h1>
                         <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-semibold group-hover:text-zinc-400 transition-colors">
                             Professional Prompt Engineer
